@@ -4,24 +4,17 @@ import {
   MAX_MARKER_SIZE,
   MIN_MARKER_SIZE,
 } from "@/features/markers/domain/constants";
-import GeneralHeader from "@/shared/ui/GeneralHeader";
-import DesktopNavBar from "@/shared/ui/DesktopNavBar";
-import FooterNote from "@/shared/ui/FooterNote";
 import PreviewPanel from "@/features/poster/ui/PreviewPanel";
 import MobileNavBar, { type MobileTab } from "@/shared/ui/MobileNavBar";
-import InstallPrompt from "@/features/install/ui/InstallPrompt";
 import { useSwipeDown } from "@/shared/hooks/useSwipeDown";
 import StartupLocationModal from "@/features/location/ui/StartupLocationModal";
 import { CheckIcon } from "@/shared/ui/Icons";
+import { useExport } from "@/features/export/application/useExport";
+import Sidebar from "@/components/sidebar/Sidebar";
+import MapCanvas from "@/components/canvas/MapCanvas";
 
-const AboutModal = lazy(() => import("@/shared/ui/AboutModal"));
 const SettingsPanel = lazy(() => import("@/features/poster/ui/SettingsPanel"));
-const AnnouncementModal = lazy(
-  () => import("@/features/updates/ui/AnnouncementModal"),
-);
-const DesktopExportFab = lazy(() => import("@/features/export/ui/DesktopExportFab"));
 const MobileExportFab = lazy(() => import("@/features/export/ui/MobileExportFab"));
-const DesktopLocationBar = lazy(() => import("@/shared/ui/DesktopLocationBar"));
 
 function SettingsDrawer({
   mobileTab,
@@ -69,6 +62,8 @@ export default function AppShell() {
       ? state.markers.find((marker) => marker.id === state.activeMarkerId) ?? null
       : null;
 
+  const { handleDownloadPng, isExporting } = useExport();
+
   // Mobile state
   const [mobileTab, setMobileTab] = useState<MobileTab>("theme");
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
@@ -76,19 +71,10 @@ export default function AppShell() {
     useState(true);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
 
-  // Desktop state
-  const [desktopTab, setDesktopTab] = useState<MobileTab>("theme");
-  const [desktopPanelOpen, setDesktopPanelOpen] = useState(false);
-  const [desktopLocationRowVisible, setDesktopLocationRowVisible] =
-    useState(true);
-  const [aboutOpen, setAboutOpen] = useState(false);
   useEffect(() => {
     const preload = () => {
       void import("@/features/poster/ui/SettingsPanel");
-      void import("@/shared/ui/DesktopLocationBar");
-      void import("@/features/export/ui/DesktopExportFab");
       void import("@/features/export/ui/MobileExportFab");
-      void import("@/features/updates/ui/AnnouncementModal");
     };
 
     if ("requestIdleCallback" in window) {
@@ -151,15 +137,6 @@ export default function AppShell() {
     }
   };
 
-  const handleDesktopTabChange = (tab: MobileTab) => {
-    if (tab === desktopTab && desktopPanelOpen) {
-      setDesktopPanelOpen(false);
-    } else {
-      setDesktopTab(tab);
-      setDesktopPanelOpen(true);
-    }
-  };
-
   const handleMobileMarkerSizeChange = useCallback(
     (nextSize: number) => {
       if (!activeMarker) {
@@ -178,42 +155,32 @@ export default function AppShell() {
     [activeMarker, dispatch],
   );
 
+  // Desktop layout: sidebar + canvas
+  if (!isMobileViewport) {
+    return (
+      <div className="flex h-screen font-sans text-text-primary bg-app">
+        <Sidebar onExport={handleDownloadPng} isExporting={isExporting}>
+          <Suspense fallback={null}>
+            <SettingsPanel />
+          </Suspense>
+        </Sidebar>
+        <MapCanvas>
+          <PreviewPanel />
+        </MapCanvas>
+        <StartupLocationModal />
+      </div>
+    );
+  }
+
+  // Mobile layout: keep existing mobile behavior
   return (
     <div
       className="app-shell"
       data-mobile-tab={mobileTab}
-      data-desktop-tab={desktopTab}
     >
-      <GeneralHeader onAboutOpen={() => setAboutOpen(true)} />
-      <InstallPrompt />
       <StartupLocationModal />
 
-      <DesktopNavBar
-        activeTab={desktopTab}
-        panelOpen={desktopPanelOpen}
-        onTabChange={handleDesktopTabChange}
-        isLocationVisible={desktopLocationRowVisible}
-        onLocationToggle={() =>
-          setDesktopLocationRowVisible((isVisible) => !isVisible)
-        }
-      />
-
-      <div
-        className={`desktop-location-row-wrap${desktopLocationRowVisible ? "" : " is-hidden"}`}
-      >
-        <Suspense fallback={null}>
-          <DesktopLocationBar />
-        </Suspense>
-      </div>
-
-      <div
-        className={`mobile-location-row-wrap${mobileLocationRowVisible ? "" : " is-hidden"}`}
-      >
-        <Suspense fallback={null}>
-          <DesktopLocationBar />
-        </Suspense>
-      </div>
-      {isMobileViewport && isMarkerEditorActive && activeMarker ? (
+      {isMarkerEditorActive && activeMarker ? (
         <div
           className="mobile-marker-size-bar"
           role="group"
@@ -239,16 +206,6 @@ export default function AppShell() {
         </div>
       ) : null}
 
-      <div className="desktop-left-panel">
-        <div
-          className={`desktop-settings-slide${desktopPanelOpen ? " is-open" : ""}`}
-        >
-          <Suspense fallback={null}>
-            <SettingsPanel />
-          </Suspense>
-        </div>
-      </div>
-
       <PreviewPanel />
 
       {mobileDrawerOpen ? (
@@ -258,7 +215,7 @@ export default function AppShell() {
         />
       ) : null}
 
-      {isMobileViewport && isMarkerEditorActive ? (
+      {isMarkerEditorActive ? (
         <button
           type="button"
           className="mobile-marker-edit-done"
@@ -280,18 +237,8 @@ export default function AppShell() {
         onTabChange={handleMobileTabChange}
       />
       <Suspense fallback={null}>
-        {isMobileViewport ? <MobileExportFab /> : <DesktopExportFab />}
+        <MobileExportFab />
       </Suspense>
-
-      <FooterNote />
-      <Suspense fallback={null}>
-        <AnnouncementModal />
-      </Suspense>
-      {aboutOpen ? (
-        <Suspense fallback={null}>
-          <AboutModal onClose={() => setAboutOpen(false)} />
-        </Suspense>
-      ) : null}
     </div>
   );
 }
