@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { isNativePlatform, onPlatformAdapterChange } from "@/core/platform";
 import App from "./App";
+import "@/app/globals.css";
 import "./styles/index.css";
 
 const syncDisplayMode = () => {
