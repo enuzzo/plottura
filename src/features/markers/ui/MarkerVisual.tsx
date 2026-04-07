@@ -21,39 +21,49 @@ const MarkerVisual = memo(function MarkerVisual({
 
   return (
     <span
-      className={`marker-visual ${className}`.trim()}
+      className={`inline-flex items-center justify-center ${className}`.trim()}
       style={
         {
           "--marker-size": `${size}px`,
           "--marker-color": color,
+          width: `${size}px`,
+          height: `${size}px`,
         } as CSSProperties
       }
     >
       {isThemeTintedMarkerSvg ? (
         <span
-          className="marker-visual__image-mask"
+          className="block h-full w-full"
           aria-hidden="true"
           style={
             {
-              "--marker-mask-url": `url(${icon.dataUrl})`,
+              backgroundColor: color,
+              WebkitMaskImage: `url(${icon.dataUrl})`,
+              WebkitMaskSize: "contain",
+              WebkitMaskRepeat: "no-repeat",
+              WebkitMaskPosition: "center",
+              maskImage: `url(${icon.dataUrl})`,
+              maskSize: "contain",
+              maskRepeat: "no-repeat",
+              maskPosition: "center",
             } as CSSProperties
           }
         />
       ) : icon.kind === "image" && icon.dataUrl ? (
         <img
-          className="marker-visual__image"
+          className="block h-full w-full object-contain"
           src={icon.dataUrl}
           alt=""
           aria-hidden="true"
         />
       ) : (
         icon.component ? (
-          <span className="marker-visual__icon" aria-hidden="true">
+          <span className="flex items-center justify-center" aria-hidden="true">
             <icon.component size={size} color={color} />
           </span>
         ) : (
           <span
-            className="marker-visual__icon"
+            className="flex items-center justify-center [&>svg]:h-full [&>svg]:w-full"
             aria-hidden="true"
             dangerouslySetInnerHTML={{ __html: icon.svgMarkup ?? "" }}
           />

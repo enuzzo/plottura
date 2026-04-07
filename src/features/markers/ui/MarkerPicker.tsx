@@ -71,48 +71,52 @@ const MarkerPicker = memo(function MarkerPicker({
   };
 
   return (
-    <div className="marker-picker">
-      <p className="marker-picker__section-title">Marker Icons</p>
-      <div className="marker-picker__grid">
+    <div className="space-y-3">
+      <p className="text-xs font-semibold uppercase tracking-wider text-text-secondary">Marker Icons</p>
+      <div className="grid grid-cols-4 gap-1.5">
         {visibleAppIcons.map((icon) => (
           <button
             key={icon.id}
             type="button"
-            className={`marker-picker__option${
-              selectedIconId === icon.id ? " is-selected" : ""
+            className={`flex flex-col items-center gap-1 rounded-md p-2 text-center transition-colors ${
+              selectedIconId === icon.id
+                ? "bg-accent/10 ring-1 ring-accent"
+                : "hover:bg-surface-hover"
             }`}
             onClick={() => onIconClick(icon.id)}
             title={icon.label}
           >
             <MarkerVisual icon={icon} size={30} color={markerColor} />
-            <span className="marker-picker__label">{icon.label}</span>
+            <span className="text-[10px] text-text-secondary truncate w-full">{icon.label}</span>
           </button>
         ))}
         {appIcons.length > featuredMarkerIcons.length ? (
           <button
             type="button"
-            className="marker-picker__option marker-picker__option--toggle"
+            className="flex flex-col items-center justify-center gap-1 rounded-md p-2 text-center hover:bg-surface-hover transition-colors"
             onClick={() => setIsExpanded((prev) => !prev)}
             aria-label={shouldShowAllIcons ? "Show icon list" : "Show more icons"}
           >
-            <span className="marker-picker__toggle-sign" aria-hidden="true">
+            <span className="text-lg font-bold text-text-secondary" aria-hidden="true">
               {shouldShowAllIcons ? "-" : "+"}
             </span>
-            <span className="marker-picker__label">
+            <span className="text-[10px] text-text-secondary">
               {shouldShowAllIcons ? "Show less" : "More Icons"}
             </span>
           </button>
         ) : null}
       </div>
 
-      <p className="marker-picker__section-title">Uploaded Markers</p>
-      <div className="marker-picker__grid marker-picker__grid--uploaded">
+      <p className="text-xs font-semibold uppercase tracking-wider text-text-secondary">Uploaded Markers</p>
+      <div className="grid grid-cols-4 gap-1.5">
         {customIcons.map((icon) => (
           <button
             key={icon.id}
             type="button"
-            className={`marker-picker__option marker-picker__option--uploaded${
-              selectedIconId === icon.id ? " is-selected" : ""
+            className={`relative flex flex-col items-center gap-1 rounded-md p-2 text-center transition-colors ${
+              selectedIconId === icon.id
+                ? "bg-accent/10 ring-1 ring-accent"
+                : "hover:bg-surface-hover"
             }`}
             onClick={() => onIconClick(icon.id)}
             title={icon.label}
@@ -121,7 +125,7 @@ const MarkerPicker = memo(function MarkerPicker({
               <span
                 role="button"
                 tabIndex={0}
-                className="marker-picker__remove-uploaded"
+                className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-card border border-border text-[10px] text-text-secondary hover:text-red-500 transition-colors"
                 onClick={(event) => {
                   event.stopPropagation();
                   onRemoveUploadedIcon(icon.id);
@@ -140,7 +144,7 @@ const MarkerPicker = memo(function MarkerPicker({
               </span>
             ) : null}
             <MarkerVisual icon={icon} size={30} color={markerColor} />
-            <span className="marker-picker__label">{icon.label}</span>
+            <span className="text-[10px] text-text-secondary truncate w-full">{icon.label}</span>
           </button>
         ))}
 
@@ -148,45 +152,46 @@ const MarkerPicker = memo(function MarkerPicker({
           <>
             <button
               type="button"
-              className="marker-picker__option marker-picker__option--upload-tile"
+              className="flex flex-col items-center justify-center gap-1 rounded-md border border-dashed border-border p-2 text-center hover:bg-surface-hover transition-colors"
               onClick={() => inputRef.current?.click()}
               title="Upload marker"
             >
-              <span className="marker-picker__upload-plus" aria-hidden="true">
+              <span className="text-lg font-bold text-text-secondary" aria-hidden="true">
                 +
               </span>
-              <span className="marker-picker__label">Upload Marker</span>
+              <span className="text-[10px] text-text-secondary">Upload Marker</span>
             </button>
             <input
               ref={inputRef}
               type="file"
               accept=".svg,image/*"
-              className="marker-picker__file-input"
+              className="hidden"
               onChange={handleUploadChange}
             />
           </>
         ) : null}
       </div>
 
-      <div className="marker-picker__actions">
-        {onClearUploadedIcons && customIcons.length > 0 ? (
+      {onClearUploadedIcons && customIcons.length > 0 ? (
+        <div>
           <button
             type="button"
-            className="marker-picker__upload marker-picker__clear-uploaded"
+            className="text-xs text-text-secondary hover:text-red-500 transition-colors"
             onClick={onClearUploadedIcons}
           >
             Remove uploaded icons from storage
           </button>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
 
-      <div className="marker-picker__divider marker-picker__divider--actions" />
+      {actionSlot ? (
+        <>
+          <div className="border-t border-border" />
+          <div>{actionSlot}</div>
+        </>
+      ) : null}
 
-      <div className="marker-picker__actions">
-        {actionSlot}
-      </div>
-
-      {uploadError ? <p className="marker-picker__error">{uploadError}</p> : null}
+      {uploadError ? <p className="text-xs text-red-500">{uploadError}</p> : null}
     </div>
   );
 });
