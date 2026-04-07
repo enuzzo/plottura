@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import ThemeToggle from "@/components/ThemeToggle";
 
 interface SidebarHeaderProps {
   className?: string;
@@ -18,6 +19,7 @@ export default function SidebarHeader({ className }: SidebarHeaderProps) {
       <span className="text-xl font-bold text-text-primary tracking-tight">
         Plottura
       </span>
+      <ThemeToggle className="ml-auto" />
     </div>
   );
 }
