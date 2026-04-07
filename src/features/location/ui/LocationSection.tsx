@@ -41,39 +41,40 @@ export default function LocationSection({
   const hasLocationValue = form.location.trim().length > 0;
 
   return (
-    <section className="panel-block">
-      <h2>Location</h2>
-      <label>
-        Location
-        <div className="location-autocomplete">
-          <div className="location-search-row">
-            <div className="location-input-wrap">
+    <div className="space-y-3">
+      <label className="block">
+        <span className="text-sm text-text-secondary">Location</span>
+        <div className="relative mt-1">
+          <div className="flex items-center gap-1.5">
+            <div className="relative flex-1">
               <input
-                className="form-control-tall"
+                className="w-full bg-input border border-border rounded-sm text-base px-2.5 py-1.5 text-text-primary placeholder:text-text-muted outline-none focus:border-text-muted transition-colors"
                 name="location"
                 value={form.location}
                 onChange={onChange}
                 onFocus={onLocationFocus}
                 onBlur={onLocationBlur}
-                onKeyDown={(e) => { if (e.key === "Enter") void searchNow(e.currentTarget.value); }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") void searchNow(e.currentTarget.value);
+                }}
                 placeholder={PLACEHOLDER_LOCATION_SEARCH}
                 autoComplete="off"
               />
-              {hasLocationValue ? (
+              {hasLocationValue && (
                 <button
                   type="button"
-                  className="location-clear-btn"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary text-xs leading-none transition-colors"
                   aria-label="Clear location"
                   onMouseDown={(event) => event.preventDefault()}
                   onClick={onClearLocation}
                 >
                   x
                 </button>
-              ) : null}
+              )}
             </div>
             <button
               type="button"
-              className="location-current-btn"
+              className="shrink-0 p-1.5 border border-border rounded-sm bg-input text-text-muted hover:text-text-primary hover:bg-accent-subtle transition-colors disabled:opacity-50"
               onMouseDown={(event) => event.preventDefault()}
               onClick={onUseCurrentLocation}
               disabled={isLocatingUser}
@@ -83,13 +84,16 @@ export default function LocationSection({
               <MyLocationIcon />
             </button>
           </div>
-          {showLocationSuggestions ? (
-            <ul className="location-suggestions" role="listbox">
+          {showLocationSuggestions && (
+            <ul
+              className="absolute left-0 right-0 top-full mt-1 z-20 bg-card border border-border rounded-sm shadow-lg overflow-hidden"
+              role="listbox"
+            >
               {locationSuggestions.map((suggestion) => (
                 <li key={suggestion.id}>
                   <button
                     type="button"
-                    className="location-suggestion"
+                    className="w-full text-left px-2.5 py-1.5 text-sm text-text-primary hover:bg-accent-subtle transition-colors"
                     onMouseDown={(event) => {
                       event.preventDefault();
                       onLocationSelect(suggestion);
@@ -99,33 +103,35 @@ export default function LocationSection({
                   </button>
                 </li>
               ))}
-              {isLocationSearching ? (
-                <li className="location-suggestion-status">Searching...</li>
-              ) : null}
+              {isLocationSearching && (
+                <li className="px-2.5 py-1.5 text-xs text-text-muted">
+                  Searching...
+                </li>
+              )}
             </ul>
-          ) : null}
-          {locationPermissionMessage ? (
-            <p className="location-permission-message">
+          )}
+          {locationPermissionMessage && (
+            <p className="mt-1 text-xs text-text-muted">
               {locationPermissionMessage}
             </p>
-          ) : null}
+          )}
         </div>
       </label>
-      <div className="field-grid keep-two-mobile">
-        <label>
-          Latitude (optional)
+      <div className="grid grid-cols-2 gap-2">
+        <label className="block">
+          <span className="text-xs text-text-muted font-mono">Latitude</span>
           <input
-            className="form-control-tall"
+            className="w-full mt-0.5 bg-input border border-border rounded-sm text-base px-2.5 py-1.5 text-text-primary placeholder:text-text-muted outline-none focus:border-text-muted transition-colors font-mono text-xs"
             name="latitude"
             value={form.latitude}
             onChange={onChange}
             placeholder={PLACEHOLDER_EXAMPLE_LATITUDE}
           />
         </label>
-        <label>
-          Longitude (optional)
+        <label className="block">
+          <span className="text-xs text-text-muted font-mono">Longitude</span>
           <input
-            className="form-control-tall"
+            className="w-full mt-0.5 bg-input border border-border rounded-sm text-base px-2.5 py-1.5 text-text-primary placeholder:text-text-muted outline-none focus:border-text-muted transition-colors font-mono text-xs"
             name="longitude"
             value={form.longitude}
             onChange={onChange}
@@ -133,6 +139,6 @@ export default function LocationSection({
           />
         </label>
       </div>
-    </section>
+    </div>
   );
 }

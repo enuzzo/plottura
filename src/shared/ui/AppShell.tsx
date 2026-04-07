@@ -12,6 +12,7 @@ import { CheckIcon } from "@/shared/ui/Icons";
 import { useExport } from "@/features/export/application/useExport";
 import Sidebar from "@/components/sidebar/Sidebar";
 import MapCanvas from "@/components/canvas/MapCanvas";
+import FloatingSearchBar from "@/components/canvas/FloatingSearchBar";
 
 const SettingsPanel = lazy(() => import("@/features/poster/ui/SettingsPanel"));
 const MobileExportFab = lazy(() => import("@/features/export/ui/MobileExportFab"));
@@ -165,6 +166,7 @@ export default function AppShell() {
           </Suspense>
         </Sidebar>
         <MapCanvas>
+          <FloatingSearchBar />
           <PreviewPanel />
         </MapCanvas>
         <StartupLocationModal />

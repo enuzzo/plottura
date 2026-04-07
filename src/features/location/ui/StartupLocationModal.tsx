@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   DEFAULT_CITY,
   DEFAULT_COUNTRY,
@@ -16,8 +16,12 @@ import { MyLocationIcon } from "@/shared/ui/Icons";
 import { usePosterDispatch } from "@/features/poster/ui/PosterContext";
 import { useLocationAutocomplete } from "@/features/location/application/useLocationAutocomplete";
 import type { SearchResult } from "@/features/location/domain/types";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
-const CLOSE_ANIMATION_MS = 220;
 const DEFAULT_LOCATION_LABEL = "Hanover, Region Hannover, Lower Saxony, Germany";
 
 interface PendingLocation {
@@ -38,7 +42,6 @@ export default function StartupLocationModal({
 }: StartupLocationModalProps) {
   const { dispatch } = usePosterDispatch();
   const [isOpen, setIsOpen] = useState(true);
-  const [isClosing, setIsClosing] = useState(false);
   const [locationInput, setLocationInput] = useState("");
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [pendingLocation, setPendingLocation] = useState<PendingLocation | null>(null);
@@ -50,11 +53,8 @@ export default function StartupLocationModal({
   const showSuggestions = isInputFocused && locationSuggestions.length > 0;
 
   const closeModal = () => {
-    setIsClosing(true);
-    window.setTimeout(() => {
-      setIsOpen(false);
-      onComplete?.();
-    }, CLOSE_ANIMATION_MS);
+    setIsOpen(false);
+    onComplete?.();
   };
 
   const applyResolvedLocation = (location: PendingLocation | null) => {
@@ -214,87 +214,109 @@ export default function StartupLocationModal({
     }
   };
 
-  if (!isOpen) {
-    return null;
-  }
+  const handleOpenChange = (open: boolean) => {
+    if (!open) {
+      // User pressed escape or clicked overlay — apply defaults and close
+      applyResolvedLocation(pendingLocation);
+      closeModal();
+    }
+  };
 
   return (
-    <div
-      className={`startup-location-modal${isClosing ? " is-closing" : ""}`}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="startup-location-title"
-    >
-      <div className="startup-location-logo-wrap" aria-hidden="true">
-        <img className="startup-location-logo" src="/favicon.svg" alt="" />
-        <p className="startup-location-app-name">Plottura</p>
-      </div>
+    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
+      <DialogContent
+        hideCloseButton
+        className="max-w-sm gap-0 p-0 overflow-visible"
+        onInteractOutside={(e) => e.preventDefault()}
+      >
+        {/* Logo header */}
+        <div className="flex flex-col items-center gap-1 pt-6 pb-4" aria-hidden="true">
+          <img className="h-10 w-10" src="/favicon.svg" alt="" />
+          <p className="text-sm font-medium text-text-muted">Plottura</p>
+        </div>
 
-      <div className="startup-location-card is-visible">
-        <p className="startup-location-title" id="startup-location-title">
-          Choose Location
-        </p>
-        <input
-          type="text"
-          className="startup-location-input"
-          value={locationInput}
-          onChange={(event) => {
-            setLocationInput(event.target.value);
-            setPendingLocation(null);
-            // Restore focus state when user types after selecting a suggestion
-            // (DOM focus may still be on the input, so onFocus won't re-fire).
-            if (!isInputFocused) setIsInputFocused(true);
-          }}
-          onFocus={() => setIsInputFocused(true)}
-          onBlur={() => setTimeout(() => setIsInputFocused(false), 120)}
-          onKeyDown={(e) => { if (e.key === "Enter") void searchNow(e.currentTarget.value); }}
-          placeholder="Type a city or place"
-          autoComplete="off"
-        />
-        {showSuggestions ? (
-          <ul className="startup-location-suggestions" role="listbox">
-            {locationSuggestions.map((suggestion) => (
-              <li key={suggestion.id}>
-                <button
-                  type="button"
-                  className="startup-location-suggestion"
-                  onMouseDown={(event) => {
-                    event.preventDefault();
-                    onSuggestionSelect(suggestion);
-                  }}
-                >
-                  {suggestion.label}
-                </button>
-              </li>
-            ))}
-            {isLocationSearching ? (
-              <li className="startup-location-suggestion-status">Searching...</li>
-            ) : null}
-          </ul>
-        ) : null}
-        <button
-          type="button"
-          className="startup-location-action startup-location-action--geo"
-          onClick={handleUseMyLocation}
-          disabled={isResolving}
-        >
-          <MyLocationIcon />
-          <span>{isResolving ? "Locating..." : "Get my location"}</span>
-        </button>
-        <button
-          type="button"
-          className="startup-location-action startup-location-action--confirm"
-          onClick={() => void handleConfirm()}
-          disabled={isResolving}
-        >
-          OK
-        </button>
-        {errorMessage ? (
-          <p className="startup-location-error" role="status">
-            {errorMessage}
-          </p>
-        ) : null}
-      </div>
-    </div>
+        <div className="px-6 pb-6 space-y-3">
+          <DialogTitle className="text-center text-lg font-semibold text-text-primary">
+            Choose Location
+          </DialogTitle>
+
+          {/* Search input */}
+          <div className="relative">
+            <input
+              type="text"
+              className="w-full bg-input border border-border rounded-sm text-base px-3 py-2 text-text-primary placeholder:text-text-muted outline-none focus:border-text-muted transition-colors"
+              value={locationInput}
+              onChange={(event) => {
+                setLocationInput(event.target.value);
+                setPendingLocation(null);
+                if (!isInputFocused) setIsInputFocused(true);
+              }}
+              onFocus={() => setIsInputFocused(true)}
+              onBlur={() => setTimeout(() => setIsInputFocused(false), 120)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") void searchNow(e.currentTarget.value);
+              }}
+              placeholder="Type a city or place"
+              autoComplete="off"
+            />
+
+            {showSuggestions && (
+              <ul
+                className="absolute left-0 right-0 top-full mt-1 z-20 bg-card border border-border rounded-sm shadow-lg overflow-hidden"
+                role="listbox"
+              >
+                {locationSuggestions.map((suggestion) => (
+                  <li key={suggestion.id}>
+                    <button
+                      type="button"
+                      className="w-full text-left px-3 py-2 text-sm text-text-primary hover:bg-accent-subtle transition-colors"
+                      onMouseDown={(event) => {
+                        event.preventDefault();
+                        onSuggestionSelect(suggestion);
+                      }}
+                    >
+                      {suggestion.label}
+                    </button>
+                  </li>
+                ))}
+                {isLocationSearching && (
+                  <li className="px-3 py-2 text-xs text-text-muted">
+                    Searching...
+                  </li>
+                )}
+              </ul>
+            )}
+          </div>
+
+          {/* Geolocation button */}
+          <button
+            type="button"
+            className="flex items-center gap-2 w-full px-3 py-2 border border-border rounded-sm text-sm text-text-primary hover:bg-accent-subtle transition-colors disabled:opacity-50"
+            onClick={handleUseMyLocation}
+            disabled={isResolving}
+          >
+            <MyLocationIcon />
+            <span>{isResolving ? "Locating..." : "Get my location"}</span>
+          </button>
+
+          {/* Confirm button */}
+          <button
+            type="button"
+            className="w-full py-2 rounded-sm bg-text-primary text-card font-medium text-sm hover:opacity-90 transition-opacity disabled:opacity-50"
+            onClick={() => void handleConfirm()}
+            disabled={isResolving}
+          >
+            OK
+          </button>
+
+          {/* Error message */}
+          {errorMessage && (
+            <p className="text-xs text-red-500 text-center" role="status">
+              {errorMessage}
+            </p>
+          )}
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }
