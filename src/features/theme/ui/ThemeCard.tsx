@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import {
   DISPLAY_PALETTE_KEYS,
   type ThemeOption,
@@ -46,38 +47,39 @@ export default function ThemeCard({
     }
     return result;
   })();
-  const className = ["theme-card", isSelected ? "is-selected" : ""]
-    .filter(Boolean)
-    .join(" ");
 
   return (
     <button
       type="button"
-      className={className}
+      className={cn(
+        "theme-card relative flex flex-col items-center gap-1.5 rounded-md border bg-card p-2 transition-colors cursor-pointer",
+        isSelected
+          ? "is-selected border-2 border-accent"
+          : "border-border hover:border-accent/50"
+      )}
       onClick={onClick}
       aria-pressed={isSelected}
       aria-label={themeOption.name}
     >
       <div
-        className={[
-          "theme-card-palette",
-          showFullPalette ? "theme-card-palette--full" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
+        className={cn(
+          "theme-card-palette flex items-center justify-center gap-0.5 w-full",
+          showFullPalette ? "theme-card-palette--full flex-wrap" : ""
+        )}
         aria-hidden="true"
       >
         {palette.map((color, index) => (
           <span
             key={`${themeOption.id}-${color}-${index}`}
-            className="theme-card-swatch"
+            className="theme-card-swatch inline-block h-5 w-5 rounded-full border border-border/40"
             style={{ backgroundColor: color }}
             title={color}
           />
         ))}
       </div>
-      <span className="theme-card-name-shadow" aria-hidden="true" />
-      <p className="theme-card-name">{themeOption.name}</p>
+      <p className="theme-card-name text-xs text-text-secondary truncate w-full text-center">
+        {themeOption.name}
+      </p>
     </button>
   );
 }
