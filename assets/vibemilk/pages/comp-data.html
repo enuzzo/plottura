@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="vibemilk-default">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data & Feedback - Vibemilk Design System</title>
+  <meta name="description" content="Vibemilk data and feedback components: cards, badges, data display, progress bars, and alerts.">
+  <link rel="stylesheet" href="../css/vibemilk-core.css">
+  <link rel="stylesheet" href="../css/docs.css">
+  <link rel="stylesheet" href="../css/showcase.css">
+</head>
+<body class="vm-docs" data-vm-page="comp-data">
+  <aside id="docs-index" class="vm-docs__sidebar" aria-label="Vibemilk documentation index">
+    <div class="vm-docs__sidebar-head">
+      <div class="vm-docs__brand">
+        <a href="../index.html" class="vm-docs__brand-mark" aria-label="Netmilk home"></a>
+        <div class="vm-docs__brand-copy">
+          <a href="../index.html" class="vm-docs__brand-title" style="text-decoration:none;color:inherit;">Vibemilk</a>
+          <div class="vm-docs__brand-subtitle">Netmilk Studio Design System</div>
+        </div>
+      </div>
+
+      <div class="vm-docs__theme">
+        <label class="vm-label">Active theme</label>
+        <div class="vm-dropdown" data-vm-theme-select>
+          <button type="button" class="vm-dropdown__trigger" aria-expanded="false" aria-haspopup="listbox">
+            <span class="vm-dropdown__value">Vibemilk Default</span>
+            <span class="vm-nf vm-dropdown__chevron" aria-hidden="true">&#xeb6c;</span>
+          </button>
+          <ul class="vm-dropdown__menu" role="listbox">
+            <li class="vm-dropdown__item is-selected" role="option" aria-selected="true" data-value="vibemilk-default">Vibemilk Default</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="vibemilk-dark">Vibemilk Dark</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="cyber-grid">Cyber Grid</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="acid-pop">Acid Pop</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="sakura-spring">Sakura Spring</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="mono-brutalist">Mono Brutalist</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="mint-protocol">Mint Protocol</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="cathode-ray">Cathode Ray</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="clean-sheet">Clean Sheet</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="clean-sheet-dark">Clean Sheet Dark</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="solar-dust">Solar Dust</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="geocities-97">Geocities 97</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="vm-docs__controls">
+        <div class="vm-docs__controls-row">
+          <span class="vm-docs__controls-label">Mode</span>
+          <div class="vm-theme-toggle vm-theme-toggle--sidebar" data-vm-mode="day" data-vm-sidebar-toggle role="button" tabindex="0" aria-label="Toggle day/night mode">
+            <div class="vm-theme-toggle__track">
+              <span class="vm-theme-toggle__icon vm-theme-toggle__icon--sun vm-nf" aria-hidden="true">&#xeb30;</span>
+              <span class="vm-theme-toggle__icon vm-theme-toggle__icon--moon vm-nf" aria-hidden="true">&#xeaf0;</span>
+              <div class="vm-theme-toggle__thumb"></div>
+            </div>
+            <span class="vm-theme-toggle__label">day</span>
+          </div>
+        </div>
+        <div class="vm-docs__controls-row">
+          <span class="vm-docs__controls-label">Canvas</span>
+          <div class="vm-preview-toolbar__modes" role="group" aria-label="Preview width">
+            <button type="button" class="vm-btn vm-btn--xs is-active" data-vm-preview-button="desktop" aria-pressed="true">Desktop</button>
+            <button type="button" class="vm-btn vm-btn--xs" data-vm-preview-button="mobile" aria-pressed="false">Mobile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vm-docs__search">
+      <input type="text" class="vm-docs__search-input" placeholder="Search navigation..." aria-label="Filter navigation">
+    </div>
+    <nav class="vm-docs__nav">
+      <div class="vm-docs__nav-list">
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Getting Started</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#intro">01. Intro</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#architecture">02. File Structure</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#start">03. Quick Start</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Design System</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="themes.html#themes">04. Theme System</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#tokens">05. Design Tokens</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#layout">06. Layout Shell</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="icons.html">07. Icons</a>          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Components</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#components">08. Live Catalog</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#foundations-live">09. Foundations</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#buttons-live">10. Buttons</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#forms-live">11. Forms</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#dropdown-live">12. Dropdown</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Data & Feedback</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="#cards-live">13. Cards</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="#badges-live">14. Badges</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="#tabs-live">15. Data Display</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="#progress-live">16. Progress</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="#alerts-live">17. Alerts</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Overlays & Nav</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#overlays-live">18. Overlays</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#navigation-live">19. Navigation</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#animations-live">20. Animations</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#diagnostics-live">21. Diagnostics</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Patterns & FX</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#patterns-live">22. Patterns</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#theme-toggle-live">23. Theme Toggle</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#lang-select-live">24. Language Selector</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#fx-grid-live">25. Background FX</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Reference</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#utilities">26. Utilities</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#ai-playbook">27. Playbook AI</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#elementor">28. Elementor V4</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#release">29. Versioning</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Resources</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="token-export.html#token-export">30. Token Export</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#brand-voice">31. Brand Voice</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#tone-spectrum">32. Tone Spectrum</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#writing-rules">33. Writing Rules</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#signature-patterns">34. Signature Patterns</a>
+          </div></div>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="vm-docs__quicknav" data-vm-quicknav aria-label="Quick navigation">
+    <div class="vm-docs__quicknav-brand">
+      <span class="vm-docs__quicknav-mark">VM</span>
+      <div class="vm-docs__quicknav-copy">
+        <div class="vm-docs__quicknav-title">Vibemilk</div>
+        <div class="vm-docs__quicknav-section" data-vm-current-section>Data & Feedback</div>
+      </div>
+    </div>
+    <div class="vm-docs__quicknav-actions">
+      <a class="vm-btn vm-btn--sm vm-btn--ghost" href="#docs-index">Index</a>
+      <a class="vm-btn vm-btn--sm vm-btn--secondary" href="#cards-live">Top</a>
+    </div>
+  </div>
+
+  <main class="vm-docs__main">
+    <div class="vm-docs__container">
+
+      <section id="cards-live-top" class="vm-section vm-section--catalog" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Data & Feedback</div>
+          <h2 class="text-heading-lg">Cards, badges, tables, progress, and alerts</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="vm-preview-canvas" data-vm-preview-canvas data-vm-preview-mode="desktop">
+            <div class="showcase">
+
+  <!-- ========== 09. CARDS ========== -->
+  <section id="cards-live" class="showcase-section" data-vm-section data-vm-view-source>
+    <h2 class="showcase-section__heading">Cards</h2>
+
+    <div class="vm-view-source-demo">
+    <div class="vm-compact-grid">
+      <div class="vm-card">
+        <div class="vm-card__header">
+          <div class="vm-card__title">Default Card</div>
+        </div>
+        <div class="vm-card__body">
+          <p class="text-body-md">Standard card with subtle border. Used for most content containers.</p>
+        </div>
+        <div class="vm-card__footer">
+          <button class="vm-btn vm-btn--sm vm-btn--ghost">Cancel</button>
+          <button class="vm-btn vm-btn--sm vm-btn--primary">Save</button>
+        </div>
+      </div>
+
+      <div class="vm-card vm-card--elevated">
+        <div class="vm-card__header">
+          <div class="vm-card__title">Elevated Card</div>
+          <span class="vm-badge vm-badge--brand">New</span>
+        </div>
+        <div class="vm-card__body">
+          <p class="text-body-md">Card with shadow elevation for prominent content.</p>
+        </div>
+      </div>
+
+      <div class="vm-card vm-card--interactive vm-card--elevated">
+        <div class="vm-card__header">
+          <div class="vm-card__title">Interactive Card</div>
+          <span class="vm-nf" aria-hidden="true" style="color:var(--text-tertiary);">&#xeb6d;</span>
+        </div>
+        <div class="vm-card__body">
+          <p class="text-body-md">Clickable card with hover lift for navigation.</p>
+        </div>
+      </div>
+
+      <div class="vm-card vm-card--glow" style="border-color: var(--card-hover-border);">
+        <div class="vm-card__header">
+          <div class="vm-card__title">Glow Card</div>
+        </div>
+        <div class="vm-card__body">
+          <p class="text-body-md">Glow shadow for featured or premium content.</p>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <button type="button" class="vm-view-source-btn"><span class="vm-nf" aria-hidden="true">&#xea77;</span><span class="vm-view-source-label">View Source</span></button>
+    <div class="vm-view-source-panel"></div>
+  </section>
+
+  <hr class="vm-divider vm-divider--lg">
+
+  <!-- ========== 10. STAT CARDS ========== -->
+  <section class="showcase-section">
+    <h2 class="showcase-section__heading">Stat Cards</h2>
+
+    <div class="vm-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+      <div class="vm-stat">
+        <div class="vm-stat__header">
+          <span class="vm-stat__label">Active Sources</span>
+          <div class="vm-stat__icon vm-stat__icon--brand">
+            <span class="vm-nf" aria-hidden="true">&#xea7b;</span>
+          </div>
+        </div>
+        <div class="vm-stat__value">187</div>
+        <div>
+          <span class="vm-stat__trend vm-stat__trend--up">+ 12%</span>
+          <span class="vm-stat__trend-label"> this week</span>
+        </div>
+      </div>
+
+      <div class="vm-stat">
+        <div class="vm-stat__header">
+          <span class="vm-stat__label">API RTT</span>
+          <div class="vm-stat__icon vm-stat__icon--success">
+            <span class="vm-nf" aria-hidden="true">&#xf09e;</span>
+          </div>
+        </div>
+        <div class="vm-stat__value">42 ms</div>
+        <div>
+          <span class="vm-stat__trend vm-stat__trend--up">Healthy</span>
+          <span class="vm-stat__trend-label"> edge</span>
+        </div>
+      </div>
+
+      <div class="vm-stat">
+        <div class="vm-stat__header">
+          <span class="vm-stat__label">Session Age</span>
+          <div class="vm-stat__icon vm-stat__icon--info">
+            <span class="vm-nf" aria-hidden="true">&#xea70;</span>
+          </div>
+        </div>
+        <div class="vm-stat__value">3d 14h</div>
+        <div>
+          <span class="vm-stat__trend-label">Current workspace streak</span>
+        </div>
+      </div>
+
+      <div class="vm-stat">
+        <div class="vm-stat__header">
+          <span class="vm-stat__label">Queue Load</span>
+          <div class="vm-stat__icon vm-stat__icon--warning">
+            <span class="vm-nf" aria-hidden="true">&#xf2c8;</span>
+          </div>
+        </div>
+        <div class="vm-stat__value">52.3%</div>
+        <div>
+          <span class="vm-stat__trend vm-stat__trend--down">- 3%</span>
+          <span class="vm-stat__trend-label"> vs yesterday</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="vm-divider vm-divider--lg">
+
+  <!-- ========== 11. BADGES ========== -->
+  <section id="badges-live" class="showcase-section" data-vm-section>
+    <h2 class="showcase-section__heading">Badges &amp; Status</h2>
+
+    <div class="vm-compact-grid">
+      <div class="showcase-box vm-card-lite">
+        <div class="showcase-label">Badges</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="vm-badge vm-badge--default">Default</span>
+          <span class="vm-badge vm-badge--brand">Brand</span>
+          <span class="vm-badge vm-badge--success">Success</span>
+          <span class="vm-badge vm-badge--warning">Warning</span>
+          <span class="vm-badge vm-badge--danger">Danger</span>
+          <span class="vm-badge vm-badge--info">Info</span>
+        </div>
+      </div>
+
+      <div class="showcase-box vm-card-lite">
+        <div class="showcase-label">With Icons</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="vm-badge vm-badge--success"><span class="vm-dot vm-dot--success"></span> Online</span>
+          <span class="vm-badge vm-badge--warning"><span class="vm-dot vm-dot--warning"></span> Reconnecting</span>
+          <span class="vm-badge vm-badge--danger"><span class="vm-dot vm-dot--danger"></span> Offline</span>
+          <span class="vm-badge vm-badge--info"><span class="vm-dot vm-dot--info vm-dot--pulse"></span> Syncing</span>
+        </div>
+      </div>
+
+      <div class="showcase-box vm-card-lite">
+        <div class="showcase-label">Status Indicators</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="vm-status vm-status--online">
+            <span class="vm-status__dot"></span>
+            <span class="vm-status__label">API Healthy</span>
+          </div>
+          <div class="vm-status vm-status--connecting">
+            <span class="vm-status__dot"></span>
+            <span class="vm-status__label">Stream Connecting...</span>
+          </div>
+          <div class="vm-status vm-status--warning">
+            <span class="vm-status__dot"></span>
+            <span class="vm-status__label">Queue Pressure</span>
+          </div>
+          <div class="vm-status vm-status--offline">
+            <span class="vm-status__dot"></span>
+            <span class="vm-status__label">Share Disabled</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="vm-divider vm-divider--lg">
+
+  <!-- ========== 12. TABS ========== -->
+  <section id="tabs-live" class="showcase-section" data-vm-section>
+    <h2 class="showcase-section__heading">Tabs</h2>
+
+    <div class="vm-compact-grid">
+      <div class="showcase-box vm-card-lite">
+        <div class="showcase-label">Pill Tabs</div>
+        <div class="vm-tabs">
+          <button class="vm-tab active">
+            <span class="vm-nf" aria-hidden="true">&#xeabf;</span>
+            Pulse
+          </button>
+          <button class="vm-tab">Releases</button>
+          <button class="vm-tab">Archive</button>
+        </div>
+      </div>
+      <div class="showcase-box vm-card-lite">
+        <div class="showcase-label">Underline Tabs</div>
+        <div class="vm-tabs vm-tabs--underline">
+          <button class="vm-tab active">Overview</button>
+          <button class="vm-tab">Content</button>
+          <button class="vm-tab">Appearance</button>
+        </div>
+      </div>
+      <div class="showcase-box vm-card-lite">
+        <div class="showcase-label">With Icons</div>
+        <div class="vm-tabs vm-tabs--underline">
+          <button class="vm-tab active">
+            <span class="vm-nf" aria-hidden="true">&#xea74;</span>
+            Info
+          </button>
+          <button class="vm-tab">
+            <span class="vm-nf" aria-hidden="true">&#xeb2e;</span>
+            Config
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="vm-divider vm-divider--lg">
+
+  <!-- ========== 13. TABLE ========== -->
+  <section class="showcase-section">
+    <h2 class="showcase-section__heading">Table</h2>
+
+    <div class="vm-card vm-card--flush">
+      <div style="padding: var(--space-5) var(--space-5) 0;">
+        <div class="text-heading-lg" style="margin-bottom:4px;">Content Source Manager</div>
+        <div class="text-body-sm">Manage the active sources powering this workspace</div>
+      </div>
+      <div class="vm-table-wrapper" style="padding:var(--space-4);">
+        <table class="vm-table">
+          <thead>
+            <tr>
+              <th>Source Name</th>
+              <th>Endpoint</th>
+              <th>Status</th>
+              <th>Last Sync</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="text-white" style="font-weight:600;">Netmilk Journal</span></td>
+              <td><span class="text-caption" style="font-family:var(--font-mono);">journal.netmi.lk/feed</span></td>
+              <td><span class="vm-badge vm-badge--success">Active</span></td>
+              <td>2 min ago</td>
+              <td>
+                <button class="vm-btn vm-btn--xs vm-btn--ghost">
+                  <span class="vm-nf" aria-hidden="true">&#xeb04;</span>
+                </button>
+                <button class="vm-btn vm-btn--xs vm-btn--ghost text-danger">
+                  <span class="vm-nf" aria-hidden="true">&#xea99;</span>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="text-white" style="font-weight:600;">Product Changelog</span></td>
+              <td><span class="text-caption" style="font-family:var(--font-mono);">changelog.netmi.lk/feed</span></td>
+              <td><span class="vm-badge vm-badge--success">Active</span></td>
+              <td>5 min ago</td>
+              <td>
+                <button class="vm-btn vm-btn--xs vm-btn--ghost">
+                  <span class="vm-nf" aria-hidden="true">&#xeb04;</span>
+                </button>
+                <button class="vm-btn vm-btn--xs vm-btn--ghost text-danger">
+                  <span class="vm-nf" aria-hidden="true">&#xea99;</span>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="text-white" style="font-weight:600;">Studio Dispatch</span></td>
+              <td><span class="text-caption" style="font-family:var(--font-mono);">dispatch.netmi.lk/feed</span></td>
+              <td><span class="vm-badge vm-badge--warning">Slow</span></td>
+              <td>1h ago</td>
+              <td>
+                <button class="vm-btn vm-btn--xs vm-btn--ghost">
+                  <span class="vm-nf" aria-hidden="true">&#xeb04;</span>
+                </button>
+                <button class="vm-btn vm-btn--xs vm-btn--ghost text-danger">
+                  <span class="vm-nf" aria-hidden="true">&#xea99;</span>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="text-white" style="font-weight:600;">Netmilk Lab Notes</span></td>
+              <td><span class="text-caption" style="font-family:var(--font-mono);">lab.netmi.lk/rss</span></td>
+              <td><span class="vm-badge vm-badge--danger">Error</span></td>
+              <td>3h ago</td>
+              <td>
+                <button class="vm-btn vm-btn--xs vm-btn--ghost">
+                  <span class="vm-nf" aria-hidden="true">&#xeb04;</span>
+                </button>
+                <button class="vm-btn vm-btn--xs vm-btn--ghost text-danger">
+                  <span class="vm-nf" aria-hidden="true">&#xea99;</span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <hr class="vm-divider vm-divider--lg">
+
+  <!-- ========== 14. PROGRESS BAR ========== -->
+  <section id="progress-live" class="showcase-section" data-vm-section>
+    <h2 class="showcase-section__heading">Progress Bars</h2>
+
+    <div class="vm-progress-grid">
+      <div class="vm-card-lite">
+        <div class="flex justify-between mb-2">
+          <span class="text-body-sm text-white">Source Coverage</span>
+          <span class="text-caption">72%</span>
+        </div>
+        <div class="vm-progress">
+          <div class="vm-progress__fill" style="width:72%;"></div>
+        </div>
+      </div>
+      <div class="vm-card-lite">
+        <div class="flex justify-between mb-2">
+          <span class="text-body-sm text-white">Asset Cache</span>
+          <span class="text-caption">45%</span>
+        </div>
+        <div class="vm-progress vm-progress--md">
+          <div class="vm-progress__fill vm-progress__fill--success" style="width:45%;"></div>
+        </div>
+      </div>
+      <div class="vm-card-lite">
+        <div class="flex justify-between mb-2">
+          <span class="text-body-sm text-white">Publish Queue</span>
+          <span class="text-caption">89%</span>
+        </div>
+        <div class="vm-progress vm-progress--md">
+          <div class="vm-progress__fill vm-progress__fill--warning" style="width:89%;"></div>
+        </div>
+      </div>
+      <div class="vm-card-lite">
+        <div class="flex justify-between mb-2">
+          <span class="text-body-sm text-white">Review Capacity</span>
+          <span class="text-caption">95%</span>
+        </div>
+        <div class="vm-progress vm-progress--md">
+          <div class="vm-progress__fill vm-progress__fill--danger" style="width:95%;"></div>
+        </div>
+      </div>
+      <div class="vm-card-lite">
+        <div class="flex justify-between mb-2">
+          <span class="text-body-sm text-white">Release Rollout</span>
+          <span class="text-caption">34%</span>
+        </div>
+        <div class="vm-progress vm-progress--md">
+          <div class="vm-progress__fill vm-progress__fill--gradient" style="width:34%;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="vm-divider vm-divider--lg">
+
+  <!-- ========== 15. ALERTS ========== -->
+  <section id="alerts-live" class="showcase-section" data-vm-section>
+    <h2 class="showcase-section__heading">Alerts &amp; Banners</h2>
+
+    <div class="vm-alert-grid">
+      <div class="vm-alert vm-alert--info">
+        <div class="vm-alert__icon">
+          <span class="vm-nf" aria-hidden="true">&#xea74;</span>
+        </div>
+        <div class="vm-alert__content">
+          <div class="vm-alert__title">Release Ready</div>
+          <div class="vm-alert__text">Version 2.4.1 is ready to publish with cleaner filters and tighter spacing.</div>
+        </div>
+      </div>
+
+      <div class="vm-alert vm-alert--success">
+        <div class="vm-alert__icon">
+          <span class="vm-nf" aria-hidden="true">&#xea6a;</span>
+        </div>
+        <div class="vm-alert__content">
+          <div class="vm-alert__title">Workspace Saved</div>
+          <div class="vm-alert__text">Settings saved and new layout rules are now live.</div>
+        </div>
+      </div>
+
+      <div class="vm-alert vm-alert--warning">
+        <div class="vm-alert__icon">
+          <span class="vm-nf" aria-hidden="true">&#xea6c;</span>
+        </div>
+        <div class="vm-alert__content">
+          <div class="vm-alert__title">Cache Pressure</div>
+          <div class="vm-alert__text">Asset cache above 78%. Trim oversized media or unused themes.</div>
+        </div>
+      </div>
+
+      <div class="vm-alert vm-alert--danger">
+        <div class="vm-alert__icon">
+          <span class="vm-nf" aria-hidden="true">&#xea76;</span>
+        </div>
+        <div class="vm-alert__content">
+          <div class="vm-alert__title">Connection Failed</div>
+          <div class="vm-alert__text">Unable to reach content API. Check permissions and token config.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../js/vibemilk-docs.js" defer></script>
+</body>
+</html>

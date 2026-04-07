@@ -1,0 +1,1170 @@
+{
+  "meta": {
+    "theme": "mono-brutalist",
+    "version": "3.0.0",
+    "generated": "2026-03-17T10:04:20.277Z",
+    "format": "elementor-v4-variables"
+  },
+  "variables": [
+    {
+      "name": "Theme Mode",
+      "type": "Size",
+      "value": "'dark'"
+    },
+    {
+      "name": "Font Family",
+      "type": "Typography",
+      "value": "'IBM Plex Mono', 'Space Mono', 'Montserrat', -apple-system, BlinkMacSystemFont, monospace"
+    },
+    {
+      "name": "Font Mono",
+      "type": "Typography",
+      "value": "'IBM Plex Mono', 'Space Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace"
+    },
+    {
+      "name": "Font Icons",
+      "type": "Typography",
+      "value": "'VibemilkIcons', 'Symbols Nerd Font Mono', sans-serif"
+    },
+    {
+      "name": "Fs Display Xl",
+      "type": "Typography",
+      "value": "36px"
+    },
+    {
+      "name": "Fs Display Lg",
+      "type": "Typography",
+      "value": "28px"
+    },
+    {
+      "name": "Fs Heading Xl",
+      "type": "Typography",
+      "value": "23px"
+    },
+    {
+      "name": "Fs Heading Lg",
+      "type": "Typography",
+      "value": "19px"
+    },
+    {
+      "name": "Fs Heading Md",
+      "type": "Typography",
+      "value": "17px"
+    },
+    {
+      "name": "Fs Heading Sm",
+      "type": "Typography",
+      "value": "15px"
+    },
+    {
+      "name": "Fs Body Lg",
+      "type": "Typography",
+      "value": "15px"
+    },
+    {
+      "name": "Fs Body Md",
+      "type": "Typography",
+      "value": "14px"
+    },
+    {
+      "name": "Fs Body Sm",
+      "type": "Typography",
+      "value": "12px"
+    },
+    {
+      "name": "Fs Caption",
+      "type": "Typography",
+      "value": "11px"
+    },
+    {
+      "name": "Fs Overline",
+      "type": "Typography",
+      "value": "10px"
+    },
+    {
+      "name": "Fs Micro",
+      "type": "Typography",
+      "value": "9px"
+    },
+    {
+      "name": "Fw Light",
+      "type": "Typography",
+      "value": "300"
+    },
+    {
+      "name": "Fw Regular",
+      "type": "Typography",
+      "value": "400"
+    },
+    {
+      "name": "Fw Medium",
+      "type": "Typography",
+      "value": "500"
+    },
+    {
+      "name": "Fw Semibold",
+      "type": "Typography",
+      "value": "600"
+    },
+    {
+      "name": "Fw Bold",
+      "type": "Typography",
+      "value": "700"
+    },
+    {
+      "name": "Fw Extrabold",
+      "type": "Typography",
+      "value": "800"
+    },
+    {
+      "name": "Btn Height Xs",
+      "type": "Size",
+      "value": "28px"
+    },
+    {
+      "name": "Btn Height Sm",
+      "type": "Size",
+      "value": "36px"
+    },
+    {
+      "name": "Btn Height Md",
+      "type": "Size",
+      "value": "44px"
+    },
+    {
+      "name": "Btn Height Lg",
+      "type": "Size",
+      "value": "52px"
+    },
+    {
+      "name": "Btn Height Xl",
+      "type": "Size",
+      "value": "56px"
+    },
+    {
+      "name": "Btn Padding Xs",
+      "type": "Size",
+      "value": "10px"
+    },
+    {
+      "name": "Btn Padding Sm",
+      "type": "Size",
+      "value": "16px"
+    },
+    {
+      "name": "Btn Padding Md",
+      "type": "Size",
+      "value": "22px"
+    },
+    {
+      "name": "Btn Padding Lg",
+      "type": "Size",
+      "value": "28px"
+    },
+    {
+      "name": "Btn Padding Xl",
+      "type": "Size",
+      "value": "32px"
+    },
+    {
+      "name": "Input Height Sm",
+      "type": "Size",
+      "value": "40px"
+    },
+    {
+      "name": "Input Height Md",
+      "type": "Size",
+      "value": "46px"
+    },
+    {
+      "name": "Input Height Lg",
+      "type": "Size",
+      "value": "54px"
+    },
+    {
+      "name": "Progress Height",
+      "type": "Size",
+      "value": "12px"
+    },
+    {
+      "name": "Toggle Track Width",
+      "type": "Size",
+      "value": "44px"
+    },
+    {
+      "name": "Toggle Track Height",
+      "type": "Size",
+      "value": "24px"
+    },
+    {
+      "name": "Toggle Thumb Size",
+      "type": "Size",
+      "value": "18px"
+    },
+    {
+      "name": "Toggle Thumb Offset",
+      "type": "Size",
+      "value": "3px"
+    },
+    {
+      "name": "Avatar Size Xs",
+      "type": "Size",
+      "value": "28px"
+    },
+    {
+      "name": "Avatar Size Sm",
+      "type": "Size",
+      "value": "36px"
+    },
+    {
+      "name": "Avatar Size Md",
+      "type": "Size",
+      "value": "44px"
+    },
+    {
+      "name": "Avatar Size Lg",
+      "type": "Size",
+      "value": "56px"
+    },
+    {
+      "name": "Avatar Size Xl",
+      "type": "Size",
+      "value": "72px"
+    },
+    {
+      "name": "Bg Deepest",
+      "type": "Color",
+      "value": "#0A0A0A"
+    },
+    {
+      "name": "Bg Deep",
+      "type": "Color",
+      "value": "#111111"
+    },
+    {
+      "name": "Bg Surface",
+      "type": "Color",
+      "value": "#1A1A1A"
+    },
+    {
+      "name": "Bg Surface Hover",
+      "type": "Color",
+      "value": "#232323"
+    },
+    {
+      "name": "Bg Elevated",
+      "type": "Color",
+      "value": "#242424"
+    },
+    {
+      "name": "Bg Elevated Hover",
+      "type": "Color",
+      "value": "#2F2F2F"
+    },
+    {
+      "name": "Bg Input",
+      "type": "Color",
+      "value": "#131313"
+    },
+    {
+      "name": "Bg Input Focus",
+      "type": "Color",
+      "value": "#1D1D1D"
+    },
+    {
+      "name": "Bg Overlay",
+      "type": "Color",
+      "value": "rgba(8, 8, 8, 0.9)"
+    },
+    {
+      "name": "Text Primary",
+      "type": "Color",
+      "value": "#F3F3F3"
+    },
+    {
+      "name": "Text Secondary",
+      "type": "Color",
+      "value": "#CFCFCF"
+    },
+    {
+      "name": "Text Tertiary",
+      "type": "Color",
+      "value": "#8F8F8F"
+    },
+    {
+      "name": "Text Muted",
+      "type": "Color",
+      "value": "#676767"
+    },
+    {
+      "name": "Text Inverse",
+      "type": "Color",
+      "value": "#111111"
+    },
+    {
+      "name": "Text On Gradient",
+      "type": "Color",
+      "value": "#111111"
+    },
+    {
+      "name": "Accent Primary",
+      "type": "Color",
+      "value": "#F1F1F1"
+    },
+    {
+      "name": "Accent Primary Hover",
+      "type": "Color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "Accent Primary Active",
+      "type": "Color",
+      "value": "#D5D5D5"
+    },
+    {
+      "name": "Accent Primary Subtle",
+      "type": "Color",
+      "value": "rgba(255, 255, 255, 0.12)"
+    },
+    {
+      "name": "Accent Secondary",
+      "type": "Color",
+      "value": "#FF3B30"
+    },
+    {
+      "name": "Accent Secondary Hover",
+      "type": "Color",
+      "value": "#FF6B63"
+    },
+    {
+      "name": "Accent Secondary Subtle",
+      "type": "Color",
+      "value": "rgba(255, 59, 48, 0.18)"
+    },
+    {
+      "name": "Color Success",
+      "type": "Color",
+      "value": "#AEE8AE"
+    },
+    {
+      "name": "Color Success Hover",
+      "type": "Color",
+      "value": "#C9F1C9"
+    },
+    {
+      "name": "Color Success Subtle",
+      "type": "Color",
+      "value": "rgba(174, 232, 174, 0.14)"
+    },
+    {
+      "name": "Color Warning",
+      "type": "Color",
+      "value": "#FFD070"
+    },
+    {
+      "name": "Color Warning Hover",
+      "type": "Color",
+      "value": "#FFDE98"
+    },
+    {
+      "name": "Color Warning Subtle",
+      "type": "Color",
+      "value": "rgba(255, 208, 112, 0.16)"
+    },
+    {
+      "name": "Color Danger",
+      "type": "Color",
+      "value": "#FF3B30"
+    },
+    {
+      "name": "Color Danger Hover",
+      "type": "Color",
+      "value": "#FF6B63"
+    },
+    {
+      "name": "Color Danger Subtle",
+      "type": "Color",
+      "value": "rgba(255, 59, 48, 0.18)"
+    },
+    {
+      "name": "Color Info",
+      "type": "Color",
+      "value": "#EAEAEA"
+    },
+    {
+      "name": "Color Info Subtle",
+      "type": "Color",
+      "value": "rgba(234, 234, 234, 0.14)"
+    },
+    {
+      "name": "Gradient Brand",
+      "type": "Color",
+      "value": "#FF3B30"
+    },
+    {
+      "name": "Gradient Card",
+      "type": "Color",
+      "value": "#1A1A1A"
+    },
+    {
+      "name": "Gradient Success",
+      "type": "Color",
+      "value": "#AEE8AE"
+    },
+    {
+      "name": "Gradient Warm",
+      "type": "Color",
+      "value": "#FFD070"
+    },
+    {
+      "name": "Gradient Surface",
+      "type": "Color",
+      "value": "#1A1A1A"
+    },
+    {
+      "name": "Gradient Sidebar",
+      "type": "Color",
+      "value": "#111111"
+    },
+    {
+      "name": "Gradient Glow Purple",
+      "type": "Size",
+      "value": "none"
+    },
+    {
+      "name": "Gradient Glow Blue",
+      "type": "Size",
+      "value": "none"
+    },
+    {
+      "name": "Space 0",
+      "type": "Size",
+      "value": "0px"
+    },
+    {
+      "name": "Space 1",
+      "type": "Size",
+      "value": "4px"
+    },
+    {
+      "name": "Space 2",
+      "type": "Size",
+      "value": "8px"
+    },
+    {
+      "name": "Space 3",
+      "type": "Size",
+      "value": "12px"
+    },
+    {
+      "name": "Space 4",
+      "type": "Size",
+      "value": "16px"
+    },
+    {
+      "name": "Space 5",
+      "type": "Size",
+      "value": "20px"
+    },
+    {
+      "name": "Space 6",
+      "type": "Size",
+      "value": "24px"
+    },
+    {
+      "name": "Space 8",
+      "type": "Size",
+      "value": "32px"
+    },
+    {
+      "name": "Space 10",
+      "type": "Size",
+      "value": "40px"
+    },
+    {
+      "name": "Space 12",
+      "type": "Size",
+      "value": "48px"
+    },
+    {
+      "name": "Space 16",
+      "type": "Size",
+      "value": "64px"
+    },
+    {
+      "name": "Phi 1",
+      "type": "Size",
+      "value": "4px"
+    },
+    {
+      "name": "Phi 2",
+      "type": "Size",
+      "value": "7px"
+    },
+    {
+      "name": "Phi 3",
+      "type": "Size",
+      "value": "11px"
+    },
+    {
+      "name": "Phi 4",
+      "type": "Size",
+      "value": "18px"
+    },
+    {
+      "name": "Phi 5",
+      "type": "Size",
+      "value": "29px"
+    },
+    {
+      "name": "Phi 6",
+      "type": "Size",
+      "value": "47px"
+    },
+    {
+      "name": "Phi 7",
+      "type": "Size",
+      "value": "76px"
+    },
+    {
+      "name": "Phi 8",
+      "type": "Size",
+      "value": "123px"
+    },
+    {
+      "name": "Radius Xs",
+      "type": "Size",
+      "value": "0px"
+    },
+    {
+      "name": "Radius Sm",
+      "type": "Size",
+      "value": "0px"
+    },
+    {
+      "name": "Radius Md",
+      "type": "Size",
+      "value": "0px"
+    },
+    {
+      "name": "Radius Lg",
+      "type": "Size",
+      "value": "0px"
+    },
+    {
+      "name": "Radius Xl",
+      "type": "Size",
+      "value": "0px"
+    },
+    {
+      "name": "Radius 2xl",
+      "type": "Size",
+      "value": "0px"
+    },
+    {
+      "name": "Radius Full",
+      "type": "Size",
+      "value": "0px"
+    },
+    {
+      "name": "Shadow Sm",
+      "type": "Size",
+      "value": "3px 3px 0 rgba(0, 0, 0, 0.44)"
+    },
+    {
+      "name": "Shadow Md",
+      "type": "Size",
+      "value": "5px 5px 0 rgba(0, 0, 0, 0.5)"
+    },
+    {
+      "name": "Shadow Lg",
+      "type": "Size",
+      "value": "8px 8px 0 rgba(0, 0, 0, 0.56)"
+    },
+    {
+      "name": "Shadow Xl",
+      "type": "Size",
+      "value": "12px 12px 0 rgba(0, 0, 0, 0.6)"
+    },
+    {
+      "name": "Shadow Glow Sm",
+      "type": "Size",
+      "value": "0 0 0 1px rgba(255, 255, 255, 0.2)"
+    },
+    {
+      "name": "Shadow Glow Md",
+      "type": "Size",
+      "value": "0 0 0 1px rgba(255, 59, 48, 0.34)"
+    },
+    {
+      "name": "Shadow Glow Blue",
+      "type": "Size",
+      "value": "0 0 0 1px rgba(255, 59, 48, 0.42)"
+    },
+    {
+      "name": "Shadow Inset",
+      "type": "Size",
+      "value": "inset 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 -2px 0 rgba(255, 255, 255, 0.04)"
+    },
+    {
+      "name": "Stroke Width Ui",
+      "type": "Size",
+      "value": "2px"
+    },
+    {
+      "name": "Stroke Width Strong",
+      "type": "Size",
+      "value": "3px"
+    },
+    {
+      "name": "Stroke Width Heavy",
+      "type": "Size",
+      "value": "3px"
+    },
+    {
+      "name": "Stroke Subtle",
+      "type": "Color",
+      "value": "rgba(255, 255, 255, 0.16)"
+    },
+    {
+      "name": "Stroke Default",
+      "type": "Color",
+      "value": "rgba(255, 255, 255, 0.28)"
+    },
+    {
+      "name": "Stroke Strong",
+      "type": "Color",
+      "value": "rgba(255, 255, 255, 0.46)"
+    },
+    {
+      "name": "Stroke Accent",
+      "type": "Color",
+      "value": "#F1F1F1"
+    },
+    {
+      "name": "Stroke Success",
+      "type": "Color",
+      "value": "#AEE8AE"
+    },
+    {
+      "name": "Stroke Danger",
+      "type": "Color",
+      "value": "#FF3B30"
+    },
+    {
+      "name": "Border Subtle",
+      "type": "Size",
+      "value": "var(--stroke-width-ui) solid var(--stroke-subtle)"
+    },
+    {
+      "name": "Border Default",
+      "type": "Size",
+      "value": "var(--stroke-width-ui) solid var(--stroke-default)"
+    },
+    {
+      "name": "Border Strong",
+      "type": "Size",
+      "value": "var(--stroke-width-strong) solid var(--stroke-strong)"
+    },
+    {
+      "name": "Border Accent",
+      "type": "Size",
+      "value": "var(--stroke-width-strong) solid var(--stroke-accent)"
+    },
+    {
+      "name": "Border Success",
+      "type": "Size",
+      "value": "var(--stroke-width-strong) solid var(--stroke-success)"
+    },
+    {
+      "name": "Border Danger",
+      "type": "Size",
+      "value": "var(--stroke-width-strong) solid var(--stroke-danger)"
+    },
+    {
+      "name": "Transition Fast",
+      "type": "Size",
+      "value": "150ms cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    {
+      "name": "Transition Base",
+      "type": "Size",
+      "value": "250ms cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    {
+      "name": "Transition Slow",
+      "type": "Size",
+      "value": "400ms cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    {
+      "name": "Transition Spring",
+      "type": "Size",
+      "value": "500ms cubic-bezier(0.34, 1.56, 0.64, 1)"
+    },
+    {
+      "name": "Z Base",
+      "type": "Size",
+      "value": "0"
+    },
+    {
+      "name": "Z Raised",
+      "type": "Size",
+      "value": "10"
+    },
+    {
+      "name": "Z Dropdown",
+      "type": "Size",
+      "value": "100"
+    },
+    {
+      "name": "Z Sticky",
+      "type": "Size",
+      "value": "200"
+    },
+    {
+      "name": "Z Overlay",
+      "type": "Size",
+      "value": "300"
+    },
+    {
+      "name": "Z Modal",
+      "type": "Size",
+      "value": "400"
+    },
+    {
+      "name": "Z Toast",
+      "type": "Size",
+      "value": "500"
+    },
+    {
+      "name": "Z Tooltip",
+      "type": "Size",
+      "value": "600"
+    },
+    {
+      "name": "Container Sm",
+      "type": "Size",
+      "value": "640px"
+    },
+    {
+      "name": "Container Md",
+      "type": "Size",
+      "value": "960px"
+    },
+    {
+      "name": "Container Lg",
+      "type": "Size",
+      "value": "1200px"
+    },
+    {
+      "name": "Container Xl",
+      "type": "Size",
+      "value": "1440px"
+    },
+    {
+      "name": "Sidebar Collapsed",
+      "type": "Size",
+      "value": "108px"
+    },
+    {
+      "name": "Sidebar Expanded",
+      "type": "Size",
+      "value": "272px"
+    },
+    {
+      "name": "Topbar Height",
+      "type": "Size",
+      "value": "72px"
+    },
+    {
+      "name": "Selection Bg",
+      "type": "Color",
+      "value": "rgba(255, 59, 48, 0.4)"
+    },
+    {
+      "name": "Selection Text",
+      "type": "Color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "Surface Overlay Soft",
+      "type": "Color",
+      "value": "rgba(255, 255, 255, 0.06)"
+    },
+    {
+      "name": "Surface Overlay Strong",
+      "type": "Color",
+      "value": "rgba(255, 59, 48, 0.2)"
+    },
+    {
+      "name": "Card Hover Border",
+      "type": "Color",
+      "value": "rgba(255, 59, 48, 0.54)"
+    },
+    {
+      "name": "Table Stripe Bg",
+      "type": "Color",
+      "value": "rgba(255, 255, 255, 0.03)"
+    },
+    {
+      "name": "Divider Color",
+      "type": "Color",
+      "value": "rgba(255, 255, 255, 0.22)"
+    },
+    {
+      "name": "Divider Dashed Color",
+      "type": "Color",
+      "value": "rgba(255, 255, 255, 0.32)"
+    },
+    {
+      "name": "Skeleton Shimmer",
+      "type": "Color",
+      "value": "rgba(255, 255, 255, 0.13)"
+    },
+    {
+      "name": "Focus Ring Color",
+      "type": "Color",
+      "value": "rgba(255, 59, 48, 0.58)"
+    },
+    {
+      "name": "Focus Ring Soft",
+      "type": "Size",
+      "value": "0 0 0 3px rgba(255, 59, 48, 0.22)"
+    },
+    {
+      "name": "Focus Ring Danger",
+      "type": "Size",
+      "value": "0 0 0 3px rgba(255, 59, 48, 0.28)"
+    },
+    {
+      "name": "Scrollbar Track",
+      "type": "Size",
+      "value": "color-mix(in srgb, var(--bg-deep) 82%, var(--text-primary) 18%)"
+    },
+    {
+      "name": "Scrollbar Thumb",
+      "type": "Size",
+      "value": "color-mix(in srgb, var(--accent-primary) 54%, var(--text-primary) 46%)"
+    },
+    {
+      "name": "Scrollbar Thumb Hover",
+      "type": "Size",
+      "value": "color-mix(in srgb, var(--accent-primary) 40%, var(--text-primary) 60%)"
+    },
+    {
+      "name": "Scrollbar Corner",
+      "type": "Size",
+      "value": "color-mix(in srgb, var(--bg-deep) 72%, var(--bg-elevated) 28%)"
+    },
+    {
+      "name": "Scrollbar Duration",
+      "type": "Size",
+      "value": "220ms cubic-bezier(0.22, 1, 0.36, 1)"
+    },
+    {
+      "name": "Gui Panel Bg",
+      "type": "Size",
+      "value": "color-mix(in srgb, var(--bg-elevated) 78%, var(--bg-surface) 22%)"
+    },
+    {
+      "name": "Gui Panel Border",
+      "type": "Size",
+      "value": "1px solid color-mix(in srgb, var(--stroke-default) 70%, var(--text-primary) 30%)"
+    },
+    {
+      "name": "Gui Panel Header",
+      "type": "Size",
+      "value": "color-mix(in srgb, var(--text-primary) 76%, var(--text-secondary) 24%)"
+    },
+    {
+      "name": "Gui Panel Shadow",
+      "type": "Size",
+      "value": "var(--shadow-md)"
+    },
+    {
+      "name": "Gui Row Gap",
+      "type": "Size",
+      "value": "var(--space-4)"
+    },
+    {
+      "name": "Gui Label Color",
+      "type": "Size",
+      "value": "color-mix(in srgb, var(--text-secondary) 82%, var(--text-primary) 18%)"
+    },
+    {
+      "name": "Gui Value Color",
+      "type": "Size",
+      "value": "var(--text-primary)"
+    },
+    {
+      "name": "Gui Value Border",
+      "type": "Size",
+      "value": "1px solid color-mix(in srgb, var(--stroke-default) 74%, var(--text-primary) 26%)"
+    },
+    {
+      "name": "Gui Slider Track",
+      "type": "Size",
+      "value": "color-mix(in srgb, var(--bg-deep) 45%, var(--text-primary) 55%)"
+    },
+    {
+      "name": "Gui Slider Thumb",
+      "type": "Size",
+      "value": "color-mix(in srgb, var(--accent-primary) 68%, var(--text-primary) 32%)"
+    },
+    {
+      "name": "Gui Slider Thumb Shadow",
+      "type": "Size",
+      "value": "var(--range-thumb-shadow)"
+    },
+    {
+      "name": "Gui Slider Transition",
+      "type": "Size",
+      "value": "220ms cubic-bezier(0.22, 1, 0.36, 1)"
+    },
+    {
+      "name": "Gradient Text",
+      "type": "Size",
+      "value": "linear-gradient(90deg, #FF1DA5 0%, #A044C8 55%, #5D3FD3 100%)"
+    },
+    {
+      "name": "Text On Primary",
+      "type": "Color",
+      "value": "#111111"
+    },
+    {
+      "name": "Text On Success",
+      "type": "Color",
+      "value": "#1B1B1B"
+    },
+    {
+      "name": "Text On Danger",
+      "type": "Color",
+      "value": "#FFF4F4"
+    },
+    {
+      "name": "Text On Warning",
+      "type": "Color",
+      "value": "#2A220F"
+    },
+    {
+      "name": "Loader Stroke",
+      "type": "Color",
+      "value": "rgba(243, 243, 243, 0.26)"
+    },
+    {
+      "name": "Loader Stroke Active",
+      "type": "Color",
+      "value": "#F3F3F3"
+    },
+    {
+      "name": "Control Handle",
+      "type": "Color",
+      "value": "#F3F3F3"
+    },
+    {
+      "name": "Control Handle Shadow",
+      "type": "Size",
+      "value": "0 2px 0 rgba(0, 0, 0, 0.38)"
+    },
+    {
+      "name": "Range Thumb Shadow",
+      "type": "Size",
+      "value": "0 2px 0 rgba(0, 0, 0, 0.42)"
+    },
+    {
+      "name": "Status Glow Success",
+      "type": "Size",
+      "value": "0 0 0 1px rgba(174, 232, 174, 0.46)"
+    },
+    {
+      "name": "Status Glow Warning",
+      "type": "Size",
+      "value": "0 0 0 1px rgba(255, 208, 112, 0.52)"
+    },
+    {
+      "name": "Nerds Border",
+      "type": "Size",
+      "value": "var(--stroke-width-ui) solid rgba(255, 255, 255, 0.2)"
+    },
+    {
+      "name": "Nerds Inset Glow",
+      "type": "Size",
+      "value": "inset 0 0 0 1px rgba(255, 255, 255, 0.08)"
+    },
+    {
+      "name": "Nerds Label",
+      "type": "Color",
+      "value": "#A6A6A6"
+    },
+    {
+      "name": "Nerds Divider",
+      "type": "Color",
+      "value": "rgba(255, 255, 255, 0.2)"
+    },
+    {
+      "name": "Nerds Footer Border",
+      "type": "Size",
+      "value": "var(--stroke-width-ui) solid rgba(255, 255, 255, 0.16)"
+    },
+    {
+      "name": "Nerds Footer Color",
+      "type": "Color",
+      "value": "#9A9A9A"
+    },
+    {
+      "name": "Fx Grid Perspective",
+      "type": "Size",
+      "value": "560px"
+    },
+    {
+      "name": "Fx Grid Plane Bottom",
+      "type": "Size",
+      "value": "-7vh"
+    },
+    {
+      "name": "Fx Grid Plane Height",
+      "type": "Size",
+      "value": "63vh"
+    },
+    {
+      "name": "Fx Grid Plane Size",
+      "type": "Size",
+      "value": "36px"
+    },
+    {
+      "name": "Fx Grid Plane Opacity",
+      "type": "Size",
+      "value": "0"
+    },
+    {
+      "name": "Fx Grid Plane Line A",
+      "type": "Size",
+      "value": "transparent"
+    },
+    {
+      "name": "Fx Grid Plane Line B",
+      "type": "Size",
+      "value": "transparent"
+    },
+    {
+      "name": "Fx Grid Glow Height",
+      "type": "Size",
+      "value": "61%"
+    },
+    {
+      "name": "Fx Grid Glow A",
+      "type": "Size",
+      "value": "transparent"
+    },
+    {
+      "name": "Fx Grid Glow B",
+      "type": "Size",
+      "value": "transparent"
+    },
+    {
+      "name": "Fx Grid Horizon Bottom",
+      "type": "Size",
+      "value": "58%"
+    },
+    {
+      "name": "Fx Grid Horizon A",
+      "type": "Size",
+      "value": "transparent"
+    },
+    {
+      "name": "Fx Grid Horizon B",
+      "type": "Size",
+      "value": "transparent"
+    },
+    {
+      "name": "Fx Grid Horizon Shadow A",
+      "type": "Size",
+      "value": "transparent"
+    },
+    {
+      "name": "Fx Grid Horizon Shadow B",
+      "type": "Size",
+      "value": "transparent"
+    },
+    {
+      "name": "Fx Grid Scanline A",
+      "type": "Size",
+      "value": "transparent"
+    },
+    {
+      "name": "Fx Grid Scanline Shadow",
+      "type": "Size",
+      "value": "transparent"
+    },
+    {
+      "name": "Fx Grid Vline A",
+      "type": "Size",
+      "value": "transparent"
+    },
+    {
+      "name": "Fx Grid Vline B",
+      "type": "Size",
+      "value": "transparent"
+    },
+    {
+      "name": "Fx Grid Vignette",
+      "type": "Size",
+      "value": "transparent"
+    },
+    {
+      "name": "Fx Grid Scroll Duration",
+      "type": "Size",
+      "value": "8.6s"
+    },
+    {
+      "name": "Fx Grid Glow Duration",
+      "type": "Size",
+      "value": "9.2s"
+    },
+    {
+      "name": "Fx Grid Scan Duration",
+      "type": "Size",
+      "value": "8.4s"
+    },
+    {
+      "name": "Fx Grid Vline Duration",
+      "type": "Size",
+      "value": "8.8s"
+    },
+    {
+      "name": "Logo Color",
+      "type": "Color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "Select Option Bg",
+      "type": "Color",
+      "value": "#1A1A1A"
+    },
+    {
+      "name": "Select Option Color",
+      "type": "Color",
+      "value": "#F3F3F3"
+    },
+    {
+      "name": "Select Option Hover Bg",
+      "type": "Color",
+      "value": "#2D2D2D"
+    },
+    {
+      "name": "Select Option Hover Color",
+      "type": "Color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "Select Option Selected Bg",
+      "type": "Color",
+      "value": "#FF3B30"
+    },
+    {
+      "name": "Select Option Selected Color",
+      "type": "Color",
+      "value": "#FFFFFF"
+    }
+  ]
+}

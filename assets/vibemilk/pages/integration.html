@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="vibemilk-default">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integration - Vibemilk Design System</title>
+  <meta name="description" content="Vibemilk integration guide: quick start, file structure, utilities, AI playbook, and versioning.">
+  <link rel="stylesheet" href="../css/vibemilk-core.css">
+  <link rel="stylesheet" href="../css/docs.css">
+  <link rel="stylesheet" href="../css/showcase.css">
+</head>
+<body class="vm-docs" data-vm-page="integration">
+  <aside id="docs-index" class="vm-docs__sidebar" aria-label="Vibemilk documentation index">
+    <div class="vm-docs__sidebar-head">
+      <div class="vm-docs__brand">
+        <a href="../index.html" class="vm-docs__brand-mark" aria-label="Netmilk home"></a>
+        <div class="vm-docs__brand-copy">
+          <a href="../index.html" class="vm-docs__brand-title" style="text-decoration:none;color:inherit;">Vibemilk</a>
+          <div class="vm-docs__brand-subtitle">Netmilk Studio Design System</div>
+        </div>
+      </div>
+
+      <div class="vm-docs__theme">
+        <label class="vm-label">Active theme</label>
+        <div class="vm-dropdown" data-vm-theme-select>
+          <button type="button" class="vm-dropdown__trigger" aria-expanded="false" aria-haspopup="listbox">
+            <span class="vm-dropdown__value">Vibemilk Default</span>
+            <span class="vm-nf vm-dropdown__chevron" aria-hidden="true">&#xeb6c;</span>
+          </button>
+          <ul class="vm-dropdown__menu" role="listbox">
+            <li class="vm-dropdown__item is-selected" role="option" aria-selected="true" data-value="vibemilk-default">Vibemilk Default</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="vibemilk-dark">Vibemilk Dark</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="cyber-grid">Cyber Grid</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="acid-pop">Acid Pop</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="sakura-spring">Sakura Spring</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="mono-brutalist">Mono Brutalist</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="mint-protocol">Mint Protocol</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="cathode-ray">Cathode Ray</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="clean-sheet">Clean Sheet</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="clean-sheet-dark">Clean Sheet Dark</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="solar-dust">Solar Dust</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="geocities-97">Geocities 97</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="vm-docs__controls">
+        <div class="vm-docs__controls-row">
+          <span class="vm-docs__controls-label">Mode</span>
+          <div class="vm-theme-toggle vm-theme-toggle--sidebar" data-vm-mode="day" data-vm-sidebar-toggle role="button" tabindex="0" aria-label="Toggle day/night mode">
+            <div class="vm-theme-toggle__track">
+              <span class="vm-theme-toggle__icon vm-theme-toggle__icon--sun vm-nf" aria-hidden="true">&#xeb30;</span>
+              <span class="vm-theme-toggle__icon vm-theme-toggle__icon--moon vm-nf" aria-hidden="true">&#xeaf0;</span>
+              <div class="vm-theme-toggle__thumb"></div>
+            </div>
+            <span class="vm-theme-toggle__label">day</span>
+          </div>
+        </div>
+        <div class="vm-docs__controls-row">
+          <span class="vm-docs__controls-label">Canvas</span>
+          <div class="vm-preview-toolbar__modes" role="group" aria-label="Preview width">
+            <button type="button" class="vm-btn vm-btn--xs is-active" data-vm-preview-button="desktop" aria-pressed="true">Desktop</button>
+            <button type="button" class="vm-btn vm-btn--xs" data-vm-preview-button="mobile" aria-pressed="false">Mobile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vm-docs__search">
+      <input type="text" class="vm-docs__search-input" placeholder="Search navigation..." aria-label="Filter navigation">
+    </div>
+    <nav class="vm-docs__nav">
+      <div class="vm-docs__nav-list">
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Getting Started</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="#intro">01. Intro</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="#architecture">02. File Structure</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="#start">03. Quick Start</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Design System</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="themes.html#themes">04. Theme System</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#tokens">05. Design Tokens</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#layout">06. Layout Shell</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="icons.html">07. Icons</a>          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Components</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#components">08. Live Catalog</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#foundations-live">09. Foundations</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#buttons-live">10. Buttons</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#forms-live">11. Forms</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#dropdown-live">12. Dropdown</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Data & Feedback</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#cards-live">13. Cards</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#badges-live">14. Badges</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#tabs-live">15. Data Display</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#progress-live">16. Progress</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#alerts-live">17. Alerts</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Overlays & Nav</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#overlays-live">18. Overlays</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#navigation-live">19. Navigation</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#animations-live">20. Animations</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#diagnostics-live">21. Diagnostics</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Patterns & FX</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#patterns-live">22. Patterns</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#theme-toggle-live">23. Theme Toggle</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#lang-select-live">24. Language Selector</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#fx-grid-live">25. Background FX</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Reference</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="#utilities">26. Utilities</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="#ai-playbook">27. Playbook AI</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="#elementor">28. Elementor V4</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="#release">29. Versioning</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Resources</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="token-export.html#token-export">30. Token Export</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#brand-voice">31. Brand Voice</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#tone-spectrum">32. Tone Spectrum</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#writing-rules">33. Writing Rules</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#signature-patterns">34. Signature Patterns</a>
+          </div></div>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="vm-docs__quicknav" data-vm-quicknav aria-label="Quick navigation">
+    <div class="vm-docs__quicknav-brand">
+      <span class="vm-docs__quicknav-mark">VM</span>
+      <div class="vm-docs__quicknav-copy">
+        <div class="vm-docs__quicknav-title">Vibemilk</div>
+        <div class="vm-docs__quicknav-section" data-vm-current-section>Integration</div>
+      </div>
+    </div>
+    <div class="vm-docs__quicknav-actions">
+      <a class="vm-btn vm-btn--sm vm-btn--ghost" href="#docs-index">Index</a>
+      <a class="vm-btn vm-btn--sm vm-btn--secondary" href="#intro">Top</a>
+    </div>
+  </div>
+
+  <main class="vm-docs__main">
+    <div class="vm-docs__container">
+
+      <header id="intro" class="vm-hero" data-vm-section>
+        <img class="vm-hero__logo" src="https://netmi.lk/wp-content/uploads/2024/10/netmilk.svg" alt="Netmilk Studio">
+        <div class="vm-version">Vibemilk v3.0.0</div>
+        <h1 class="text-display-lg mb-3">Vibemilk - the Netmilk Studio Design System</h1>
+        <p class="text-body-md" style="max-width:760px;">
+          Yes, another design system. No, not the usual mess of random classes and 4MB CSS files.
+          Vibemilk is built for Netmilk web interfaces of every flavor: fast, readable, token-driven, and ready for humans and AI to use without pain by the third component.
+        </p>
+        <div class="vm-chips">
+          <span class="vm-chip">Brand: Netmilk Studio</span>
+          <span class="vm-chip">Active theme: <code data-vm-theme-current>Vibemilk Default</code></span>
+          <span class="vm-chip">Class namespace: <code>.vm-*</code></span>
+          <span class="vm-chip">Architecture: core + modular themes</span>
+        </div>
+      </header>
+
+      <section id="architecture" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Official Structure</div>
+          <h2 class="text-heading-lg">File system designed to scale to dozens of themes</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="vm-note mb-4">
+            Core rule: the core layer does not know custom themes. Themes only override tokens and, when needed, visual micro-tweaks.
+          </div>
+          <pre class="vm-code"><code>.
+|-- index.html                   # hub landing page
+|-- pages/
+|   |-- integration.html         # quick start, AI playbook, Elementor V4
+|   |-- foundations.html          # tokens, layout, colors, typography
+|   |-- components.html           # live component catalog
+|   |-- themes.html               # theme gallery + device mockups
+|   |-- token-export.html         # token explorer + multi-platform export
+|   `-- brand-voice.html          # Netmilk writing style guide
+|-- js/
+|   `-- vibemilk-docs.js
+|-- scripts/
+|   `-- build-tokens.js           # npm run build:tokens
+|-- docs/
+|   `-- brand-voice.md            # full brand voice reference
+`-- css/
+    |-- vibemilk-core.css         # tokens + base + components + utilities
+    |-- vibemilk-themes.css       # optional pack with all themes
+    |-- vibemilk.css              # full bundle (core + all themes)
+    |-- docs.css                  # docs layout
+    |-- core/
+    |   |-- tokens.css
+    |   |-- base.css
+    |   |-- components.css        # component import index
+    |   `-- utilities.css
+    |-- components/
+    |   |-- surfaces.css
+    |   |-- actions.css
+    |   |-- forms.css
+    |   |-- feedback.css
+    |   |-- data-display.css
+    |   |-- navigation.css        # theme toggle, language selector
+    |   `-- carousel.css
+    `-- themes/
+        |-- cyber-grid.css
+        |-- acid-pop.css
+        |-- sakura-spring.css
+        |-- mono-brutalist.css
+        |-- mint-protocol.css
+        |-- cathode-ray.css       # CRT phosphor green
+        |-- clean-sheet.css       # corporate light
+        |-- solar-dust.css        # desert warm dark
+        `-- geocities-97.css      # Win95 nostalgia</code></pre>
+        </div>
+      </section>
+
+      <section id="start" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Quick start</div>
+          <h2 class="text-heading-lg">Integration in a Netmilk web UI project</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="vm-grid-2">
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Mode A: Single Theme (lighter)</div>
+              <p class="text-body-sm mb-3">Load only core + one theme file. Zero overhead from unused themes.</p>
+              <pre class="vm-code"><code>&lt;link rel="stylesheet" href="css/vibemilk-core.css"&gt;
+&lt;link rel="stylesheet" href="css/themes/cyber-grid.css"&gt;
+
+&lt;html data-theme="cyber-grid"&gt;</code></pre>
+            </article>
+
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Mode B: Runtime Theme Switcher</div>
+              <p class="text-body-sm mb-3">Core is always loaded, themes are injected on demand by the JS manager.</p>
+              <pre class="vm-code"><code>&lt;link rel="stylesheet" href="css/vibemilk-core.css"&gt;
+&lt;script src="js/vibemilk-docs.js" defer&gt;&lt;/script&gt;
+
+&lt;select data-vm-theme-select&gt;...&lt;/select&gt;</code></pre>
+            </article>
+          </div>
+
+          <div class="vm-note mt-4">
+            Standard storage key: <code>vibemilk.design-system.theme</code>. If a requested theme is missing, fallback is automatically set to <code>Vibemilk Default</code>.
+          </div>
+        </div>
+      </section>
+
+      <section id="utilities" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Utilities</div>
+          <h2 class="text-heading-lg">Helper classes and motion primitives</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="vm-grid-2">
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Spacing / layout</div>
+              <pre class="vm-code"><code>mt-1..mt-8, mb-1..mb-8
+p-0, p-2..p-6
+flex, items-center, justify-between, gap-2..gap-8
+w-full, h-full, overflow-auto, rounded-lg</code></pre>
+            </article>
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Animations</div>
+              <pre class="vm-code"><code>animate-fade-in-up
+animate-fade-in-left
+animate-fade-in-down
+animate-bounce-in
++ delay-1..delay-8</code></pre>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="ai-playbook" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Playbook AI</div>
+          <h2 class="text-heading-lg">Explicit instructions for agents integrating Vibemilk</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="vm-grid-2">
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Operating rules</div>
+              <ul class="text-body-sm" style="padding-left:18px;display:grid;gap:7px;">
+                <li>Use only the <code>.vm-*</code> namespace for components.</li>
+                <li>Do not hardcode colors: always use <code>--*</code> tokens.</li>
+                <li>For single-theme mode, load only the required theme file.</li>
+                <li>For runtime switching, use the JS manifest and lazy-load theme files.</li>
+                <li>Avoid direct component overrides: prefer token overrides.</li>
+              </ul>
+            </article>
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">AI output checklist</div>
+              <pre class="vm-code"><code>[ ] integration mode selected (single/switcher)
+[ ] coherent data-theme set
+[ ] minimum required files imported
+[ ] correct vm classes used
+[ ] no dependency on legacy names
+[ ] basic accessibility covered (label, focus-visible, contrast)</code></pre>
+            </article>
+          </div>
+
+          <div class="vm-note mt-4">
+            Recommended convention for new custom components: <code>.vm-{feature}</code> + BEM variants like <code>__element</code>, <code>--variant</code>.
+          </div>
+        </div>
+      </section>
+
+      <section id="elementor" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Elementor V4</div>
+          <h2 class="text-heading-lg">Using Vibemilk with Elementor V4</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="vm-note mb-4">
+            Elementor V4 introduced a CSS-first architecture with <strong>Variables Manager</strong>, <strong>Global Classes</strong>, and <strong>Scoped Custom CSS</strong>. This maps directly to how Vibemilk works.
+          </div>
+
+          <h3 class="text-heading-sm mb-3">How Vibemilk Maps to Elementor V4</h3>
+          <div class="vm-table-wrap mb-4">
+            <table class="vm-table">
+              <thead>
+                <tr><th>Vibemilk</th><th>Elementor V4</th><th>Where</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>--accent-primary: #7551FF</code></td>
+                  <td>Variable: <code>accent-primary</code></td>
+                  <td>Variables Manager (Color type)</td>
+                </tr>
+                <tr>
+                  <td><code>--font-family: 'Montserrat'...</code></td>
+                  <td>Variable: <code>font-family</code></td>
+                  <td>Variables Manager (Typography type)</td>
+                </tr>
+                <tr>
+                  <td><code>--space-4: 16px</code></td>
+                  <td>Variable: <code>space-4</code></td>
+                  <td>Variables Manager (Size type)</td>
+                </tr>
+                <tr>
+                  <td><code>.vm-btn</code></td>
+                  <td>Global Class: <code>vm-btn</code></td>
+                  <td>Global Classes panel</td>
+                </tr>
+                <tr>
+                  <td><code>.vm-btn--primary</code></td>
+                  <td>Global Class: <code>vm-btn--primary</code></td>
+                  <td>Global Classes panel</td>
+                </tr>
+                <tr>
+                  <td><code>.vm-card</code></td>
+                  <td>Global Class: <code>vm-card</code></td>
+                  <td>Global Classes panel</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="text-heading-sm mb-3">Quick Start: 3 Steps</h3>
+          <div class="vm-grid-2 mb-4">
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Step 1: Import Variables</div>
+              <p class="text-body-sm mb-3">Open Elementor's <strong>Variables Manager</strong> (Site Settings &rarr; Design System &rarr; Variables). Create a variable for each Vibemilk token you need.</p>
+              <pre class="vm-code"><code>Variable Name: accent-primary
+Type: Color
+Value: #7551FF
+
+Variable Name: font-family
+Type: Typography
+Value: Montserrat, system-ui, sans-serif
+
+Variable Name: space-4
+Type: Size
+Value: 16px</code></pre>
+              <p class="text-caption mt-2" style="color:var(--text-muted);">Use <code>tokens/{theme}.elementor.json</code> as reference — run <code>npm run build:tokens</code> to generate.</p>
+            </article>
+
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Step 2: Create Global Classes</div>
+              <p class="text-body-sm mb-3">For each Vibemilk component, create a <strong>Global Class</strong> in Elementor and paste the scoped CSS into its Custom CSS field.</p>
+              <pre class="vm-code"><code>/* Global Class: "vm-btn--primary" */
+/* Paste into Custom CSS field: */
+selector {
+  background: var(--accent-primary);
+  color: var(--text-on-primary);
+  height: var(--btn-height-md);
+  padding: 0 var(--btn-padding-md);
+  border-radius: var(--radius-sm);
+  font-weight: var(--fw-semibold);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+selector:hover {
+  filter: brightness(1.1);
+}</code></pre>
+              <p class="text-caption mt-2" style="color:var(--text-muted);">Elementor V4 uses <code>selector</code> as the scoping placeholder for Custom CSS in Global Classes.</p>
+            </article>
+          </div>
+
+          <article class="vm-card-lite mb-4">
+            <div class="text-heading-sm mb-2">Step 3: Switch Themes</div>
+            <p class="text-body-sm mb-3">To switch themes in Elementor, update the Variable values in the Variables Manager. All Global Classes referencing those variables will update automatically across every page.</p>
+            <div class="vm-grid-2">
+              <div>
+                <p class="text-body-sm"><strong>vibemilk-default:</strong></p>
+                <pre class="vm-code"><code>accent-primary: #7551FF
+bg-deepest: #0D0B14
+text-primary: #F0ECF9</code></pre>
+              </div>
+              <div>
+                <p class="text-body-sm"><strong>cyber-grid:</strong></p>
+                <pre class="vm-code"><code>accent-primary: #00FFD1
+bg-deepest: #0A0E17
+text-primary: #E0F4FF</code></pre>
+              </div>
+            </div>
+            <p class="text-caption mt-2" style="color:var(--text-muted);">One set of Global Classes, infinite themes. Update Variables, the whole site follows.</p>
+          </article>
+
+          <h3 class="text-heading-sm mb-3">Token Export for Elementor</h3>
+          <p class="text-body-sm mb-3">The build script generates an Elementor-ready JSON file for every theme:</p>
+          <pre class="vm-code mb-3"><code>npm run build:tokens
+# Outputs: tokens/{theme}.elementor.json for all 10 themes</code></pre>
+          <p class="text-body-sm mb-3">Each <code>.elementor.json</code> contains a flat list of variables with name, type, and value — ready for manual entry into the Variables Manager:</p>
+          <pre class="vm-code mb-4"><code>{
+  "meta": {
+    "theme": "vibemilk-default",
+    "version": "3.0.0",
+    "format": "elementor-v4-variables"
+  },
+  "variables": [
+    { "name": "Bg Deepest", "type": "Color", "value": "#0D0B14" },
+    { "name": "Accent Primary", "type": "Color", "value": "#7551FF" },
+    { "name": "Font Family", "type": "Typography", "value": "'Montserrat'..." },
+    { "name": "Space 4", "type": "Size", "value": "16px" }
+  ]
+}</code></pre>
+
+          <h3 class="text-heading-sm mb-3">Copy for Elementor (Component CSS)</h3>
+          <p class="text-body-sm mb-4">On the <a href="components.html">Components</a> page, use <strong>View Source</strong> on any component demo to see its HTML. The CSS for each component is defined in the <code>css/components/</code> directory. To create an Elementor Global Class, copy the relevant CSS rules and wrap them with <code>selector { ... }</code> scoping. Key components:</p>
+          <div class="vm-table-wrap mb-4">
+            <table class="vm-table">
+              <thead><tr><th>Component</th><th>CSS Source</th><th>Elementor Global Class</th></tr></thead>
+              <tbody>
+                <tr><td>Button Primary</td><td><code>css/components/actions.css</code></td><td><code>vm-btn vm-btn--primary</code></td></tr>
+                <tr><td>Card</td><td><code>css/components/surfaces.css</code></td><td><code>vm-card</code></td></tr>
+                <tr><td>Form Input</td><td><code>css/components/forms.css</code></td><td><code>vm-input</code></td></tr>
+                <tr><td>Alert</td><td><code>css/components/feedback.css</code></td><td><code>vm-alert</code></td></tr>
+                <tr><td>Badge</td><td><code>css/components/data-display.css</code></td><td><code>vm-badge</code></td></tr>
+                <tr><td>Table</td><td><code>css/components/data-display.css</code></td><td><code>vm-table</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="vm-note">
+            <strong>Pro tip:</strong> Start with the 5-10 core tokens (accent colors, bg, text, font-family, spacing) and the 3-4 most-used component classes. Expand as needed. You don't need to import all 270+ tokens on day one.
+          </div>
+        </div>
+      </section>
+
+      <section id="icons" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Icons</div>
+          <h2 class="text-heading-lg">Nerd Font Glyphs</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="vm-note mb-4">
+            Vibemilk ships 10,000+ icon glyphs via <strong>Nerd Fonts</strong> (dev icons, powerline, Material Design, Font Awesome, Octicons, Weather, and more). These are <em>icons</em>, not text typefaces -- text fonts (Montserrat, Space Mono, etc.) are a separate concern.
+          </div>
+
+          <h3 class="text-heading-sm mb-3">1. Loading the icon font</h3>
+          <div class="vm-grid-2 mb-4">
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Production (subset)</div>
+              <p class="text-body-sm mb-3">Just load <code>vibemilk-core.css</code>. It already imports <code>icons.css</code>, which declares the <code>@font-face</code> for <strong>VibemilkIcons.woff2</strong> (~50-80 KB). This subset covers the most common glyphs used in Vibemilk components.</p>
+              <pre class="vm-code"><code>&lt;link rel="stylesheet" href="css/vibemilk-core.css"&gt;
+&lt;!-- icons.css + @font-face included automatically --&gt;</code></pre>
+            </article>
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Full Nerd Font</div>
+              <p class="text-body-sm mb-3">Both <code>VibemilkIcons.woff2</code> (subset) and <code>SymbolsNerdFontMono-Regular.woff2</code> (full, ~1.2 MB) are registered via <code>@font-face</code>. The browser loads the full font only when a glyph outside the subset is requested.</p>
+              <pre class="vm-code"><code>/* Both are declared in css/components/icons.css */
+@font-face {
+  font-family: 'VibemilkIcons';
+  src: url('../fonts/VibemilkIcons.woff2');
+}
+@font-face {
+  font-family: 'NerdFontSymbols';
+  src: url('../fonts/SymbolsNerdFontMono-Regular.woff2');
+}</code></pre>
+            </article>
+          </div>
+
+          <h3 class="text-heading-sm mb-3">2. The <code>--font-icons</code> token</h3>
+          <p class="text-body-sm mb-4">Defined in <code>:root</code>, theme-agnostic. All themes inherit the same icon font stack. The fallback chain ensures graceful degradation:</p>
+          <pre class="vm-code mb-4"><code>:root {
+  --font-icons: 'VibemilkIcons', 'NerdFontSymbols', 'Symbols Nerd Font Mono', sans-serif;
+}</code></pre>
+
+          <h3 class="text-heading-sm mb-3">3. Using icons</h3>
+          <div class="vm-grid-2 mb-4">
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Unicode-first</div>
+              <p class="text-body-sm mb-3">Paste the Unicode codepoint directly. Best for one-off icons or dynamic content.</p>
+              <pre class="vm-code"><code>&lt;span class="vm-nf" aria-hidden="true"&gt;&amp;#xf1d3;&lt;/span&gt;</code></pre>
+            </article>
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Named class</div>
+              <p class="text-body-sm mb-3">Use a <code>vm-nf-{name}</code> class. The glyph is injected via CSS <code>::before</code>. Clean markup, no Unicode in HTML.</p>
+              <pre class="vm-code"><code>&lt;span class="vm-nf vm-nf-git" aria-hidden="true"&gt;&lt;/span&gt;</code></pre>
+            </article>
+          </div>
+          <article class="vm-card-lite mb-4">
+            <div class="text-heading-sm mb-2">With modifiers</div>
+            <p class="text-body-sm mb-3">Combine base class + size modifier + color modifier. All modifiers are optional and composable.</p>
+            <pre class="vm-code"><code>&lt;span class="vm-nf vm-nf--lg vm-nf--accent" aria-hidden="true"&gt;&amp;#xf1d3;&lt;/span&gt;</code></pre>
+          </article>
+
+          <h3 class="text-heading-sm mb-3">4. Size modifiers</h3>
+          <div class="vm-table-wrap mb-4">
+            <table class="vm-table">
+              <thead>
+                <tr><th>Class</th><th>Size</th><th>Note</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>.vm-nf--sm</code></td><td>0.75em</td><td>Inline, compact UI</td></tr>
+                <tr><td><code>.vm-nf--md</code></td><td>1em</td><td>Default (matches text)</td></tr>
+                <tr><td><code>.vm-nf--lg</code></td><td>1.272em</td><td>Square root of phi</td></tr>
+                <tr><td><code>.vm-nf--xl</code></td><td>1.618em</td><td>Golden ratio (phi)</td></tr>
+                <tr><td><code>.vm-nf--2xl</code></td><td>2.618em</td><td>Phi squared</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="text-heading-sm mb-3">5. Color modifiers</h3>
+          <ul class="text-body-sm mb-4" style="padding-left:18px;display:grid;gap:7px;">
+            <li><code>.vm-nf--accent</code> -- uses <code>var(--accent-primary)</code></li>
+            <li><code>.vm-nf--secondary</code> -- uses <code>var(--accent-secondary)</code></li>
+            <li><code>.vm-nf--muted</code> -- uses <code>var(--text-muted)</code></li>
+            <li><code>.vm-nf--success</code> -- uses <code>var(--color-success)</code></li>
+            <li><code>.vm-nf--warning</code> -- uses <code>var(--color-warning)</code></li>
+            <li><code>.vm-nf--danger</code> -- uses <code>var(--color-danger)</code></li>
+          </ul>
+
+          <h3 class="text-heading-sm mb-3">6. Accessibility</h3>
+          <div class="vm-grid-2 mb-4">
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Decorative icons</div>
+              <p class="text-body-sm">Icons that are purely visual (next to a text label, or for decoration) must be hidden from assistive tech:</p>
+              <pre class="vm-code mt-2"><code>&lt;span class="vm-nf vm-nf-git" aria-hidden="true"&gt;&lt;/span&gt; Git</code></pre>
+            </article>
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Informational icons</div>
+              <p class="text-body-sm">Icons that convey meaning on their own need an accessible label:</p>
+              <pre class="vm-code mt-2"><code>&lt;span class="vm-nf vm-nf-warning" aria-label="Warning"&gt;&lt;/span&gt;
+
+&lt;!-- or with sr-only text --&gt;
+&lt;span class="vm-nf vm-nf-warning" aria-hidden="true"&gt;&lt;/span&gt;
+&lt;span class="sr-only"&gt;Warning&lt;/span&gt;</code></pre>
+            </article>
+          </div>
+
+          <h3 class="text-heading-sm mb-3">7. ESP32 / Arduino</h3>
+          <div class="vm-note mb-4">
+            The web font is not applicable on microcontrollers. For ESP32 TFT displays using <code>TFT_eSPI</code> or similar libraries, use the <strong>codepoint values</strong> from the C header token export (<code>tokens/{theme}.h</code>). Each icon's Unicode value can be rendered as a text character if the display font supports it.
+          </div>
+
+          <h3 class="text-heading-sm mb-3">8. Full reference</h3>
+          <p class="text-body-sm">Browse the complete icon catalog with search, copy-to-clipboard, and live theme preview on the <a href="icons.html"><strong>Icons</strong></a> page.</p>
+        </div>
+      </section>
+
+      <section id="release" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Release</div>
+          <h2 class="text-heading-lg">Versioning and notes</h2>
+        </div>
+        <div class="vm-section__body">
+          <table class="vm-doc-table">
+            <tbody>
+              <tr>
+                <th style="width:200px;">Official name</th>
+                <td>Vibemilk - the Netmilk Studio Design System</td>
+              </tr>
+              <tr>
+                <th>Version</th>
+                <td><code>3.0.0</code> (multi-page refactor, 10 themes, new components, brand voice, Elementor V4)</td>
+              </tr>
+              <tr>
+                <th>Brand</th>
+                <td>Netmilk Studio sagl</td>
+              </tr>
+              <tr>
+                <th>Internal license</th>
+                <td>All rights reserved (c) 2026 Netmilk Studio sagl</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="text-caption mt-4" style="color:var(--text-muted);">
+            Monteggio Plains, 2026. Built for Netmilk interfaces that should look serious, not like "web template #47".
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../js/vibemilk-docs.js" defer></script>
+</body>
+</html>

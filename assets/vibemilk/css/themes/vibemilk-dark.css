@@ -1,0 +1,182 @@
+/* Vibemilk Theme: vibemilk-dark
+   Dark counterpart of vibemilk-default — deep navy/purple palette
+   ================================================ */
+
+:root[data-theme="vibemilk-dark"] {
+  --theme-id: 'vibemilk-dark';
+  --theme-mode: 'dark';
+
+  --font-family: 'Matt', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Space Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  --fs-display-xl: 36px;
+  --fs-display-lg: 28px;
+  --fs-heading-xl: 24px;
+  --fs-heading-lg: 20px;
+  --fs-heading-md: 18px;
+  --fs-heading-sm: 16px;
+  --fs-body-lg: 16px;
+  --fs-body-md: 14px;
+  --fs-body-sm: 13px;
+  --fs-caption: 12px;
+  --fs-overline: 11px;
+  --fs-micro: 10px;
+
+  --btn-height-sm: 34px;
+  --btn-height-md: 40px;
+  --btn-height-lg: 48px;
+  --btn-padding-sm: 14px;
+  --btn-padding-md: 18px;
+  --btn-padding-lg: 24px;
+  --input-height-sm: 38px;
+  --input-height-md: 44px;
+  --input-height-lg: 52px;
+  --progress-height: 12px;
+
+  /* Backgrounds — deep navy/purple */
+  --bg-deepest: #070D2D;
+  --bg-deep: #0B1437;
+  --bg-surface: #111C44;
+  --bg-surface-hover: #162052;
+  --bg-elevated: #1A2558;
+  --bg-elevated-hover: #1E2D66;
+  --bg-input: #0B1437;
+  --bg-input-focus: #111C44;
+  --bg-overlay: rgba(7, 13, 45, 0.85);
+
+  /* Text — light on dark */
+  --text-primary: #F0EDE8;
+  --text-secondary: #B8B5C4;
+  --text-tertiary: #8A87A0;
+  --text-muted: #5C5A70;
+  --text-inverse: #1A1A2E;
+
+  /* Accent Primary — violet */
+  --accent-primary: #7551FF;
+  --accent-primary-hover: #8B6FFF;
+  --accent-primary-active: #5D3FD3;
+  --accent-primary-subtle: rgba(117, 81, 255, 0.14);
+
+  /* Accent Secondary — cyan */
+  --accent-secondary: #39B8FF;
+  --accent-secondary-hover: #5DC8FF;
+  --accent-secondary-subtle: rgba(57, 184, 255, 0.14);
+
+  /* Semantic */
+  --color-success: #0FD88E;
+  --color-success-hover: #02F5A0;
+  --color-success-subtle: rgba(15, 216, 142, 0.14);
+
+  --color-warning: #FFC05C;
+  --color-warning-hover: #FFCD7E;
+  --color-warning-subtle: rgba(255, 192, 92, 0.14);
+
+  --color-danger: #F26A5E;
+  --color-danger-hover: #F48A80;
+  --color-danger-subtle: rgba(242, 106, 94, 0.14);
+
+  --color-info: #4DC4FF;
+  --color-info-subtle: rgba(77, 196, 255, 0.14);
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, #868CFF 0%, #4318FF 100%);
+  --gradient-card: linear-gradient(135deg, #7551FF 0%, #39B8FF 100%);
+  --gradient-success: linear-gradient(135deg, #0FD88E 0%, #39B8FF 100%);
+  --gradient-warm: linear-gradient(135deg, #FFC05C 0%, #F26A5E 100%);
+  --gradient-surface: linear-gradient(135deg, #111C44 0%, #1A2558 100%);
+  --gradient-sidebar: linear-gradient(180deg, #111C44 0%, #0B1437 100%);
+  --gradient-glow-purple: radial-gradient(circle, rgba(117, 81, 255, 0.18) 0%, transparent 70%);
+  --gradient-glow-blue: radial-gradient(circle, rgba(57, 184, 255, 0.14) 0%, transparent 70%);
+  --gradient-text: linear-gradient(90deg, #7551FF 0%, #39B8FF 100%);
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.30);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.40);
+  --shadow-glow-sm: 0 0 20px rgba(117, 81, 255, 0.14);
+  --shadow-glow-md: 0 0 40px rgba(117, 81, 255, 0.18);
+  --shadow-glow-blue: 0 0 30px rgba(57, 184, 255, 0.14);
+  --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.20);
+
+  --stroke-width-ui: 1px;
+  --stroke-width-strong: 1px;
+  --stroke-width-heavy: 2px;
+  --stroke-subtle: rgba(255, 255, 255, 0.06);
+  --stroke-default: rgba(255, 255, 255, 0.10);
+  --stroke-strong: rgba(255, 255, 255, 0.18);
+  --stroke-accent: #7551FF;
+  --stroke-success: #0FD88E;
+  --stroke-danger: #F26A5E;
+
+  --selection-bg: rgba(117, 81, 255, 0.24);
+  --selection-text: #F0EDE8;
+  --surface-overlay-soft: rgba(255, 255, 255, 0.03);
+  --surface-overlay-strong: rgba(255, 255, 255, 0.06);
+  --card-hover-border: rgba(255, 255, 255, 0.10);
+  --table-stripe-bg: rgba(255, 255, 255, 0.03);
+  --divider-color: rgba(255, 255, 255, 0.08);
+  --divider-dashed-color: rgba(255, 255, 255, 0.12);
+  --skeleton-shimmer: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+  --focus-ring-color: rgba(117, 81, 255, 0.45);
+  --focus-ring-soft: 0 0 0 3px rgba(117, 81, 255, 0.16);
+  --focus-ring-danger: 0 0 0 3px rgba(242, 106, 94, 0.18);
+  --text-on-primary: #FFFFFF;
+  --text-on-success: #FFFFFF;
+  --text-on-danger: #FFFFFF;
+  --text-on-gradient: #FFFFFF;
+  --text-on-warning: #1A1A2E;
+  --loader-stroke: rgba(255, 255, 255, 0.2);
+  --loader-stroke-active: #7551FF;
+  --control-handle: #FFFFFF;
+  --control-handle-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --range-thumb-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  --status-glow-success: 0 0 8px rgba(15, 216, 142, 0.5);
+  --status-glow-warning: 0 0 8px rgba(255, 192, 92, 0.5);
+  --nerds-border: 1px solid rgba(117, 81, 255, 0.15);
+  --nerds-inset-glow: inset 0 0 60px rgba(117, 81, 255, 0.04);
+  --nerds-label: #8A87A0;
+  --nerds-divider: rgba(255, 255, 255, 0.10);
+  --nerds-footer-border: 1px solid rgba(255, 255, 255, 0.08);
+  --nerds-footer-color: #5C5A70;
+
+  --fx-grid-perspective: 600px;
+  --fx-grid-plane-bottom: -8vh;
+  --fx-grid-plane-height: 62vh;
+  --fx-grid-plane-size: 36px;
+  --fx-grid-plane-opacity: 0.95;
+  --fx-grid-plane-line-a: rgba(117, 81, 255, 0.18);
+  --fx-grid-plane-line-b: rgba(57, 184, 255, 0.16);
+  --fx-grid-glow-height: 62%;
+  --fx-grid-glow-a: rgba(117, 81, 255, 0.16);
+  --fx-grid-glow-b: rgba(57, 184, 255, 0.08);
+  --fx-grid-horizon-bottom: 60%;
+  --fx-grid-horizon-a: rgba(117, 81, 255, 0.35);
+  --fx-grid-horizon-b: rgba(57, 184, 255, 0.30);
+  --fx-grid-horizon-shadow-a: rgba(117, 81, 255, 0.20);
+  --fx-grid-horizon-shadow-b: rgba(57, 184, 255, 0.10);
+  --fx-grid-scanline-a: rgba(57, 184, 255, 0.28);
+  --fx-grid-scanline-shadow: rgba(57, 184, 255, 0.14);
+  --fx-grid-vline-a: rgba(117, 81, 255, 0.16);
+  --fx-grid-vline-b: rgba(57, 184, 255, 0.14);
+  --fx-grid-vignette: rgba(7, 13, 45, 0.60);
+  --fx-grid-scroll-duration: 5s;
+  --fx-grid-glow-duration: 6s;
+  --fx-grid-scan-duration: 4s;
+  --fx-grid-vline-duration: 5s;
+
+  --logo-color: #7551FF;
+
+  --select-option-bg: #111C44;
+  --select-option-color: #F0EDE8;
+  --select-option-hover-bg: #1E2D66;
+  --select-option-hover-color: #FFFFFF;
+  --select-option-selected-bg: rgba(117, 81, 255, 0.24);
+  --select-option-selected-color: #FFFFFF;
+}

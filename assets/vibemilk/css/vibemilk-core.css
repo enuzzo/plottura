@@ -1,0 +1,6 @@
+/*! Vibemilk Core v2.2.0 | Netmilk Studio Design System */
+@import url('./core/tokens.css');
+@import url('./core/base.css');
+@import url('./core/components.css');
+@import url('./core/utilities.css');
+@import url('./core/icons.css');

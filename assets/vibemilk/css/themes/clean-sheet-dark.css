@@ -1,0 +1,194 @@
+/* Vibemilk Theme: clean-sheet-dark
+   Dark counterpart of clean-sheet (Corporate / Dark Mode)
+   ================================================ */
+
+:root[data-theme="clean-sheet-dark"] {
+  --theme-id: 'clean-sheet-dark';
+  --theme-mode: 'dark';
+
+  --font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Space Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  --fs-display-xl: 34px;
+  --fs-display-lg: 26px;
+  --fs-heading-xl: 22px;
+  --fs-heading-lg: 18px;
+  --fs-heading-md: 16px;
+  --fs-heading-sm: 15px;
+  --fs-body-lg: 15px;
+  --fs-body-md: 14px;
+  --fs-body-sm: 13px;
+  --fs-caption: 12px;
+  --fs-overline: 11px;
+  --fs-micro: 10px;
+
+  --btn-height-xs: 28px;
+  --btn-height-sm: 34px;
+  --btn-height-md: 40px;
+  --btn-height-lg: 48px;
+  --btn-height-xl: 56px;
+  --btn-padding-xs: 10px;
+  --btn-padding-sm: 14px;
+  --btn-padding-md: 18px;
+  --btn-padding-lg: 24px;
+  --btn-padding-xl: 32px;
+  --input-height-sm: 38px;
+  --input-height-md: 44px;
+  --input-height-lg: 52px;
+  --progress-height: 10px;
+
+  /* Backgrounds — neutral dark */
+  --bg-deepest: #0F1114;
+  --bg-deep: #161A1E;
+  --bg-surface: #1C2026;
+  --bg-surface-hover: #23282E;
+  --bg-elevated: #272C34;
+  --bg-elevated-hover: #2E343C;
+  --bg-input: #1C2026;
+  --bg-input-focus: #23282E;
+  --bg-overlay: rgba(0, 0, 0, 0.82);
+
+  /* Text — clean white/gray */
+  --text-primary: #F1F4F7;
+  --text-secondary: #9CA3AF;
+  --text-tertiary: #6B7280;
+  --text-muted: #4B5563;
+  --text-inverse: #1A1D21;
+
+  /* Accent Primary — same blue, slightly brighter */
+  --accent-primary: #60A5FA;
+  --accent-primary-hover: #3B82F6;
+  --accent-primary-active: #2563EB;
+  --accent-primary-subtle: rgba(96, 165, 250, 0.14);
+
+  /* Accent Secondary */
+  --accent-secondary: #93C5FD;
+  --accent-secondary-hover: #60A5FA;
+  --accent-secondary-subtle: rgba(147, 197, 253, 0.12);
+
+  /* Semantic */
+  --color-success: #22C55E;
+  --color-success-hover: #16A34A;
+  --color-success-subtle: rgba(34, 197, 94, 0.14);
+
+  --color-warning: #FACC15;
+  --color-warning-hover: #EAB308;
+  --color-warning-subtle: rgba(250, 204, 21, 0.14);
+
+  --color-danger: #EF4444;
+  --color-danger-hover: #DC2626;
+  --color-danger-subtle: rgba(239, 68, 68, 0.14);
+
+  --color-info: #60A5FA;
+  --color-info-subtle: rgba(96, 165, 250, 0.14);
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+  --gradient-card: linear-gradient(135deg, #60A5FA 0%, #93C5FD 100%);
+  --gradient-success: linear-gradient(135deg, #22C55E 0%, #60A5FA 100%);
+  --gradient-warm: linear-gradient(135deg, #FACC15 0%, #EF4444 100%);
+  --gradient-surface: linear-gradient(135deg, #1C2026 0%, #161A1E 100%);
+  --gradient-sidebar: linear-gradient(180deg, #1C2026 0%, #161A1E 100%);
+  --gradient-glow-purple: radial-gradient(circle, rgba(96, 165, 250, 0.10) 0%, transparent 70%);
+  --gradient-glow-blue: radial-gradient(circle, rgba(147, 197, 253, 0.08) 0%, transparent 70%);
+  --gradient-text: linear-gradient(90deg, #60A5FA 0%, #93C5FD 100%);
+
+  /* Border Radius — same conservative values */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --radius-2xl: 12px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.30), 0 1px 2px rgba(0, 0, 0, 0.20);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.28), 0 2px 4px rgba(0, 0, 0, 0.18);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.30), 0 4px 6px rgba(0, 0, 0, 0.20);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.35), 0 8px 10px rgba(0, 0, 0, 0.22);
+  --shadow-glow-sm: 0 1px 4px rgba(96, 165, 250, 0.12);
+  --shadow-glow-md: 0 2px 8px rgba(96, 165, 250, 0.16);
+  --shadow-glow-blue: 0 2px 8px rgba(147, 197, 253, 0.12);
+  --shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.20);
+
+  /* Strokes */
+  --stroke-width-ui: 1px;
+  --stroke-width-strong: 1px;
+  --stroke-width-heavy: 2px;
+  --stroke-subtle: rgba(255, 255, 255, 0.06);
+  --stroke-default: rgba(255, 255, 255, 0.10);
+  --stroke-strong: rgba(255, 255, 255, 0.18);
+  --stroke-accent: #60A5FA;
+  --stroke-success: #22C55E;
+  --stroke-danger: #EF4444;
+
+  /* Selection & Overlays */
+  --selection-bg: rgba(96, 165, 250, 0.24);
+  --selection-text: #F1F4F7;
+  --surface-overlay-soft: rgba(255, 255, 255, 0.03);
+  --surface-overlay-strong: rgba(255, 255, 255, 0.06);
+  --card-hover-border: rgba(255, 255, 255, 0.12);
+  --table-stripe-bg: rgba(255, 255, 255, 0.03);
+  --divider-color: rgba(255, 255, 255, 0.08);
+  --divider-dashed-color: rgba(255, 255, 255, 0.12);
+  --skeleton-shimmer: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+  --focus-ring-color: rgba(96, 165, 250, 0.45);
+  --focus-ring-soft: 0 0 0 3px rgba(96, 165, 250, 0.18);
+  --focus-ring-danger: 0 0 0 3px rgba(239, 68, 68, 0.18);
+  --text-on-primary: #FFFFFF;
+  --text-on-success: #FFFFFF;
+  --text-on-danger: #FFFFFF;
+  --text-on-gradient: #FFFFFF;
+  --text-on-warning: #1A1D21;
+  --loader-stroke: rgba(255, 255, 255, 0.15);
+  --loader-stroke-active: #60A5FA;
+  --control-handle: #FFFFFF;
+  --control-handle-shadow: 0 1px 3px rgba(0, 0, 0, 0.40);
+  --range-thumb-shadow: 0 1px 4px rgba(0, 0, 0, 0.40);
+  --status-glow-success: 0 0 6px rgba(34, 197, 94, 0.4);
+  --status-glow-warning: 0 0 6px rgba(250, 204, 21, 0.4);
+  --nerds-border: 1px solid rgba(255, 255, 255, 0.08);
+  --nerds-inset-glow: inset 0 0 60px rgba(96, 165, 250, 0.03);
+  --nerds-label: #6B7280;
+  --nerds-divider: rgba(255, 255, 255, 0.08);
+  --nerds-footer-border: 1px solid rgba(255, 255, 255, 0.06);
+  --nerds-footer-color: #6B7280;
+
+  /* FX Grid — subtle corporate */
+  --fx-grid-perspective: 600px;
+  --fx-grid-plane-bottom: -8vh;
+  --fx-grid-plane-height: 62vh;
+  --fx-grid-plane-size: 40px;
+  --fx-grid-plane-opacity: 0.5;
+  --fx-grid-plane-line-a: rgba(96, 165, 250, 0.08);
+  --fx-grid-plane-line-b: rgba(147, 197, 253, 0.06);
+  --fx-grid-glow-height: 50%;
+  --fx-grid-glow-a: rgba(96, 165, 250, 0.08);
+  --fx-grid-glow-b: rgba(147, 197, 253, 0.04);
+  --fx-grid-horizon-bottom: 60%;
+  --fx-grid-horizon-a: rgba(96, 165, 250, 0.12);
+  --fx-grid-horizon-b: rgba(147, 197, 253, 0.08);
+  --fx-grid-horizon-shadow-a: rgba(96, 165, 250, 0.06);
+  --fx-grid-horizon-shadow-b: rgba(147, 197, 253, 0.04);
+  --fx-grid-scanline-a: rgba(96, 165, 250, 0.06);
+  --fx-grid-scanline-shadow: rgba(96, 165, 250, 0.04);
+  --fx-grid-vline-a: rgba(96, 165, 250, 0.06);
+  --fx-grid-vline-b: rgba(147, 197, 253, 0.04);
+  --fx-grid-vignette: rgba(15, 17, 20, 0.40);
+  --fx-grid-scroll-duration: 12s;
+  --fx-grid-glow-duration: 14s;
+  --fx-grid-scan-duration: 10s;
+  --fx-grid-vline-duration: 12s;
+
+  --logo-color: #D1D5DB;
+
+  --select-option-bg: #1C2026;
+  --select-option-color: #F1F4F7;
+  --select-option-hover-bg: #2E343C;
+  --select-option-hover-color: #FFFFFF;
+  --select-option-selected-bg: rgba(96, 165, 250, 0.20);
+  --select-option-selected-color: #FFFFFF;
+
+  --sidebar-collapsed: 100px;
+  --sidebar-expanded: 260px;
+}

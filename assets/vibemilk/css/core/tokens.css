@@ -1,0 +1,324 @@
+/*! Vibemilk Design System v3.0.0 */
+/*  Netmilk Web Interface Design System
+    Fonts: Montserrat + Space Mono + Chakra Petch + Delius Unicase + IBM Plex Mono (+ theme-local Encode Sans Semi Expanded)
+    Themes: vibemilk-default + vibemilk-dark + cyber-grid + acid-pop + sakura-spring + mono-brutalist + mint-protocol + cathode-ray + clean-sheet + clean-sheet-dark + solar-dust + geocities-97
+    ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Delius+Unicase:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+/* -- Matt Font (Netmilk brand typeface) -- */
+@font-face { font-family: 'Matt'; src: url('../../fonts/matt/WEB/Matt_Trial-Thin.woff2') format('woff2'); font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Matt'; src: url('../../fonts/matt/WEB/Matt_Trial-ExtraLight.woff2') format('woff2'); font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Matt'; src: url('../../fonts/matt/WEB/Matt_Trial-Light.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Matt'; src: url('../../fonts/matt/WEB/Matt_Trial-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Matt'; src: url('../../fonts/matt/WEB/Matt_Trial-Medium.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Matt'; src: url('../../fonts/matt/WEB/Matt_Trial-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Matt'; src: url('../../fonts/matt/WEB/Matt_Trial-ExtraBold.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Matt'; src: url('../../fonts/matt/WEB/Matt_Trial-Black.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
+
+/* -- Nerd Font Icons (Symbols Only) -- */
+@font-face { font-family: 'VibemilkIcons'; src: url('../../fonts/nerd/VibemilkIcons.woff2') format('woff2'); font-weight: normal; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Symbols Nerd Font Mono'; src: url('../../fonts/nerd/SymbolsNerdFontMono-Regular.woff2') format('woff2'); font-weight: normal; font-style: normal; font-display: swap; }
+
+/* ============================================
+   0. CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+   ============================================ */
+:root,
+:root[data-theme="vibemilk-default"] {
+  /* -- Theme Meta -- */
+  --theme-id: 'vibemilk-default';
+  --theme-mode: 'light';
+
+  /* -- Font Family -- */
+  --font-family: 'Matt', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Space Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --font-icons: 'VibemilkIcons', 'Symbols Nerd Font Mono', sans-serif;
+
+  /* -- Font Sizes --
+     Scale: 10 → 11 → 12 → 13 → 14 → 16 → 18 → 20 → 24 → 28 → 36
+     Upper range (16+) approximates φ^(1/3) steps (~1.175× multiplier)
+     16→18 ×1.125 | 18→20 ×1.111 | 20→24 ×1.200 | 24→28 ×1.167 | 28→36 ×1.286
+  */
+  --fs-display-xl: 36px;
+  --fs-display-lg: 28px;
+  --fs-heading-xl: 24px;
+  --fs-heading-lg: 20px;
+  --fs-heading-md: 18px;
+  --fs-heading-sm: 16px;
+  --fs-body-lg: 16px;
+  --fs-body-md: 14px;
+  --fs-body-sm: 13px;
+  --fs-caption: 12px;
+  --fs-overline: 11px;
+  --fs-micro: 10px;
+
+  /* -- Font Weights -- */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  /* -- Component Dimensions -- */
+  --btn-height-xs: 28px;
+  --btn-height-sm: 34px;
+  --btn-height-md: 40px;
+  --btn-height-lg: 48px;
+  --btn-height-xl: 56px;
+  --btn-padding-xs: 10px;
+  --btn-padding-sm: 14px;
+  --btn-padding-md: 18px;
+  --btn-padding-lg: 24px;
+  --btn-padding-xl: 32px;
+  --input-height-sm: 38px;
+  --input-height-md: 44px;
+  --input-height-lg: 52px;
+  --progress-height: 12px;
+  --toggle-track-width: 44px;
+  --toggle-track-height: 24px;
+  --toggle-thumb-size: 18px;
+  --toggle-thumb-offset: 3px;
+  --avatar-size-xs: 28px;
+  --avatar-size-sm: 36px;
+  --avatar-size-md: 44px;
+  --avatar-size-lg: 56px;
+  --avatar-size-xl: 72px;
+
+  /* -- Backgrounds (milk-white light theme) -- */
+  --bg-deepest: #F0EDE8;
+  --bg-deep: #F5F2ED;
+  --bg-surface: #FAF8F5;
+  --bg-surface-hover: #F0EDE8;
+  --bg-elevated: #FFFFFF;
+  --bg-elevated-hover: #F5F2ED;
+  --bg-input: #FFFFFF;
+  --bg-input-focus: #FFFFFF;
+  --bg-overlay: rgba(35, 83, 138, 0.75);
+
+  /* -- Text -- */
+  --text-primary: #1A1A2E;
+  --text-secondary: #4A4A6A;
+  --text-tertiary: #6E6E8A;
+  --text-muted: #9E9EB5;
+  --text-inverse: #FFFFFF;
+  --text-on-gradient: #FFFFFF;
+
+  /* -- Accent Primary (Netmilk Magenta) -- */
+  --accent-primary: #FF1DA5;
+  --accent-primary-hover: #FF45B8;
+  --accent-primary-active: #E0188F;
+  --accent-primary-subtle: rgba(255, 29, 165, 0.10);
+
+  /* -- Accent Secondary (Netmilk Blue) -- */
+  --accent-secondary: #5D84DF;
+  --accent-secondary-hover: #7A9BE8;
+  --accent-secondary-subtle: rgba(93, 132, 223, 0.10);
+
+  /* -- Semantic: Success -- */
+  --color-success: #01B574;
+  --color-success-hover: #02D68A;
+  --color-success-subtle: rgba(1, 181, 116, 0.12);
+
+  /* -- Semantic: Warning -- */
+  --color-warning: #FFB547;
+  --color-warning-hover: #FFC76B;
+  --color-warning-subtle: rgba(255, 181, 71, 0.12);
+
+  /* -- Semantic: Danger -- */
+  --color-danger: #EE5D50;
+  --color-danger-hover: #F17A70;
+  --color-danger-subtle: rgba(238, 93, 80, 0.12);
+
+  /* -- Semantic: Info -- */
+  --color-info: #39B8FF;
+  --color-info-subtle: rgba(57, 184, 255, 0.12);
+
+  /* -- Gradients -- */
+  --gradient-brand: linear-gradient(135deg, #FF1DA5 0%, #A044C8 50%, #5D3FD3 100%);
+  --gradient-card: linear-gradient(135deg, #FF1DA5 0%, #8B3FBF 55%, #5D3FD3 100%);
+  --gradient-success: linear-gradient(135deg, #01B574 0%, #5D84DF 100%);
+  --gradient-warm: linear-gradient(135deg, #FFB547 0%, #EE5D50 100%);
+  --gradient-surface: linear-gradient(135deg, #FAF8F5 0%, #F0EDE8 100%);
+  --gradient-sidebar: linear-gradient(180deg, #FAF8F5 0%, #F5F2ED 100%);
+  --gradient-glow-purple: radial-gradient(circle, rgba(255,29,165,0.15) 0%, transparent 70%);
+  --gradient-glow-blue: radial-gradient(circle, rgba(93,132,223,0.12) 0%, transparent 70%);
+
+  /* -- Spacing -- */
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* -- Golden Ratio Spacing (φ = 1.618) -- */
+  --phi-1: 4px;
+  --phi-2: 7px;     /* 4 × 1.618 ≈ 6.5 → 7 */
+  --phi-3: 11px;    /* 7 × 1.618 ≈ 11.3 → 11 */
+  --phi-4: 18px;    /* 11 × 1.618 ≈ 17.8 → 18 */
+  --phi-5: 29px;    /* 18 × 1.618 ≈ 29.1 → 29 */
+  --phi-6: 47px;    /* 29 × 1.618 ≈ 46.9 → 47 */
+  --phi-7: 76px;    /* 47 × 1.618 ≈ 76.0 → 76 */
+  --phi-8: 123px;   /* 76 × 1.618 ≈ 122.9 → 123 */
+
+  /* -- Border Radius -- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* -- Shadows -- */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.12);
+  --shadow-glow-sm: 0 0 20px rgba(255, 29, 165, 0.10);
+  --shadow-glow-md: 0 0 40px rgba(255, 29, 165, 0.12);
+  --shadow-glow-blue: 0 0 30px rgba(93, 132, 223, 0.10);
+  --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+
+  /* -- Stroke Tokens -- */
+  --stroke-width-ui: 1px;
+  --stroke-width-strong: 1px;
+  --stroke-width-heavy: 2px;
+  --stroke-subtle: rgba(0, 0, 0, 0.06);
+  --stroke-default: rgba(0, 0, 0, 0.10);
+  --stroke-strong: rgba(0, 0, 0, 0.18);
+  --stroke-accent: #FF1DA5;
+  --stroke-success: #01B574;
+  --stroke-danger: #EE5D50;
+
+  /* -- Borders -- */
+  --border-subtle: var(--stroke-width-ui) solid var(--stroke-subtle);
+  --border-default: var(--stroke-width-ui) solid var(--stroke-default);
+  --border-strong: var(--stroke-width-strong) solid var(--stroke-strong);
+  --border-accent: var(--stroke-width-strong) solid var(--stroke-accent);
+  --border-success: var(--stroke-width-strong) solid var(--stroke-success);
+  --border-danger: var(--stroke-width-strong) solid var(--stroke-danger);
+
+  /* -- Transitions -- */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* -- Z-Index -- */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+
+  /* -- Containers -- */
+  --container-sm: 640px;
+  --container-md: 960px;
+  --container-lg: 1200px;
+  --container-xl: 1440px;
+
+  /* -- Sidebar -- */
+  --sidebar-collapsed: 100px;
+  --sidebar-expanded: 260px;
+  --topbar-height: 72px;
+
+  /* -- Global Theme Effects -- */
+  --selection-bg: rgba(255, 29, 165, 0.20);
+  --selection-text: #1A1A2E;
+  --surface-overlay-soft: rgba(0, 0, 0, 0.02);
+  --surface-overlay-strong: rgba(0, 0, 0, 0.06);
+  --card-hover-border: rgba(0, 0, 0, 0.08);
+  --table-stripe-bg: rgba(0, 0, 0, 0.02);
+  --divider-color: rgba(0, 0, 0, 0.06);
+  --divider-dashed-color: rgba(0, 0, 0, 0.10);
+  --skeleton-shimmer: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.03), transparent);
+  --focus-ring-color: rgba(255, 29, 165, 0.4);
+  --focus-ring-soft: 0 0 0 3px rgba(255, 29, 165, 0.12);
+  --focus-ring-danger: 0 0 0 3px rgba(238, 93, 80, 0.15);
+  --scrollbar-track: color-mix(in srgb, var(--bg-deep) 82%, var(--text-primary) 18%);
+  --scrollbar-thumb: color-mix(in srgb, var(--accent-primary) 54%, var(--text-primary) 46%);
+  --scrollbar-thumb-hover: color-mix(in srgb, var(--accent-primary) 40%, var(--text-primary) 60%);
+  --scrollbar-corner: color-mix(in srgb, var(--bg-deep) 72%, var(--bg-elevated) 28%);
+  --scrollbar-duration: 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  --gui-panel-bg: color-mix(in srgb, var(--bg-elevated) 78%, var(--bg-surface) 22%);
+  --gui-panel-border: 1px solid color-mix(in srgb, var(--stroke-default) 70%, var(--text-primary) 30%);
+  --gui-panel-header: color-mix(in srgb, var(--text-primary) 76%, var(--text-secondary) 24%);
+  --gui-panel-shadow: var(--shadow-md);
+  --gui-row-gap: var(--space-4);
+  --gui-label-color: color-mix(in srgb, var(--text-secondary) 82%, var(--text-primary) 18%);
+  --gui-value-color: var(--text-primary);
+  --gui-value-border: 1px solid color-mix(in srgb, var(--stroke-default) 74%, var(--text-primary) 26%);
+  --gui-slider-track: color-mix(in srgb, var(--bg-deep) 45%, var(--text-primary) 55%);
+  --gui-slider-thumb: color-mix(in srgb, var(--accent-primary) 68%, var(--text-primary) 32%);
+  --gui-slider-thumb-shadow: var(--range-thumb-shadow);
+  --gui-slider-transition: 220ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* -- Gradient Text Accent -- */
+  --gradient-text: linear-gradient(90deg, #FF1DA5 0%, #A044C8 55%, #5D3FD3 100%);
+  --text-on-primary: #FFFFFF;
+  --text-on-success: #FFFFFF;
+  --text-on-danger: #FFFFFF;
+  --text-on-gradient: #FFFFFF;
+  --text-on-warning: var(--text-inverse);
+  --loader-stroke: rgba(255, 255, 255, 0.3);
+  --loader-stroke-active: #FFFFFF;
+  --control-handle: #FFFFFF;
+  --control-handle-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --range-thumb-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  --status-glow-success: 0 0 8px rgba(1, 181, 116, 0.5);
+  --status-glow-warning: 0 0 8px rgba(255, 181, 71, 0.5);
+  --nerds-border: 1px solid rgba(117, 81, 255, 0.15);
+  --nerds-inset-glow: inset 0 0 60px rgba(117, 81, 255, 0.03);
+  --nerds-label: #4A5568;
+  --nerds-divider: rgba(112, 126, 174, 0.2);
+  --nerds-footer-border: 1px solid rgba(112, 126, 174, 0.1);
+  --nerds-footer-color: #4A5568;
+
+  /* -- Vibemilk FX Grid (web UI animation) -- */
+  --fx-grid-perspective: 600px;
+  --fx-grid-plane-bottom: -8vh;
+  --fx-grid-plane-height: 62vh;
+  --fx-grid-plane-size: 36px;
+  --fx-grid-plane-opacity: 0.95;
+  --fx-grid-plane-line-a: rgba(117, 81, 255, 0.2);
+  --fx-grid-plane-line-b: rgba(57, 184, 255, 0.18);
+  --fx-grid-glow-height: 62%;
+  --fx-grid-glow-a: rgba(117, 81, 255, 0.18);
+  --fx-grid-glow-b: rgba(57, 184, 255, 0.08);
+  --fx-grid-horizon-bottom: 60%;
+  --fx-grid-horizon-a: rgba(117, 81, 255, 0.4);
+  --fx-grid-horizon-b: rgba(57, 184, 255, 0.34);
+  --fx-grid-horizon-shadow-a: rgba(117, 81, 255, 0.24);
+  --fx-grid-horizon-shadow-b: rgba(57, 184, 255, 0.1);
+  --fx-grid-scanline-a: rgba(57, 184, 255, 0.32);
+  --fx-grid-scanline-shadow: rgba(57, 184, 255, 0.18);
+  --fx-grid-vline-a: rgba(117, 81, 255, 0.2);
+  --fx-grid-vline-b: rgba(57, 184, 255, 0.18);
+  --fx-grid-vignette: rgba(7, 13, 45, 0.54);
+  --fx-grid-scroll-duration: 5s;
+  --fx-grid-glow-duration: 6s;
+  --fx-grid-scan-duration: 4s;
+  --fx-grid-vline-duration: 5s;
+
+  /* -- Logo Color (sidebar brand-mark via CSS mask) -- */
+  --logo-color: #1A1A2E;
+
+  /* -- Select Dropdown States -- */
+  --select-option-bg: var(--bg-surface);
+  --select-option-color: var(--text-primary);
+  --select-option-hover-bg: var(--bg-surface-hover);
+  --select-option-hover-color: var(--text-primary);
+  --select-option-selected-bg: var(--accent-primary-subtle);
+  --select-option-selected-color: var(--accent-primary);
+}

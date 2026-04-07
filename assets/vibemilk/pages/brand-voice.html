@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="vibemilk-default">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Voice - Vibemilk Design System</title>
+  <meta name="description" content="Vibemilk brand voice guide for Netmilk Studio.">
+  <link rel="stylesheet" href="../css/vibemilk-core.css">
+  <link rel="stylesheet" href="../css/docs.css">
+  <link rel="stylesheet" href="../css/showcase.css">
+  <style>
+    .brand-voice-split,
+    .brand-voice-axis-grid,
+    .brand-voice-ingredient-grid,
+    .brand-voice-readme-grid,
+    .brand-voice-rule-grid,
+    .brand-voice-compare-grid,
+    .brand-voice-checklist {
+      display: grid;
+      gap: 14px;
+    }
+
+    .brand-voice-split {
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+      align-items: start;
+    }
+
+    .brand-voice-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .brand-voice-panel {
+      height: 100%;
+      padding: var(--space-4);
+      border: var(--border-subtle);
+      border-radius: var(--radius-lg);
+      background: color-mix(in srgb, var(--bg-elevated) 74%, transparent);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brand-voice-panel .text-overline {
+      margin-bottom: 10px;
+    }
+
+    .brand-voice-panel p:last-child,
+    .brand-voice-panel ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .brand-voice-axis-grid,
+    .brand-voice-ingredient-grid,
+    .brand-voice-rule-grid,
+    .brand-voice-compare-grid,
+    .brand-voice-checklist {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .brand-voice-readme-grid {
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+      align-items: start;
+    }
+
+    .brand-voice-axis-card {
+      padding: 14px;
+      border: var(--border-subtle);
+      border-radius: var(--radius-md);
+      background: color-mix(in srgb, var(--bg-surface) 84%, transparent);
+    }
+
+    .brand-voice-axis-card__split {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .brand-voice-axis-card__axis {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .brand-voice-axis-card__value {
+      font-size: 20px;
+      font-weight: var(--fw-bold);
+      color: var(--accent-primary);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .brand-voice-ingredient-card {
+      padding: 14px;
+      border: var(--border-subtle);
+      border-radius: var(--radius-md);
+      background: color-mix(in srgb, var(--bg-surface) 82%, transparent);
+    }
+
+    .brand-voice-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .brand-voice-list,
+    .brand-voice-rule-list,
+    .brand-voice-checklist-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .brand-voice-list li,
+    .brand-voice-rule-list li,
+    .brand-voice-checklist-list li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .brand-voice-list__icon,
+    .brand-voice-rule-list__icon,
+    .brand-voice-checklist-list__icon {
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1;
+      margin-top: 1px;
+    }
+
+    .brand-voice-list__icon--good,
+    .brand-voice-rule-list__icon--good,
+    .brand-voice-checklist-list__icon {
+      color: var(--semantic-success);
+      background: color-mix(in srgb, var(--semantic-success) 16%, transparent);
+      border: 1px solid color-mix(in srgb, var(--semantic-success) 36%, transparent);
+    }
+
+    .brand-voice-rule-list__icon--bad {
+      color: var(--semantic-error);
+      background: color-mix(in srgb, var(--semantic-error) 16%, transparent);
+      border: 1px solid color-mix(in srgb, var(--semantic-error) 36%, transparent);
+    }
+
+    .brand-voice-rule-card,
+    .brand-voice-compare-card {
+      height: 100%;
+    }
+
+    .brand-voice-compare-card {
+      border-left-width: 3px;
+      border-left-style: solid;
+    }
+
+    .brand-voice-compare-card--before {
+      border-left-color: var(--semantic-error);
+    }
+
+    .brand-voice-compare-card--after {
+      border-left-color: var(--semantic-success);
+    }
+
+    .brand-voice-compare-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 1040px) {
+      .brand-voice-split,
+      .brand-voice-readme-grid,
+      .brand-voice-rule-grid,
+      .brand-voice-compare-grid,
+      .brand-voice-checklist {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .brand-voice-axis-grid,
+      .brand-voice-ingredient-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="vm-docs" data-vm-page="brand-voice">
+  <aside id="docs-index" class="vm-docs__sidebar" aria-label="Vibemilk documentation index">
+    <div class="vm-docs__sidebar-head">
+      <div class="vm-docs__brand">
+        <a href="../index.html" class="vm-docs__brand-mark" aria-label="Netmilk home"></a>
+        <div class="vm-docs__brand-copy">
+          <a href="../index.html" class="vm-docs__brand-title" style="text-decoration:none;color:inherit;">Vibemilk</a>
+          <div class="vm-docs__brand-subtitle">Netmilk Studio Design System</div>
+        </div>
+      </div>
+
+      <div class="vm-docs__theme">
+        <label class="vm-label">Active theme</label>
+        <div class="vm-dropdown" data-vm-theme-select>
+          <button type="button" class="vm-dropdown__trigger" aria-expanded="false" aria-haspopup="listbox">
+            <span class="vm-dropdown__value">Vibemilk Default</span>
+            <span class="vm-nf vm-dropdown__chevron" aria-hidden="true">&#xeb6c;</span>
+          </button>
+          <ul class="vm-dropdown__menu" role="listbox">
+            <li class="vm-dropdown__item is-selected" role="option" aria-selected="true" data-value="vibemilk-default">Vibemilk Default</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="vibemilk-dark">Vibemilk Dark</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="cyber-grid">Cyber Grid</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="acid-pop">Acid Pop</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="sakura-spring">Sakura Spring</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="mono-brutalist">Mono Brutalist</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="mint-protocol">Mint Protocol</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="cathode-ray">Cathode Ray</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="clean-sheet">Clean Sheet</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="clean-sheet-dark">Clean Sheet Dark</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="solar-dust">Solar Dust</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="geocities-97">Geocities 97</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="vm-docs__controls">
+        <div class="vm-docs__controls-row">
+          <span class="vm-docs__controls-label">Mode</span>
+          <div class="vm-theme-toggle vm-theme-toggle--sidebar" data-vm-mode="day" data-vm-sidebar-toggle role="button" tabindex="0" aria-label="Toggle day/night mode">
+            <div class="vm-theme-toggle__track">
+              <span class="vm-theme-toggle__icon vm-theme-toggle__icon--sun vm-nf" aria-hidden="true">&#xeb30;</span>
+              <span class="vm-theme-toggle__icon vm-theme-toggle__icon--moon vm-nf" aria-hidden="true">&#xeaf0;</span>
+              <div class="vm-theme-toggle__thumb"></div>
+            </div>
+            <span class="vm-theme-toggle__label">day</span>
+          </div>
+        </div>
+        <div class="vm-docs__controls-row">
+          <span class="vm-docs__controls-label">Canvas</span>
+          <div class="vm-preview-toolbar__modes" role="group" aria-label="Preview width">
+            <button type="button" class="vm-btn vm-btn--xs is-active" data-vm-preview-button="desktop" aria-pressed="true">Desktop</button>
+            <button type="button" class="vm-btn vm-btn--xs" data-vm-preview-button="mobile" aria-pressed="false">Mobile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vm-docs__search">
+      <input type="text" class="vm-docs__search-input" placeholder="Search navigation..." aria-label="Filter navigation">
+    </div>
+    <nav class="vm-docs__nav">
+      <div class="vm-docs__nav-list">
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Getting Started</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#intro">01. Intro</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#architecture">02. File Structure</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#start">03. Quick Start</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Design System</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="themes.html#themes">04. Theme System</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#tokens">05. Design Tokens</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#layout">06. Layout Shell</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="icons.html">07. Icons</a>          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Components</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#components">08. Live Catalog</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#foundations-live">09. Foundations</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#buttons-live">10. Buttons</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#forms-live">11. Forms</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#dropdown-live">12. Dropdown</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Data & Feedback</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#cards-live">13. Cards</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#badges-live">14. Badges</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#tabs-live">15. Data Display</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#progress-live">16. Progress</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#alerts-live">17. Alerts</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Overlays & Nav</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#overlays-live">18. Overlays</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#navigation-live">19. Navigation</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#animations-live">20. Animations</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#diagnostics-live">21. Diagnostics</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Patterns & FX</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#patterns-live">22. Patterns</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#theme-toggle-live">23. Theme Toggle</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#lang-select-live">24. Language Selector</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#fx-grid-live">25. Background FX</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Reference</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#utilities">26. Utilities</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#ai-playbook">27. Playbook AI</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#elementor">28. Elementor V4</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#release">29. Versioning</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Resources</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="token-export.html#token-export">30. Token Export</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#brand-voice">31. Brand Voice</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#tone-spectrum">32. Tone Spectrum</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#writing-rules">33. Writing Rules</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#signature-patterns">34. Signature Patterns</a>
+          </div></div>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="vm-docs__quicknav" data-vm-quicknav aria-label="Quick navigation">
+    <div class="vm-docs__quicknav-brand">
+      <span class="vm-docs__quicknav-mark">VM</span>
+      <div class="vm-docs__quicknav-copy">
+        <div class="vm-docs__quicknav-title">Vibemilk</div>
+        <div class="vm-docs__quicknav-section" data-vm-current-section>Brand Voice</div>
+      </div>
+    </div>
+    <div class="vm-docs__quicknav-actions">
+      <a class="vm-btn vm-btn--sm vm-btn--ghost" href="#docs-index">Index</a>
+      <a class="vm-btn vm-btn--sm vm-btn--secondary" href="#brand-voice">Top</a>
+    </div>
+  </div>
+
+  <main class="vm-docs__main">
+    <div class="vm-docs__container">
+
+      <section id="brand-voice" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Brand Voice</div>
+          <h2 class="text-heading-lg">Netmilk Studio Brand Voice Guide</h2>
+        </div>
+        <div class="vm-section__body">
+          <blockquote class="vm-note mb-4">
+            How Netmilk writes. For READMEs, docs, UI copy, and anything that leaves the building with our name on it.
+            <br><br>
+            <strong>Full reference:</strong> <code>docs/brand-voice.md</code> in the project root.
+          </blockquote>
+
+          <h3 class="text-heading-md mt-5 mb-3">The Voice in One Sentence</h3>
+          <p class="text-body-md mb-4" style="max-width:720px;">
+            <strong>Technically precise, culturally irreverent, never verbose, always self-aware.</strong>
+            We write like someone who knows exactly how the thing works, finds it slightly absurd that it exists, and is going to tell you about it anyway — because it's genuinely good and you should use it.
+          </p>
+        </div>
+      </section>
+
+      <section id="tone-spectrum" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <h2 class="text-heading-lg">Tone Spectrum</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="brand-voice-split mb-4">
+            <div class="brand-voice-panel">
+              <div class="text-overline">Calibration</div>
+              <p class="text-body-sm mb-4" style="color:var(--text-secondary); max-width:56ch;">
+                Netmilk works best in the productive middle: specific, opinionated, and a little amused that this machine exists at all.
+              </p>
+              <div class="brand-voice-axis-grid">
+                <article class="brand-voice-axis-card">
+                  <div class="brand-voice-axis-card__split">
+                    <div class="brand-voice-axis-card__axis">Formal ↔ Casual</div>
+                    <div class="brand-voice-axis-card__value">70% casual</div>
+                  </div>
+                  <p class="text-body-sm" style="margin:0; color:var(--text-secondary);">Contractions, first person plural, parenthetical asides. No slang without purpose.</p>
+                </article>
+                <article class="brand-voice-axis-card">
+                  <div class="brand-voice-axis-card__split">
+                    <div class="brand-voice-axis-card__axis">Serious ↔ Playful</div>
+                    <div class="brand-voice-axis-card__value">60% playful</div>
+                  </div>
+                  <p class="text-body-sm" style="margin:0; color:var(--text-secondary);">Technical sections stay precise. Intros and descriptions earn the jokes.</p>
+                </article>
+                <article class="brand-voice-axis-card">
+                  <div class="brand-voice-axis-card__split">
+                    <div class="brand-voice-axis-card__axis">Humble ↔ Confident</div>
+                    <div class="brand-voice-axis-card__value">75% confident</div>
+                  </div>
+                  <p class="text-body-sm" style="margin:0; color:var(--text-secondary);">We know what we built. We also know it sounds like a fever dream when said out loud.</p>
+                </article>
+                <article class="brand-voice-axis-card">
+                  <div class="brand-voice-axis-card__split">
+                    <div class="brand-voice-axis-card__axis">Dry ↔ Warm</div>
+                    <div class="brand-voice-axis-card__value">oscillates</div>
+                  </div>
+                  <p class="text-body-sm" style="margin:0; color:var(--text-secondary);">Dry wit on the surface, genuine warmth underneath. Never cold. Never sappy.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="brand-voice-panel">
+              <div class="text-overline">The Four Ingredients</div>
+              <div class="brand-voice-ingredient-grid">
+                <article class="brand-voice-ingredient-card">
+                  <strong>Irreverent but nerdy-competent</strong>
+                  <p class="text-body-sm" style="margin:8px 0 0; color:var(--text-secondary);">We make fun of the absurdity, but the specs are flawless.</p>
+                </article>
+                <article class="brand-voice-ingredient-card">
+                  <strong>Sarcastic but warm</strong>
+                  <p class="text-body-sm" style="margin:8px 0 0; color:var(--text-secondary);">The sarcasm is pointed at ourselves, not the reader.</p>
+                </article>
+                <article class="brand-voice-ingredient-card">
+                  <strong>Cynical yet affectionate</strong>
+                  <p class="text-body-sm" style="margin:8px 0 0; color:var(--text-secondary);">We know the limitations. We shipped it anyway. We are still weirdly proud of it.</p>
+                </article>
+                <article class="brand-voice-ingredient-card">
+                  <strong>Sly and sharp</strong>
+                  <p class="text-body-sm" style="margin:8px 0 0; color:var(--text-secondary);">Every line earns its place. No filler. No corporate fog.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="readme-structure" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <h2 class="text-heading-lg">README Structure</h2>
+        </div>
+        <div class="vm-section__body">
+          <p class="text-body-md mb-4">Every Netmilk README follows this skeleton. Not loosely — exactly.</p>
+
+          <h3 class="text-heading-sm mb-2">1. Badge Row <span class="vm-badge vm-badge--primary">required</span></h3>
+          <p class="text-body-sm mb-2">Colored badges, <code>for-the-badge</code> style, at the very top. No plain-text alternatives.</p>
+          <div class="brand-voice-readme-grid mb-4">
+            <div class="brand-voice-panel">
+              <div class="brand-voice-badge-row">
+                <img src="https://img.shields.io/badge/Arduino-Firmware-00979D?style=for-the-badge&logo=arduino&logoColor=white" alt="Badge example">
+                <img src="https://img.shields.io/badge/ESP32--S3-Waveshare-E7352C?style=for-the-badge&logo=espressif&logoColor=white" alt="Badge example">
+                <img src="https://img.shields.io/badge/License-MIT-10B981?style=for-the-badge" alt="Badge example">
+              </div>
+            </div>
+            <div class="brand-voice-panel">
+              <ul class="brand-voice-list">
+                <li><span class="brand-voice-list__icon brand-voice-list__icon--good" aria-hidden="true">✓</span><span>Always use <code>style=for-the-badge</code>. Never flat, never plastic.</span></li>
+                <li><span class="brand-voice-list__icon brand-voice-list__icon--good" aria-hidden="true">✓</span><span>Colors should match the tech stack or the project palette.</span></li>
+                <li><span class="brand-voice-list__icon brand-voice-list__icon--good" aria-hidden="true">✓</span><span>Include the official logo when available (<code>&amp;logo=...</code>).</span></li>
+                <li><span class="brand-voice-list__icon brand-voice-list__icon--good" aria-hidden="true">✓</span><span>License badge always present, always last.</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 class="text-heading-sm mb-2">2. Opening Blockquote <span class="vm-badge vm-badge--primary">required</span></h3>
+          <p class="text-body-sm mb-2">A sardonic, self-aware one-liner that sets the mood before any description.</p>
+          <div class="vm-showcase__canvas mb-3" style="padding:var(--space-4);background:var(--surface-base);">
+            <blockquote style="border-left:3px solid var(--accent-primary);padding-left:var(--space-3);margin:0;font-style:italic;color:var(--text-secondary);">
+              "What if I took the live camera feed and ran it through a shader that makes everything look like a 1970s vector art fever dream?"<br>
+              <small>— Someone who had clearly watched too many Rutt-Etra videos at 2am</small>
+            </blockquote>
+          </div>
+
+          <h3 class="text-heading-sm mb-2">3. Bold One-Liner Pitch <span class="vm-badge vm-badge--primary">required</span></h3>
+          <p class="text-body-sm mb-3">One paragraph, bolded project name, plain description of what it actually does. No marketing language — just facts.</p>
+
+          <h3 class="text-heading-sm mb-2">4. The Kicker <span class="vm-badge vm-badge--default">optional</span></h3>
+          <p class="text-body-sm mb-2">A short follow-up that reframes the pitch with personality. Contrasts "what normal people make" vs. "what we made."</p>
+          <div class="vm-showcase__canvas mb-3" style="padding:var(--space-4);background:var(--surface-base);">
+            <p style="margin:0;color:var(--text-primary);">It is not a smart lamp. Smart lamps have apps.<br>This has <em>physics simulations and a gesture smoothing pipeline.</em></p>
+          </div>
+
+          <h3 class="text-heading-sm mb-2">5. "Why This Exists" <span class="vm-badge vm-badge--primary">required</span></h3>
+          <p class="text-body-sm mb-2">The origin story. Start with a universal relatable scenario → escalate through increasingly specific decisions → arrive at the current project as the inevitable conclusion.</p>
+          <div class="vm-showcase__canvas mb-3" style="padding:var(--space-4);background:var(--surface-base);">
+            <p style="margin:0;color:var(--text-primary);">Every LED project starts the same way: <em>"I'll just make it glow."</em><br><br>Then you add a rotary encoder because buttons are for people who buy lamps at IKEA. Then a Time-of-Flight sensor because why <em>tap</em> a button when you can wave at your furniture like a Jedi with boundary issues...</p>
+          </div>
+
+          <h3 class="text-heading-sm mb-2">6. Hardware / Tech Table <span class="vm-badge vm-badge--default">when applicable</span></h3>
+          <p class="text-body-sm mb-2">"Role" column is where personality lives — start with a metaphor, follow with the actual reason.</p>
+          <div class="vm-table-wrap mb-3">
+            <table class="vm-table">
+              <thead><tr><th>Component</th><th>Spec</th><th>Role</th></tr></thead>
+              <tbody>
+                <tr><td><strong>MCU</strong></td><td>ESP32-S3, 240 MHz</td><td>The brain. 16 MB flash, OPI PSRAM in octal mode, because LVGL needs room to think.</td></tr>
+                <tr><td><strong>Display</strong></td><td>3.49", 640×172</td><td>The face. Horizontal strip format. Expects RGB565 big-endian and is not open to discussion about this.</td></tr>
+                <tr><td><strong>IMU</strong></td><td>QMI8658 6-axis</td><td>Accelerometer + gyroscope. The bar knows when you're angry.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="text-heading-sm mb-2">7. Closing Elements <span class="vm-badge vm-badge--primary">required</span></h3>
+          <p class="text-body-sm mb-2">MIT license with sardonic closer + centered italic closing line.</p>
+          <div class="vm-showcase__canvas mb-4" style="padding:var(--space-4);background:var(--surface-base);text-align:center;">
+            <p style="margin:0;font-style:italic;color:var(--text-secondary);">Built with ESPHome, too many smoothing constants, and the unwavering belief<br>that <code>alpha = 0.16</code> is objectively better than <code>alpha = 0.15</code>.</p>
+          </div>
+          <p class="text-body-sm mb-3"><strong>Closing line pattern:</strong> "Built with [real tech], [absurd detail], and the unwavering belief that [hyperspecific opinion]."</p>
+        </div>
+      </section>
+
+      <section id="writing-rules" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <h2 class="text-heading-lg">Writing Rules</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="brand-voice-rule-grid mb-4">
+            <div class="vm-card brand-voice-rule-card">
+              <div class="vm-card__header"><h4 class="vm-card__title" style="color:var(--semantic-success);">Do</h4></div>
+              <div class="vm-card__body">
+                <ul class="brand-voice-rule-list text-body-sm">
+                  <li><span class="brand-voice-rule-list__icon brand-voice-rule-list__icon--good" aria-hidden="true">✓</span><span><strong>Lead with the interesting part.</strong> If it runs DOOM on a desk bar, say that first.</span></li>
+                  <li><span class="brand-voice-rule-list__icon brand-voice-rule-list__icon--good" aria-hidden="true">✓</span><span><strong>Use tables for structured data.</strong> Specs, controls, commands: if it has columns, it is a table.</span></li>
+                  <li><span class="brand-voice-rule-list__icon brand-voice-rule-list__icon--good" aria-hidden="true">✓</span><span><strong>Use parenthetical asides</strong> for commentary that would otherwise break the flow.</span></li>
+                  <li><span class="brand-voice-rule-list__icon brand-voice-rule-list__icon--good" aria-hidden="true">✓</span><span><strong>Use italics for inner monologue</strong> like <em>"I'll just make it glow."</em></span></li>
+                  <li><span class="brand-voice-rule-list__icon brand-voice-rule-list__icon--good" aria-hidden="true">✓</span><span><strong>Be technically precise.</strong> Model numbers, pin names, exact values.</span></li>
+                  <li><span class="brand-voice-rule-list__icon brand-voice-rule-list__icon--good" aria-hidden="true">✓</span><span><strong>Acknowledge absurdity.</strong> Then explain why it is good anyway.</span></li>
+                  <li><span class="brand-voice-rule-list__icon brand-voice-rule-list__icon--good" aria-hidden="true">✓</span><span><strong>Use code blocks generously</strong> for commands, config, and file paths.</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="vm-card brand-voice-rule-card">
+              <div class="vm-card__header"><h4 class="vm-card__title" style="color:var(--semantic-error);">Don't</h4></div>
+              <div class="vm-card__body">
+                <ul class="brand-voice-rule-list text-body-sm">
+                  <li><span class="brand-voice-rule-list__icon brand-voice-rule-list__icon--bad" aria-hidden="true">×</span><span><strong>Never be verbose.</strong> If a sentence does not earn its place, delete it.</span></li>
+                  <li><span class="brand-voice-rule-list__icon brand-voice-rule-list__icon--bad" aria-hidden="true">×</span><span><strong>Never be generic.</strong> "This project aims to provide a solution..." is a no.</span></li>
+                  <li><span class="brand-voice-rule-list__icon brand-voice-rule-list__icon--bad" aria-hidden="true">×</span><span><strong>Never be gratuitously mean.</strong> Sarcasm targets ourselves, never the reader.</span></li>
+                  <li><span class="brand-voice-rule-list__icon brand-voice-rule-list__icon--bad" aria-hidden="true">×</span><span><strong>Never use marketing language.</strong> No "revolutionary", "next-generation", or "seamless".</span></li>
+                  <li><span class="brand-voice-rule-list__icon brand-voice-rule-list__icon--bad" aria-hidden="true">×</span><span><strong>Never explain what the reader can already see.</strong> Describe what matters.</span></li>
+                  <li><span class="brand-voice-rule-list__icon brand-voice-rule-list__icon--bad" aria-hidden="true">×</span><span><strong>Never apologize for the project existing.</strong></span></li>
+                  <li><span class="brand-voice-rule-list__icon brand-voice-rule-list__icon--bad" aria-hidden="true">×</span><span><strong>Never skip the badges.</strong> A README without badges lacks respect for the format.</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="signature-patterns" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <h2 class="text-heading-lg">Signature Patterns</h2>
+        </div>
+        <div class="vm-section__body">
+
+          <h3 class="text-heading-sm mb-2">The Escalation</h3>
+          <p class="text-body-sm mb-2">Start normal, escalate to absurd, land on acceptance.</p>
+          <div class="vm-showcase__canvas mb-4" style="padding:var(--space-4);background:var(--surface-base);">
+            <p style="margin:0;color:var(--text-primary);font-style:italic;">Then a Time-of-Flight sensor because why tap a button when you can wave at your furniture like a Jedi with boundary issues. Then you spend a weekend deciding if <code>alpha = 0.16</code> or <code>alpha = 0.18</code> makes the gesture feel more "buttery" and less "drunk".</p>
+          </div>
+
+          <h3 class="text-heading-sm mb-2">The Contrast Kicker</h3>
+          <p class="text-body-sm mb-2">State what the normal version is. State what ours is. The gap is the joke.</p>
+          <div class="vm-showcase__canvas mb-4" style="padding:var(--space-4);background:var(--surface-base);">
+            <p style="margin:0;color:var(--text-primary);">It is not a smart lamp. Smart lamps have apps.<br>This has <em>physics simulations and a gesture smoothing pipeline.</em></p>
+          </div>
+
+          <h3 class="text-heading-sm mb-2">The Honest Aside</h3>
+          <p class="text-body-sm mb-2">Drop into parentheses to say the quiet part out loud.</p>
+          <div class="vm-showcase__canvas mb-4" style="padding:var(--space-4);background:var(--surface-base);">
+            <p style="margin:0;color:var(--text-secondary);font-style:italic;">(because when you're dodging imps on a desk bar, subtlety is not a virtue)<br>(no cat)<br>(will play it twice)</p>
+          </div>
+
+          <h3 class="text-heading-sm mb-2">The Accepting Conclusion</h3>
+          <p class="text-body-sm mb-2">Acknowledge the contradiction. Accept it. Move on.</p>
+          <div class="vm-showcase__canvas mb-4" style="padding:var(--space-4);background:var(--surface-base);">
+            <p style="margin:0;color:var(--text-primary);">Is it overkill for a video converter? Yes. Is <code>slowmovie</code> (a real preset for e-ink displays, 1fps, no audio) also in here? Also yes. Both things are simultaneously true and we are at peace with it.</p>
+          </div>
+
+          <h3 class="text-heading-sm mb-2">The Precise Absurdity</h3>
+          <p class="text-body-sm mb-2">Be extremely specific about something inherently ridiculous.</p>
+          <div class="vm-showcase__canvas mb-4" style="padding:var(--space-4);background:var(--surface-base);">
+            <p style="margin:0;color:var(--text-primary);">A 640×172 strip that tells time in Klingon, fetches weather from an API you could just open yourself, scrolls headlines you already read on your phone, pulls random Wikipedia facts nobody asked for, and opens a portal to Hell.</p>
+          </div>
+
+          <h3 class="text-heading-sm mb-2">The Reframe</h3>
+          <p class="text-body-sm mb-2">Take a dry technical fact and give it a personality.</p>
+          <div class="vm-showcase__canvas mb-4" style="padding:var(--space-4);background:var(--surface-base);">
+            <p style="margin:0;color:var(--text-primary);"><em>The bar knows when you're angry.</em> (about the IMU shake detection)<br><em>Adding a language means writing 4 functions... If you can conjugate verbs, you can add a language.</em></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="ui-copy" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <h2 class="text-heading-lg">UI Copy Guidelines</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="vm-table-wrap mb-4">
+            <table class="vm-table">
+              <thead><tr><th>Context</th><th>Style</th><th>Example</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Button labels</strong></td><td>Short, verb-first</td><td>"Copy as JSON", "Switch theme", "View source"</td></tr>
+                <tr><td><strong>Empty states</strong></td><td>Helpful, not apologetic</td><td>"No tokens match your filter." — not "Sorry, nothing found!"</td></tr>
+                <tr><td><strong>Error messages</strong></td><td>State what happened, what to do</td><td>"Config file missing. Copy <code>secrets.h.example</code> and fill in your credentials."</td></tr>
+                <tr><td><strong>Tooltips</strong></td><td>One line, factual</td><td>"Click to copy value to clipboard"</td></tr>
+                <tr><td><strong>Section headers</strong></td><td>Noun or noun phrase</td><td>"Design Tokens", "Live Catalog", "Theme Gallery"</td></tr>
+                <tr><td><strong>Descriptions</strong></td><td>One sentence, no period if fragment</td><td>"Token-driven, theme-ready, AI-friendly"</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="text-heading-sm mb-2">In-App Personality (use sparingly)</h3>
+          <p class="text-body-sm mb-2">Personality belongs in READMEs and docs. In the UI itself, clarity wins. But at specific moments — empty states, Easter eggs, about screens — a touch of voice is welcome:</p>
+          <div class="vm-showcase__canvas mb-4" style="padding:var(--space-4);background:var(--surface-base);">
+            <p style="margin:0;color:var(--text-secondary);font-style:italic;">"No themes loaded. This is technically impressive in a depressing way."<br>"Built by Netmilk Studio. Yes, the lamp people."</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="before-after" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <h2 class="text-heading-lg">Before / After</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="brand-voice-compare-grid mb-4">
+            <div class="vm-card brand-voice-compare-card brand-voice-compare-card--before">
+              <div class="vm-card__header"><h4 class="vm-card__title">Generic Tech Writing</h4></div>
+              <div class="vm-card__body">
+                <div class="brand-voice-compare-label">Before</div>
+                <p class="text-body-sm">"ScryBar is a versatile ESP32-S3 based device that provides multiple functionalities including a word clock, RSS feed reader, Wikipedia viewer, and gaming capability. It supports multiple languages and themes, and can be configured via a web-based interface."</p>
+              </div>
+            </div>
+            <div class="vm-card brand-voice-compare-card brand-voice-compare-card--after">
+              <div class="vm-card__header"><h4 class="vm-card__title">Netmilk Voice</h4></div>
+              <div class="vm-card__body">
+                <div class="brand-voice-compare-label">After</div>
+                <p class="text-body-sm"><strong>ScryBar</strong> is an open-source ESP32-S3 desk companion. One 3.49" touchscreen, five swipeable views, a word clock that composes real sentences in thirteen languages (from Italian and Latin to Klingon, 1337 Speak, and Bellazio), actual grammar, not uppercase tiles, plus RSS feeds, a Wikipedia viewer, a full DOOM port with gyro controls, and a LAN web config UI.</p>
+              </div>
+            </div>
+            <div class="vm-card brand-voice-compare-card brand-voice-compare-card--before">
+              <div class="vm-card__header"><h4 class="vm-card__title">Generic Security</h4></div>
+              <div class="vm-card__body">
+                <div class="brand-voice-compare-label">Before</div>
+                <p class="text-body-sm">"Please ensure that sensitive credentials are not committed to the repository. Use environment variables or a local configuration file that is excluded from version control."</p>
+              </div>
+            </div>
+            <div class="vm-card brand-voice-compare-card brand-voice-compare-card--after">
+              <div class="vm-card__header"><h4 class="vm-card__title">Netmilk Voice</h4></div>
+              <div class="vm-card__body">
+                <div class="brand-voice-compare-label">After</div>
+                <p class="text-body-sm"><code>secrets.h</code> is git-ignored and never committed. <code>secrets.h.example</code> is committed with placeholders only.<br><strong>Never</strong> commit <code>secrets.h</code>. The <code>.gitignore</code> has your back, but paranoia is a feature.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="checklist" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <h2 class="text-heading-lg">README Checklist</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="vm-card">
+            <div class="vm-card__body">
+              <div class="brand-voice-checklist">
+                <ul class="brand-voice-checklist-list text-body-sm">
+                  <li><span class="brand-voice-checklist-list__icon" aria-hidden="true">✓</span><span>Badge row with <code>for-the-badge</code> style and relevant colors/logos</span></li>
+                  <li><span class="brand-voice-checklist-list__icon" aria-hidden="true">✓</span><span>Opening blockquote that sets the tone</span></li>
+                  <li><span class="brand-voice-checklist-list__icon" aria-hidden="true">✓</span><span>Bold one-liner pitch with project name</span></li>
+                  <li><span class="brand-voice-checklist-list__icon" aria-hidden="true">✓</span><span>Table of Contents for anything over 3 sections</span></li>
+                  <li><span class="brand-voice-checklist-list__icon" aria-hidden="true">✓</span><span>Hardware or tech table with personality in the "Role" column</span></li>
+                  <li><span class="brand-voice-checklist-list__icon" aria-hidden="true">✓</span><span>At least one image or screenshot with descriptive layout</span></li>
+                </ul>
+                <ul class="brand-voice-checklist-list text-body-sm">
+                  <li><span class="brand-voice-checklist-list__icon" aria-hidden="true">✓</span><span>"Why This Exists" narrative for non-trivial projects</span></li>
+                  <li><span class="brand-voice-checklist-list__icon" aria-hidden="true">✓</span><span>Security section if credentials or keys are involved</span></li>
+                  <li><span class="brand-voice-checklist-list__icon" aria-hidden="true">✓</span><span>MIT license block with sardonic closer</span></li>
+                  <li><span class="brand-voice-checklist-list__icon" aria-hidden="true">✓</span><span>Centered italic closing line: "Built with [tech], [absurdity], and [belief]"</span></li>
+                  <li><span class="brand-voice-checklist-list__icon" aria-hidden="true">✓</span><span>No marketing language anywhere</span></li>
+                  <li><span class="brand-voice-checklist-list__icon" aria-hidden="true">✓</span><span>No sentence that does not earn its place</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-caption mt-4" style="color:var(--text-muted);font-style:italic;">
+            Built by analyzing ScryBar, Synthalia, Retina Cannon, and minimuvi — four projects that have nothing in common except a refusal to be boring.
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../js/vibemilk-docs.js" defer></script>
+</body>
+</html>

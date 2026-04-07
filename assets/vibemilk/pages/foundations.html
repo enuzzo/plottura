@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="vibemilk-default">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foundations - Vibemilk Design System</title>
+  <meta name="description" content="Vibemilk design tokens, color palette, typography, spacing, shadows, and layout grid.">
+  <link rel="stylesheet" href="../css/vibemilk-core.css">
+  <link rel="stylesheet" href="../css/docs.css">
+  <link rel="stylesheet" href="../css/showcase.css">
+</head>
+<body class="vm-docs" data-vm-page="foundations">
+  <aside id="docs-index" class="vm-docs__sidebar" aria-label="Vibemilk documentation index">
+    <div class="vm-docs__sidebar-head">
+      <div class="vm-docs__brand">
+        <a href="../index.html" class="vm-docs__brand-mark" aria-label="Netmilk home"></a>
+        <div class="vm-docs__brand-copy">
+          <a href="../index.html" class="vm-docs__brand-title" style="text-decoration:none;color:inherit;">Vibemilk</a>
+          <div class="vm-docs__brand-subtitle">Netmilk Studio Design System</div>
+        </div>
+      </div>
+
+      <div class="vm-docs__theme">
+        <label class="vm-label">Active theme</label>
+        <div class="vm-dropdown" data-vm-theme-select>
+          <button type="button" class="vm-dropdown__trigger" aria-expanded="false" aria-haspopup="listbox">
+            <span class="vm-dropdown__value">Vibemilk Default</span>
+            <span class="vm-nf vm-dropdown__chevron" aria-hidden="true">&#xeb6c;</span>
+          </button>
+          <ul class="vm-dropdown__menu" role="listbox">
+            <li class="vm-dropdown__item is-selected" role="option" aria-selected="true" data-value="vibemilk-default">Vibemilk Default</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="vibemilk-dark">Vibemilk Dark</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="cyber-grid">Cyber Grid</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="acid-pop">Acid Pop</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="sakura-spring">Sakura Spring</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="mono-brutalist">Mono Brutalist</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="mint-protocol">Mint Protocol</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="cathode-ray">Cathode Ray</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="clean-sheet">Clean Sheet</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="clean-sheet-dark">Clean Sheet Dark</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="solar-dust">Solar Dust</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="geocities-97">Geocities 97</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="vm-docs__controls">
+        <div class="vm-docs__controls-row">
+          <span class="vm-docs__controls-label">Mode</span>
+          <div class="vm-theme-toggle vm-theme-toggle--sidebar" data-vm-mode="day" data-vm-sidebar-toggle role="button" tabindex="0" aria-label="Toggle day/night mode">
+            <div class="vm-theme-toggle__track">
+              <span class="vm-theme-toggle__icon vm-theme-toggle__icon--sun vm-nf" aria-hidden="true">&#xeb30;</span>
+              <span class="vm-theme-toggle__icon vm-theme-toggle__icon--moon vm-nf" aria-hidden="true">&#xeaf0;</span>
+              <div class="vm-theme-toggle__thumb"></div>
+            </div>
+            <span class="vm-theme-toggle__label">day</span>
+          </div>
+        </div>
+        <div class="vm-docs__controls-row">
+          <span class="vm-docs__controls-label">Canvas</span>
+          <div class="vm-preview-toolbar__modes" role="group" aria-label="Preview width">
+            <button type="button" class="vm-btn vm-btn--xs is-active" data-vm-preview-button="desktop" aria-pressed="true">Desktop</button>
+            <button type="button" class="vm-btn vm-btn--xs" data-vm-preview-button="mobile" aria-pressed="false">Mobile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vm-docs__search">
+      <input type="text" class="vm-docs__search-input" placeholder="Search navigation..." aria-label="Filter navigation">
+    </div>
+    <nav class="vm-docs__nav">
+      <div class="vm-docs__nav-list">
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Getting Started</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#intro">01. Intro</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#architecture">02. File Structure</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#start">03. Quick Start</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Design System</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="themes.html#themes">04. Theme System</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="#tokens">05. Design Tokens</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="#layout">06. Layout Shell</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="icons.html">07. Icons</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Components</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#components">08. Live Catalog</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="#foundations-live">09. Foundations</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#buttons-live">10. Buttons</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#forms-live">11. Forms</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#dropdown-live">12. Dropdown</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Data & Feedback</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#cards-live">13. Cards</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#badges-live">14. Badges</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#tabs-live">15. Data Display</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#progress-live">16. Progress</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#alerts-live">17. Alerts</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Overlays & Nav</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#overlays-live">18. Overlays</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#navigation-live">19. Navigation</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#animations-live">20. Animations</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#diagnostics-live">21. Diagnostics</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Patterns & FX</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#patterns-live">22. Patterns</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#theme-toggle-live">23. Theme Toggle</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#lang-select-live">24. Language Selector</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#fx-grid-live">25. Background FX</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Reference</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#utilities">26. Utilities</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#ai-playbook">27. Playbook AI</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#elementor">28. Elementor V4</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#release">29. Versioning</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Resources</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="token-export.html#token-export">30. Token Export</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#brand-voice">31. Brand Voice</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#tone-spectrum">32. Tone Spectrum</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#writing-rules">33. Writing Rules</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#signature-patterns">34. Signature Patterns</a>
+          </div></div>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="vm-docs__quicknav" data-vm-quicknav aria-label="Quick navigation">
+    <div class="vm-docs__quicknav-brand">
+      <span class="vm-docs__quicknav-mark">VM</span>
+      <div class="vm-docs__quicknav-copy">
+        <div class="vm-docs__quicknav-title">Vibemilk</div>
+        <div class="vm-docs__quicknav-section" data-vm-current-section>Foundations</div>
+      </div>
+    </div>
+    <div class="vm-docs__quicknav-actions">
+      <a class="vm-btn vm-btn--sm vm-btn--ghost" href="#docs-index">Index</a>
+      <a class="vm-btn vm-btn--sm vm-btn--secondary" href="#tokens">Top</a>
+    </div>
+  </div>
+
+  <main class="vm-docs__main">
+    <div class="vm-docs__container">
+
+      <section id="tokens" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Design tokens</div>
+          <h2 class="text-heading-lg">Variables to always use (no random hardcoding)</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="vm-grid-3">
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Colors</div>
+              <div class="vm-key">--bg-*</div>
+              <div class="vm-key">--text-*</div>
+              <div class="vm-key">--accent-*</div>
+              <div class="vm-key">--color-success|warning|danger|info</div>
+            </article>
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Typography</div>
+              <div class="vm-key">--font-family / --font-mono</div>
+              <div class="vm-key">--fs-display-xl ... --fs-micro</div>
+              <div class="vm-key">--fw-light ... --fw-extrabold</div>
+            </article>
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Spacing and shape</div>
+              <div class="vm-key">--space-1 ... --space-16</div>
+              <div class="vm-key">--radius-xs ... --radius-full</div>
+              <div class="vm-key">--shadow-sm ... --shadow-xl</div>
+            </article>
+          </div>
+
+          <pre class="vm-code mt-4"><code>/* Recommended local override (for host project) */
+:root {
+  --accent-primary: #65f0ff;
+  --btn-height-md: 42px;
+  --radius-md: 14px;
+}</code></pre>
+        </div>
+      </section>
+
+      <section id="layout" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Layout shell</div>
+          <h2 class="text-heading-lg">Layout classes for dashboards and configuration panels</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="vm-grid-2">
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Main classes</div>
+              <ul class="text-body-sm" style="padding-left:18px;display:grid;gap:6px;">
+                <li><code>.vm-app</code> root container</li>
+                <li><code>.vm-sidebar</code> / <code>.vm-main</code> shell</li>
+                <li><code>.vm-topbar</code> operational header</li>
+                <li><code>.vm-content</code> content area</li>
+                <li><code>.vm-grid</code> + <code>.vm-col-*</code> 12-column grid</li>
+              </ul>
+            </article>
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Recommended scaffold</div>
+              <pre class="vm-code"><code>&lt;div class="vm-app"&gt;
+  &lt;aside class="vm-sidebar expanded"&gt;...&lt;/aside&gt;
+  &lt;main class="vm-main"&gt;
+    &lt;header class="vm-topbar"&gt;...&lt;/header&gt;
+    &lt;section class="vm-content"&gt;
+      &lt;div class="vm-grid"&gt;
+        &lt;article class="vm-col-6"&gt;...&lt;/article&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+&lt;/div&gt;</code></pre>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live foundations showcase (colors, typography, spacing, shadows, grid) -->
+      <section id="foundations-live" class="vm-section vm-section--catalog" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Live Foundations</div>
+          <h2 class="text-heading-lg">Color palette, typography, spacing, shadows, and grid</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="vm-preview-canvas" data-vm-preview-canvas data-vm-preview-mode="desktop">
+            <div class="showcase">
+
+  <!-- ========== 1. COLOR PALETTE ========== -->
+  <section class="showcase-section">
+    <div class="showcase-section__title">01 - Foundations</div>
+    <h2 class="showcase-section__heading">Color Palette</h2>
+    <p class="text-caption mb-4">All swatches below bind to CSS variables and update with the selected theme preset.</p>
+
+    <div class="showcase-label">Core Backgrounds</div>
+    <div class="showcase-swatch-grid mb-6">
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--bg-deepest);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--bg-deepest</div><div class="showcase-swatch__hex" data-token-value="--bg-deepest"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--bg-deep);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--bg-deep</div><div class="showcase-swatch__hex" data-token-value="--bg-deep"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--bg-surface);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--bg-surface</div><div class="showcase-swatch__hex" data-token-value="--bg-surface"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--bg-surface-hover);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--bg-surface-hover</div><div class="showcase-swatch__hex" data-token-value="--bg-surface-hover"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--bg-elevated);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--bg-elevated</div><div class="showcase-swatch__hex" data-token-value="--bg-elevated"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--bg-elevated-hover);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--bg-elevated-hover</div><div class="showcase-swatch__hex" data-token-value="--bg-elevated-hover"></div></div>
+      </div>
+    </div>
+
+    <div class="showcase-label mt-6">Accent Colors</div>
+    <div class="showcase-swatch-grid mb-6">
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--accent-primary);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--accent-primary</div><div class="showcase-swatch__hex" data-token-value="--accent-primary"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--accent-primary-hover);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--accent-primary-hover</div><div class="showcase-swatch__hex" data-token-value="--accent-primary-hover"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--accent-secondary);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--accent-secondary</div><div class="showcase-swatch__hex" data-token-value="--accent-secondary"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--accent-primary-subtle);border:var(--border-accent);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--accent-primary-subtle</div><div class="showcase-swatch__hex" data-token-value="--accent-primary-subtle"></div></div>
+      </div>
+    </div>
+
+    <div class="showcase-label mt-6">Semantic Colors</div>
+    <div class="showcase-swatch-grid mb-6">
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--color-success);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--color-success</div><div class="showcase-swatch__hex" data-token-value="--color-success"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--color-warning);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--color-warning</div><div class="showcase-swatch__hex" data-token-value="--color-warning"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--color-danger);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--color-danger</div><div class="showcase-swatch__hex" data-token-value="--color-danger"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--color-info);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--color-info</div><div class="showcase-swatch__hex" data-token-value="--color-info"></div></div>
+      </div>
+    </div>
+
+    <div class="showcase-label mt-6">Text Colors</div>
+    <div class="showcase-swatch-grid">
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--text-primary);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--text-primary</div><div class="showcase-swatch__hex" data-token-value="--text-primary"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--text-secondary);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--text-secondary</div><div class="showcase-swatch__hex" data-token-value="--text-secondary"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--text-tertiary);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--text-tertiary</div><div class="showcase-swatch__hex" data-token-value="--text-tertiary"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--text-muted);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--text-muted</div><div class="showcase-swatch__hex" data-token-value="--text-muted"></div></div>
+      </div>
+    </div>
+
+    <div class="showcase-label mt-8">Gradients</div>
+    <div class="showcase-swatch-grid">
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--gradient-brand);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--gradient-brand</div><div class="showcase-swatch__hex" data-token-value="--gradient-brand"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--gradient-card);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--gradient-card</div><div class="showcase-swatch__hex" data-token-value="--gradient-card"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--gradient-success);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--gradient-success</div><div class="showcase-swatch__hex" data-token-value="--gradient-success"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--gradient-warm);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--gradient-warm</div><div class="showcase-swatch__hex" data-token-value="--gradient-warm"></div></div>
+      </div>
+      <div class="showcase-swatch">
+        <div class="showcase-swatch__color" style="background:var(--gradient-surface);"></div>
+        <div class="showcase-swatch__info"><div class="showcase-swatch__name">--gradient-surface</div><div class="showcase-swatch__hex" data-token-value="--gradient-surface"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="vm-divider vm-divider--lg">
+
+  <!-- ========== 2. TYPOGRAPHY ========== -->
+  <section class="showcase-section">
+    <div class="showcase-section__title">02 - Typography</div>
+    <h2 class="showcase-section__heading">Type Scale</h2>
+
+    <div class="showcase-box vm-card-lite">
+      <div class="type-stack">
+        <div class="text-display-xl">Display XL - 36px / 800</div>
+        <div class="text-display-lg">Display LG - 28px / 700</div>
+        <div class="text-heading-xl">Heading XL - 24px / 700</div>
+        <div class="text-heading-lg">Heading LG - 20px / 600</div>
+        <div class="text-heading-md">Heading MD - 18px / 600</div>
+        <div class="text-heading-sm">Heading SM - 16px / 600</div>
+        <div class="text-body-lg">Body LG - 16px / 500</div>
+        <div class="text-body-md">Body MD - 14px / 400 - Default body text for descriptions and content</div>
+        <div class="text-body-sm">Body SM - 13px / 400 - Secondary information and metadata</div>
+        <div class="text-caption">Caption - 12px / 500 - Labels, badges, timestamps</div>
+        <div class="text-overline">Overline - 11px / 600 - Category labels</div>
+        <div class="text-micro">Micro - 10px / 500 - Tiny status labels</div>
+      </div>
+    </div>
+
+    <div class="showcase-label mt-6">Gradient Text</div>
+    <div class="showcase-box vm-card-lite">
+      <span class="text-display-xl text-gradient">Vibemilk Gradient Text</span>
+    </div>
+  </section>
+
+  <hr class="vm-divider vm-divider--lg">
+
+  <!-- ========== 2b. TYPOGRAPHY SPECIMEN ========== -->
+  <section class="showcase-section">
+    <div class="showcase-section__title">02b - Typography Specimen</div>
+    <h2 class="showcase-section__heading">Golden Ratio Hierarchy &amp; Layout</h2>
+    <p class="text-caption mb-4">All spacing, line-heights and proportions follow the golden ratio (φ = 1.618). Spacing between heading and body = heading-size × 0.618. Line-height = size × 1.618.</p>
+
+    <!-- φ Ratio Reference -->
+    <div class="showcase-box vm-card-lite specimen-phi-ref mb-6">
+      <div class="specimen-phi-ref__label text-overline">Golden Ratio Reference</div>
+      <div class="specimen-phi-bar">
+        <div class="specimen-phi-bar__a">A = 1</div>
+        <div class="specimen-phi-bar__b">B = 0.618</div>
+      </div>
+      <div class="text-micro" style="color:var(--text-tertiary);margin-top:8px;">A + B = φ (1.618) &middot; A / B = φ &middot; Applied to all spacing, sizing, and proportions below</div>
+    </div>
+
+    <!-- Heading Hierarchy Specimen -->
+    <div class="showcase-label">Heading Hierarchy (real spacing)</div>
+    <div class="showcase-box vm-card-lite specimen-hierarchy mb-6">
+      <div class="specimen-block">
+        <div class="text-overline" style="color:var(--accent-primary);">Case Study</div>
+        <h1 class="text-display-xl specimen-h1">Design is how<br><span class="text-gradient">it works</span></h1>
+        <p class="text-body-lg specimen-lead">Every pixel, every proportion, every breath of white space is intentional. The golden ratio isn't a trend — it's mathematics made visible.</p>
+      </div>
+
+      <div class="specimen-block">
+        <h2 class="text-heading-xl specimen-h2">The Modular Scale</h2>
+        <p class="text-body-md specimen-body">Typography is the voice of design. When type sizes relate to each other through the golden ratio, hierarchy becomes effortless. The eye moves naturally from display to heading to body, each step a φ-derived proportion smaller than the last.</p>
+        <p class="text-body-md specimen-body">A well-set page doesn't need decoration. The mathematics of proportion — the same mathematics that govern spiral galaxies and nautilus shells — create beauty through structure alone.</p>
+      </div>
+
+      <div class="specimen-block">
+        <h3 class="text-heading-lg specimen-h3">Vertical Rhythm</h3>
+        <p class="text-body-md specimen-body">The space after a heading equals the heading's font-size multiplied by 0.618 — the inverse golden ratio. This creates an intimate coupling between heading and content while maintaining enough air to breathe.</p>
+        <h4 class="text-heading-md specimen-h4">Paragraph Spacing</h4>
+        <p class="text-body-md specimen-body">Paragraphs are separated by the body line-height × 1.0, creating a consistent vertical grid. Every spacing value in the system derives from a φ-based calculation.</p>
+        <p class="text-body-sm specimen-meta">Spacing annotations: heading → body = fs × 0.618 · paragraph gap = line-height × 1.0 · section gap = display × φ</p>
+      </div>
+    </div>
+
+    <!-- Article Layout Specimen -->
+    <div class="showcase-label">Article Layout (image + text)</div>
+    <div class="showcase-box vm-card-lite specimen-article mb-6">
+      <div class="specimen-article__media">
+        <div class="specimen-article__img" style="aspect-ratio:1.618/1;background:var(--bg-deep);border-radius:var(--radius-lg);display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px dashed var(--stroke-default);">
+          <span class="vm-nf" aria-hidden="true" style="font-size:48px;color:var(--accent-primary-subtle);">&#xeac5;</span>
+          <span style="font-family:var(--font-mono);font-size:13px;color:var(--text-muted);margin-top:12px;">640 × 396 — golden ratio (1.618:1)</span>
+          <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-tertiary);margin-top:4px;">image aspect ratio follows φ</span>
+        </div>
+      </div>
+      <div class="specimen-article__content">
+        <div class="text-overline" style="color:var(--accent-primary);">Interface Design</div>
+        <h2 class="text-heading-xl" style="margin-top:8px;">Building Systems That Scale</h2>
+        <p class="text-body-md" style="margin-top:13px;color:var(--text-secondary);">When every component shares the same proportional DNA, interfaces feel cohesive without effort. A button's padding relates to its font-size by φ. A card's inner spacing mirrors its border-radius. The system breathes.</p>
+        <div style="margin-top:21px;display:flex;gap:12px;align-items:center;">
+          <button class="vm-btn vm-btn--sm vm-btn--primary">Read More</button>
+          <button class="vm-btn vm-btn--sm vm-btn--ghost">Share</button>
+        </div>
+        <div class="text-caption" style="margin-top:21px;color:var(--text-muted);">3 min read · March 2026 · Netmilk Studio</div>
+      </div>
+    </div>
+
+    <!-- Card Grid Specimen -->
+    <div class="showcase-label">Card Proportions (φ spacing)</div>
+    <div class="specimen-card-grid mb-6">
+      <div class="vm-card-lite specimen-card">
+        <div style="width:100%;aspect-ratio:300/185;background:var(--bg-deep);border-radius:var(--radius-sm);margin-bottom:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px dashed var(--stroke-default);">
+          <span class="vm-nf" aria-hidden="true" style="font-size:32px;color:var(--accent-primary-subtle);">&#xea77;</span>
+          <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);margin-top:8px;">φ ratio</span>
+        </div>
+        <div class="text-overline" style="color:var(--accent-primary);">Tokens</div>
+        <h3 class="text-heading-sm" style="margin-top:5px;">Design Tokens</h3>
+        <p class="text-body-sm" style="margin-top:8px;color:var(--text-secondary);">270 CSS custom properties. Every value derives from the golden ratio.</p>
+        <div style="margin-top:13px;">
+          <span class="vm-badge vm-badge--default">CSS</span>
+          <span class="vm-badge vm-badge--default">JSON</span>
+        </div>
+      </div>
+      <div class="vm-card-lite specimen-card">
+        <div style="width:100%;aspect-ratio:300/185;background:var(--bg-deep);border-radius:var(--radius-sm);margin-bottom:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px dashed var(--stroke-default);">
+          <span class="vm-nf" aria-hidden="true" style="font-size:32px;color:var(--accent-primary-subtle);">&#xead7;</span>
+          <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);margin-top:8px;">1.33:1</span>
+        </div>
+        <div class="text-overline" style="color:var(--accent-primary);">Components</div>
+        <h3 class="text-heading-sm" style="margin-top:5px;">Live Catalog</h3>
+        <p class="text-body-sm" style="margin-top:8px;color:var(--text-secondary);">Every component follows φ-derived padding, gap, and radius values.</p>
+        <div style="margin-top:13px;">
+          <span class="vm-badge vm-badge--default">Buttons</span>
+          <span class="vm-badge vm-badge--default">Cards</span>
+        </div>
+      </div>
+      <div class="vm-card-lite specimen-card">
+        <div style="width:100%;aspect-ratio:300/185;background:var(--bg-deep);border-radius:var(--radius-sm);margin-bottom:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px dashed var(--stroke-default);">
+          <span class="vm-nf" aria-hidden="true" style="font-size:32px;color:var(--accent-primary-subtle);">&#xeb04;</span>
+          <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);margin-top:8px;">scale × φ</span>
+        </div>
+        <div class="text-overline" style="color:var(--accent-primary);">Themes</div>
+        <h3 class="text-heading-sm" style="margin-top:5px;">10 Themes</h3>
+        <p class="text-body-sm" style="margin-top:8px;color:var(--text-secondary);">Each theme respects the same proportional skeleton with unique character.</p>
+        <div style="margin-top:13px;">
+          <span class="vm-badge vm-badge--default">Gallery</span>
+          <span class="vm-badge vm-badge--default">Custom</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button Proportion Specimen -->
+    <div class="showcase-label">Button Proportions</div>
+    <div class="showcase-box vm-card-lite specimen-buttons mb-6">
+      <div class="specimen-btn-row">
+        <div class="specimen-btn-demo">
+          <button class="vm-btn vm-btn--xs vm-btn--primary">Extra Small</button>
+          <div class="text-micro specimen-btn-anno">h:28 · px:10 · fs:11</div>
+        </div>
+        <div class="specimen-btn-demo">
+          <button class="vm-btn vm-btn--sm vm-btn--primary">Small</button>
+          <div class="text-micro specimen-btn-anno">h:34 · px:14 · fs:12</div>
+        </div>
+        <div class="specimen-btn-demo">
+          <button class="vm-btn vm-btn--md vm-btn--primary">Medium</button>
+          <div class="text-micro specimen-btn-anno">h:40 · px:18 · fs:14</div>
+        </div>
+        <div class="specimen-btn-demo">
+          <button class="vm-btn vm-btn--lg vm-btn--primary">Large</button>
+          <div class="text-micro specimen-btn-anno">h:48 · px:24 · fs:16</div>
+        </div>
+        <div class="specimen-btn-demo">
+          <button class="vm-btn vm-btn--xl vm-btn--primary">Extra Large</button>
+          <div class="text-micro specimen-btn-anno">h:56 · px:32 · fs:18</div>
+        </div>
+      </div>
+      <div class="text-caption specimen-btn-note">Each size step scales height, padding, and font-size by ~φ^(1/3) ≈ 1.175</div>
+    </div>
+
+    <!-- Microcopy Specimen -->
+    <div class="showcase-label">Microcopy &amp; UI Text</div>
+    <div class="showcase-box vm-card-lite specimen-micro">
+      <div class="specimen-micro-grid">
+        <div>
+          <div class="text-overline" style="color:var(--accent-primary);">Labels &amp; Overlines</div>
+          <div class="text-overline" style="margin-top:8px;">CATEGORY · STATUS · FILTER</div>
+          <div class="text-caption" style="margin-top:5px;color:var(--text-secondary);">11px / 600 / uppercase / 0.06em tracking</div>
+        </div>
+        <div>
+          <div class="text-overline" style="color:var(--accent-primary);">Captions &amp; Timestamps</div>
+          <div class="text-caption" style="margin-top:8px;">Updated 2 hours ago · 4 min read · v3.0.0</div>
+          <div class="text-caption" style="margin-top:5px;color:var(--text-secondary);">12px / 500 / sentence case</div>
+        </div>
+        <div>
+          <div class="text-overline" style="color:var(--accent-primary);">Micro &amp; Status</div>
+          <div class="text-micro" style="margin-top:8px;">ONLINE · SYNCED · 99.9% UPTIME</div>
+          <div class="text-caption" style="margin-top:5px;color:var(--text-secondary);">10px / 500 / uppercase / status indicators</div>
+        </div>
+        <div>
+          <div class="text-overline" style="color:var(--accent-primary);">Helper Text</div>
+          <div class="text-body-sm" style="margin-top:8px;color:var(--text-tertiary);">Maximum 256 characters. Use only alphanumeric values.</div>
+          <div class="text-caption" style="margin-top:5px;color:var(--text-secondary);">13px / 400 / tertiary color</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accent Text Examples -->
+    <div class="showcase-label">Accent Text Examples</div>
+    <div class="showcase-box vm-card-lite">
+      <div class="specimen-accent-grid">
+        <div>
+          <div class="text-overline" style="color:var(--accent-primary);margin-bottom:12px;">Highlighted Text</div>
+          <p class="text-body-md" style="color:var(--text-primary);">
+            Design tokens provide a <span class="specimen-highlight">single source of truth</span> for every visual decision in your system, ensuring <span class="specimen-highlight">pixel-perfect consistency</span> across platforms.
+          </p>
+        </div>
+        <div>
+          <div class="text-overline" style="color:var(--accent-primary);margin-bottom:12px;">Pull Quote</div>
+          <blockquote class="specimen-pullquote text-heading-lg">
+            Good typography is invisible. Bad typography is everywhere.
+          </blockquote>
+        </div>
+        <div>
+          <div class="text-overline" style="color:var(--accent-primary);margin-bottom:12px;">Callout Box</div>
+          <div class="specimen-callout">
+            <div style="font-size:20px;margin-bottom:8px;">&#9672;</div>
+            <div class="text-heading-sm" style="margin-bottom:6px;">Token-Driven</div>
+            <p class="text-body-sm" style="color:var(--text-secondary);">Every value in this system derives from a CSS custom property. Override the token, change the world.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard Text Hierarchy -->
+    <div class="showcase-label">Dashboard Text Hierarchy</div>
+    <div class="showcase-box vm-card-lite">
+      <div class="specimen-dashboard">
+        <div class="text-overline" style="color:var(--accent-primary);letter-spacing:0.08em;">REVENUE OVERVIEW</div>
+        <div style="margin-top:8px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+          <div class="specimen-stat-big">&euro;124,892</div>
+          <span class="specimen-delta"><span class="vm-nf" aria-hidden="true">&#xeb70;</span> +12.5% vs last month</span>
+        </div>
+        <div class="text-body-sm" style="color:var(--text-secondary);margin-top:6px;">Total revenue across all channels &middot; Last 30 days</div>
+        <table class="specimen-mini-table">
+          <thead>
+            <tr>
+              <th>Channel</th>
+              <th>Revenue</th>
+              <th>Growth</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Direct Sales</td>
+              <td>&euro;68,420</td>
+              <td style="color:var(--color-success);">+18.2%</td>
+            </tr>
+            <tr>
+              <td>Subscriptions</td>
+              <td>&euro;41,350</td>
+              <td style="color:var(--color-success);">+9.7%</td>
+            </tr>
+            <tr>
+              <td>Marketplace</td>
+              <td>&euro;15,122</td>
+              <td style="color:var(--color-danger);">-2.1%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Form Text Hierarchy -->
+    <div class="showcase-label">Form Text Hierarchy</div>
+    <div class="showcase-box vm-card-lite">
+      <div class="specimen-form">
+        <div class="text-heading-lg">Account Settings</div>
+        <div class="text-heading-sm" style="margin-top:20px;color:var(--text-secondary);">Personal Information</div>
+        <div class="specimen-form-row">
+          <div class="specimen-field">
+            <label>Full Name</label>
+            <input type="text" class="vm-input" value="Sheldon Lee Cooper, Ph.D." />
+            <div class="specimen-helper">As it appears on your government ID</div>
+          </div>
+          <div class="specimen-field">
+            <label>Email</label>
+            <input type="email" class="vm-input" value="sheldon@caltech.edu" />
+            <div class="specimen-helper">We'll send a verification link</div>
+          </div>
+        </div>
+        <div class="specimen-form-row" style="margin-top:20px;">
+          <div class="specimen-field">
+            <label>Username</label>
+            <input type="text" class="vm-input" value="sh3ldonator" style="border-color:var(--color-danger);" />
+            <div class="specimen-helper specimen-helper--error">Username already taken. Try another one.</div>
+          </div>
+        </div>
+        <div style="margin-top:24px;display:flex;gap:12px;">
+          <button class="vm-btn vm-btn--primary">Save Changes</button>
+          <button class="vm-btn vm-btn--ghost">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spacing Annotations -->
+    <div class="showcase-label">Spacing Annotations (&phi;-derived)</div>
+    <div class="showcase-box vm-card-lite">
+      <div class="specimen-annotations">
+        <div class="text-heading-lg">Section Title</div>
+        <div class="specimen-anno-bar">
+          <div class="specimen-anno-bar__line" style="width:80px;"></div>
+          <span class="specimen-anno-bar__label">fs &times; 0.618 = 15px (margin-bottom)</span>
+        </div>
+        <div class="specimen-anno-spacer" data-label="15px" style="height:15px;"></div>
+        <p class="text-body-md" style="color:var(--text-primary);">Body text sits below the heading at a distance derived from the heading font-size multiplied by the golden ratio inverse. This creates optically balanced whitespace.</p>
+        <div class="specimen-anno-bar" style="margin-top:4px;">
+          <div class="specimen-anno-bar__line" style="width:80px;"></div>
+          <span class="specimen-anno-bar__label">paragraph gap = line-height &times; 1.0 = 24px</span>
+        </div>
+        <div class="specimen-anno-spacer" data-label="24px" style="height:24px;"></div>
+        <p class="text-body-md" style="color:var(--text-primary);">A second paragraph demonstrates the inter-paragraph spacing. The gap equals one full line-height, maintaining vertical rhythm across the page.</p>
+        <div class="specimen-anno-bar" style="margin-top:4px;">
+          <div class="specimen-anno-bar__line" style="width:80px;"></div>
+          <span class="specimen-anno-bar__label">section gap = display &times; &phi; = 48px</span>
+        </div>
+        <div class="specimen-anno-spacer" data-label="48px" style="height:48px;"></div>
+        <div class="text-heading-lg">Next Section</div>
+      </div>
+    </div>
+
+    <!-- Feedback Messages -->
+    <div class="showcase-label">Feedback Messages</div>
+    <div class="showcase-box vm-card-lite">
+      <div class="specimen-feedback-grid">
+        <div class="specimen-feedback-msg specimen-feedback-msg--success">
+          <span class="specimen-feedback-icon vm-nf" style="color:var(--color-success);" aria-hidden="true">&#xea6a;</span>
+          <div>
+            <div class="text-body-sm" style="font-weight:var(--fw-semibold);color:var(--text-primary);">Success</div>
+            <div class="text-body-sm" style="color:var(--text-secondary);margin-top:2px;">Changes saved successfully.</div>
+          </div>
+        </div>
+        <div class="specimen-feedback-msg specimen-feedback-msg--error">
+          <span class="specimen-feedback-icon vm-nf" style="color:var(--color-danger);" aria-hidden="true">&#xea76;</span>
+          <div>
+            <div class="text-body-sm" style="font-weight:var(--fw-semibold);color:var(--text-primary);">Error</div>
+            <div class="text-body-sm" style="color:var(--text-secondary);margin-top:2px;">Unable to process request. Please try again.</div>
+          </div>
+        </div>
+        <div class="specimen-feedback-msg specimen-feedback-msg--warning">
+          <span class="specimen-feedback-icon vm-nf" style="color:var(--color-warning);" aria-hidden="true">&#xea6c;</span>
+          <div>
+            <div class="text-body-sm" style="font-weight:var(--fw-semibold);color:var(--text-primary);">Warning</div>
+            <div class="text-body-sm" style="color:var(--text-secondary);margin-top:2px;">Your session expires in 5 minutes.</div>
+          </div>
+        </div>
+        <div class="specimen-feedback-msg specimen-feedback-msg--info">
+          <span class="specimen-feedback-icon vm-nf" style="color:var(--color-info);" aria-hidden="true">&#xea74;</span>
+          <div>
+            <div class="text-body-sm" style="font-weight:var(--fw-semibold);color:var(--text-primary);">Info</div>
+            <div class="text-body-sm" style="color:var(--text-secondary);margin-top:2px;">New features available in v3.1.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="vm-divider vm-divider--lg">
+
+  <!-- ========== 3. SPACING ========== -->
+  <section class="showcase-section">
+    <div class="showcase-section__title">03 - Spacing</div>
+    <h2 class="showcase-section__heading">Spacing Scale (4px grid)</h2>
+
+    <div class="showcase-box vm-card-lite">
+      <div class="showcase-spacing-demo">
+        <div style="text-align:center;">
+          <div class="showcase-spacing-block" style="width:4px;height:32px;"></div>
+          <div class="showcase-spacing-label">4</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="showcase-spacing-block" style="width:8px;height:32px;"></div>
+          <div class="showcase-spacing-label">8</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="showcase-spacing-block" style="width:12px;height:32px;"></div>
+          <div class="showcase-spacing-label">12</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="showcase-spacing-block" style="width:16px;height:32px;"></div>
+          <div class="showcase-spacing-label">16</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="showcase-spacing-block" style="width:20px;height:32px;"></div>
+          <div class="showcase-spacing-label">20</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="showcase-spacing-block" style="width:24px;height:32px;"></div>
+          <div class="showcase-spacing-label">24</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="showcase-spacing-block" style="width:32px;height:32px;"></div>
+          <div class="showcase-spacing-label">32</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="showcase-spacing-block" style="width:40px;height:32px;"></div>
+          <div class="showcase-spacing-label">40</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="showcase-spacing-block" style="width:48px;height:32px;"></div>
+          <div class="showcase-spacing-label">48</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="showcase-spacing-block" style="width:64px;height:32px;"></div>
+          <div class="showcase-spacing-label">64</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="vm-divider vm-divider--lg">
+
+  <!-- ========== 4. BORDER RADIUS ========== -->
+  <section class="showcase-section">
+    <div class="showcase-section__title">04 - Border Radius</div>
+    <h2 class="showcase-section__heading">Radius Scale</h2>
+
+    <div class="showcase-box vm-card-lite">
+      <div class="showcase-radius-demo">
+        <div>
+          <div class="showcase-radius-item" style="border-radius:4px;">4px</div>
+          <div class="showcase-spacing-label">xs</div>
+        </div>
+        <div>
+          <div class="showcase-radius-item" style="border-radius:8px;">8px</div>
+          <div class="showcase-spacing-label">sm</div>
+        </div>
+        <div>
+          <div class="showcase-radius-item" style="border-radius:12px;">12px</div>
+          <div class="showcase-spacing-label">md</div>
+        </div>
+        <div>
+          <div class="showcase-radius-item" style="border-radius:16px;">16px</div>
+          <div class="showcase-spacing-label">lg</div>
+        </div>
+        <div>
+          <div class="showcase-radius-item" style="border-radius:20px;">20px</div>
+          <div class="showcase-spacing-label">xl</div>
+        </div>
+        <div>
+          <div class="showcase-radius-item" style="border-radius:24px;">24px</div>
+          <div class="showcase-spacing-label">2xl</div>
+        </div>
+        <div>
+          <div class="showcase-radius-item" style="border-radius:9999px;">full</div>
+          <div class="showcase-spacing-label">full</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="vm-divider vm-divider--lg">
+
+  <!-- ========== 5. SHADOWS ========== -->
+  <section class="showcase-section">
+    <div class="showcase-section__title">05 - Shadows &amp; Elevation</div>
+    <h2 class="showcase-section__heading">Shadow Scale</h2>
+
+    <div class="showcase-box vm-card-lite">
+      <div class="showcase-shadow-demo">
+        <div class="showcase-shadow-item" style="box-shadow:var(--shadow-sm);">shadow-sm</div>
+        <div class="showcase-shadow-item" style="box-shadow:var(--shadow-md);">shadow-md</div>
+        <div class="showcase-shadow-item" style="box-shadow:var(--shadow-lg);">shadow-lg</div>
+        <div class="showcase-shadow-item" style="box-shadow:var(--shadow-xl);">shadow-xl</div>
+        <div class="showcase-shadow-item" style="box-shadow:var(--shadow-glow-sm);">glow-sm</div>
+        <div class="showcase-shadow-item" style="box-shadow:var(--shadow-glow-md);">glow-md</div>
+        <div class="showcase-shadow-item" style="box-shadow:var(--shadow-glow-blue);">glow-blue</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="vm-divider vm-divider--lg">
+
+  <!-- ========== 6. GRID ========== -->
+  <section class="showcase-section">
+    <div class="showcase-section__title">06 - Layout</div>
+    <h2 class="showcase-section__heading">12-Column Grid</h2>
+
+    <div class="showcase-box vm-card-lite">
+      <div class="showcase-grid-demo mb-4">
+        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
+        <div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div>
+      </div>
+      <div class="showcase-grid-demo mb-4" style="margin-top:12px;">
+        <div style="grid-column:span 6;">6 col</div>
+        <div style="grid-column:span 6;">6 col</div>
+      </div>
+      <div class="showcase-grid-demo mb-4" style="margin-top:12px;">
+        <div style="grid-column:span 4;">4 col</div>
+        <div style="grid-column:span 4;">4 col</div>
+        <div style="grid-column:span 4;">4 col</div>
+      </div>
+      <div class="showcase-grid-demo" style="margin-top:12px;">
+        <div style="grid-column:span 3;">3 col</div>
+        <div style="grid-column:span 6;">6 col</div>
+        <div style="grid-column:span 3;">3 col</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="vm-divider vm-divider--lg">
+
+  <!-- ========== 7. ICON SYSTEM ========== -->
+  <section class="showcase-section" id="icon-system">
+    <div class="showcase-section__title">07 - Icons</div>
+    <h2 class="showcase-section__heading">Icon System &mdash; Nerd Font Glyphs</h2>
+    <p class="text-body" style="margin-bottom:var(--space-4);">250+ curated icons from the Nerd Fonts project. Dev icons, UI controls, status indicators, and more &mdash; all theme-aware via CSS tokens.</p>
+
+    <div class="showcase-box vm-card-lite">
+
+      <!-- Representative icons -->
+      <div style="display:flex;gap:var(--space-4);flex-wrap:wrap;align-items:center;margin-bottom:var(--space-5);">
+        <span class="vm-nf vm-nf--lg vm-nf--accent" aria-hidden="true">&#xf1d3;</span>
+        <span class="vm-nf vm-nf--lg vm-nf--secondary" aria-hidden="true">&#xf113;</span>
+        <span class="vm-nf vm-nf--lg vm-nf--accent" aria-hidden="true">&#xf308;</span>
+        <span class="vm-nf vm-nf--lg vm-nf--secondary" aria-hidden="true">&#xe73c;</span>
+        <span class="vm-nf vm-nf--lg vm-nf--accent" aria-hidden="true">&#xe7a8;</span>
+        <span class="vm-nf vm-nf--lg vm-nf--secondary" aria-hidden="true">&#xe781;</span>
+        <span class="vm-nf vm-nf--lg vm-nf--accent" aria-hidden="true">&#xe755;</span>
+        <span class="vm-nf vm-nf--lg vm-nf--secondary" aria-hidden="true">&#xe718;</span>
+      </div>
+
+      <!-- Size scale -->
+      <div style="display:flex;gap:var(--space-5);flex-wrap:wrap;align-items:end;margin-bottom:var(--space-5);">
+        <div style="text-align:center;">
+          <span class="vm-nf vm-nf--sm" aria-hidden="true">&#xf1d3;</span>
+          <div class="text-caption" style="margin-top:var(--space-1);">sm &middot; --phi-1</div>
+        </div>
+        <div style="text-align:center;">
+          <span class="vm-nf vm-nf--md" aria-hidden="true">&#xf1d3;</span>
+          <div class="text-caption" style="margin-top:var(--space-1);">md &middot; --phi-2</div>
+        </div>
+        <div style="text-align:center;">
+          <span class="vm-nf vm-nf--lg" aria-hidden="true">&#xf1d3;</span>
+          <div class="text-caption" style="margin-top:var(--space-1);">lg &middot; --phi-3</div>
+        </div>
+        <div style="text-align:center;">
+          <span class="vm-nf vm-nf--xl" aria-hidden="true">&#xf1d3;</span>
+          <div class="text-caption" style="margin-top:var(--space-1);">xl &middot; --phi-4</div>
+        </div>
+        <div style="text-align:center;">
+          <span class="vm-nf vm-nf--2xl" aria-hidden="true">&#xf1d3;</span>
+          <div class="text-caption" style="margin-top:var(--space-1);">2xl &middot; --phi-5</div>
+        </div>
+      </div>
+
+      <!-- Usage snippet -->
+      <pre class="vm-code" style="margin-bottom:var(--space-4);"><code>&lt;!-- Basic icon --&gt;
+&lt;span class="vm-nf vm-nf--lg vm-nf--accent" aria-hidden="true"&gt;&amp;#xf1d3;&lt;/span&gt;
+
+&lt;!-- Size variants: sm | md | lg | xl | 2xl --&gt;
+&lt;!-- Color variants: --accent | --secondary --&gt;</code></pre>
+
+      <!-- CTA -->
+      <a href="icons.html" class="vm-btn vm-btn--primary">Explore all icons &rarr;</a>
+
+    </div>
+  </section>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../js/vibemilk-docs.js" defer></script>
+</body>
+</html>

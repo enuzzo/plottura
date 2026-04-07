@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="vibemilk-default">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Token Export - Vibemilk Design System</title>
+  <meta name="description" content="Vibemilk token explorer and export tool.">
+  <link rel="stylesheet" href="../css/vibemilk-core.css">
+  <link rel="stylesheet" href="../css/docs.css">
+  <link rel="stylesheet" href="../css/showcase.css">
+</head>
+<body class="vm-docs" data-vm-page="token-export">
+  <aside id="docs-index" class="vm-docs__sidebar" aria-label="Vibemilk documentation index">
+    <div class="vm-docs__sidebar-head">
+      <div class="vm-docs__brand">
+        <a href="../index.html" class="vm-docs__brand-mark" aria-label="Netmilk home"></a>
+        <div class="vm-docs__brand-copy">
+          <a href="../index.html" class="vm-docs__brand-title" style="text-decoration:none;color:inherit;">Vibemilk</a>
+          <div class="vm-docs__brand-subtitle">Netmilk Studio Design System</div>
+        </div>
+      </div>
+
+      <div class="vm-docs__theme">
+        <label class="vm-label">Active theme</label>
+        <div class="vm-dropdown" data-vm-theme-select>
+          <button type="button" class="vm-dropdown__trigger" aria-expanded="false" aria-haspopup="listbox">
+            <span class="vm-dropdown__value">Vibemilk Default</span>
+            <span class="vm-nf vm-dropdown__chevron" aria-hidden="true">&#xeb6c;</span>
+          </button>
+          <ul class="vm-dropdown__menu" role="listbox">
+            <li class="vm-dropdown__item is-selected" role="option" aria-selected="true" data-value="vibemilk-default">Vibemilk Default</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="vibemilk-dark">Vibemilk Dark</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="cyber-grid">Cyber Grid</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="acid-pop">Acid Pop</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="sakura-spring">Sakura Spring</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="mono-brutalist">Mono Brutalist</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="mint-protocol">Mint Protocol</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="cathode-ray">Cathode Ray</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="clean-sheet">Clean Sheet</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="clean-sheet-dark">Clean Sheet Dark</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="solar-dust">Solar Dust</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="geocities-97">Geocities 97</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="vm-docs__controls">
+        <div class="vm-docs__controls-row">
+          <span class="vm-docs__controls-label">Mode</span>
+          <div class="vm-theme-toggle vm-theme-toggle--sidebar" data-vm-mode="day" data-vm-sidebar-toggle role="button" tabindex="0" aria-label="Toggle day/night mode">
+            <div class="vm-theme-toggle__track">
+              <span class="vm-theme-toggle__icon vm-theme-toggle__icon--sun vm-nf" aria-hidden="true">&#xeb30;</span>
+              <span class="vm-theme-toggle__icon vm-theme-toggle__icon--moon vm-nf" aria-hidden="true">&#xeaf0;</span>
+              <div class="vm-theme-toggle__thumb"></div>
+            </div>
+            <span class="vm-theme-toggle__label">day</span>
+          </div>
+        </div>
+        <div class="vm-docs__controls-row">
+          <span class="vm-docs__controls-label">Canvas</span>
+          <div class="vm-preview-toolbar__modes" role="group" aria-label="Preview width">
+            <button type="button" class="vm-btn vm-btn--xs is-active" data-vm-preview-button="desktop" aria-pressed="true">Desktop</button>
+            <button type="button" class="vm-btn vm-btn--xs" data-vm-preview-button="mobile" aria-pressed="false">Mobile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vm-docs__search">
+      <input type="text" class="vm-docs__search-input" placeholder="Search navigation..." aria-label="Filter navigation">
+    </div>
+    <nav class="vm-docs__nav">
+      <div class="vm-docs__nav-list">
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Getting Started</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#intro">01. Intro</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#architecture">02. File Structure</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#start">03. Quick Start</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Design System</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="themes.html#themes">04. Theme System</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#tokens">05. Design Tokens</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#layout">06. Layout Shell</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="icons.html">07. Icons</a>          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Components</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#components">08. Live Catalog</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#foundations-live">09. Foundations</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#buttons-live">10. Buttons</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#forms-live">11. Forms</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#dropdown-live">12. Dropdown</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Data & Feedback</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#cards-live">13. Cards</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#badges-live">14. Badges</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#tabs-live">15. Data Display</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#progress-live">16. Progress</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#alerts-live">17. Alerts</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Overlays & Nav</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#overlays-live">18. Overlays</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#navigation-live">19. Navigation</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#animations-live">20. Animations</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#diagnostics-live">21. Diagnostics</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Patterns & FX</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#patterns-live">22. Patterns</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#theme-toggle-live">23. Theme Toggle</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#lang-select-live">24. Language Selector</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#fx-grid-live">25. Background FX</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Reference</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#utilities">26. Utilities</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#ai-playbook">27. Playbook AI</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#elementor">28. Elementor V4</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#release">29. Versioning</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Resources</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="token-export.html#token-export">30. Token Export</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#brand-voice">31. Brand Voice</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#tone-spectrum">32. Tone Spectrum</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#writing-rules">33. Writing Rules</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#signature-patterns">34. Signature Patterns</a>
+          </div></div>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="vm-docs__quicknav" data-vm-quicknav aria-label="Quick navigation">
+    <div class="vm-docs__quicknav-brand">
+      <span class="vm-docs__quicknav-mark">VM</span>
+      <div class="vm-docs__quicknav-copy">
+        <div class="vm-docs__quicknav-title">Vibemilk</div>
+        <div class="vm-docs__quicknav-section" data-vm-current-section>Token Export</div>
+      </div>
+    </div>
+    <div class="vm-docs__quicknav-actions">
+      <a class="vm-btn vm-btn--sm vm-btn--ghost" href="#docs-index">Index</a>
+      <a class="vm-btn vm-btn--sm vm-btn--secondary" href="#token-export">Top</a>
+    </div>
+  </div>
+
+  <main class="vm-docs__main">
+    <div class="vm-docs__container">
+
+      <section id="token-export" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Token Export</div>
+          <h2 class="text-heading-lg">Token Explorer &amp; Export</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="vm-note mb-4">
+            This section is a placeholder. The token explorer will allow browsing all design tokens for the active theme and exporting them in JSON, CSS custom properties, or SCSS variable formats.
+          </div>
+
+          <div class="vm-card" style="max-width:480px;">
+            <div class="vm-empty">
+              <div class="vm-empty__icon">
+                <span class="vm-nf" aria-hidden="true" style="font-size:64px;">&#xeafd;</span>
+              </div>
+              <div class="vm-empty__title">Token Explorer Coming Soon</div>
+              <div class="vm-empty__text">Browse, search, and export all Vibemilk design tokens for the active theme.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../js/vibemilk-docs.js" defer></script>
+</body>
+</html>

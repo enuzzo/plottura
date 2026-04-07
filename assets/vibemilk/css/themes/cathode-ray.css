@@ -1,0 +1,218 @@
+/* Vibemilk Theme: cathode-ray
+   Retro CRT / Phosphor Green — 1980s terminal aesthetic
+   ====================================================== */
+
+:root[data-theme="cathode-ray"] {
+  --theme-id: 'cathode-ray';
+  --theme-mode: 'dark';
+
+  /* -- Font Family -- */
+  --font-family: 'Space Mono', 'Monaco', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+  --font-mono: 'Space Mono', 'Monaco', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+
+  /* -- Font Sizes (slightly smaller for terminal feel) -- */
+  --fs-display-xl: 32px;
+  --fs-display-lg: 24px;
+  --fs-heading-xl: 20px;
+  --fs-heading-lg: 17px;
+  --fs-heading-md: 15px;
+  --fs-heading-sm: 14px;
+  --fs-body-lg: 14px;
+  --fs-body-md: 13px;
+  --fs-body-sm: 12px;
+  --fs-caption: 11px;
+  --fs-overline: 10px;
+  --fs-micro: 9px;
+
+  /* -- Component Dimensions -- */
+  --btn-height-xs: 28px;
+  --btn-height-sm: 34px;
+  --btn-height-md: 40px;
+  --btn-height-lg: 48px;
+  --btn-height-xl: 56px;
+  --btn-padding-xs: 10px;
+  --btn-padding-sm: 14px;
+  --btn-padding-md: 18px;
+  --btn-padding-lg: 24px;
+  --btn-padding-xl: 32px;
+  --input-height-sm: 38px;
+  --input-height-md: 44px;
+  --input-height-lg: 52px;
+  --progress-height: 10px;
+  --toggle-track-width: 44px;
+  --toggle-track-height: 24px;
+  --toggle-thumb-size: 18px;
+  --toggle-thumb-offset: 3px;
+  --avatar-size-xs: 28px;
+  --avatar-size-sm: 36px;
+  --avatar-size-md: 44px;
+  --avatar-size-lg: 56px;
+  --avatar-size-xl: 72px;
+
+  /* -- Backgrounds -- */
+  --bg-deepest: #0A0A08;
+  --bg-deep: #0D120A;
+  --bg-surface: #141C10;
+  --bg-surface-hover: #1A2416;
+  --bg-elevated: #1E2A1A;
+  --bg-elevated-hover: #243220;
+  --bg-input: #0B0F08;
+  --bg-input-focus: #121A0E;
+  --bg-overlay: rgba(10, 10, 8, 0.92);
+
+  /* -- Text -- */
+  --text-primary: #33FF33;
+  --text-secondary: #22AA22;
+  --text-tertiary: #447744;
+  --text-muted: #2D5A2D;
+  --text-inverse: #0A0A08;
+
+  /* -- Accent Primary (Phosphor Green) -- */
+  --accent-primary: #33FF33;
+  --accent-primary-hover: #66FF66;
+  --accent-primary-active: #22CC22;
+  --accent-primary-subtle: rgba(51, 255, 51, 0.14);
+
+  /* -- Accent Secondary (Amber) -- */
+  --accent-secondary: #FFAA00;
+  --accent-secondary-hover: #FFCC44;
+  --accent-secondary-subtle: rgba(255, 170, 0, 0.16);
+
+  /* -- Semantic: Success -- */
+  --color-success: #44FF44;
+  --color-success-hover: #77FF77;
+  --color-success-subtle: rgba(68, 255, 68, 0.14);
+
+  /* -- Semantic: Warning -- */
+  --color-warning: #FFAA00;
+  --color-warning-hover: #FFCC44;
+  --color-warning-subtle: rgba(255, 170, 0, 0.14);
+
+  /* -- Semantic: Danger -- */
+  --color-danger: #FF3333;
+  --color-danger-hover: #FF6666;
+  --color-danger-subtle: rgba(255, 51, 51, 0.14);
+
+  /* -- Semantic: Info -- */
+  --color-info: #00FFCC;
+  --color-info-subtle: rgba(0, 255, 204, 0.14);
+
+  /* -- Gradients -- */
+  --gradient-brand: linear-gradient(135deg, #33FF33 0%, #FFAA00 100%);
+  --gradient-card: linear-gradient(135deg, #33FF33 0%, #00FFCC 100%);
+  --gradient-success: linear-gradient(135deg, #44FF44 0%, #00FFCC 100%);
+  --gradient-warm: linear-gradient(135deg, #FFAA00 0%, #FF3333 100%);
+  --gradient-surface: linear-gradient(135deg, #141C10 0%, #1E2A1A 100%);
+  --gradient-sidebar: linear-gradient(180deg, #0D120A 0%, #0A0A08 100%);
+  --gradient-glow-purple: radial-gradient(circle, rgba(51, 255, 51, 0.28) 0%, transparent 70%);
+  --gradient-glow-blue: radial-gradient(circle, rgba(255, 170, 0, 0.2) 0%, transparent 70%);
+
+  /* -- Border Radius (sharp CRT rectangles) -- */
+  --radius-xs: 0px;
+  --radius-sm: 1px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-xl: 2px;
+  --radius-2xl: 2px;
+
+  /* -- Shadows (phosphor glow) -- */
+  --shadow-sm: 0 0 8px rgba(51, 255, 51, 0.15), 0 2px 6px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 0 14px rgba(51, 255, 51, 0.2), 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 0 20px rgba(51, 255, 51, 0.25), 0 8px 24px rgba(0, 0, 0, 0.55);
+  --shadow-xl: 0 0 30px rgba(51, 255, 51, 0.3), 0 12px 36px rgba(0, 0, 0, 0.6);
+  --shadow-glow-sm: 0 0 16px rgba(51, 255, 51, 0.3);
+  --shadow-glow-md: 0 0 32px rgba(51, 255, 51, 0.4);
+  --shadow-glow-blue: 0 0 24px rgba(255, 170, 0, 0.25);
+  --shadow-inset: inset 0 0 10px rgba(51, 255, 51, 0.15), inset 0 2px 4px rgba(0, 0, 0, 0.4);
+
+  /* -- Stroke Tokens -- */
+  --stroke-width-ui: 2px;
+  --stroke-width-strong: 2px;
+  --stroke-width-heavy: 2px;
+  --stroke-subtle: rgba(51, 255, 51, 0.12);
+  --stroke-default: rgba(51, 255, 51, 0.22);
+  --stroke-strong: rgba(51, 255, 51, 0.4);
+  --stroke-accent: #33FF33;
+  --stroke-success: #44FF44;
+  --stroke-danger: #FF3333;
+
+  /* -- Selection & Overlays -- */
+  --selection-bg: rgba(255, 170, 0, 0.4);
+  --selection-text: #0A0A08;
+  --surface-overlay-soft: rgba(51, 255, 51, 0.06);
+  --surface-overlay-strong: rgba(51, 255, 51, 0.2);
+  --card-hover-border: rgba(51, 255, 51, 0.35);
+  --table-stripe-bg: rgba(51, 255, 51, 0.04);
+  --divider-color: rgba(51, 255, 51, 0.18);
+  --divider-dashed-color: rgba(255, 170, 0, 0.22);
+  --skeleton-shimmer: linear-gradient(90deg, transparent, rgba(51, 255, 51, 0.1), transparent);
+  --focus-ring-color: rgba(51, 255, 51, 0.55);
+  --focus-ring-soft: 0 0 0 3px rgba(51, 255, 51, 0.2);
+  --focus-ring-danger: 0 0 0 3px rgba(255, 51, 51, 0.25);
+  --text-on-primary: #0A0A08;
+  --text-on-success: #0A0A08;
+  --text-on-danger: #FFF0F0;
+  --text-on-gradient: #0A0A08;
+  --text-on-warning: #0A0A08;
+  --loader-stroke: rgba(51, 255, 51, 0.25);
+  --loader-stroke-active: #33FF33;
+  --control-handle: #33FF33;
+  --control-handle-shadow: 0 0 6px rgba(51, 255, 51, 0.5);
+  --range-thumb-shadow: 0 0 8px rgba(51, 255, 51, 0.5);
+  --status-glow-success: 0 0 12px rgba(68, 255, 68, 0.6);
+  --status-glow-warning: 0 0 12px rgba(255, 170, 0, 0.6);
+  --nerds-border: 2px solid rgba(51, 255, 51, 0.25);
+  --nerds-inset-glow: inset 0 0 50px rgba(51, 255, 51, 0.06);
+  --nerds-label: #447744;
+  --nerds-divider: rgba(51, 255, 51, 0.22);
+  --nerds-footer-border: 2px solid rgba(51, 255, 51, 0.15);
+  --nerds-footer-color: #447744;
+
+  /* -- FX Grid (CRT scanline aesthetic) -- */
+  --fx-grid-perspective: 600px;
+  --fx-grid-plane-bottom: -8vh;
+  --fx-grid-plane-height: 62vh;
+  --fx-grid-plane-size: 36px;
+  --fx-grid-plane-opacity: 0.9;
+  --fx-grid-plane-line-a: rgba(51, 255, 51, 0.22);
+  --fx-grid-plane-line-b: rgba(255, 170, 0, 0.14);
+  --fx-grid-glow-height: 60%;
+  --fx-grid-glow-a: rgba(51, 255, 51, 0.2);
+  --fx-grid-glow-b: rgba(255, 170, 0, 0.1);
+  --fx-grid-horizon-bottom: 58%;
+  --fx-grid-horizon-a: rgba(255, 170, 0, 0.45);
+  --fx-grid-horizon-b: rgba(51, 255, 51, 0.35);
+  --fx-grid-horizon-shadow-a: rgba(255, 170, 0, 0.2);
+  --fx-grid-horizon-shadow-b: rgba(51, 255, 51, 0.14);
+  --fx-grid-scanline-a: rgba(51, 255, 51, 0.4);
+  --fx-grid-scanline-shadow: rgba(255, 170, 0, 0.2);
+  --fx-grid-vline-a: rgba(51, 255, 51, 0.2);
+  --fx-grid-vline-b: rgba(255, 170, 0, 0.16);
+  --fx-grid-vignette: rgba(10, 10, 8, 0.6);
+  --fx-grid-scroll-duration: 6s;
+  --fx-grid-glow-duration: 7s;
+  --fx-grid-scan-duration: 2.5s;
+  --fx-grid-vline-duration: 6s;
+
+  --logo-color: #33FF33;
+
+  /* -- Select Dropdown States -- */
+  --select-option-bg: #141C10;
+  --select-option-color: #33FF33;
+  --select-option-hover-bg: rgba(255, 170, 0, 0.8);
+  --select-option-hover-color: #0A0A08;
+  --select-option-selected-bg: rgba(51, 255, 51, 0.7);
+  --select-option-selected-color: #0A0A08;
+
+  /* -- Sidebar -- */
+  --sidebar-collapsed: 100px;
+  --sidebar-expanded: 260px;
+}
+
+/* CRT uppercase labels */
+:root[data-theme="cathode-ray"] .vm-btn,
+:root[data-theme="cathode-ray"] .vm-dropdown__trigger,
+:root[data-theme="cathode-ray"] .text-overline {
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}

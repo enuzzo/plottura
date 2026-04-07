@@ -1,0 +1,387 @@
+:root[data-theme="cyber-grid"] {
+  --theme-id: 'cyber-grid';
+  --theme-mode: 'dark';
+
+  --font-family: 'Space Mono', 'Monaco', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+  --font-mono: 'Space Mono', 'Monaco', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+
+  --fs-display-xl: 34px;
+  --fs-display-lg: 26px;
+  --fs-heading-xl: 22px;
+  --fs-heading-lg: 18px;
+  --fs-heading-md: 16px;
+  --fs-heading-sm: 15px;
+  --fs-body-lg: 15px;
+  --fs-body-md: 13px;
+  --fs-body-sm: 12px;
+  --fs-caption: 11px;
+  --fs-overline: 10px;
+  --fs-micro: 9px;
+
+  --btn-height-xs: 30px;
+  --btn-height-sm: 36px;
+  --btn-height-md: 44px;
+  --btn-height-lg: 52px;
+  --btn-height-xl: 58px;
+  --btn-padding-xs: 11px;
+  --btn-padding-sm: 16px;
+  --btn-padding-md: 20px;
+  --btn-padding-lg: 26px;
+  --btn-padding-xl: 34px;
+  --input-height-sm: 40px;
+  --input-height-md: 46px;
+  --input-height-lg: 54px;
+  --progress-height: 12px;
+  --toggle-track-width: 50px;
+  --toggle-track-height: 26px;
+  --toggle-thumb-size: 20px;
+  --toggle-thumb-offset: 3px;
+  --avatar-size-xs: 30px;
+  --avatar-size-sm: 38px;
+  --avatar-size-md: 46px;
+  --avatar-size-lg: 58px;
+  --avatar-size-xl: 74px;
+
+  --bg-deepest: #07090F;
+  --bg-deep: #0B0F17;
+  --bg-surface: #121826;
+  --bg-surface-hover: #172033;
+  --bg-elevated: #1B253C;
+  --bg-elevated-hover: #222F4D;
+  --bg-input: #0A111C;
+  --bg-input-focus: #12233B;
+  --bg-overlay: rgba(4, 6, 10, 0.9);
+
+  --text-primary: #E6FCFF;
+  --text-secondary: #9CD3DC;
+  --text-tertiary: #63A4AF;
+  --text-muted: #405867;
+  --text-inverse: #07090F;
+
+  --accent-primary: #FCEE0A;
+  --accent-primary-hover: #FFF45C;
+  --accent-primary-active: #D8C700;
+  --accent-primary-subtle: rgba(252, 238, 10, 0.14);
+
+  --accent-secondary: #00E8FF;
+  --accent-secondary-hover: #6DF5FF;
+  --accent-secondary-subtle: rgba(0, 232, 255, 0.18);
+
+  --color-success: #1DF38B;
+  --color-success-hover: #4EF8A6;
+  --color-success-subtle: rgba(29, 243, 139, 0.15);
+
+  --color-warning: #FF9F1C;
+  --color-warning-hover: #FFBA5B;
+  --color-warning-subtle: rgba(255, 159, 28, 0.15);
+
+  --color-danger: #FF4D6D;
+  --color-danger-hover: #FF738D;
+  --color-danger-subtle: rgba(255, 77, 109, 0.15);
+
+  --color-info: #00E8FF;
+  --color-info-subtle: rgba(0, 232, 255, 0.18);
+
+  --gradient-brand: linear-gradient(135deg, #FCEE0A 0%, #FF7A00 100%);
+  --gradient-card: linear-gradient(135deg, #FCEE0A 0%, #00E8FF 100%);
+  --gradient-success: linear-gradient(135deg, #1DF38B 0%, #00E8FF 100%);
+  --gradient-warm: linear-gradient(135deg, #FFCC00 0%, #FF4D6D 100%);
+  --gradient-surface: linear-gradient(135deg, #121826 0%, #1B253C 100%);
+  --gradient-sidebar: linear-gradient(180deg, #101520 0%, #07090F 100%);
+  --gradient-glow-purple: radial-gradient(circle, rgba(252, 238, 10, 0.32) 0%, transparent 70%);
+  --gradient-glow-blue: radial-gradient(circle, rgba(0, 232, 255, 0.26) 0%, transparent 70%);
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-2xl: 18px;
+
+  --shadow-sm: 0 0 0 1px rgba(0, 232, 255, 0.1), 0 6px 18px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 0 0 1px rgba(0, 232, 255, 0.16), 0 10px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 0 0 1px rgba(252, 238, 10, 0.2), 0 16px 34px rgba(0, 0, 0, 0.56);
+  --shadow-xl: 0 0 0 1px rgba(252, 238, 10, 0.25), 0 20px 42px rgba(0, 0, 0, 0.62);
+  --shadow-glow-sm: 0 0 18px rgba(252, 238, 10, 0.24);
+  --shadow-glow-md: 0 0 34px rgba(252, 238, 10, 0.34);
+  --shadow-glow-blue: 0 0 30px rgba(0, 232, 255, 0.24);
+  --shadow-inset: inset 0 0 0 1px rgba(252, 238, 10, 0.4), inset 0 2px 8px rgba(0, 0, 0, 0.55);
+
+  --stroke-width-ui: 2px;
+  --stroke-width-strong: 2px;
+  --stroke-width-heavy: 2px;
+  --stroke-subtle: rgba(0, 232, 255, 0.2);
+  --stroke-default: rgba(0, 232, 255, 0.3);
+  --stroke-strong: rgba(252, 238, 10, 0.52);
+  --stroke-accent: #FCEE0A;
+  --stroke-success: #1DF38B;
+  --stroke-danger: #FF4D6D;
+
+  --selection-bg: rgba(252, 238, 10, 0.3);
+  --selection-text: #09101A;
+  --surface-overlay-soft: rgba(0, 232, 255, 0.08);
+  --surface-overlay-strong: rgba(252, 238, 10, 0.25);
+  --card-hover-border: rgba(252, 238, 10, 0.38);
+  --table-stripe-bg: rgba(0, 232, 255, 0.05);
+  --divider-color: rgba(0, 232, 255, 0.24);
+  --divider-dashed-color: rgba(252, 238, 10, 0.24);
+  --skeleton-shimmer: linear-gradient(90deg, transparent, rgba(0, 232, 255, 0.12), transparent);
+  --focus-ring-color: rgba(252, 238, 10, 0.56);
+  --focus-ring-soft: 0 0 0 3px rgba(0, 232, 255, 0.26);
+  --focus-ring-danger: 0 0 0 3px rgba(255, 77, 109, 0.3);
+  --text-on-primary: #121416;
+  --text-on-success: #08140D;
+  --text-on-danger: #FFF2F5;
+  --text-on-gradient: #121416;
+  --text-on-warning: #130F07;
+  --loader-stroke: rgba(18, 20, 22, 0.22);
+  --loader-stroke-active: #121416;
+  --control-handle: #F6FDFF;
+  --control-handle-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+  --range-thumb-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+  --status-glow-success: 0 0 10px rgba(29, 243, 139, 0.62);
+  --status-glow-warning: 0 0 10px rgba(255, 159, 28, 0.62);
+  --nerds-border: var(--stroke-width-ui) solid rgba(252, 238, 10, 0.26);
+  --nerds-inset-glow: inset 0 0 50px rgba(252, 238, 10, 0.08);
+  --nerds-label: #59717D;
+  --nerds-divider: rgba(0, 232, 255, 0.28);
+  --nerds-footer-border: var(--stroke-width-ui) solid rgba(0, 232, 255, 0.2);
+  --nerds-footer-color: #5F7684;
+  --cyber-cut-sm: 8px;
+  --cyber-cut-md: 12px;
+  --cyber-cut-lg: 16px;
+  --cyber-surface-overlay:
+    linear-gradient(165deg, rgba(0, 232, 255, 0.18) 0%, rgba(0, 232, 255, 0.02) 36%, rgba(252, 238, 10, 0.08) 100%);
+  --cyber-scanline-overlay:
+    repeating-linear-gradient(180deg, rgba(0, 232, 255, 0.045) 0, rgba(0, 232, 255, 0.045) 1px, transparent 1px, transparent 5px);
+  --cyber-corner-mark-panel:
+    linear-gradient(var(--cyber-outer-stroke), var(--cyber-outer-stroke)) top 0 right 0 / calc(100% - var(--cyber-cut-md)) var(--stroke-width-ui) no-repeat,
+    linear-gradient(var(--cyber-outer-stroke), var(--cyber-outer-stroke)) left 0 bottom 0 / var(--stroke-width-ui) calc(100% - var(--cyber-cut-md)) no-repeat,
+    linear-gradient(var(--cyber-outer-stroke), var(--cyber-outer-stroke)) bottom 0 left 0 / calc(100% - var(--cyber-cut-md)) var(--stroke-width-ui) no-repeat,
+    linear-gradient(var(--cyber-outer-stroke), var(--cyber-outer-stroke)) right 0 top 0 / var(--stroke-width-ui) calc(100% - var(--cyber-cut-md)) no-repeat,
+    linear-gradient(
+      135deg,
+      transparent calc(50% - (var(--stroke-width-ui) * 0.5)),
+      var(--cyber-outer-stroke) calc(50% - (var(--stroke-width-ui) * 0.5)),
+      var(--cyber-outer-stroke) calc(50% + (var(--stroke-width-ui) * 0.5)),
+      transparent calc(50% + (var(--stroke-width-ui) * 0.5))
+    ) left calc(var(--stroke-width-ui) * -0.5) top calc(var(--stroke-width-ui) * -0.5) / calc(var(--cyber-cut-md) + var(--stroke-width-ui)) calc(var(--cyber-cut-md) + var(--stroke-width-ui)) no-repeat,
+    linear-gradient(
+      135deg,
+      transparent calc(50% - (var(--stroke-width-ui) * 0.5)),
+      var(--cyber-outer-stroke) calc(50% - (var(--stroke-width-ui) * 0.5)),
+      var(--cyber-outer-stroke) calc(50% + (var(--stroke-width-ui) * 0.5)),
+      transparent calc(50% + (var(--stroke-width-ui) * 0.5))
+    ) right calc(var(--stroke-width-ui) * -0.5) bottom calc(var(--stroke-width-ui) * -0.5) / calc(var(--cyber-cut-md) + var(--stroke-width-ui)) calc(var(--cyber-cut-md) + var(--stroke-width-ui)) no-repeat;
+  --cyber-corner-mark-control:
+    linear-gradient(var(--cyber-outer-stroke), var(--cyber-outer-stroke)) top 0 right 0 / calc(100% - var(--cyber-cut-sm)) var(--stroke-width-ui) no-repeat,
+    linear-gradient(var(--cyber-outer-stroke), var(--cyber-outer-stroke)) left 0 bottom 0 / var(--stroke-width-ui) calc(100% - var(--cyber-cut-sm)) no-repeat,
+    linear-gradient(var(--cyber-outer-stroke), var(--cyber-outer-stroke)) bottom 0 left 0 / calc(100% - var(--cyber-cut-sm)) var(--stroke-width-ui) no-repeat,
+    linear-gradient(var(--cyber-outer-stroke), var(--cyber-outer-stroke)) right 0 top 0 / var(--stroke-width-ui) calc(100% - var(--cyber-cut-sm)) no-repeat,
+    linear-gradient(
+      135deg,
+      transparent calc(50% - (var(--stroke-width-ui) * 0.5)),
+      var(--cyber-outer-stroke) calc(50% - (var(--stroke-width-ui) * 0.5)),
+      var(--cyber-outer-stroke) calc(50% + (var(--stroke-width-ui) * 0.5)),
+      transparent calc(50% + (var(--stroke-width-ui) * 0.5))
+    ) left calc(var(--stroke-width-ui) * -0.5) top calc(var(--stroke-width-ui) * -0.5) / calc(var(--cyber-cut-sm) + var(--stroke-width-ui)) calc(var(--cyber-cut-sm) + var(--stroke-width-ui)) no-repeat,
+    linear-gradient(
+      135deg,
+      transparent calc(50% - (var(--stroke-width-ui) * 0.5)),
+      var(--cyber-outer-stroke) calc(50% - (var(--stroke-width-ui) * 0.5)),
+      var(--cyber-outer-stroke) calc(50% + (var(--stroke-width-ui) * 0.5)),
+      transparent calc(50% + (var(--stroke-width-ui) * 0.5))
+    ) right calc(var(--stroke-width-ui) * -0.5) bottom calc(var(--stroke-width-ui) * -0.5) / calc(var(--cyber-cut-sm) + var(--stroke-width-ui)) calc(var(--cyber-cut-sm) + var(--stroke-width-ui)) no-repeat;
+  --cyber-inner-stroke: rgba(0, 232, 255, 0.24);
+  --cyber-outer-stroke: rgba(252, 238, 10, 0.35);
+  --cyber-primary-inset: rgba(18, 20, 22, 0.35);
+  --fx-grid-perspective: 640px;
+  --fx-grid-plane-bottom: -7vh;
+  --fx-grid-plane-height: 64vh;
+  --fx-grid-plane-size: 34px;
+  --fx-grid-plane-opacity: 1;
+  --fx-grid-plane-line-a: rgba(252, 238, 10, 0.28);
+  --fx-grid-plane-line-b: rgba(0, 232, 255, 0.24);
+  --fx-grid-glow-height: 64%;
+  --fx-grid-glow-a: rgba(252, 238, 10, 0.24);
+  --fx-grid-glow-b: rgba(0, 232, 255, 0.1);
+  --fx-grid-horizon-bottom: 58%;
+  --fx-grid-horizon-a: rgba(252, 238, 10, 0.48);
+  --fx-grid-horizon-b: rgba(0, 232, 255, 0.4);
+  --fx-grid-horizon-shadow-a: rgba(252, 238, 10, 0.22);
+  --fx-grid-horizon-shadow-b: rgba(0, 232, 255, 0.16);
+  --fx-grid-scanline-a: rgba(0, 232, 255, 0.42);
+  --fx-grid-scanline-shadow: rgba(252, 238, 10, 0.22);
+  --fx-grid-vline-a: rgba(252, 238, 10, 0.24);
+  --fx-grid-vline-b: rgba(0, 232, 255, 0.24);
+  --fx-grid-vignette: rgba(7, 9, 15, 0.62);
+  --fx-grid-scroll-duration: 8.8s;
+  --fx-grid-glow-duration: 10.2s;
+  --fx-grid-scan-duration: 8s;
+  --fx-grid-vline-duration: 9.4s;
+
+  --logo-color: #FCEE0A;
+
+  --select-option-bg: #121A2A;
+  --select-option-color: #E2FBFF;
+  --select-option-hover-bg: rgba(252, 238, 10, 0.82);
+  --select-option-hover-color: #13170E;
+  --select-option-selected-bg: rgba(0, 232, 255, 0.72);
+  --select-option-selected-color: #081118;
+
+  --sidebar-collapsed: 110px;
+  --sidebar-expanded: 280px;
+}
+
+:root[data-theme="cyber-grid"] .vm-btn,
+:root[data-theme="cyber-grid"] .vm-dropdown__trigger,
+:root[data-theme="cyber-grid"] .text-overline {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+:root[data-theme="cyber-grid"] .vm-card,
+:root[data-theme="cyber-grid"] .vm-stat,
+:root[data-theme="cyber-grid"] .vm-modal,
+:root[data-theme="cyber-grid"] .vm-toast,
+:root[data-theme="cyber-grid"] .vm-alert,
+:root[data-theme="cyber-grid"] .vm-code,
+:root[data-theme="cyber-grid"] .vm-nerds,
+:root[data-theme="cyber-grid"] .vm-card-lite {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  clip-path: polygon(
+    var(--cyber-cut-md) 0,
+    100% 0,
+    100% calc(100% - var(--cyber-cut-md)),
+    calc(100% - var(--cyber-cut-md)) 100%,
+    0 100%,
+    0 var(--cyber-cut-md)
+  );
+  background-image: var(--cyber-surface-overlay), var(--cyber-scanline-overlay);
+  border-color: transparent;
+}
+
+:root[data-theme="cyber-grid"] .vm-card::before,
+:root[data-theme="cyber-grid"] .vm-stat::before,
+:root[data-theme="cyber-grid"] .vm-modal::before,
+:root[data-theme="cyber-grid"] .vm-toast::before,
+:root[data-theme="cyber-grid"] .vm-alert::before,
+:root[data-theme="cyber-grid"] .vm-code::before,
+:root[data-theme="cyber-grid"] .vm-nerds::before,
+:root[data-theme="cyber-grid"] .vm-card-lite::before {
+  content: '';
+  position: absolute;
+  inset: var(--stroke-width-ui);
+  pointer-events: none;
+  clip-path: inherit;
+  border: 1px solid var(--cyber-inner-stroke);
+  opacity: 0.9;
+}
+
+:root[data-theme="cyber-grid"] .vm-card::after,
+:root[data-theme="cyber-grid"] .vm-stat::after,
+:root[data-theme="cyber-grid"] .vm-modal::after,
+:root[data-theme="cyber-grid"] .vm-toast::after,
+:root[data-theme="cyber-grid"] .vm-alert::after,
+:root[data-theme="cyber-grid"] .vm-code::after,
+:root[data-theme="cyber-grid"] .vm-nerds::after,
+:root[data-theme="cyber-grid"] .vm-card-lite::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--cyber-corner-mark-panel);
+  opacity: 1;
+}
+
+:root[data-theme="cyber-grid"] .vm-btn,
+:root[data-theme="cyber-grid"] .vm-input,
+:root[data-theme="cyber-grid"] .vm-select,
+:root[data-theme="cyber-grid"] .vm-dropdown__trigger,
+:root[data-theme="cyber-grid"] .vm-dropdown__menu,
+:root[data-theme="cyber-grid"] .vm-textarea,
+:root[data-theme="cyber-grid"] .vm-tab,
+:root[data-theme="cyber-grid"] .vm-badge {
+  border-radius: 0;
+  clip-path: polygon(
+    var(--cyber-cut-sm) 0,
+    100% 0,
+    100% calc(100% - var(--cyber-cut-sm)),
+    calc(100% - var(--cyber-cut-sm)) 100%,
+    0 100%,
+    0 var(--cyber-cut-sm)
+  );
+}
+
+:root[data-theme="cyber-grid"] .vm-btn {
+  border: var(--border-default);
+  box-shadow: inset 0 0 0 1px var(--cyber-inner-stroke), var(--shadow-sm);
+}
+
+:root[data-theme="cyber-grid"] .vm-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--cyber-corner-mark-control);
+  opacity: 1;
+}
+
+:root[data-theme="cyber-grid"] .vm-btn--primary,
+:root[data-theme="cyber-grid"] .vm-btn--gradient {
+  border-color: var(--stroke-accent);
+  box-shadow: inset 0 0 0 1px var(--cyber-primary-inset), var(--shadow-glow-sm);
+}
+
+:root[data-theme="cyber-grid"] .vm-dropdown__trigger,
+:root[data-theme="cyber-grid"] .vm-dropdown__menu {
+  border: var(--border-default);
+  box-shadow: inset 0 0 0 1px var(--cyber-inner-stroke), var(--shadow-sm);
+}
+
+:root[data-theme="cyber-grid"] .vm-dropdown__trigger::before,
+:root[data-theme="cyber-grid"] .vm-dropdown__menu::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--cyber-corner-mark-control);
+  opacity: 1;
+}
+
+:root[data-theme="cyber-grid"] .vm-dropdown__menu::before {
+  opacity: 1;
+}
+
+:root[data-theme="cyber-grid"] .vm-input,
+:root[data-theme="cyber-grid"] .vm-select,
+:root[data-theme="cyber-grid"] .vm-dropdown__trigger,
+:root[data-theme="cyber-grid"] .vm-dropdown__menu,
+:root[data-theme="cyber-grid"] .vm-textarea {
+  background-image: linear-gradient(180deg, rgba(0, 232, 255, 0.12) 0%, rgba(0, 232, 255, 0.02) 42%);
+  border-color: var(--cyber-inner-stroke);
+}
+
+:root[data-theme="cyber-grid"] .vm-input:focus,
+:root[data-theme="cyber-grid"] .vm-select:focus,
+:root[data-theme="cyber-grid"] .vm-dropdown.is-open .vm-dropdown__trigger,
+:root[data-theme="cyber-grid"] .vm-textarea:focus {
+  border-color: var(--stroke-accent);
+  box-shadow: 0 0 0 1px var(--stroke-accent), var(--focus-ring-soft);
+}
+
+:root[data-theme="cyber-grid"] .vm-tabs,
+:root[data-theme="cyber-grid"] .vm-table-wrapper {
+  border-radius: 0;
+  clip-path: polygon(
+    var(--cyber-cut-sm) 0,
+    100% 0,
+    100% calc(100% - var(--cyber-cut-sm)),
+    calc(100% - var(--cyber-cut-sm)) 100%,
+    0 100%,
+    0 var(--cyber-cut-sm)
+  );
+}
+

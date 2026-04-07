@@ -1,0 +1,9 @@
+{
+  "name": "vibemilk",
+  "version": "3.0.0",
+  "description": "Vibemilk - the Netmilk Studio Design System",
+  "scripts": {
+    "build:tokens": "node scripts/build-tokens.js",
+    "audit:gui-contrast": "node scripts/audit-gui-theme-contrast.js"
+  }
+}

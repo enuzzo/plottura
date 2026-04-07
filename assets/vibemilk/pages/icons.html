@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="vibemilk-default">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Icons - Vibemilk Design System</title>
+  <meta name="description" content="Nerd Font icon reference: 250+ curated glyphs with search, click-to-copy, size scale, and color variants.">
+  <link rel="stylesheet" href="../css/vibemilk-core.css">
+  <link rel="stylesheet" href="../css/docs.css">
+  <link rel="stylesheet" href="../css/showcase.css">
+  <style>
+    /* ===== ICON EXPLORER STYLES ===== */
+    .icon-explorer__toolbar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .icon-explorer__search {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 14px 10px 36px;
+      border: var(--border-default);
+      border-radius: var(--radius-sm);
+      background: color-mix(in srgb, var(--bg-deep) 80%, transparent);
+      color: var(--text-primary);
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: 12px center;
+    }
+    .icon-explorer__search:focus {
+      border-color: var(--stroke-accent);
+      box-shadow: 0 0 0 2px var(--accent-primary-subtle);
+    }
+    .icon-explorer__search::placeholder {
+      color: var(--text-muted);
+    }
+    .icon-explorer__count {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      white-space: nowrap;
+    }
+    .icon-explorer__cats {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .icon-explorer__cat-btn {
+      padding: 5px 12px;
+      font-size: 11px;
+      font-family: inherit;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border: var(--border-default);
+      border-radius: var(--radius-full);
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .icon-explorer__cat-btn:hover {
+      color: var(--accent-primary);
+      border-color: var(--stroke-accent);
+    }
+    .icon-explorer__cat-btn.is-active {
+      background: var(--accent-primary);
+      color: var(--text-on-primary);
+      border-color: var(--accent-primary);
+      box-shadow: var(--shadow-glow-sm);
+    }
+    .icon-explorer__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 8px;
+    }
+    .icon-explorer__card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 6px 10px;
+      border: var(--border-subtle);
+      border-radius: var(--radius-md);
+      background: color-mix(in srgb, var(--bg-elevated) 60%, transparent);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-align: center;
+      min-height: 0;
+    }
+    .icon-explorer__card:hover {
+      border-color: var(--stroke-accent);
+      background: color-mix(in srgb, var(--bg-elevated) 90%, transparent);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .icon-explorer__card:active {
+      transform: scale(0.96);
+    }
+    .icon-explorer__glyph {
+      font-family: var(--font-icons);
+      font-size: 28px;
+      line-height: 1;
+      color: var(--text-primary);
+    }
+    .icon-explorer__card:hover .icon-explorer__glyph {
+      color: var(--accent-primary);
+    }
+    .icon-explorer__name {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      line-height: 1.2;
+      word-break: break-word;
+    }
+    .icon-explorer__hex {
+      font-size: 9px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+    .icon-explorer__empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Size demo row */
+    .icon-size-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .icon-size-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .icon-size-item__glyph {
+      color: var(--accent-primary);
+    }
+    .icon-size-item__label {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+
+    /* Color variant grid */
+    .icon-color-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .icon-color-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border: var(--border-subtle);
+      border-radius: var(--radius-md);
+      background: color-mix(in srgb, var(--bg-elevated) 60%, transparent);
+    }
+    .icon-color-card__label {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+    }
+
+    /* Usage pattern cards */
+    .icon-usage-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .icon-usage-card {
+      padding: 20px;
+      border: var(--border-subtle);
+      border-radius: var(--radius-md);
+      background: color-mix(in srgb, var(--bg-elevated) 60%, transparent);
+    }
+    .icon-usage-card__title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .icon-usage-card__demo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Hero icon cascade */
+    .icon-hero-cascade {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 16px;
+      opacity: 0.82;
+      position: relative;
+      user-select: none;
+    }
+    .icon-hero-cascade .vm-nf {
+      --hero-scale: 1;
+      --hero-lift: 0;
+      --hero-glow: 0;
+      --hero-tilt: 0deg;
+      display: inline-flex;
+      font-size: 20px;
+      color: var(--accent-primary);
+      text-shadow: 0 0 18px color-mix(in srgb, currentColor 24%, transparent);
+      transform:
+        translate3d(0, calc(var(--hero-lift) * -1px), 0)
+        scale(var(--hero-scale))
+        rotate(var(--hero-tilt));
+      transform-origin: center 70%;
+      filter:
+        brightness(calc(1 + (var(--hero-glow) * 0.18)))
+        saturate(calc(1 + (var(--hero-glow) * 0.32)));
+      will-change: transform, filter;
+    }
+    .icon-hero-cascade .vm-nf:nth-child(even) {
+      color: var(--accent-secondary);
+    }
+    .icon-hero-cascade .vm-nf:nth-child(3n) {
+      color: var(--text-primary);
+    }
+
+    .icon-ways-grid {
+      align-items: stretch;
+    }
+    .icon-ways-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .icon-ways-card .vm-code {
+      margin-bottom: 0;
+    }
+    .icon-ways-card__preview {
+      margin-top: auto;
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 16px;
+    }
+
+    @media (max-width: 760px) {
+      .icon-color-grid { grid-template-columns: repeat(2, 1fr); }
+      .icon-usage-grid { grid-template-columns: 1fr; }
+      .icon-explorer__grid { grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)); }
+    }
+  </style>
+</head>
+<body class="vm-docs" data-vm-page="icons">
+  <aside id="docs-index" class="vm-docs__sidebar" aria-label="Vibemilk documentation index">
+    <div class="vm-docs__sidebar-head">
+      <div class="vm-docs__brand">
+        <a href="../index.html" class="vm-docs__brand-mark" aria-label="Netmilk home"></a>
+        <div class="vm-docs__brand-copy">
+          <a href="../index.html" class="vm-docs__brand-title" style="text-decoration:none;color:inherit;">Vibemilk</a>
+          <div class="vm-docs__brand-subtitle">Netmilk Studio Design System</div>
+        </div>
+      </div>
+
+      <div class="vm-docs__theme">
+        <label class="vm-label">Active theme</label>
+        <div class="vm-dropdown" data-vm-theme-select>
+          <button type="button" class="vm-dropdown__trigger" aria-expanded="false" aria-haspopup="listbox">
+            <span class="vm-dropdown__value">Vibemilk Default</span>
+            <svg class="vm-dropdown__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <ul class="vm-dropdown__menu" role="listbox">
+            <li class="vm-dropdown__item is-selected" role="option" aria-selected="true" data-value="vibemilk-default">Vibemilk Default</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="vibemilk-dark">Vibemilk Dark</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="cyber-grid">Cyber Grid</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="acid-pop">Acid Pop</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="sakura-spring">Sakura Spring</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="mono-brutalist">Mono Brutalist</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="mint-protocol">Mint Protocol</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="cathode-ray">Cathode Ray</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="clean-sheet">Clean Sheet</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="clean-sheet-dark">Clean Sheet Dark</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="solar-dust">Solar Dust</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="geocities-97">Geocities 97</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="vm-docs__controls">
+        <div class="vm-docs__controls-row">
+          <span class="vm-docs__controls-label">Mode</span>
+          <div class="vm-theme-toggle vm-theme-toggle--sidebar" data-vm-mode="day" data-vm-sidebar-toggle role="button" tabindex="0" aria-label="Toggle day/night mode">
+            <div class="vm-theme-toggle__track">
+              <span class="vm-theme-toggle__icon vm-theme-toggle__icon--sun">&#9728;</span>
+              <span class="vm-theme-toggle__icon vm-theme-toggle__icon--moon">&#9790;</span>
+              <div class="vm-theme-toggle__thumb"></div>
+            </div>
+            <span class="vm-theme-toggle__label">day</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vm-docs__search">
+      <input type="text" class="vm-docs__search-input" placeholder="Search navigation..." aria-label="Filter navigation">
+    </div>
+    <nav class="vm-docs__nav">
+      <div class="vm-docs__nav-list">
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Getting Started</span>
+            <svg class="vm-docs__nav-group-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#intro">01. Intro</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#architecture">02. File Structure</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#start">03. Quick Start</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Design System</span>
+            <svg class="vm-docs__nav-group-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="themes.html#themes">04. Theme System</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#tokens">05. Design Tokens</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#layout">06. Layout Shell</a>
+          <a class="vm-docs__nav-link is-active" data-vm-nav href="icons.html#icon-hero">07. Icons</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Components</span>
+            <svg class="vm-docs__nav-group-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#components">08. Live Catalog</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#foundations-live">09. Foundations</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#buttons-live">10. Buttons</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#forms-live">11. Forms</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#dropdown-live">12. Dropdown</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Data & Feedback</span>
+            <svg class="vm-docs__nav-group-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#cards-live">13. Cards</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#badges-live">14. Badges</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#tabs-live">15. Data Display</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#progress-live">16. Progress</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#alerts-live">17. Alerts</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Overlays & Nav</span>
+            <svg class="vm-docs__nav-group-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#overlays-live">18. Overlays</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#navigation-live">19. Navigation</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#animations-live">20. Animations</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#diagnostics-live">21. Diagnostics</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Patterns & FX</span>
+            <svg class="vm-docs__nav-group-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#patterns-live">22. Patterns</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#theme-toggle-live">23. Theme Toggle</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#lang-select-live">24. Language Selector</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#fx-grid-live">25. Background FX</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Reference</span>
+            <svg class="vm-docs__nav-group-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#utilities">26. Utilities</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#ai-playbook">27. Playbook AI</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#elementor">28. Elementor V4</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#release">29. Versioning</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Resources</span>
+            <svg class="vm-docs__nav-group-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="token-export.html#token-export">30. Token Export</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#brand-voice">31. Brand Voice</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#tone-spectrum">32. Tone Spectrum</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#writing-rules">33. Writing Rules</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#signature-patterns">34. Signature Patterns</a>
+          </div></div>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="vm-docs__quicknav" data-vm-quicknav aria-label="Quick navigation">
+    <div class="vm-docs__quicknav-brand">
+      <span class="vm-docs__quicknav-mark">VM</span>
+      <div class="vm-docs__quicknav-copy">
+        <div class="vm-docs__quicknav-title">Vibemilk</div>
+        <div class="vm-docs__quicknav-section" data-vm-current-section>Icons</div>
+      </div>
+    </div>
+    <div class="vm-docs__quicknav-actions">
+      <a class="vm-btn vm-btn--sm vm-btn--ghost" href="#docs-index">Index</a>
+      <a class="vm-btn vm-btn--sm vm-btn--secondary" href="#icon-hero">Top</a>
+    </div>
+  </div>
+
+  <main class="vm-docs__main">
+    <div class="vm-docs__container">
+
+      <!-- ============================================
+           HERO
+           ============================================ -->
+      <section id="icon-hero" class="vm-hero" data-vm-section>
+        <div class="vm-version">Phase 8 &middot; Nerd Font Icons</div>
+        <h1 class="text-display-lg">Nerd Font Icons</h1>
+        <p class="text-body-lg" style="color:var(--text-secondary); max-width:640px; margin-top:12px;">
+          <strong>250+ curated glyphs</strong> &middot; 10,000+ available.
+          Two-tier system: <em>VibemilkIcons</em> (subset, ~40KB) for production,
+          full <em>Symbols Nerd Font</em> for exploration. Token-driven, theme-aware,
+          golden-ratio scaled.
+        </p>
+        <div class="icon-hero-cascade" aria-hidden="true">
+          <span class="vm-nf vm-nf-git"></span>
+          <span class="vm-nf vm-nf-docker"></span>
+          <span class="vm-nf vm-nf-react"></span>
+          <span class="vm-nf vm-nf-rust"></span>
+          <span class="vm-nf vm-nf-python"></span>
+          <span class="vm-nf vm-nf-terminal"></span>
+          <span class="vm-nf vm-nf-github"></span>
+          <span class="vm-nf vm-nf-heart"></span>
+          <span class="vm-nf vm-nf-star"></span>
+          <span class="vm-nf vm-nf-lightning"></span>
+          <span class="vm-nf vm-nf-code"></span>
+          <span class="vm-nf vm-nf-settings"></span>
+          <span class="vm-nf vm-nf-shield"></span>
+          <span class="vm-nf vm-nf-cloud"></span>
+          <span class="vm-nf vm-nf-database"></span>
+          <span class="vm-nf vm-nf-cpu"></span>
+          <span class="vm-nf vm-nf-mail"></span>
+          <span class="vm-nf vm-nf-home"></span>
+          <span class="vm-nf vm-nf-fire"></span>
+          <span class="vm-nf vm-nf-apple"></span>
+          <span class="vm-nf vm-nf-linux"></span>
+          <span class="vm-nf vm-nf-swift"></span>
+          <span class="vm-nf vm-nf-figma"></span>
+          <span class="vm-nf vm-nf-vscode"></span>
+        </div>
+      </section>
+
+      <!-- ============================================
+           QUICK START
+           ============================================ -->
+      <section id="quick-start" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Quick start</div>
+          <h2 class="text-heading-lg">Three ways to use icons</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="vm-grid-3 icon-ways-grid">
+            <article class="vm-card-lite icon-ways-card">
+              <div class="text-heading-sm mb-2">1. Unicode-first</div>
+              <p class="text-body-sm" style="color:var(--text-secondary); margin-bottom:12px;">
+                Paste the hex entity directly. Maximum control.
+              </p>
+              <pre class="vm-code"><code>&lt;span class="vm-nf" aria-hidden="true"&gt;
+  &amp;#xeb49;
+&lt;/span&gt;</code></pre>
+              <div class="icon-ways-card__preview">
+                <span class="vm-nf vm-nf--2xl" aria-hidden="true">&#xeb49;</span>
+              </div>
+            </article>
+            <article class="vm-card-lite icon-ways-card">
+              <div class="text-heading-sm mb-2">2. Named class</div>
+              <p class="text-body-sm" style="color:var(--text-secondary); margin-bottom:12px;">
+                Semantic, readable, no codepoint memorization.
+              </p>
+              <pre class="vm-code"><code>&lt;span class="vm-nf vm-nf-lightning"
+  aria-hidden="true"&gt;&lt;/span&gt;</code></pre>
+              <div class="icon-ways-card__preview">
+                <span class="vm-nf vm-nf-lightning vm-nf--2xl" aria-hidden="true"></span>
+              </div>
+            </article>
+            <article class="vm-card-lite icon-ways-card">
+              <div class="text-heading-sm mb-2">3. With modifiers</div>
+              <p class="text-body-sm" style="color:var(--text-secondary); margin-bottom:12px;">
+                Combine size + color modifiers for precise control.
+              </p>
+              <pre class="vm-code"><code>&lt;span class="vm-nf vm-nf-lightning
+  vm-nf--2xl
+  vm-nf--accent"
+  aria-hidden="true"&gt;&lt;/span&gt;</code></pre>
+              <div class="icon-ways-card__preview">
+                <span class="vm-nf vm-nf-lightning vm-nf--2xl vm-nf--accent" aria-hidden="true"></span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+           SIZE SCALE
+           ============================================ -->
+      <section id="size-scale" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Size scale</div>
+          <h2 class="text-heading-lg">Golden ratio progression</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="icon-size-row">
+            <div class="icon-size-item">
+              <span class="vm-nf vm-nf--sm icon-size-item__glyph" aria-hidden="true">&#xf1d3;</span>
+              <span class="icon-size-item__label">--sm &middot; 0.75em</span>
+            </div>
+            <div class="icon-size-item">
+              <span class="vm-nf vm-nf--md icon-size-item__glyph" aria-hidden="true">&#xf1d3;</span>
+              <span class="icon-size-item__label">--md &middot; 1em</span>
+            </div>
+            <div class="icon-size-item">
+              <span class="vm-nf vm-nf--lg icon-size-item__glyph" aria-hidden="true">&#xf1d3;</span>
+              <span class="icon-size-item__label">--lg &middot; 1.272em (sqrt phi)</span>
+            </div>
+            <div class="icon-size-item">
+              <span class="vm-nf vm-nf--xl icon-size-item__glyph" aria-hidden="true">&#xf1d3;</span>
+              <span class="icon-size-item__label">--xl &middot; 1.618em (phi)</span>
+            </div>
+            <div class="icon-size-item">
+              <span class="vm-nf vm-nf--2xl icon-size-item__glyph" aria-hidden="true">&#xf1d3;</span>
+              <span class="icon-size-item__label">--2xl &middot; 2.618em (phi^2)</span>
+            </div>
+          </div>
+          <div class="vm-note" style="margin-top:20px;">
+            All sizes derive from the golden ratio. Base = 1em inherits from parent font-size, so icons scale naturally with text.
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+           COLOR VARIANTS
+           ============================================ -->
+      <section id="color-variants" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Color variants</div>
+          <h2 class="text-heading-lg">Token-driven color modifiers</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="icon-color-grid">
+            <div class="icon-color-card">
+              <span class="vm-nf vm-nf-star vm-nf--xl vm-nf--accent" aria-hidden="true"></span>
+              <div>
+                <div class="icon-color-card__label">--accent</div>
+                <div class="text-caption" style="color:var(--text-muted);">var(--accent-primary)</div>
+              </div>
+            </div>
+            <div class="icon-color-card">
+              <span class="vm-nf vm-nf-star vm-nf--xl vm-nf--secondary" aria-hidden="true"></span>
+              <div>
+                <div class="icon-color-card__label">--secondary</div>
+                <div class="text-caption" style="color:var(--text-muted);">var(--accent-secondary)</div>
+              </div>
+            </div>
+            <div class="icon-color-card">
+              <span class="vm-nf vm-nf-star vm-nf--xl vm-nf--muted" aria-hidden="true"></span>
+              <div>
+                <div class="icon-color-card__label">--muted</div>
+                <div class="text-caption" style="color:var(--text-muted);">var(--text-muted)</div>
+              </div>
+            </div>
+            <div class="icon-color-card">
+              <span class="vm-nf vm-nf-check-circle vm-nf--xl vm-nf--success" aria-hidden="true"></span>
+              <div>
+                <div class="icon-color-card__label">--success</div>
+                <div class="text-caption" style="color:var(--text-muted);">var(--color-success)</div>
+              </div>
+            </div>
+            <div class="icon-color-card">
+              <span class="vm-nf vm-nf-warning vm-nf--xl vm-nf--warning" aria-hidden="true"></span>
+              <div>
+                <div class="icon-color-card__label">--warning</div>
+                <div class="text-caption" style="color:var(--text-muted);">var(--color-warning)</div>
+              </div>
+            </div>
+            <div class="icon-color-card">
+              <span class="vm-nf vm-nf-x-circle vm-nf--xl vm-nf--danger" aria-hidden="true"></span>
+              <div>
+                <div class="icon-color-card__label">--danger</div>
+                <div class="text-caption" style="color:var(--text-muted);">var(--color-danger)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+           ICON EXPLORER
+           ============================================ -->
+      <section id="icon-explorer" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Icon explorer</div>
+          <h2 class="text-heading-lg">Click any icon to copy its HTML entity</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="icon-explorer__toolbar">
+            <input type="text" class="icon-explorer__search" id="iconSearch" placeholder="Search icons..." aria-label="Filter icons by name">
+            <span class="icon-explorer__count" id="iconCount"></span>
+          </div>
+          <div class="icon-explorer__cats" id="iconCats" role="group" aria-label="Filter by category"></div>
+          <div class="icon-explorer__grid" id="iconGrid"></div>
+        </div>
+      </section>
+
+      <!-- ============================================
+           USAGE PATTERNS
+           ============================================ -->
+      <section id="usage-patterns" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Usage patterns</div>
+          <h2 class="text-heading-lg">Icons in real components</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="icon-usage-grid">
+            <div class="icon-usage-card">
+              <div class="icon-usage-card__title">Button with icon</div>
+              <div class="icon-usage-card__demo">
+                <button class="vm-btn vm-btn--primary">
+                  <span class="vm-nf vm-nf-git vm-nf--sm" aria-hidden="true"></span>
+                  Clone Repo
+                </button>
+                <button class="vm-btn vm-btn--outline">
+                  <span class="vm-nf vm-nf-download vm-nf--sm" aria-hidden="true"></span>
+                  Download
+                </button>
+              </div>
+            </div>
+            <div class="icon-usage-card">
+              <div class="icon-usage-card__title">Badge with status icon</div>
+              <div class="icon-usage-card__demo">
+                <span class="vm-badge vm-badge--success">
+                  <span class="vm-nf vm-nf-check-circle vm-nf--sm" aria-hidden="true"></span>
+                  Deployed
+                </span>
+                <span class="vm-badge vm-badge--warning">
+                  <span class="vm-nf vm-nf-clock vm-nf--sm" aria-hidden="true"></span>
+                  Pending
+                </span>
+                <span class="vm-badge vm-badge--danger">
+                  <span class="vm-nf vm-nf-x-circle vm-nf--sm" aria-hidden="true"></span>
+                  Failed
+                </span>
+              </div>
+            </div>
+            <div class="icon-usage-card">
+              <div class="icon-usage-card__title">Nav item with icon</div>
+              <div class="icon-usage-card__demo" style="flex-direction:column; gap:4px; width:100%;">
+                <a href="#" class="vm-docs__nav-link" style="pointer-events:none;">
+                  <span class="vm-nf vm-nf-home vm-nf--sm vm-nf--accent" aria-hidden="true"></span>
+                  Dashboard
+                </a>
+                <a href="#" class="vm-docs__nav-link" style="pointer-events:none;">
+                  <span class="vm-nf vm-nf-settings vm-nf--sm vm-nf--muted" aria-hidden="true"></span>
+                  Settings
+                </a>
+                <a href="#" class="vm-docs__nav-link" style="pointer-events:none;">
+                  <span class="vm-nf vm-nf-terminal vm-nf--sm vm-nf--muted" aria-hidden="true"></span>
+                  Console
+                </a>
+              </div>
+            </div>
+            <div class="icon-usage-card">
+              <div class="icon-usage-card__title">Inline with text</div>
+              <div class="icon-usage-card__demo" style="flex-direction:column; gap:8px;">
+                <p class="text-body-sm" style="color:var(--text-secondary);">
+                  <span class="vm-nf vm-nf-shield vm-nf--success" aria-hidden="true"></span>
+                  SSL certificate valid until 2027
+                </p>
+                <p class="text-body-sm" style="color:var(--text-secondary);">
+                  <span class="vm-nf vm-nf-git-branch vm-nf--accent" aria-hidden="true"></span>
+                  3 branches &middot; 47 commits ahead
+                </p>
+                <p class="text-body-sm" style="color:var(--text-secondary);">
+                  <span class="vm-nf vm-nf-docker vm-nf--secondary" aria-hidden="true"></span>
+                  Container running on port 8080
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+           INTEGRATION GUIDE
+           ============================================ -->
+      <section id="integration" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Integration</div>
+          <h2 class="text-heading-lg">Loading the icon font</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="vm-grid-2">
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Production (subset)</div>
+              <p class="text-body-sm" style="color:var(--text-secondary); margin-bottom:12px;">
+                VibemilkIcons.woff2 (~40KB) contains only the 250+ curated glyphs.
+                Loaded automatically via <code>vibemilk-core.css</code>.
+              </p>
+              <pre class="vm-code"><code>/* Already in tokens.css */
+--font-icons: "VibemilkIcons", "Symbols Nerd Font";</code></pre>
+            </article>
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Exploration (full)</div>
+              <p class="text-body-sm" style="color:var(--text-secondary); margin-bottom:12px;">
+                Install <em>Symbols Nerd Font Mono</em> system-wide for 10,000+ glyphs.
+                The fallback in <code>--font-icons</code> picks it up automatically.
+              </p>
+              <pre class="vm-code"><code>/* Use any Nerd Font codepoint */
+&lt;span class="vm-nf"&gt;&amp;#xf10fe;&lt;/span&gt;</code></pre>
+            </article>
+          </div>
+          <div class="vm-note" style="margin-top:16px;">
+            Token reference: <code>var(--font-icons)</code> &middot; Base class: <code>.vm-nf</code> &middot;
+            Full icon CSS: <code>css/core/icons.css</code> &middot;
+            See <a href="integration.html#start">Integration Guide</a> for setup details.
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Toast element for copy feedback -->
+  <div class="vm-docs-toast" id="iconToast">Copied!</div>
+
+  <script src="../js/vibemilk-docs.js" defer></script>
+  <script>
+  /* ============================================
+     ICON EXPLORER — self-contained module
+     ============================================ */
+  (function() {
+    'use strict';
+
+    /* -- Full icon data extracted from css/core/icons.css -- */
+    var ICONS = [
+      /* UI Controls */
+      {name:"chevron-right",  hex:"eb6f", cat:"UI"},
+      {name:"chevron-down",   hex:"eb6c", cat:"UI"},
+      {name:"chevron-up",     hex:"eb70", cat:"UI"},
+      {name:"chevron-left",   hex:"eb6e", cat:"UI"},
+      {name:"arrow-right",    hex:"ea9c", cat:"UI"},
+      {name:"arrow-left",     hex:"ea9b", cat:"UI"},
+      {name:"arrow-up",       hex:"ea9d", cat:"UI"},
+      {name:"arrow-down",     hex:"ea9a", cat:"UI"},
+      {name:"close",          hex:"ea76", cat:"UI"},
+      {name:"check",          hex:"ea6a", cat:"UI"},
+      {name:"plus",           hex:"eb0b", cat:"UI"},
+      {name:"minus",          hex:"eaec", cat:"UI"},
+      {name:"search",         hex:"eb1c", cat:"UI"},
+      {name:"filter",         hex:"eaac", cat:"UI"},
+      {name:"sort",           hex:"eb4c", cat:"UI"},
+      {name:"settings",       hex:"eb2e", cat:"UI"},
+      {name:"gear",           hex:"eb2e", cat:"UI"},
+      {name:"eye",            hex:"ea6b", cat:"UI"},
+      {name:"eye-off",        hex:"f48a", cat:"UI"},
+      {name:"edit",           hex:"eb04", cat:"UI"},
+      {name:"pencil",         hex:"f044", cat:"UI"},
+      {name:"trash",          hex:"eb55", cat:"UI"},
+      {name:"download",       hex:"ea8b", cat:"UI"},
+      {name:"upload",         hex:"eb58", cat:"UI"},
+      {name:"external-link",  hex:"f08e", cat:"UI"},
+      {name:"copy",           hex:"eb07", cat:"UI"},
+      {name:"clipboard",      hex:"eab1", cat:"UI"},
+      {name:"pin",            hex:"eb08", cat:"UI"},
+      {name:"bookmark",       hex:"ea60", cat:"UI"},
+      {name:"bell",           hex:"f0f3", cat:"UI"},
+      {name:"menu",           hex:"eae7", cat:"UI"},
+      {name:"more",           hex:"eaf2", cat:"UI"},
+      {name:"refresh",        hex:"eb13", cat:"UI"},
+      {name:"maximize",       hex:"eae4", cat:"UI"},
+      {name:"minimize",       hex:"eaeb", cat:"UI"},
+      {name:"fullscreen",     hex:"eae4", cat:"UI"},
+      {name:"grip",           hex:"eac0", cat:"UI"},
+      {name:"move",           hex:"eaf3", cat:"UI"},
+      {name:"zoom-in",        hex:"eb69", cat:"UI"},
+      {name:"zoom-out",       hex:"eb6a", cat:"UI"},
+      {name:"undo",           hex:"ea96", cat:"UI"},
+      {name:"redo",           hex:"ea97", cat:"UI"},
+      {name:"save",           hex:"eb20", cat:"UI"},
+
+      /* Weather & Theme */
+      {name:"sun",            hex:"eb30", cat:"Weather"},
+      {name:"moon",           hex:"eaf0", cat:"Weather"},
+      {name:"cloud",          hex:"ea73", cat:"Weather"},
+      {name:"rain",           hex:"e339", cat:"Weather"},
+      {name:"snow",           hex:"e33a", cat:"Weather"},
+      {name:"wind",           hex:"e37d", cat:"Weather"},
+      {name:"temperature",    hex:"e350", cat:"Weather"},
+      {name:"lightning",      hex:"eb49", cat:"Weather"},
+
+      /* Status & Feedback */
+      {name:"check-circle",   hex:"f058", cat:"Status"},
+      {name:"x-circle",       hex:"f057", cat:"Status"},
+      {name:"warning",        hex:"ea6c", cat:"Status"},
+      {name:"info",           hex:"ea74", cat:"Status"},
+      {name:"question",       hex:"eb0f", cat:"Status"},
+      {name:"clock",          hex:"ea70", cat:"Status"},
+      {name:"shield",         hex:"eb2d", cat:"Status"},
+      {name:"lock",           hex:"f023", cat:"Status"},
+      {name:"unlock",         hex:"f09c", cat:"Status"},
+      {name:"fire",           hex:"f490", cat:"Status"},
+      {name:"star",           hex:"eb4e", cat:"Status"},
+      {name:"heart",          hex:"eac6", cat:"Status"},
+      {name:"thumbs-up",      hex:"eb51", cat:"Status"},
+      {name:"circle-dot",     hex:"eacc", cat:"Status"},
+      {name:"alert",          hex:"ea6c", cat:"Status"},
+      {name:"ban",            hex:"eb56", cat:"Status"},
+      {name:"flag",           hex:"f024", cat:"Status"},
+
+      /* Dev & Languages */
+      {name:"git",            hex:"f1d3", cat:"Dev"},
+      {name:"git-branch",     hex:"e0a0", cat:"Dev"},
+      {name:"git-commit",     hex:"eab1", cat:"Dev"},
+      {name:"git-merge",      hex:"eab2", cat:"Dev"},
+      {name:"git-pr",         hex:"eab3", cat:"Dev"},
+      {name:"github",         hex:"f113", cat:"Dev"},
+      {name:"gitlab",         hex:"f296", cat:"Dev"},
+      {name:"terminal",       hex:"eb4a", cat:"Dev"},
+      {name:"code",           hex:"ea77", cat:"Dev"},
+      {name:"brackets",       hex:"ea77", cat:"Dev"},
+      {name:"bug",            hex:"ea63", cat:"Dev"},
+      {name:"html",           hex:"e736", cat:"Dev"},
+      {name:"css",            hex:"e749", cat:"Dev"},
+      {name:"javascript",     hex:"e781", cat:"Dev"},
+      {name:"typescript",     hex:"e628", cat:"Dev"},
+      {name:"python",         hex:"e73c", cat:"Dev"},
+      {name:"rust",           hex:"e7a8", cat:"Dev"},
+      {name:"swift",          hex:"e755", cat:"Dev"},
+      {name:"go",             hex:"e724", cat:"Dev"},
+      {name:"react",          hex:"e7ba", cat:"Dev"},
+      {name:"vue",            hex:"e6a0", cat:"Dev"},
+      {name:"angular",        hex:"e753", cat:"Dev"},
+      {name:"node",           hex:"e718", cat:"Dev"},
+      {name:"npm",            hex:"e71e", cat:"Dev"},
+      {name:"docker",         hex:"f308", cat:"Dev"},
+      {name:"kubernetes",     hex:"f10fe",cat:"Dev"},
+      {name:"aws",            hex:"e7ad", cat:"Dev"},
+      {name:"database",       hex:"f1c0", cat:"Dev"},
+      {name:"api",            hex:"ead0", cat:"Dev"},
+      {name:"package",        hex:"eafd", cat:"Dev"},
+      {name:"php",            hex:"e73d", cat:"Dev"},
+      {name:"ruby",           hex:"e791", cat:"Dev"},
+      {name:"java",           hex:"e738", cat:"Dev"},
+      {name:"c",              hex:"e61e", cat:"Dev"},
+      {name:"cpp",            hex:"e61d", cat:"Dev"},
+      {name:"csharp",         hex:"e648", cat:"Dev"},
+      {name:"lua",            hex:"e620", cat:"Dev"},
+      {name:"vim",            hex:"e62b", cat:"Dev"},
+      {name:"neovim",         hex:"e6ae", cat:"Dev"},
+
+      /* File Types */
+      {name:"folder",         hex:"f07b", cat:"Files"},
+      {name:"folder-open",    hex:"f07c", cat:"Files"},
+      {name:"file",           hex:"f15b", cat:"Files"},
+      {name:"file-code",      hex:"f1c9", cat:"Files"},
+      {name:"file-text",      hex:"f15c", cat:"Files"},
+      {name:"file-image",     hex:"f1c5", cat:"Files"},
+      {name:"file-pdf",       hex:"f1c1", cat:"Files"},
+      {name:"file-zip",       hex:"f1c6", cat:"Files"},
+      {name:"json",           hex:"e60b", cat:"Files"},
+      {name:"markdown",       hex:"e73e", cat:"Files"},
+      {name:"yaml",           hex:"e6a1", cat:"Files"},
+      {name:"toml",           hex:"e6b2", cat:"Files"},
+      {name:"config",         hex:"eb2e", cat:"Files"},
+
+      /* System & Hardware */
+      {name:"desktop",        hex:"eb49", cat:"System"},
+      {name:"mobile",         hex:"ea8f", cat:"System"},
+      {name:"tablet",         hex:"ea36", cat:"System"},
+      {name:"wifi",           hex:"eb62", cat:"System"},
+      {name:"bluetooth",      hex:"e61f", cat:"System"},
+      {name:"cpu",            hex:"e266", cat:"System"},
+      {name:"memory",         hex:"eac5", cat:"System"},
+      {name:"battery",        hex:"ea54", cat:"System"},
+      {name:"server",         hex:"ea2c", cat:"System"},
+      {name:"cloud-server",   hex:"ea73", cat:"System"},
+      {name:"chip",           hex:"e266", cat:"System"},
+      {name:"keyboard",       hex:"eacf", cat:"System"},
+      {name:"mouse",          hex:"eaf1", cat:"System"},
+      {name:"usb",            hex:"e1e0", cat:"System"},
+      {name:"printer",        hex:"eb0c", cat:"System"},
+
+      /* Navigation & Layout */
+      {name:"home",           hex:"eac9", cat:"Nav"},
+      {name:"dashboard",      hex:"eac9", cat:"Nav"},
+      {name:"layers",         hex:"ead7", cat:"Nav"},
+      {name:"grid",           hex:"eabf", cat:"Nav"},
+      {name:"list",           hex:"eadd", cat:"Nav"},
+      {name:"columns",        hex:"eb53", cat:"Nav"},
+      {name:"sidebar",        hex:"eb2a", cat:"Nav"},
+      {name:"layout",         hex:"eb53", cat:"Nav"},
+      {name:"table",          hex:"eadd", cat:"Nav"},
+      {name:"panel",          hex:"eb2a", cat:"Nav"},
+
+      /* Communication */
+      {name:"mail",           hex:"eae5", cat:"Comms"},
+      {name:"chat",           hex:"f075", cat:"Comms"},
+      {name:"comment",        hex:"f0e5", cat:"Comms"},
+      {name:"comments",       hex:"f0e6", cat:"Comms"},
+      {name:"notification",   hex:"f0f3", cat:"Comms"},
+      {name:"share",          hex:"f1e0", cat:"Comms"},
+      {name:"link",           hex:"f0c1", cat:"Comms"},
+      {name:"at-sign",        hex:"ea51", cat:"Comms"},
+      {name:"hashtag",        hex:"eac3", cat:"Comms"},
+      {name:"send",           hex:"eb27", cat:"Comms"},
+      {name:"inbox",          hex:"eaca", cat:"Comms"},
+      {name:"phone",          hex:"eb07", cat:"Comms"},
+      {name:"video",          hex:"eb5c", cat:"Comms"},
+      {name:"image",          hex:"eacb", cat:"Comms"},
+      {name:"camera",         hex:"ea66", cat:"Comms"},
+
+      /* Powerline */
+      {name:"pl-right",       hex:"e0b0", cat:"Powerline"},
+      {name:"pl-right-thin",  hex:"e0b1", cat:"Powerline"},
+      {name:"pl-left",        hex:"e0b2", cat:"Powerline"},
+      {name:"pl-left-thin",   hex:"e0b3", cat:"Powerline"},
+      {name:"pl-branch",      hex:"e0a0", cat:"Powerline"},
+      {name:"pl-line",        hex:"e0a1", cat:"Powerline"},
+      {name:"pl-lock",        hex:"e0a2", cat:"Powerline"},
+      {name:"pl-column",      hex:"e0a3", cat:"Powerline"},
+
+      /* Brands */
+      {name:"apple",          hex:"f179", cat:"Brands"},
+      {name:"linux",          hex:"f17c", cat:"Brands"},
+      {name:"windows",        hex:"f17a", cat:"Brands"},
+      {name:"android",        hex:"f17b", cat:"Brands"},
+      {name:"raspberry-pi",   hex:"f315", cat:"Brands"},
+      {name:"arduino",        hex:"e255", cat:"Brands"},
+      {name:"spotify",        hex:"f1bc", cat:"Brands"},
+      {name:"discord",        hex:"f1d9", cat:"Brands"},
+      {name:"slack",          hex:"f198", cat:"Brands"},
+      {name:"vscode",         hex:"e70c", cat:"Brands"},
+      {name:"chrome",         hex:"e743", cat:"Brands"},
+      {name:"firefox",        hex:"e745", cat:"Brands"},
+      {name:"safari",         hex:"e748", cat:"Brands"},
+      {name:"figma",          hex:"e771", cat:"Brands"},
+      {name:"sketch",         hex:"e7b4", cat:"Brands"},
+      {name:"stackoverflow",  hex:"f16c", cat:"Brands"},
+      {name:"twitter",        hex:"f099", cat:"Brands"},
+      {name:"youtube",        hex:"f167", cat:"Brands"}
+    ];
+
+    var CATEGORIES = ["All","UI","Dev","Files","Status","System","Nav","Comms","Weather","Powerline","Brands"];
+
+    var grid      = document.getElementById('iconGrid');
+    var search    = document.getElementById('iconSearch');
+    var catBar    = document.getElementById('iconCats');
+    var countEl   = document.getElementById('iconCount');
+    var toast     = document.getElementById('iconToast');
+    var activeCat = 'All';
+    var toastTimer = null;
+
+    function initHeroCascadeWave() {
+      var cascade = document.querySelector('.icon-hero-cascade');
+      if (!cascade || !window.requestAnimationFrame) return;
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (window.matchMedia && !window.matchMedia('(pointer: fine)').matches) return;
+
+      var icons = Array.prototype.slice.call(cascade.querySelectorAll('.vm-nf'));
+      if (!icons.length) return;
+
+      var states = icons.map(function(icon) {
+        return { el: icon, energy: 0, target: 0 };
+      });
+      var pointerX = 0;
+      var pointerY = 0;
+      var rafId = 0;
+
+      function setTargetsFromPointer() {
+        states.forEach(function(state) {
+          var rect = state.el.getBoundingClientRect();
+          var centerX = rect.left + (rect.width / 2);
+          var centerY = rect.top + (rect.height / 2);
+          var dx = pointerX - centerX;
+          var dy = (pointerY - centerY) * 1.35;
+          var distance = Math.sqrt((dx * dx) + (dy * dy));
+          var normalized = Math.max(0, 1 - (distance / 92));
+          state.target = normalized * normalized;
+        });
+      }
+
+      function releaseWave() {
+        states.forEach(function(state) {
+          state.target = 0;
+        });
+        kick();
+      }
+
+      function renderWave() {
+        var keepAnimating = false;
+
+        states.forEach(function(state, index) {
+          var easing = state.target > state.energy ? 0.4 : 0.075;
+          state.energy += (state.target - state.energy) * easing;
+
+          if (Math.abs(state.target - state.energy) > 0.002) {
+            keepAnimating = true;
+          }
+
+          var scale = 1 + (state.energy * 0.92);
+          var lift = state.energy * 18;
+          var glow = state.energy * 1.25;
+          var tilt = ((index % 2 === 0 ? -1 : 1) * state.energy * 2.6);
+
+          state.el.style.setProperty('--hero-scale', scale.toFixed(3));
+          state.el.style.setProperty('--hero-lift', lift.toFixed(3));
+          state.el.style.setProperty('--hero-glow', glow.toFixed(3));
+          state.el.style.setProperty('--hero-tilt', tilt.toFixed(3) + 'deg');
+        });
+
+        if (keepAnimating) {
+          rafId = requestAnimationFrame(renderWave);
+        } else {
+          rafId = 0;
+        }
+      }
+
+      function kick() {
+        if (!rafId) {
+          rafId = requestAnimationFrame(renderWave);
+        }
+      }
+
+      cascade.addEventListener('pointerenter', function(event) {
+        pointerX = event.clientX;
+        pointerY = event.clientY;
+        setTargetsFromPointer();
+        kick();
+      });
+
+      cascade.addEventListener('pointermove', function(event) {
+        pointerX = event.clientX;
+        pointerY = event.clientY;
+        setTargetsFromPointer();
+        kick();
+      });
+
+      cascade.addEventListener('pointerleave', releaseWave);
+      cascade.addEventListener('pointercancel', releaseWave);
+      window.addEventListener('blur', releaseWave);
+    }
+
+    function hexToChar(hex) {
+      return String.fromCodePoint(parseInt(hex, 16));
+    }
+
+    function renderCats() {
+      CATEGORIES.forEach(function(cat) {
+        var btn = document.createElement('button');
+        btn.className = 'icon-explorer__cat-btn' + (cat === 'All' ? ' is-active' : '');
+        btn.type = 'button';
+        btn.textContent = cat;
+        btn.setAttribute('data-cat', cat);
+        btn.addEventListener('click', function() {
+          activeCat = cat;
+          catBar.querySelectorAll('.icon-explorer__cat-btn').forEach(function(b) {
+            b.classList.toggle('is-active', b.getAttribute('data-cat') === cat);
+          });
+          renderGrid();
+        });
+        catBar.appendChild(btn);
+      });
+    }
+
+    function getFiltered() {
+      var q = (search.value || '').toLowerCase().trim();
+      return ICONS.filter(function(icon) {
+        var matchCat = activeCat === 'All' || icon.cat === activeCat;
+        var matchSearch = !q || icon.name.indexOf(q) !== -1 || icon.hex.indexOf(q) !== -1;
+        return matchCat && matchSearch;
+      });
+    }
+
+    function renderGrid() {
+      var filtered = getFiltered();
+      countEl.textContent = filtered.length + ' / ' + ICONS.length;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="icon-explorer__empty">No icons match your search.</div>';
+        return;
+      }
+
+      var frag = document.createDocumentFragment();
+      filtered.forEach(function(icon) {
+        var card = document.createElement('div');
+        card.className = 'icon-explorer__card';
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', 'Copy ' + icon.name + ' icon');
+        card.setAttribute('data-hex', icon.hex);
+
+        var glyph = document.createElement('span');
+        glyph.className = 'icon-explorer__glyph';
+        glyph.setAttribute('aria-hidden', 'true');
+        glyph.textContent = hexToChar(icon.hex);
+
+        var name = document.createElement('span');
+        name.className = 'icon-explorer__name';
+        name.textContent = icon.name;
+
+        var hex = document.createElement('span');
+        hex.className = 'icon-explorer__hex';
+        hex.textContent = icon.hex;
+
+        card.appendChild(glyph);
+        card.appendChild(name);
+        card.appendChild(hex);
+        frag.appendChild(card);
+      });
+      grid.innerHTML = '';
+      grid.appendChild(frag);
+    }
+
+    function copyIcon(hex) {
+      var entity = '&#x' + hex + ';';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(entity);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = entity;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      showToast('Copied  ' + entity);
+    }
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('is-visible');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(function() {
+        toast.classList.remove('is-visible');
+      }, 2000);
+    }
+
+    function init() {
+      initHeroCascadeWave();
+      renderCats();
+      renderGrid();
+
+      search.addEventListener('input', renderGrid);
+
+      grid.addEventListener('click', function(e) {
+        var card = e.target.closest('.icon-explorer__card');
+        if (card) copyIcon(card.getAttribute('data-hex'));
+      });
+
+      grid.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          var card = e.target.closest('.icon-explorer__card');
+          if (card) {
+            e.preventDefault();
+            copyIcon(card.getAttribute('data-hex'));
+          }
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+/* Vibemilk Theme: geocities-97
+   Web Nostalgia / Geocities Revival — Internet 1997 aesthetic (light mode)
+   ========================================================================= */
+
+:root[data-theme="geocities-97"] {
+  --theme-id: 'geocities-97';
+  --theme-mode: 'light';
+
+  /* -- Font Family -- */
+  --font-family: 'Trebuchet MS', 'Verdana', 'Arial', system-ui, sans-serif;
+  --font-mono: 'Courier New', 'Courier', monospace;
+
+  /* -- Font Sizes -- */
+  --fs-display-xl: 34px;
+  --fs-display-lg: 26px;
+  --fs-heading-xl: 22px;
+  --fs-heading-lg: 18px;
+  --fs-heading-md: 16px;
+  --fs-heading-sm: 15px;
+  --fs-body-lg: 15px;
+  --fs-body-md: 14px;
+  --fs-body-sm: 13px;
+  --fs-caption: 12px;
+  --fs-overline: 11px;
+  --fs-micro: 10px;
+
+  /* -- Component Dimensions -- */
+  --btn-height-xs: 26px;
+  --btn-height-sm: 32px;
+  --btn-height-md: 38px;
+  --btn-height-lg: 46px;
+  --btn-height-xl: 54px;
+  --btn-padding-xs: 8px;
+  --btn-padding-sm: 12px;
+  --btn-padding-md: 16px;
+  --btn-padding-lg: 22px;
+  --btn-padding-xl: 30px;
+  --input-height-sm: 36px;
+  --input-height-md: 42px;
+  --input-height-lg: 50px;
+  --progress-height: 14px;
+  --toggle-track-width: 44px;
+  --toggle-track-height: 24px;
+  --toggle-thumb-size: 18px;
+  --toggle-thumb-offset: 3px;
+  --avatar-size-xs: 28px;
+  --avatar-size-sm: 36px;
+  --avatar-size-md: 44px;
+  --avatar-size-lg: 56px;
+  --avatar-size-xl: 72px;
+
+  /* -- Backgrounds (Win95 gray) -- */
+  --bg-deepest: #D4D0C8;
+  --bg-deep: #D4D0C8;
+  --bg-surface: #C0C0C0;
+  --bg-surface-hover: #CFCFCF;
+  --bg-elevated: #FFFFFF;
+  --bg-elevated-hover: #F0F0F0;
+  --bg-input: #FFFFFF;
+  --bg-input-focus: #FFFFFF;
+  --bg-overlay: rgba(192, 192, 192, 0.92);
+
+  /* -- Text -- */
+  --text-primary: #000000;
+  --text-secondary: #333333;
+  --text-tertiary: #666666;
+  --text-muted: #999999;
+  --text-inverse: #FFFFFF;
+
+  /* -- Accent Primary (Hyperlink Blue) -- */
+  --accent-primary: #0000EE;
+  --accent-primary-hover: #0000CC;
+  --accent-primary-active: #0000AA;
+  --accent-primary-subtle: rgba(0, 0, 238, 0.1);
+
+  /* -- Accent Secondary (Visited Purple) -- */
+  --accent-secondary: #551A8B;
+  --accent-secondary-hover: #6B2FAA;
+  --accent-secondary-subtle: rgba(85, 26, 139, 0.1);
+
+  /* -- Semantic: Success -- */
+  --color-success: #008000;
+  --color-success-hover: #006600;
+  --color-success-subtle: rgba(0, 128, 0, 0.1);
+
+  /* -- Semantic: Warning -- */
+  --color-warning: #FFD700;
+  --color-warning-hover: #E6C200;
+  --color-warning-subtle: rgba(255, 215, 0, 0.15);
+
+  /* -- Semantic: Danger -- */
+  --color-danger: #FF0000;
+  --color-danger-hover: #CC0000;
+  --color-danger-subtle: rgba(255, 0, 0, 0.1);
+
+  /* -- Semantic: Info -- */
+  --color-info: #0000FF;
+  --color-info-subtle: rgba(0, 0, 255, 0.1);
+
+  /* -- Gradients (flat, no modern gradients) -- */
+  --gradient-brand: linear-gradient(135deg, #0000EE 0%, #551A8B 100%);
+  --gradient-card: linear-gradient(135deg, #0000EE 0%, #0000FF 100%);
+  --gradient-success: linear-gradient(135deg, #008000 0%, #00AA00 100%);
+  --gradient-warm: linear-gradient(135deg, #FFD700 0%, #FF0000 100%);
+  --gradient-surface: linear-gradient(135deg, #C0C0C0 0%, #D4D0C8 100%);
+  --gradient-sidebar: linear-gradient(180deg, #C0C0C0 0%, #D4D0C8 100%);
+  --gradient-glow-purple: radial-gradient(circle, rgba(0, 0, 238, 0.08) 0%, transparent 70%);
+  --gradient-glow-blue: radial-gradient(circle, rgba(0, 0, 255, 0.06) 0%, transparent 70%);
+
+  /* -- Border Radius (everything squared) -- */
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+
+  /* -- Shadows (Win95 bevel style) -- */
+  --shadow-sm: 2px 2px 0px #808080;
+  --shadow-md: 2px 2px 0px #808080, inset 1px 1px 0px #FFFFFF;
+  --shadow-lg: 3px 3px 0px #808080, inset 1px 1px 0px #FFFFFF;
+  --shadow-xl: 4px 4px 0px #808080, inset 1px 1px 0px #FFFFFF;
+  --shadow-glow-sm: 2px 2px 0px #808080;
+  --shadow-glow-md: 3px 3px 0px #808080;
+  --shadow-glow-blue: 2px 2px 0px #808080;
+  --shadow-inset: inset 1px 1px 0px #808080, inset -1px -1px 0px #FFFFFF;
+
+  /* -- Stroke Tokens -- */
+  --stroke-width-ui: 2px;
+  --stroke-width-strong: 2px;
+  --stroke-width-heavy: 3px;
+  --stroke-subtle: rgba(0, 0, 0, 0.15);
+  --stroke-default: rgba(0, 0, 0, 0.25);
+  --stroke-strong: rgba(0, 0, 0, 0.4);
+  --stroke-accent: #0000EE;
+  --stroke-success: #008000;
+  --stroke-danger: #FF0000;
+
+  /* -- Selection & Overlays (light-mode) -- */
+  --selection-bg: rgba(0, 0, 255, 0.35);
+  --selection-text: #FFFFFF;
+  --surface-overlay-soft: rgba(0, 0, 0, 0.03);
+  --surface-overlay-strong: rgba(0, 0, 0, 0.08);
+  --card-hover-border: rgba(0, 0, 0, 0.2);
+  --table-stripe-bg: rgba(0, 0, 0, 0.04);
+  --divider-color: rgba(0, 0, 0, 0.15);
+  --divider-dashed-color: rgba(0, 0, 0, 0.2);
+  --skeleton-shimmer: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.06), transparent);
+  --focus-ring-color: rgba(0, 0, 238, 0.5);
+  --focus-ring-soft: 0 0 0 3px rgba(0, 0, 238, 0.2);
+  --focus-ring-danger: 0 0 0 3px rgba(255, 0, 0, 0.2);
+  --text-on-primary: #FFFFFF;
+  --text-on-success: #FFFFFF;
+  --text-on-danger: #FFFFFF;
+  --text-on-gradient: #FFFFFF;
+  --text-on-warning: #000000;
+  --loader-stroke: rgba(0, 0, 0, 0.15);
+  --loader-stroke-active: #0000EE;
+  --control-handle: #FFFFFF;
+  --control-handle-shadow: 1px 1px 0px #808080;
+  --range-thumb-shadow: 1px 1px 0px #808080;
+  --status-glow-success: 0 0 0 2px #008000;
+  --status-glow-warning: 0 0 0 2px #FFD700;
+  --nerds-border: 2px solid rgba(0, 0, 0, 0.2);
+  --nerds-inset-glow: inset 1px 1px 0px #FFFFFF, inset -1px -1px 0px #808080;
+  --nerds-label: #666666;
+  --nerds-divider: rgba(0, 0, 0, 0.15);
+  --nerds-footer-border: 2px solid rgba(0, 0, 0, 0.12);
+  --nerds-footer-color: #666666;
+
+  /* -- FX Grid (retro minimal) -- */
+  --fx-grid-perspective: 600px;
+  --fx-grid-plane-bottom: -8vh;
+  --fx-grid-plane-height: 62vh;
+  --fx-grid-plane-size: 32px;
+  --fx-grid-plane-opacity: 0.25;
+  --fx-grid-plane-line-a: rgba(0, 0, 238, 0.08);
+  --fx-grid-plane-line-b: rgba(85, 26, 139, 0.06);
+  --fx-grid-glow-height: 50%;
+  --fx-grid-glow-a: rgba(0, 0, 238, 0.05);
+  --fx-grid-glow-b: rgba(85, 26, 139, 0.03);
+  --fx-grid-horizon-bottom: 60%;
+  --fx-grid-horizon-a: rgba(0, 0, 0, 0.08);
+  --fx-grid-horizon-b: rgba(0, 0, 0, 0.05);
+  --fx-grid-horizon-shadow-a: rgba(0, 0, 0, 0.04);
+  --fx-grid-horizon-shadow-b: rgba(0, 0, 0, 0.02);
+  --fx-grid-scanline-a: rgba(0, 0, 0, 0.04);
+  --fx-grid-scanline-shadow: rgba(0, 0, 0, 0.02);
+  --fx-grid-vline-a: rgba(0, 0, 238, 0.06);
+  --fx-grid-vline-b: rgba(85, 26, 139, 0.04);
+  --fx-grid-vignette: rgba(192, 192, 192, 0.2);
+  --fx-grid-scroll-duration: 8s;
+  --fx-grid-glow-duration: 10s;
+  --fx-grid-scan-duration: 6s;
+  --fx-grid-vline-duration: 8s;
+
+  --logo-color: #0000EE;
+
+  /* -- Select Dropdown States -- */
+  --select-option-bg: #FFFFFF;
+  --select-option-color: #000000;
+  --select-option-hover-bg: #0000EE;
+  --select-option-hover-color: #FFFFFF;
+  --select-option-selected-bg: #0000AA;
+  --select-option-selected-color: #FFFFFF;
+
+  /* -- Sidebar -- */
+  --sidebar-collapsed: 100px;
+  --sidebar-expanded: 260px;
+}
+
+/* Win95 bevel effect on cards and panels */
+:root[data-theme="geocities-97"] .vm-card,
+:root[data-theme="geocities-97"] .vm-stat,
+:root[data-theme="geocities-97"] .vm-alert,
+:root[data-theme="geocities-97"] .vm-code,
+:root[data-theme="geocities-97"] .vm-nerds,
+:root[data-theme="geocities-97"] .vm-card-lite {
+  box-shadow: inset 1px 1px 0px #FFFFFF, inset -1px -1px 0px #808080, 2px 2px 0px #808080;
+}
+
+/* Chunky raised buttons */
+:root[data-theme="geocities-97"] .vm-btn {
+  box-shadow: inset 1px 1px 0px #FFFFFF, inset -1px -1px 0px #808080, 1px 1px 0px #000000;
+}
+
+:root[data-theme="geocities-97"] .vm-btn:active {
+  box-shadow: inset 1px 1px 0px #808080, inset -1px -1px 0px #FFFFFF;
+}

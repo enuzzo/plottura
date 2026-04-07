@@ -1,0 +1,307 @@
+/* ============================================
+   9. TABLE
+   ============================================ */
+.vm-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+}
+.vm-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.vm-table th {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--fs-overline);
+  font-weight: var(--fw-semibold);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: left;
+  border-bottom: var(--border-subtle);
+}
+.vm-table td {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--fs-body-md);
+  color: var(--text-secondary);
+  border-bottom: var(--border-subtle);
+  vertical-align: middle;
+}
+.vm-table tr:last-child td {
+  border-bottom: none;
+}
+.vm-table tbody tr {
+  transition: background var(--transition-fast);
+}
+.vm-table tbody tr:hover {
+  background: var(--bg-surface-hover);
+}
+.vm-table--striped tbody tr:nth-child(even) {
+  background: var(--table-stripe-bg);
+}
+
+
+/* ============================================
+   17. LIST ITEMS / FEED
+   ============================================ */
+.vm-list {
+  display: flex;
+  flex-direction: column;
+}
+.vm-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-bottom: var(--border-subtle);
+  transition: background var(--transition-fast);
+}
+.vm-list-item:last-child {
+  border-bottom: none;
+}
+.vm-list-item:hover {
+  background: var(--bg-surface-hover);
+}
+.vm-list-item__content {
+  flex: 1;
+  min-width: 0;
+}
+.vm-list-item__title {
+  font-size: var(--fs-body-md);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+}
+.vm-list-item__subtitle {
+  font-size: var(--fs-body-sm);
+  color: var(--text-tertiary);
+  margin-top: 2px;
+}
+.vm-list-item__meta {
+  font-size: var(--fs-caption);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.vm-list-item__actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+
+/* ============================================
+   18. SEPARATORS
+   ============================================ */
+.vm-divider {
+  border: none;
+  height: 1px;
+  background: var(--divider-color);
+  margin: var(--space-4) 0;
+}
+.vm-divider--lg {
+  margin: var(--space-8) 0;
+}
+.vm-divider--dashed {
+  background: none;
+  border-bottom: 1px dashed var(--divider-dashed-color);
+}
+.vm-divider--vertical {
+  width: 1px;
+  height: auto;
+  min-height: 24px;
+  margin: 0 var(--space-4);
+}
+
+
+/* ============================================
+   19. EMPTY STATE
+   ============================================ */
+.vm-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12) var(--space-6);
+  text-align: center;
+}
+.vm-empty__icon {
+  font-size: 64px;
+  color: var(--text-muted);
+  margin-bottom: var(--space-5);
+  opacity: 0.5;
+}
+.vm-empty__title {
+  font-size: var(--fs-heading-md);
+  font-weight: var(--fw-semibold);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2);
+}
+.vm-empty__text {
+  font-size: var(--fs-body-sm);
+  color: var(--text-tertiary);
+  max-width: 320px;
+  margin-bottom: var(--space-6);
+}
+
+
+/* ============================================
+   20. LOADING / SKELETON
+   ============================================ */
+.vm-skeleton {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+}
+.vm-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--skeleton-shimmer);
+  animation: vm-shimmer 1.8s ease infinite;
+}
+@keyframes vm-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.vm-skeleton--text {
+  height: 14px;
+  width: 80%;
+  margin-bottom: var(--space-2);
+}
+.vm-skeleton--heading {
+  height: 24px;
+  width: 50%;
+  margin-bottom: var(--space-3);
+}
+.vm-skeleton--circle {
+  border-radius: 50%;
+}
+.vm-skeleton--block {
+  height: 120px;
+  border-radius: var(--radius-lg);
+}
+
+
+/* ============================================
+   23. CODE / LOG DISPLAY
+   ============================================ */
+.vm-code {
+  background: var(--bg-deepest);
+  border: var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-body-sm);
+  color: var(--text-secondary);
+  overflow-x: auto;
+  line-height: 1.6;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.vm-code--inline {
+  display: inline;
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
+  font-size: 0.9em;
+}
+
+
+/* ============================================
+   23b. STATS FOR NERDS (System Panel)
+   ============================================ */
+.vm-nerds {
+  background: #0A0E1A;
+  border: var(--nerds-border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: #8892A8;
+  box-shadow: var(--nerds-inset-glow);
+  overflow: hidden;
+}
+.vm-nerds__header {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent-primary);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.vm-nerds__section-title {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent-secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.vm-nerds__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  height: 22px;
+  gap: 12px;
+}
+.vm-nerds__label {
+  color: var(--nerds-label);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.vm-nerds__value {
+  color: var(--text-primary);
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.vm-nerds__value--good { color: var(--color-success); }
+.vm-nerds__value--warn { color: var(--color-warning); }
+.vm-nerds__value--crit { color: var(--color-danger); }
+.vm-nerds__value--info { color: var(--accent-secondary); }
+.vm-nerds__value--muted { color: var(--text-tertiary); }
+.vm-nerds__divider {
+  color: var(--nerds-divider);
+  margin: 6px 0;
+  font-size: 11px;
+  text-align: center;
+  user-select: none;
+}
+.vm-nerds__bar {
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+.vm-nerds__bar-fill--good { color: var(--color-success); }
+.vm-nerds__bar-fill--warn { color: var(--color-warning); }
+.vm-nerds__bar-fill--crit { color: var(--color-danger); }
+.vm-nerds__footer {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: var(--nerds-footer-border);
+  font-size: 10px;
+  color: var(--nerds-footer-color);
+  text-align: center;
+}
+.vm-nerds__ascii-logo {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto 8px;
+  color: color-mix(in srgb, #D0D8E8 76%, var(--accent-primary) 24%);
+  font-size: 9px;
+  line-height: 1.05;
+  text-align: left;
+  opacity: 0.82;
+  white-space: pre;
+  overflow-x: auto;
+  overflow-y: hidden;
+  letter-spacing: 0;
+  text-wrap: nowrap;
+  font-variant-ligatures: none;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  scrollbar-width: none;
+}
+.vm-nerds__ascii-logo::-webkit-scrollbar { display: none; }

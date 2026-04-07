@@ -1,0 +1,216 @@
+:root[data-theme="sakura-spring"] {
+  --theme-id: 'sakura-spring';
+  --theme-mode: 'light';
+
+  --font-family: 'Matt', 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Space Mono', 'SF Mono', monospace;
+
+  --fs-display-xl: 36px;
+  --fs-display-lg: 28px;
+  --fs-heading-xl: 24px;
+  --fs-heading-lg: 20px;
+  --fs-heading-md: 18px;
+  --fs-heading-sm: 16px;
+  --fs-body-lg: 16px;
+  --fs-body-md: 14px;
+  --fs-body-sm: 13px;
+  --fs-caption: 12px;
+  --fs-overline: 11px;
+  --fs-micro: 10px;
+
+  --btn-height-sm: 34px;
+  --btn-height-md: 40px;
+  --btn-height-lg: 48px;
+  --btn-padding-sm: 14px;
+  --btn-padding-md: 18px;
+  --btn-padding-lg: 24px;
+  --input-height-sm: 38px;
+  --input-height-md: 44px;
+  --input-height-lg: 52px;
+  --progress-height: 10px;
+
+  /* Backgrounds — sage cream to soft white, airy and warm */
+  --bg-deepest: #D5D8C2;
+  --bg-deep: #E2E4D4;
+  --bg-surface: #EFF0E7;
+  --bg-surface-hover: #E2E4D4;
+  --bg-elevated: #F8F8F3;
+  --bg-elevated-hover: #EFF0E7;
+  --bg-input: #F8F8F3;
+  --bg-input-focus: #FFFFFF;
+  --bg-overlay: rgba(69, 107, 124, 0.72);
+
+  /* Text — deep slate */
+  --text-primary: #2E4A58;
+  --text-secondary: #456B7C;
+  --text-tertiary: #6B8E9E;
+  --text-muted: #94ADB8;
+  --text-inverse: #F8F8F3;
+
+  /* Accent Primary — dusty rose / sakura */
+  --accent-primary: #C87C85;
+  --accent-primary-hover: #D4959D;
+  --accent-primary-active: #B56870;
+  --accent-primary-subtle: rgba(200, 124, 133, 0.14);
+
+  /* Accent Secondary — spring sky blue */
+  --accent-secondary: #5EAED4;
+  --accent-secondary-hover: #7EC4E4;
+  --accent-secondary-subtle: rgba(94, 174, 212, 0.12);
+
+  /* Semantic */
+  --color-success: #6B9E78;
+  --color-success-hover: #85B490;
+  --color-success-subtle: rgba(107, 158, 120, 0.14);
+
+  --color-warning: #D4A85C;
+  --color-warning-hover: #E0BD7E;
+  --color-warning-subtle: rgba(212, 168, 92, 0.14);
+
+  --color-danger: #C86B6B;
+  --color-danger-hover: #D68888;
+  --color-danger-subtle: rgba(200, 107, 107, 0.14);
+
+  --color-info: #5EAED4;
+  --color-info-subtle: rgba(94, 174, 212, 0.14);
+
+  /* Gradients — sakura + sky */
+  --gradient-brand: linear-gradient(135deg, #E8BFC4 0%, #C87C85 40%, #5EAED4 100%);
+  --gradient-card: linear-gradient(135deg, #C87C85 0%, #5EAED4 100%);
+  --gradient-success: linear-gradient(135deg, #6B9E78 0%, #5EAED4 100%);
+  --gradient-warm: linear-gradient(135deg, #D4A85C 0%, #C86B6B 100%);
+  --gradient-surface: linear-gradient(135deg, #EFF0E7 0%, #E6ECF0 100%);
+  --gradient-sidebar: linear-gradient(180deg, #EFF0E7 0%, #E6ECF0 100%);
+  --gradient-glow-purple: radial-gradient(circle, rgba(200, 124, 133, 0.16) 0%, transparent 70%);
+  --gradient-glow-blue: radial-gradient(circle, rgba(94, 174, 212, 0.20) 0%, transparent 70%);
+  --gradient-text: linear-gradient(90deg, #C87C85 0%, #5EAED4 100%);
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+
+  --shadow-sm: 0 2px 8px rgba(69, 107, 124, 0.08);
+  --shadow-md: 0 4px 16px rgba(69, 107, 124, 0.10);
+  --shadow-lg: 0 8px 32px rgba(69, 107, 124, 0.12);
+  --shadow-xl: 0 16px 48px rgba(69, 107, 124, 0.14);
+  --shadow-glow-sm: 0 0 20px rgba(200, 124, 133, 0.14);
+  --shadow-glow-md: 0 0 40px rgba(200, 124, 133, 0.16);
+  --shadow-glow-blue: 0 0 30px rgba(94, 174, 212, 0.12);
+  --shadow-inset: inset 0 2px 4px rgba(69, 107, 124, 0.06);
+
+  --stroke-width-ui: 1px;
+  --stroke-width-strong: 1px;
+  --stroke-width-heavy: 2px;
+  --stroke-subtle: rgba(69, 107, 124, 0.08);
+  --stroke-default: rgba(69, 107, 124, 0.14);
+  --stroke-strong: rgba(69, 107, 124, 0.24);
+  --stroke-accent: #C87C85;
+  --stroke-success: #6B9E78;
+  --stroke-danger: #C86B6B;
+
+  --selection-bg: rgba(200, 124, 133, 0.22);
+  --selection-text: #2E4A58;
+  --surface-overlay-soft: rgba(69, 107, 124, 0.03);
+  --surface-overlay-strong: rgba(69, 107, 124, 0.08);
+  --card-hover-border: rgba(200, 124, 133, 0.20);
+  --table-stripe-bg: rgba(69, 107, 124, 0.03);
+  --divider-color: rgba(69, 107, 124, 0.10);
+  --divider-dashed-color: rgba(69, 107, 124, 0.16);
+  --skeleton-shimmer: linear-gradient(90deg, transparent, rgba(200, 124, 133, 0.06), transparent);
+  --focus-ring-color: rgba(94, 174, 212, 0.50);
+  --focus-ring-soft: 0 0 0 3px rgba(94, 174, 212, 0.18);
+  --focus-ring-danger: 0 0 0 3px rgba(200, 107, 107, 0.18);
+  --text-on-primary: #FFFFFF;
+  --text-on-success: #FFFFFF;
+  --text-on-danger: #FFFFFF;
+  --text-on-gradient: #FFFFFF;
+  --text-on-warning: #2E4A58;
+  --loader-stroke: rgba(255, 255, 255, 0.3);
+  --loader-stroke-active: #FFFFFF;
+  --control-handle: #FFFFFF;
+  --control-handle-shadow: 0 1px 3px rgba(69, 107, 124, 0.20);
+  --range-thumb-shadow: 0 1px 4px rgba(69, 107, 124, 0.20);
+  --status-glow-success: 0 0 8px rgba(107, 158, 120, 0.45);
+  --status-glow-warning: 0 0 8px rgba(212, 168, 92, 0.45);
+  --nerds-border: 1px solid rgba(200, 124, 133, 0.18);
+  --nerds-inset-glow: inset 0 0 60px rgba(200, 124, 133, 0.04);
+  --nerds-label: #6B8E9E;
+  --nerds-divider: rgba(94, 174, 212, 0.20);
+  --nerds-footer-border: 1px solid rgba(94, 174, 212, 0.14);
+  --nerds-footer-color: #6B8E9E;
+
+  --fx-grid-perspective: 600px;
+  --fx-grid-plane-bottom: -8vh;
+  --fx-grid-plane-height: 62vh;
+  --fx-grid-plane-size: 36px;
+  --fx-grid-plane-opacity: 0.6;
+  --fx-grid-plane-line-a: rgba(200, 124, 133, 0.18);
+  --fx-grid-plane-line-b: rgba(94, 174, 212, 0.14);
+  --fx-grid-glow-height: 62%;
+  --fx-grid-glow-a: rgba(200, 124, 133, 0.12);
+  --fx-grid-glow-b: rgba(94, 174, 212, 0.06);
+  --fx-grid-horizon-bottom: 60%;
+  --fx-grid-horizon-a: rgba(200, 124, 133, 0.30);
+  --fx-grid-horizon-b: rgba(94, 174, 212, 0.24);
+  --fx-grid-horizon-shadow-a: rgba(200, 124, 133, 0.16);
+  --fx-grid-horizon-shadow-b: rgba(94, 174, 212, 0.08);
+  --fx-grid-scanline-a: rgba(200, 124, 133, 0.22);
+  --fx-grid-scanline-shadow: rgba(94, 174, 212, 0.12);
+  --fx-grid-vline-a: rgba(200, 124, 133, 0.14);
+  --fx-grid-vline-b: rgba(94, 174, 212, 0.12);
+  --fx-grid-vignette: rgba(69, 107, 124, 0.20);
+  --fx-grid-scroll-duration: 6s;
+  --fx-grid-glow-duration: 7s;
+  --fx-grid-scan-duration: 5s;
+  --fx-grid-vline-duration: 6s;
+
+  --logo-color: #C87C85;
+
+  --select-option-bg: #F8F8F3;
+  --select-option-color: #2E4A58;
+  --select-option-hover-bg: #E8BFC4;
+  --select-option-hover-color: #2E4A58;
+  --select-option-selected-bg: rgba(200, 124, 133, 0.30);
+  --select-option-selected-color: #2E4A58;
+}
+
+:root[data-theme="sakura-spring"] .text-overline {
+  letter-spacing: 0.08em;
+  color: var(--accent-secondary);
+  font-weight: var(--fw-semibold);
+}
+
+:root[data-theme="sakura-spring"] .vm-card,
+:root[data-theme="sakura-spring"] .vm-stat,
+:root[data-theme="sakura-spring"] .vm-modal,
+:root[data-theme="sakura-spring"] .vm-toast,
+:root[data-theme="sakura-spring"] .vm-alert,
+:root[data-theme="sakura-spring"] .vm-code,
+:root[data-theme="sakura-spring"] .vm-nerds,
+:root[data-theme="sakura-spring"] .vm-card-lite {
+  border-color: rgba(200, 124, 133, 0.16);
+}
+
+:root[data-theme="sakura-spring"] .vm-btn--secondary,
+:root[data-theme="sakura-spring"] .vm-btn--outline {
+  border-color: rgba(200, 124, 133, 0.30);
+}
+
+:root[data-theme="sakura-spring"] .vm-input,
+:root[data-theme="sakura-spring"] .vm-select,
+:root[data-theme="sakura-spring"] .vm-dropdown__trigger,
+:root[data-theme="sakura-spring"] .vm-dropdown__menu,
+:root[data-theme="sakura-spring"] .vm-textarea {
+  border-color: rgba(200, 124, 133, 0.22);
+}
+
+:root[data-theme="sakura-spring"] .vm-input:focus,
+:root[data-theme="sakura-spring"] .vm-select:focus,
+:root[data-theme="sakura-spring"] .vm-dropdown.is-open .vm-dropdown__trigger,
+:root[data-theme="sakura-spring"] .vm-textarea:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 1px var(--accent-primary), var(--focus-ring-soft);
+}

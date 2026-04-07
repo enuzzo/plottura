@@ -1,0 +1,251 @@
+/* ============================================
+   VIBEMILK ICON SYSTEM — Nerd Font Glyphs
+   Base class + size/color modifiers + named classes
+
+   Usage:
+   Unicode-first:  <span class="vm-nf" aria-hidden="true">&#xf1d3;</span>
+   Named class:    <span class="vm-nf vm-nf-git" aria-hidden="true"></span>
+   With modifiers: <span class="vm-nf vm-nf--lg vm-nf--accent" aria-hidden="true">&#xf1d3;</span>
+   ============================================ */
+
+/* -- Base Icon Class -- */
+.vm-nf {
+  font-family: var(--font-icons);
+  font-style: normal;
+  font-weight: normal;
+  font-size: inherit;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* -- Size Scale (phi-derived) --
+   sm=0.75  md=1  lg=√φ≈1.272  xl=φ≈1.618  2xl=φ²≈2.618 */
+.vm-nf--sm  { font-size: 0.75em; }
+.vm-nf--md  { font-size: 1em; }
+.vm-nf--lg  { font-size: 1.272em; }
+.vm-nf--xl  { font-size: 1.618em; }
+.vm-nf--2xl { font-size: 2.618em; }
+
+/* -- Color Variants (token-driven) -- */
+.vm-nf--accent    { color: var(--accent-primary); }
+.vm-nf--secondary { color: var(--accent-secondary); }
+.vm-nf--muted     { color: var(--text-muted); }
+.vm-nf--success   { color: var(--color-success); }
+.vm-nf--warning   { color: var(--color-warning); }
+.vm-nf--danger    { color: var(--color-danger); }
+
+/* ============================================
+   NAMED CLASSES — Curated Subset
+   All codepoints verified against Symbols Nerd Font Mono v3.3+
+   Usage: <span class="vm-nf vm-nf-git" aria-hidden="true"></span>
+   ============================================ */
+
+/* -- UI Controls -- */
+.vm-nf-chevron-right::before  { content: "\eb6f"; }
+.vm-nf-chevron-down::before   { content: "\eb6c"; }
+.vm-nf-chevron-up::before     { content: "\eb70"; }
+.vm-nf-chevron-left::before   { content: "\eb6e"; }
+.vm-nf-arrow-right::before    { content: "\ea9c"; }
+.vm-nf-arrow-left::before     { content: "\ea9b"; }
+.vm-nf-arrow-up::before       { content: "\ea9d"; }
+.vm-nf-arrow-down::before     { content: "\ea9a"; }
+.vm-nf-close::before          { content: "\ea76"; }
+.vm-nf-check::before          { content: "\ea6a"; }
+.vm-nf-plus::before           { content: "\eb0b"; }
+.vm-nf-minus::before          { content: "\eaec"; }
+.vm-nf-search::before         { content: "\eb1c"; }
+.vm-nf-filter::before         { content: "\eaac"; }
+.vm-nf-sort::before           { content: "\eb4c"; }
+.vm-nf-settings::before       { content: "\eb2e"; }
+.vm-nf-gear::before           { content: "\eb2e"; }
+.vm-nf-eye::before            { content: "\ea6b"; }
+.vm-nf-eye-off::before        { content: "\f48a"; }
+.vm-nf-edit::before           { content: "\eb04"; }
+.vm-nf-pencil::before         { content: "\f044"; }
+.vm-nf-trash::before          { content: "\eb55"; }
+.vm-nf-download::before       { content: "\ea8b"; }
+.vm-nf-upload::before         { content: "\eb58"; }
+.vm-nf-external-link::before  { content: "\f08e"; }
+.vm-nf-copy::before           { content: "\eb07"; }
+.vm-nf-clipboard::before      { content: "\eab1"; }
+.vm-nf-pin::before            { content: "\eb08"; }
+.vm-nf-bookmark::before       { content: "\ea60"; }
+.vm-nf-bell::before           { content: "\f0f3"; }
+.vm-nf-menu::before           { content: "\eae7"; }
+.vm-nf-more::before           { content: "\eaf2"; }
+.vm-nf-refresh::before        { content: "\eb13"; }
+.vm-nf-maximize::before       { content: "\eae4"; }
+.vm-nf-minimize::before       { content: "\eaeb"; }
+.vm-nf-fullscreen::before     { content: "\eae4"; }
+.vm-nf-grip::before           { content: "\eac0"; }
+.vm-nf-move::before           { content: "\eaf3"; }
+.vm-nf-zoom-in::before        { content: "\eb69"; }
+.vm-nf-zoom-out::before       { content: "\eb6a"; }
+.vm-nf-undo::before           { content: "\ea96"; }
+.vm-nf-redo::before           { content: "\ea97"; }
+.vm-nf-save::before           { content: "\eb20"; }
+
+/* -- Weather & Theme -- */
+.vm-nf-sun::before            { content: "\eb30"; }
+.vm-nf-moon::before           { content: "\eaf0"; }
+.vm-nf-cloud::before          { content: "\ea73"; }
+.vm-nf-rain::before           { content: "\e339"; }
+.vm-nf-snow::before           { content: "\e33a"; }
+.vm-nf-wind::before           { content: "\e37d"; }
+.vm-nf-temperature::before    { content: "\e350"; }
+.vm-nf-lightning::before      { content: "\eb49"; }
+
+/* -- Status & Feedback -- */
+.vm-nf-check-circle::before   { content: "\f058"; }
+.vm-nf-x-circle::before       { content: "\f057"; }
+.vm-nf-warning::before        { content: "\ea6c"; }
+.vm-nf-info::before           { content: "\ea74"; }
+.vm-nf-question::before       { content: "\eb0f"; }
+.vm-nf-clock::before          { content: "\ea70"; }
+.vm-nf-shield::before         { content: "\eb2d"; }
+.vm-nf-lock::before           { content: "\f023"; }
+.vm-nf-unlock::before         { content: "\f09c"; }
+.vm-nf-fire::before           { content: "\f490"; }
+.vm-nf-star::before           { content: "\eb4e"; }
+.vm-nf-heart::before          { content: "\eac6"; }
+.vm-nf-thumbs-up::before      { content: "\eb51"; }
+.vm-nf-circle-dot::before     { content: "\eacc"; }
+.vm-nf-alert::before          { content: "\ea6c"; }
+.vm-nf-ban::before            { content: "\eb56"; }
+.vm-nf-flag::before           { content: "\f024"; }
+
+/* -- Dev & Languages -- */
+.vm-nf-git::before            { content: "\f1d3"; }
+.vm-nf-git-branch::before     { content: "\e0a0"; }
+.vm-nf-git-commit::before     { content: "\eab1"; }
+.vm-nf-git-merge::before      { content: "\eab2"; }
+.vm-nf-git-pr::before         { content: "\eab3"; }
+.vm-nf-github::before         { content: "\f113"; }
+.vm-nf-gitlab::before         { content: "\f296"; }
+.vm-nf-terminal::before       { content: "\eb4a"; }
+.vm-nf-code::before           { content: "\ea77"; }
+.vm-nf-brackets::before       { content: "\ea77"; }
+.vm-nf-bug::before            { content: "\ea63"; }
+.vm-nf-html::before           { content: "\e736"; }
+.vm-nf-css::before            { content: "\e749"; }
+.vm-nf-javascript::before     { content: "\e781"; }
+.vm-nf-typescript::before     { content: "\e628"; }
+.vm-nf-python::before         { content: "\e73c"; }
+.vm-nf-rust::before           { content: "\e7a8"; }
+.vm-nf-swift::before          { content: "\e755"; }
+.vm-nf-go::before             { content: "\e724"; }
+.vm-nf-react::before          { content: "\e7ba"; }
+.vm-nf-vue::before            { content: "\e6a0"; }
+.vm-nf-angular::before        { content: "\e753"; }
+.vm-nf-node::before           { content: "\e718"; }
+.vm-nf-npm::before            { content: "\e71e"; }
+.vm-nf-docker::before         { content: "\f308"; }
+.vm-nf-kubernetes::before     { content: "\f10fe"; }
+.vm-nf-aws::before            { content: "\e7ad"; }
+.vm-nf-database::before       { content: "\f1c0"; }
+.vm-nf-api::before            { content: "\ead0"; }
+.vm-nf-package::before        { content: "\eafd"; }
+.vm-nf-php::before            { content: "\e73d"; }
+.vm-nf-ruby::before           { content: "\e791"; }
+.vm-nf-java::before           { content: "\e738"; }
+.vm-nf-c::before              { content: "\e61e"; }
+.vm-nf-cpp::before            { content: "\e61d"; }
+.vm-nf-csharp::before         { content: "\e648"; }
+.vm-nf-lua::before            { content: "\e620"; }
+.vm-nf-vim::before            { content: "\e62b"; }
+.vm-nf-neovim::before         { content: "\e6ae"; }
+
+/* -- File Types -- */
+.vm-nf-folder::before         { content: "\f07b"; }
+.vm-nf-folder-open::before    { content: "\f07c"; }
+.vm-nf-file::before           { content: "\f15b"; }
+.vm-nf-file-code::before      { content: "\f1c9"; }
+.vm-nf-file-text::before      { content: "\f15c"; }
+.vm-nf-file-image::before     { content: "\f1c5"; }
+.vm-nf-file-pdf::before       { content: "\f1c1"; }
+.vm-nf-file-zip::before       { content: "\f1c6"; }
+.vm-nf-json::before           { content: "\e60b"; }
+.vm-nf-markdown::before       { content: "\e73e"; }
+.vm-nf-yaml::before           { content: "\e6a1"; }
+.vm-nf-toml::before           { content: "\e6b2"; }
+.vm-nf-config::before         { content: "\eb2e"; }
+
+/* -- System & Hardware -- */
+.vm-nf-desktop::before        { content: "\eb49"; }
+.vm-nf-mobile::before         { content: "\ea8f"; }
+.vm-nf-tablet::before         { content: "\ea36"; }
+.vm-nf-wifi::before           { content: "\eb62"; }
+.vm-nf-bluetooth::before      { content: "\e61f"; }
+.vm-nf-cpu::before            { content: "\e266"; }
+.vm-nf-memory::before         { content: "\eac5"; }
+.vm-nf-battery::before        { content: "\ea54"; }
+.vm-nf-server::before         { content: "\ea2c"; }
+.vm-nf-cloud-server::before   { content: "\ea73"; }
+.vm-nf-chip::before           { content: "\e266"; }
+.vm-nf-keyboard::before       { content: "\eacf"; }
+.vm-nf-mouse::before          { content: "\eaf1"; }
+.vm-nf-usb::before            { content: "\e1e0"; }
+.vm-nf-printer::before        { content: "\eb0c"; }
+
+/* -- Navigation & Layout -- */
+.vm-nf-home::before           { content: "\eac9"; }
+.vm-nf-dashboard::before      { content: "\eac9"; }
+.vm-nf-layers::before         { content: "\ead7"; }
+.vm-nf-grid::before           { content: "\eabf"; }
+.vm-nf-list::before           { content: "\eadd"; }
+.vm-nf-columns::before        { content: "\eb53"; }
+.vm-nf-sidebar::before        { content: "\eb2a"; }
+.vm-nf-layout::before         { content: "\eb53"; }
+.vm-nf-table::before          { content: "\eadd"; }
+.vm-nf-panel::before          { content: "\eb2a"; }
+
+/* -- Communication -- */
+.vm-nf-mail::before           { content: "\eae5"; }
+.vm-nf-chat::before           { content: "\f075"; }
+.vm-nf-comment::before        { content: "\f0e5"; }
+.vm-nf-comments::before       { content: "\f0e6"; }
+.vm-nf-notification::before   { content: "\f0f3"; }
+.vm-nf-share::before          { content: "\f1e0"; }
+.vm-nf-link::before           { content: "\f0c1"; }
+.vm-nf-at-sign::before        { content: "\ea51"; }
+.vm-nf-hashtag::before        { content: "\eac3"; }
+.vm-nf-send::before           { content: "\eb27"; }
+.vm-nf-inbox::before          { content: "\eaca"; }
+.vm-nf-phone::before          { content: "\eb07"; }
+.vm-nf-video::before          { content: "\eb5c"; }
+.vm-nf-image::before          { content: "\eacb"; }
+.vm-nf-camera::before         { content: "\ea66"; }
+
+/* -- Powerline -- */
+.vm-nf-pl-right::before       { content: "\e0b0"; }
+.vm-nf-pl-right-thin::before  { content: "\e0b1"; }
+.vm-nf-pl-left::before        { content: "\e0b2"; }
+.vm-nf-pl-left-thin::before   { content: "\e0b3"; }
+.vm-nf-pl-branch::before      { content: "\e0a0"; }
+.vm-nf-pl-line::before        { content: "\e0a1"; }
+.vm-nf-pl-lock::before        { content: "\e0a2"; }
+.vm-nf-pl-column::before      { content: "\e0a3"; }
+
+/* -- Brand & Logo -- */
+.vm-nf-apple::before          { content: "\f179"; }
+.vm-nf-linux::before          { content: "\f17c"; }
+.vm-nf-windows::before        { content: "\f17a"; }
+.vm-nf-android::before        { content: "\f17b"; }
+.vm-nf-raspberry-pi::before   { content: "\f315"; }
+.vm-nf-arduino::before        { content: "\e255"; }
+.vm-nf-spotify::before        { content: "\f1bc"; }
+.vm-nf-discord::before        { content: "\f1d9"; }
+.vm-nf-slack::before          { content: "\f198"; }
+.vm-nf-vscode::before         { content: "\e70c"; }
+.vm-nf-chrome::before         { content: "\e743"; }
+.vm-nf-firefox::before        { content: "\e745"; }
+.vm-nf-safari::before         { content: "\e748"; }
+.vm-nf-figma::before          { content: "\e771"; }
+.vm-nf-sketch::before         { content: "\e7b4"; }
+.vm-nf-stackoverflow::before  { content: "\f16c"; }
+.vm-nf-twitter::before        { content: "\f099"; }
+.vm-nf-youtube::before        { content: "\f167"; }

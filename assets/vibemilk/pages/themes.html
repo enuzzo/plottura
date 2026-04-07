@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="vibemilk-default">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Themes - Vibemilk Design System</title>
+  <meta name="description" content="Vibemilk theme system: theme gallery, contract, and instructions for adding custom themes.">
+  <link rel="stylesheet" href="../css/vibemilk-core.css">
+  <link rel="stylesheet" href="../css/docs.css">
+  <link rel="stylesheet" href="../css/showcase.css">
+</head>
+<body class="vm-docs" data-vm-page="themes">
+  <aside id="docs-index" class="vm-docs__sidebar" aria-label="Vibemilk documentation index">
+    <div class="vm-docs__sidebar-head">
+      <div class="vm-docs__brand">
+        <a href="../index.html" class="vm-docs__brand-mark" aria-label="Netmilk home"></a>
+        <div class="vm-docs__brand-copy">
+          <a href="../index.html" class="vm-docs__brand-title" style="text-decoration:none;color:inherit;">Vibemilk</a>
+          <div class="vm-docs__brand-subtitle">Netmilk Studio Design System</div>
+        </div>
+      </div>
+
+      <div class="vm-docs__theme">
+        <label class="vm-label">Active theme</label>
+        <div class="vm-dropdown" data-vm-theme-select>
+          <button type="button" class="vm-dropdown__trigger" aria-expanded="false" aria-haspopup="listbox">
+            <span class="vm-dropdown__value">Vibemilk Default</span>
+            <span class="vm-nf vm-dropdown__chevron" aria-hidden="true">&#xeb6c;</span>
+          </button>
+          <ul class="vm-dropdown__menu" role="listbox">
+            <li class="vm-dropdown__item is-selected" role="option" aria-selected="true" data-value="vibemilk-default">Vibemilk Default</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="vibemilk-dark">Vibemilk Dark</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="cyber-grid">Cyber Grid</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="acid-pop">Acid Pop</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="sakura-spring">Sakura Spring</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="mono-brutalist">Mono Brutalist</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="mint-protocol">Mint Protocol</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="cathode-ray">Cathode Ray</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="clean-sheet">Clean Sheet</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="clean-sheet-dark">Clean Sheet Dark</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="solar-dust">Solar Dust</li>
+            <li class="vm-dropdown__item" role="option" aria-selected="false" data-value="geocities-97">Geocities 97</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="vm-docs__controls">
+        <div class="vm-docs__controls-row">
+          <span class="vm-docs__controls-label">Mode</span>
+          <div class="vm-theme-toggle vm-theme-toggle--sidebar" data-vm-mode="day" data-vm-sidebar-toggle role="button" tabindex="0" aria-label="Toggle day/night mode">
+            <div class="vm-theme-toggle__track">
+              <span class="vm-theme-toggle__icon vm-theme-toggle__icon--sun vm-nf" aria-hidden="true">&#xeb30;</span>
+              <span class="vm-theme-toggle__icon vm-theme-toggle__icon--moon vm-nf" aria-hidden="true">&#xeaf0;</span>
+              <div class="vm-theme-toggle__thumb"></div>
+            </div>
+            <span class="vm-theme-toggle__label">day</span>
+          </div>
+        </div>
+        <div class="vm-docs__controls-row">
+          <span class="vm-docs__controls-label">Canvas</span>
+          <div class="vm-preview-toolbar__modes" role="group" aria-label="Preview width">
+            <button type="button" class="vm-btn vm-btn--xs is-active" data-vm-preview-button="desktop" aria-pressed="true">Desktop</button>
+            <button type="button" class="vm-btn vm-btn--xs" data-vm-preview-button="mobile" aria-pressed="false">Mobile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vm-docs__search">
+      <input type="text" class="vm-docs__search-input" placeholder="Search navigation..." aria-label="Filter navigation">
+    </div>
+    <nav class="vm-docs__nav">
+      <div class="vm-docs__nav-list">
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Getting Started</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#intro">01. Intro</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#architecture">02. File Structure</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#start">03. Quick Start</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Design System</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="#themes">04. Theme System</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#tokens">05. Design Tokens</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#layout">06. Layout Shell</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="icons.html">07. Icons</a>          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Components</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#components">08. Live Catalog</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="foundations.html#foundations-live">09. Foundations</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#buttons-live">10. Buttons</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#forms-live">11. Forms</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-actions.html#dropdown-live">12. Dropdown</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Data & Feedback</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#cards-live">13. Cards</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#badges-live">14. Badges</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#tabs-live">15. Data Display</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#progress-live">16. Progress</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-data.html#alerts-live">17. Alerts</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Overlays & Nav</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#overlays-live">18. Overlays</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#navigation-live">19. Navigation</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#animations-live">20. Animations</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-overlays.html#diagnostics-live">21. Diagnostics</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Patterns & FX</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#patterns-live">22. Patterns</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#theme-toggle-live">23. Theme Toggle</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#lang-select-live">24. Language Selector</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="comp-utilities.html#fx-grid-live">25. Background FX</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Reference</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#utilities">26. Utilities</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#ai-playbook">27. Playbook AI</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#elementor">28. Elementor V4</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="integration.html#release">29. Versioning</a>
+          </div></div>
+        </div>
+        <div class="vm-docs__nav-group">
+          <div class="vm-docs__nav-group-header">
+            <span>Resources</span>
+            <span class="vm-nf vm-docs__nav-group-chevron" aria-hidden="true">&#xeb6c;</span>
+          </div>
+          <div class="vm-docs__nav-group-links"><div class="vm-docs__nav-group-links-inner">
+          <a class="vm-docs__nav-link" data-vm-nav href="token-export.html#token-export">30. Token Export</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#brand-voice">31. Brand Voice</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#tone-spectrum">32. Tone Spectrum</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#writing-rules">33. Writing Rules</a>
+          <a class="vm-docs__nav-link" data-vm-nav href="brand-voice.html#signature-patterns">34. Signature Patterns</a>
+          </div></div>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="vm-docs__quicknav" data-vm-quicknav aria-label="Quick navigation">
+    <div class="vm-docs__quicknav-brand">
+      <span class="vm-docs__quicknav-mark">VM</span>
+      <div class="vm-docs__quicknav-copy">
+        <div class="vm-docs__quicknav-title">Vibemilk</div>
+        <div class="vm-docs__quicknav-section" data-vm-current-section>Themes</div>
+      </div>
+    </div>
+    <div class="vm-docs__quicknav-actions">
+      <a class="vm-btn vm-btn--sm vm-btn--ghost" href="#docs-index">Index</a>
+      <a class="vm-btn vm-btn--sm vm-btn--secondary" href="#themes">Top</a>
+    </div>
+  </div>
+
+  <main class="vm-docs__main">
+    <div class="vm-docs__container">
+
+      <section id="themes" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Themes</div>
+          <h2 class="text-heading-lg">Theme contract: fast, modular, maintainable</h2>
+        </div>
+        <div class="vm-section__body">
+          <table class="vm-doc-table mb-4">
+            <thead>
+              <tr>
+                <th>Theme</th>
+                <th>File</th>
+                <th>Use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Vibemilk Default</code></td>
+                <td>core/tokens.css</td>
+                <td>production baseline</td>
+              </tr>
+              <tr>
+                <td><code>Cyber Grid</code></td>
+                <td>themes/cyber-grid.css</td>
+                <td>high-contrast terminal UI</td>
+              </tr>
+              <tr>
+                <td><code>Acid Pop</code></td>
+                <td>themes/acid-pop.css</td>
+                <td>neon/candy accents</td>
+              </tr>
+              <tr>
+                <td><code>Sakura Spring</code></td>
+                <td>themes/sakura-spring.css</td>
+                <td>metro-signage palette</td>
+              </tr>
+              <tr>
+                <td><code>Mono Brutalist</code></td>
+                <td>themes/mono-brutalist.css</td>
+                <td>hard mono editorial</td>
+              </tr>
+              <tr>
+                <td><code>Mint Protocol</code></td>
+                <td>themes/mint-protocol.css</td>
+                <td>milk-and-mint UI with lilac/blush contrast</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="vm-note mb-4">
+            <strong>Mint Protocol</strong> ships with the Herbal Harmony palette
+            (<code>#ADEBB3</code>, <code>#9EB8A0</code>, <code>#58855C</code>, <code>#0D3311</code>)
+            as its base, then layers split/triadic lilac and blush contrasts on top. Typography stays on
+            <code>Encode Sans Semi Expanded</code> in weights <code>400</code> and <code>500</code>.
+          </div>
+
+          <div class="vm-grid-2">
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">How to add a new theme</div>
+              <pre class="vm-code"><code>/* css/themes/arctic-noise.css */
+:root[data-theme="arctic-noise"] {
+  --theme-id: 'arctic-noise';
+  --accent-primary: #8BE8FF;
+  --bg-surface: #0F1E2A;
+  --font-family: 'Chakra Petch', sans-serif;
+}</code></pre>
+            </article>
+            <article class="vm-card-lite">
+              <div class="text-heading-sm mb-2">Hook it into the JS manager</div>
+              <pre class="vm-code"><code>const THEME_MANIFEST = {
+  "vibemilk-default": null,
+  "arctic-noise": "css/themes/arctic-noise.css"
+};</code></pre>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Device mockup previews -->
+      <section id="device-mockups" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Device Previews</div>
+          <h2 class="text-heading-lg">Theme across form factors</h2>
+        </div>
+        <div class="vm-section__body">
+          <p class="text-body-sm mb-4" style="color:var(--text-secondary);">CSS-rendered mockups showing how the active theme renders on target device form factors.</p>
+
+          <div class="vm-device-gallery">
+
+            <!-- ESP32 1.47" -->
+            <div class="vm-device-frame vm-device-frame--esp">
+              <div class="vm-device-frame__label">ESP32 1.47"</div>
+              <div class="vm-device-frame__dims">320 x 172</div>
+              <div class="vm-device-frame__screen">
+                <div class="vm-device-frame__content">
+                  <div class="vm-mini-bar" style="width:70%;height:3px;"></div>
+                  <div class="vm-mini-text" style="width:90%;"></div>
+                  <div class="vm-mini-text" style="width:60%;"></div>
+                  <div class="vm-mini-card">
+                    <div class="vm-mini-text" style="width:80%;"></div>
+                    <div class="vm-mini-text" style="width:50%;"></div>
+                  </div>
+                  <div class="vm-mini-btn" style="width:70%;"></div>
+                  <div class="vm-mini-text" style="width:40%;"></div>
+                  <div class="vm-mini-card">
+                    <div class="vm-mini-text" style="width:60%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scrybar 3.49" -->
+            <div class="vm-device-frame vm-device-frame--scrybar">
+              <div class="vm-device-frame__label">Scrybar 3.49"</div>
+              <div class="vm-device-frame__dims">640 x 172</div>
+              <div class="vm-device-frame__screen">
+                <div class="vm-device-frame__content">
+                  <div class="vm-mini-bar" style="width:60%;height:3px;"></div>
+                  <div class="vm-mini-text" style="width:85%;"></div>
+                  <div class="vm-mini-text" style="width:50%;"></div>
+                  <div class="vm-mini-card">
+                    <div class="vm-mini-text" style="width:70%;"></div>
+                    <div class="vm-mini-text" style="width:40%;"></div>
+                    <div class="vm-mini-bar vm-mini-bar--secondary" style="width:80%;height:2px;margin-top:2px;"></div>
+                  </div>
+                  <div class="vm-mini-btn" style="width:65%;"></div>
+                  <div class="vm-mini-text" style="width:90%;"></div>
+                  <div class="vm-mini-text" style="width:55%;"></div>
+                  <div class="vm-mini-card">
+                    <div class="vm-mini-text" style="width:60%;"></div>
+                    <div class="vm-mini-text" style="width:80%;"></div>
+                  </div>
+                  <div class="vm-mini-card">
+                    <div class="vm-mini-text" style="width:50%;"></div>
+                  </div>
+                  <div class="vm-mini-btn" style="width:50%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile -->
+            <div class="vm-device-frame vm-device-frame--mobile">
+              <div class="vm-device-frame__label">Mobile</div>
+              <div class="vm-device-frame__dims">375 x 812</div>
+              <div class="vm-device-frame__screen">
+                <div class="vm-device-frame__content" style="padding:10px;gap:5px;">
+                  <div class="vm-mini-bar" style="width:50%;height:4px;"></div>
+                  <div class="vm-mini-text" style="width:90%;height:3px;"></div>
+                  <div class="vm-mini-text" style="width:70%;height:3px;"></div>
+                  <div class="vm-mini-card" style="padding:6px;">
+                    <div class="vm-mini-bar" style="width:40%;height:3px;"></div>
+                    <div class="vm-mini-text" style="width:85%;height:2px;margin-top:3px;"></div>
+                    <div class="vm-mini-text" style="width:60%;height:2px;"></div>
+                    <div class="vm-mini-btn" style="width:45%;height:10px;margin-top:3px;"></div>
+                  </div>
+                  <div class="vm-mini-card" style="padding:6px;">
+                    <div class="vm-mini-text" style="width:70%;height:2px;"></div>
+                    <div class="vm-mini-text" style="width:90%;height:2px;"></div>
+                    <div class="vm-mini-bar vm-mini-bar--secondary" style="width:100%;height:2px;margin-top:2px;"></div>
+                  </div>
+                  <div style="display:flex;gap:4px;">
+                    <div class="vm-mini-btn" style="width:45%;height:12px;"></div>
+                    <div class="vm-mini-btn" style="width:45%;height:12px;opacity:0.5;"></div>
+                  </div>
+                  <div class="vm-mini-text" style="width:50%;height:2px;"></div>
+                  <div class="vm-mini-text" style="width:80%;height:2px;"></div>
+                  <div class="vm-mini-card" style="padding:6px;">
+                    <div class="vm-mini-bar" style="width:55%;height:3px;"></div>
+                    <div class="vm-mini-text" style="width:75%;height:2px;margin-top:3px;"></div>
+                    <div class="vm-mini-text" style="width:45%;height:2px;"></div>
+                  </div>
+                  <div class="vm-mini-text" style="width:60%;height:2px;"></div>
+                  <div class="vm-mini-text" style="width:85%;height:2px;"></div>
+                  <div class="vm-mini-card" style="padding:6px;">
+                    <div class="vm-mini-text" style="width:65%;height:2px;"></div>
+                    <div class="vm-mini-bar vm-mini-bar--secondary" style="width:80%;height:2px;margin-top:2px;"></div>
+                  </div>
+                  <div class="vm-mini-btn" style="width:60%;height:12px;"></div>
+                  <div class="vm-mini-text" style="width:40%;height:2px;"></div>
+                  <div class="vm-mini-text" style="width:70%;height:2px;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Desktop -->
+            <div class="vm-device-frame vm-device-frame--desktop">
+              <div class="vm-device-frame__label">Desktop</div>
+              <div class="vm-device-frame__dims">1280 x 800</div>
+              <div class="vm-device-frame__screen">
+                <div class="vm-device-frame__content" style="padding:8px;flex-direction:row;flex-wrap:wrap;gap:4px;">
+                  <div style="width:25%;display:flex;flex-direction:column;gap:3px;flex-shrink:0;">
+                    <div class="vm-mini-bar" style="width:70%;height:3px;"></div>
+                    <div class="vm-mini-text" style="width:85%;"></div>
+                    <div class="vm-mini-text" style="width:60%;"></div>
+                    <div class="vm-mini-text" style="width:75%;"></div>
+                    <div class="vm-mini-text" style="width:50%;"></div>
+                    <div class="vm-mini-text" style="width:65%;"></div>
+                    <div class="vm-mini-text" style="width:40%;"></div>
+                    <div class="vm-mini-text" style="width:80%;"></div>
+                    <div class="vm-mini-bar vm-mini-bar--secondary" style="width:90%;height:1px;margin-top:2px;"></div>
+                    <div class="vm-mini-text" style="width:55%;"></div>
+                    <div class="vm-mini-text" style="width:70%;"></div>
+                  </div>
+                  <div style="flex:1;display:flex;flex-direction:column;gap:3px;">
+                    <div class="vm-mini-bar" style="width:40%;height:3px;"></div>
+                    <div class="vm-mini-text" style="width:90%;height:2px;"></div>
+                    <div class="vm-mini-text" style="width:70%;height:2px;"></div>
+                    <div style="display:flex;gap:4px;">
+                      <div class="vm-mini-card" style="flex:1;padding:4px;">
+                        <div class="vm-mini-text" style="width:60%;"></div>
+                        <div class="vm-mini-text" style="width:80%;"></div>
+                        <div class="vm-mini-btn" style="width:50%;height:6px;margin-top:2px;"></div>
+                      </div>
+                      <div class="vm-mini-card" style="flex:1;padding:4px;">
+                        <div class="vm-mini-text" style="width:70%;"></div>
+                        <div class="vm-mini-text" style="width:50%;"></div>
+                        <div class="vm-mini-btn" style="width:50%;height:6px;margin-top:2px;"></div>
+                      </div>
+                      <div class="vm-mini-card" style="flex:1;padding:4px;">
+                        <div class="vm-mini-text" style="width:55%;"></div>
+                        <div class="vm-mini-text" style="width:75%;"></div>
+                        <div class="vm-mini-btn" style="width:50%;height:6px;margin-top:2px;"></div>
+                      </div>
+                    </div>
+                    <div class="vm-mini-text" style="width:85%;height:2px;"></div>
+                    <div class="vm-mini-text" style="width:60%;height:2px;"></div>
+                    <div class="vm-mini-btn" style="width:25%;height:8px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="vm-device-frame__stand"></div>
+              <div class="vm-device-frame__base"></div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Theme comparison section -->
+      <section id="theme-compare" class="vm-section" data-vm-section>
+        <div class="vm-section__head">
+          <div class="text-overline">Theme Gallery</div>
+          <h2 class="text-heading-lg">Live theme comparison</h2>
+        </div>
+        <div class="vm-section__body">
+          <div class="vm-note mb-4">
+            Use the theme selector in the sidebar to switch between themes. All components on the <a href="components.html">Components</a> and <a href="foundations.html">Foundations</a> pages render live in the selected theme.
+          </div>
+
+          <div class="vm-grid-3">
+            <article class="vm-card vm-card--interactive vm-card--elevated">
+              <div class="vm-card__header">
+                <div class="vm-card__title">Vibemilk Default</div>
+              </div>
+              <div class="vm-card__body">
+                <p class="text-body-sm">Production baseline. Balanced dark palette with purple-blue accents and clean typography.</p>
+                <div style="display:flex;gap:6px;margin-top:12px;">
+                  <div style="width:24px;height:24px;border-radius:6px;background:#7551ff;"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#39b8ff;"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#1a1a2e;border:1px solid rgba(255,255,255,.1);"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#f0f0f5;"></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="vm-card vm-card--interactive vm-card--elevated">
+              <div class="vm-card__header">
+                <div class="vm-card__title">Cyber Grid</div>
+              </div>
+              <div class="vm-card__body">
+                <p class="text-body-sm">High-contrast terminal aesthetic. Neon green on deep black with scan-line textures.</p>
+                <div style="display:flex;gap:6px;margin-top:12px;">
+                  <div style="width:24px;height:24px;border-radius:6px;background:#00ff41;"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#0a0a0a;border:1px solid rgba(0,255,65,.2);"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#1a1a1a;border:1px solid rgba(255,255,255,.1);"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#00ff41;opacity:.3;"></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="vm-card vm-card--interactive vm-card--elevated">
+              <div class="vm-card__header">
+                <div class="vm-card__title">Acid Pop</div>
+              </div>
+              <div class="vm-card__body">
+                <p class="text-body-sm">Neon candy accents on dark surfaces. Bold, energetic palette for creative interfaces.</p>
+                <div style="display:flex;gap:6px;margin-top:12px;">
+                  <div style="width:24px;height:24px;border-radius:6px;background:#ff00ff;"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#00ffff;"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#1a0a2e;border:1px solid rgba(255,255,255,.1);"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#ffff00;"></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="vm-card vm-card--interactive vm-card--elevated">
+              <div class="vm-card__header">
+                <div class="vm-card__title">Sakura Spring</div>
+              </div>
+              <div class="vm-card__body">
+                <p class="text-body-sm">Metro signage palette. Japanese transit system colors with clean geometric accents.</p>
+                <div style="display:flex;gap:6px;margin-top:12px;">
+                  <div style="width:24px;height:24px;border-radius:6px;background:#ff6b35;"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#e8d44d;"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#1c1c1e;border:1px solid rgba(255,255,255,.1);"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#f5f5f0;"></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="vm-card vm-card--interactive vm-card--elevated">
+              <div class="vm-card__header">
+                <div class="vm-card__title">Mono Brutalist</div>
+              </div>
+              <div class="vm-card__body">
+                <p class="text-body-sm">Hard mono editorial. Black-and-white with sharp typography and minimal decoration.</p>
+                <div style="display:flex;gap:6px;margin-top:12px;">
+                  <div style="width:24px;height:24px;border-radius:6px;background:#ffffff;border:1px solid #000;"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#000000;"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#333333;"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#cccccc;"></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="vm-card vm-card--interactive vm-card--elevated">
+              <div class="vm-card__header">
+                <div class="vm-card__title">Mint Protocol</div>
+              </div>
+              <div class="vm-card__body">
+                <p class="text-body-sm">Milk-and-mint UI with lilac/blush contrast. Herbal Harmony base palette.</p>
+                <div style="display:flex;gap:6px;margin-top:12px;">
+                  <div style="width:24px;height:24px;border-radius:6px;background:#ADEBB3;"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#9EB8A0;"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#58855C;"></div>
+                  <div style="width:24px;height:24px;border-radius:6px;background:#0D3311;"></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../js/vibemilk-docs.js" defer></script>
+</body>
+</html>
