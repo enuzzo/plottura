@@ -17,7 +17,7 @@ export default function AboutModal({ onClose }: AboutModalProps) {
         className="about-modal"
         role="dialog"
         aria-modal="true"
-        aria-label="About TerraInk"
+        aria-label="About Plottura"
         onClick={(e) => e.stopPropagation()}
       >
         <button

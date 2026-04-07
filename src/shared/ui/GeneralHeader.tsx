@@ -11,13 +11,13 @@ export default function GeneralHeader({ onAboutOpen }: GeneralHeaderProps) {
       <div className="desktop-brand">
         <img
           className="desktop-brand-logo brand-logo"
-          src="/assets/logo.svg"
-          alt="TerraInk logo"
+          src="/favicon.svg"
+          alt="Plottura logo"
         />
         <div className="desktop-brand-copy brand-copy">
-          <h1 className="desktop-brand-title">TerraInk</h1>
+          <h1 className="desktop-brand-title">Plottura</h1>
           <p className="desktop-brand-kicker app-kicker">
-            The Cartographic Poster Engine
+            From plot to print
           </p>
         </div>
       </div>

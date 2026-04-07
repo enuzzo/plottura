@@ -28,14 +28,6 @@ if (typeof displayModeQuery.addEventListener === "function") {
   displayModeQuery.onchange = syncDisplayMode;
 }
 
-if ("serviceWorker" in navigator && !isNativePlatform()) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/sw.js").catch((error) => {
-      console.warn("Service worker registration failed", error);
-    });
-  });
-}
-
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />

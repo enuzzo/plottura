@@ -32,7 +32,7 @@ export default function SupportModal({
             ✨ Your poster is ready!
           </p>
           <p className="credits-modal__text">
-            If Terraink helped you create this poster, consider supporting the project on Ko-fi.
+            If Plottura helped you create this poster, consider supporting the project on Ko-fi.
           </p>
           <p className="credits-modal__text">
             This was your poster <strong>#{posterNumber}</strong> 🎉
