@@ -1,4 +1,5 @@
 import MapDimensionFields from "./MapDimensionFields";
+import { Switch } from "@/components/ui/switch";
 
 interface LayerForm {
   width: string;
@@ -23,6 +24,15 @@ interface LayersSectionProps {
   onNumericFieldBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
 }
 
+const LAYERS = [
+  { name: "includeBuildings", label: "Show buildings" },
+  { name: "includeWater", label: "Show water" },
+  { name: "includeParks", label: "Show parks" },
+  { name: "includeRoads", label: "Show roads" },
+  { name: "includeRail", label: "Show rail" },
+  { name: "includeAeroway", label: "Show aeroway" },
+] as const;
+
 export default function LayersSection({
   form,
   onChange,
@@ -30,85 +40,31 @@ export default function LayersSection({
   maxPosterCm,
   onNumericFieldBlur,
 }: LayersSectionProps) {
-  return (
-    <section className="panel-block">
-      <p className="section-summary-label">LAYERS</p>
-      <label className="toggle-field">
-        <span>Show buildings</span>
-        <span className="theme-switch">
-          <input
-            type="checkbox"
-            name="includeBuildings"
-            checked={Boolean(form.includeBuildings)}
-            onChange={onChange}
-          />
-          <span className="theme-switch-track" aria-hidden="true" />
-        </span>
-      </label>
-      <label className="toggle-field">
-        <span>Show water</span>
-        <span className="theme-switch">
-          <input
-            type="checkbox"
-            name="includeWater"
-            checked={Boolean(form.includeWater)}
-            onChange={onChange}
-          />
-          <span className="theme-switch-track" aria-hidden="true" />
-        </span>
-      </label>
-      <label className="toggle-field">
-        <span>Show parks</span>
-        <span className="theme-switch">
-          <input
-            type="checkbox"
-            name="includeParks"
-            checked={Boolean(form.includeParks)}
-            onChange={onChange}
-          />
-          <span className="theme-switch-track" aria-hidden="true" />
-        </span>
-      </label>
-      <label className="toggle-field">
-        <span>Show roads</span>
-        <span className="theme-switch">
-          <input
-            type="checkbox"
-            name="includeRoads"
-            checked={Boolean(form.includeRoads)}
-            onChange={onChange}
-          />
-          <span className="theme-switch-track" aria-hidden="true" />
-        </span>
-      </label>
-      <label className="toggle-field">
-        <span>Show rail</span>
-        <span className="theme-switch">
-          <input
-            type="checkbox"
-            name="includeRail"
-            checked={Boolean(form.includeRail)}
-            onChange={onChange}
-          />
-          <span className="theme-switch-track" aria-hidden="true" />
-        </span>
-      </label>
-      <label className="toggle-field">
-        <span>Show aeroway</span>
-        <span className="theme-switch">
-          <input
-            type="checkbox"
-            name="includeAeroway"
-            checked={Boolean(form.includeAeroway)}
-            onChange={onChange}
-          />
-          <span className="theme-switch-track" aria-hidden="true" />
-        </span>
-      </label>
+  /** Bridge Radix Switch onCheckedChange to the existing ChangeEvent handler. */
+  function handleToggle(name: string, checked: boolean) {
+    const syntheticEvent = {
+      target: { name, type: "checkbox", checked, value: String(checked) },
+    } as React.ChangeEvent<HTMLInputElement>;
+    onChange(syntheticEvent);
+  }
 
-      <div className="map-details-section">
-        <h3 className="map-details-subtitle">Map Details</h3>
-        <div className="map-details-card">
+  return (
+    <section className="flex flex-col gap-3">
+      {LAYERS.map(({ name, label }) => (
+        <div key={name} className="flex items-center justify-between">
+          <span className="text-base text-text-secondary">{label}</span>
+          <Switch
+            checked={Boolean(form[name as keyof LayerForm])}
+            onCheckedChange={(checked) => handleToggle(name, checked)}
+          />
+        </div>
+      ))}
+
+      <div className="mt-2">
+        <h3 className="text-sm font-medium text-text-secondary mb-2">
+          Map Details
+        </h3>
+        <div>
           <MapDimensionFields
             form={form}
             minPosterCm={minPosterCm}
