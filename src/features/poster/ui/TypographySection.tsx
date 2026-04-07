@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { ensureGoogleFont } from "@/core/services";
+import { Switch } from "@/components/ui/switch";
 import type { PosterForm } from "@/features/poster/application/posterReducer";
 import type { FontOption } from "@/core/config";
 import {
@@ -15,7 +16,6 @@ interface TypographySectionProps {
   fontOptions: FontOption[];
 }
 
-
 export default function TypographySection({
   form,
   onChange,
@@ -29,82 +29,78 @@ export default function TypographySection({
     void Promise.allSettled(families.map((family) => ensureGoogleFont(family)));
   }, [fontOptions]);
 
+  /** Bridge Radix Switch onCheckedChange to the existing ChangeEvent handler. */
+  function handleToggle(name: string, checked: boolean) {
+    const syntheticEvent = {
+      target: { name, type: "checkbox", checked, value: String(checked) },
+    } as React.ChangeEvent<HTMLInputElement>;
+    onChange(syntheticEvent);
+  }
+
   return (
-    <>
-      <section className="panel-block">
-        <p className="section-summary-label">STYLE</p>
-        <label className="toggle-field">
-          <span>Poster text</span>
-          <span className="theme-switch">
-            <input
-              type="checkbox"
-              name="showPosterText"
-              checked={Boolean(form.showPosterText)}
-              onChange={onChange}
-            />
-            <span className="theme-switch-track" aria-hidden="true" />
-          </span>
-        </label>
-        <label className="toggle-field">
-          <span>Overlay layer</span>
-          <span className="theme-switch">
-            <input
-              type="checkbox"
-              name="showMarkers"
-              checked={Boolean(form.showMarkers)}
-              onChange={onChange}
-            />
-            <span className="theme-switch-track" aria-hidden="true" />
-          </span>
-        </label>
+    <section className="flex flex-col gap-3">
+      <div className="flex items-center justify-between">
+        <span className="text-base text-text-secondary">Poster text</span>
+        <Switch
+          checked={Boolean(form.showPosterText)}
+          onCheckedChange={(checked) => handleToggle("showPosterText", checked)}
+        />
+      </div>
 
-        <div className="field-grid keep-two-mobile">
-          <label>
-            Display city
-            <input
-              className="form-control-tall"
-              name="displayCity"
-              value={form.displayCity}
-              onChange={onChange}
-              placeholder={PLACEHOLDER_EXAMPLE_CITY}
-            />
-          </label>
-          <label>
-            Display country
-            <input
-              className="form-control-tall"
-              name="displayCountry"
-              value={form.displayCountry}
-              onChange={onChange}
-              placeholder={PLACEHOLDER_EXAMPLE_COUNTRY}
-            />
-          </label>
-        </div>
-        <label>
-          Font
-          <select
-            className="form-control-tall"
-            name="fontFamily"
-            value={form.fontFamily}
+      <div className="flex items-center justify-between">
+        <span className="text-base text-text-secondary">Overlay layer</span>
+        <Switch
+          checked={Boolean(form.showMarkers)}
+          onCheckedChange={(checked) => handleToggle("showMarkers", checked)}
+        />
+      </div>
+
+      <div className="grid grid-cols-2 gap-3">
+        <label className="flex flex-col gap-1">
+          <span className="text-sm text-text-secondary">Display city</span>
+          <input
+            className="bg-input border border-border rounded-sm text-base w-full px-3 py-2"
+            name="displayCity"
+            value={form.displayCity}
             onChange={onChange}
-          >
-            {fontOptions.map((fontOption) => (
-              <option
-                key={fontOption.value || "default"}
-                value={fontOption.value}
-                style={{
-                  fontFamily: fontOption.value
-                    ? `"${fontOption.value}", "Space Grotesk", sans-serif`
-                    : `"Space Grotesk", sans-serif`,
-                }}
-              >
-                {fontOption.label}
-              </option>
-            ))}
-          </select>
+            placeholder={PLACEHOLDER_EXAMPLE_CITY}
+          />
         </label>
+        <label className="flex flex-col gap-1">
+          <span className="text-sm text-text-secondary">Display country</span>
+          <input
+            className="bg-input border border-border rounded-sm text-base w-full px-3 py-2"
+            name="displayCountry"
+            value={form.displayCountry}
+            onChange={onChange}
+            placeholder={PLACEHOLDER_EXAMPLE_COUNTRY}
+          />
+        </label>
+      </div>
 
-      </section>
-    </>
+      <label className="flex flex-col gap-1">
+        <span className="text-sm text-text-secondary">Font</span>
+        <select
+          className="bg-input border border-border rounded-sm text-base w-full px-3 py-2"
+          name="fontFamily"
+          value={form.fontFamily}
+          onChange={onChange}
+        >
+          {fontOptions.map((fontOption) => (
+            <option
+              key={fontOption.value || "default"}
+              value={fontOption.value}
+              style={{
+                fontFamily: fontOption.value
+                  ? `"${fontOption.value}", "Space Grotesk", sans-serif`
+                  : `"Space Grotesk", sans-serif`,
+              }}
+            >
+              {fontOption.label}
+            </option>
+          ))}
+        </select>
+      </label>
+    </section>
   );
 }
