@@ -13,6 +13,7 @@ import { useExport } from "@/features/export/application/useExport";
 import Sidebar from "@/components/sidebar/Sidebar";
 import MapCanvas from "@/components/canvas/MapCanvas";
 import FloatingSearchBar from "@/components/canvas/FloatingSearchBar";
+import FloatingZoomControls from "@/components/canvas/FloatingZoomControls";
 
 const SettingsPanel = lazy(() => import("@/features/poster/ui/SettingsPanel"));
 const MobileExportFab = lazy(() => import("@/features/export/ui/MobileExportFab"));
@@ -167,6 +168,7 @@ export default function AppShell() {
         </Sidebar>
         <MapCanvas>
           <FloatingSearchBar />
+          <FloatingZoomControls />
           <PreviewPanel />
         </MapCanvas>
         <StartupLocationModal />

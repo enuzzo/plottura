@@ -25,15 +25,15 @@ export default function MapSettingsPickers({
         titleId="layout-picker-title"
         onClose={onClosePicker}
       >
-        <div className="layout-picker-groups">
+        <div className="space-y-4">
           {layoutGroups.map((group) => (
             <section
               key={group.id}
-              className="layout-picker-group"
+              className="space-y-2"
               aria-label={group.name}
             >
-              <h4>{group.name}</h4>
-              <div className="picker-option-list card-scroll-list">
+              <h4 className="text-xs font-medium text-text-secondary">{group.name}</h4>
+              <div className="flex gap-2 overflow-x-auto pb-1">
                 {group.options.map((layoutOption) => (
                   <LayoutCard
                     key={layoutOption.id}

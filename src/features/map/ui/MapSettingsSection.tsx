@@ -322,25 +322,23 @@ export default function MapSettingsSection({
   );
 
   return (
-    <section className="panel-block">
-      <div className="map-settings-theme-part">
-        <h2>Theme</h2>
+    <section className="space-y-6">
+      <div className="space-y-3">
+        <h2 className="text-sm font-semibold text-text-primary uppercase tracking-wide">Theme</h2>
 
         {isThemeEditing ? (
           activeColorKey ? (
-            <section className="panel-block color-editor-screen">
-              <h2>Color Editor</h2>
-              <div className="color-editor-header">
-                <p className="theme-active-label">Editing: {activeColorLabel}</p>
-                <div className="theme-edit-actions">
-                  <button
-                    type="button"
-                    className="theme-edit-done-btn"
-                    onClick={clearColorPickerState}
-                  >
-                    Done
-                  </button>
-                </div>
+            <section className="space-y-3">
+              <h2 className="text-sm font-semibold text-text-primary uppercase tracking-wide">Color Editor</h2>
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-sm text-text-secondary">Editing: {activeColorLabel}</p>
+                <button
+                  type="button"
+                  className="text-xs font-medium text-accent hover:text-accent/80 transition-colors"
+                  onClick={clearColorPickerState}
+                >
+                  Done
+                </button>
               </div>
 
               <ColorPicker
@@ -374,47 +372,43 @@ export default function MapSettingsSection({
         )}
       </div>
 
-      <div className="map-settings-layout-part">
-        <h2>Layout</h2>
-        <div className="layout-summary-head">
-          <div className="layout-summary-copy">
-            <p className="layout-summary-label">
+      <div className="space-y-3">
+        <h2 className="text-sm font-semibold text-text-primary uppercase tracking-wide">Layout</h2>
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-medium text-text-secondary uppercase tracking-wider">
               LAYOUT:{" "}
-              <span className="layout-summary-label-name">
+              <span className="text-text-primary">
                 {selectedLayoutOption.name}
               </span>
             </p>
-            <p className="layout-summary-description">
+            <p className="text-xs text-text-secondary mt-0.5">
               {selectedLayoutDescription}
             </p>
           </div>
           {isLayoutEditing ? (
             <button
               type="button"
-              className="theme-customize-btn"
+              className="p-1.5 rounded-sm border border-border hover:bg-accent-subtle transition-colors"
               onClick={handleDoneLayoutEditor}
               aria-label="Done editing layout"
             >
-              <span className="theme-customize-icon" aria-hidden="true">
-                <CheckIcon />
-              </span>
+              <CheckIcon />
             </button>
           ) : (
             <button
               type="button"
-              className="theme-customize-btn"
+              className="p-1.5 rounded-sm border border-border hover:bg-accent-subtle transition-colors"
               onClick={handleOpenLayoutEditor}
               aria-label="Customize layout size"
             >
-              <span className="theme-customize-icon" aria-hidden="true">
-                <EditIcon />
-              </span>
+              <EditIcon />
             </button>
           )}
         </div>
 
         {isLayoutEditing ? (
-          <div className="layout-custom-editor">
+          <div className="pt-1">
             <MapDimensionFields
               form={form}
               minPosterCm={minPosterCm}
@@ -425,11 +419,11 @@ export default function MapSettingsSection({
             />
           </div>
         ) : (
-          <div className="layout-inline-groups" ref={layoutGroupsRef}>
+          <div className="space-y-4" ref={layoutGroupsRef}>
             {layoutGroups.map((group) => (
-              <section key={group.id} className="layout-inline-group">
-                <h3>{group.name}</h3>
-                <div className="layout-inline-list card-scroll-list">
+              <section key={group.id} className="space-y-2">
+                <h3 className="text-xs font-medium text-text-secondary">{group.name}</h3>
+                <div className="layout-inline-list card-scroll-list flex gap-2 overflow-x-auto pb-1">
                   {group.options.map((layoutOption) => (
                     <LayoutCard
                       key={layoutOption.id}

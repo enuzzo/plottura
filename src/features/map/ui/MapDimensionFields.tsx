@@ -111,13 +111,13 @@ export default function MapDimensionFields({
     100;
 
   return (
-    <div className="map-dimension-fields">
+    <div className="space-y-4">
       {showSizeFields ? (
-        <div className="map-size-fields-row">
-          <label>
-            Width (cm)
+        <div className="grid grid-cols-2 gap-3">
+          <label className="flex flex-col gap-1">
+            <span className="text-sm text-text-secondary">Width (cm)</span>
             <input
-              className="form-control-tall"
+              className="bg-input border border-border rounded-sm text-base px-2.5 py-1.5 w-full"
               name="width"
               type="number"
               min={minPosterCm}
@@ -128,10 +128,10 @@ export default function MapDimensionFields({
               onBlur={onNumericFieldBlur}
             />
           </label>
-          <label>
-            Height (cm)
+          <label className="flex flex-col gap-1">
+            <span className="text-sm text-text-secondary">Height (cm)</span>
             <input
-              className="form-control-tall"
+              className="bg-input border border-border rounded-sm text-base px-2.5 py-1.5 w-full"
               name="height"
               type="number"
               min={minPosterCm}
@@ -146,11 +146,11 @@ export default function MapDimensionFields({
       ) : null}
 
       {showDistanceField ? (
-        <label className="distance-slider-field">
-          <span>
-            <span>Distance (m)</span>
+        <label className="flex flex-col gap-2">
+          <span className="flex items-center justify-between">
+            <span className="text-sm text-text-secondary">Distance (m)</span>
             <input
-              className="distance-slider-input"
+              className="bg-input border border-border rounded-sm text-sm px-2 py-1 w-24 text-right"
               name="distance"
               type="number"
               min={MIN_DISTANCE_METERS}
@@ -163,7 +163,7 @@ export default function MapDimensionFields({
             />
           </span>
           <input
-            className="distance-slider"
+            className="w-full accent-accent"
             name="distance-slider-log"
             type="range"
             min={SLIDER_MIN}
@@ -177,7 +177,7 @@ export default function MapDimensionFields({
             }
             aria-label="Distance in meters"
           />
-          <span className="distance-slider-meta">
+          <span className="relative h-4 text-[10px] text-text-secondary">
             {sliderMetaMarks.map((mark, index) => {
               const isFirst = index === 0;
               const isLast = index === sliderMetaMarks.length - 1;
@@ -185,7 +185,7 @@ export default function MapDimensionFields({
               return (
                 <span
                   key={mark}
-                  className="distance-slider-meta-mark"
+                  className="absolute whitespace-nowrap"
                   style={{
                     left: `${left}%`,
                     transform: isFirst
