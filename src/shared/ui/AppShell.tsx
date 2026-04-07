@@ -5,10 +5,9 @@ import {
   MIN_MARKER_SIZE,
 } from "@/features/markers/domain/constants";
 import PreviewPanel from "@/features/poster/ui/PreviewPanel";
-import MobileNavBar, { type MobileTab } from "@/shared/ui/MobileNavBar";
 import { useSwipeDown } from "@/shared/hooks/useSwipeDown";
 import StartupLocationModal from "@/features/location/ui/StartupLocationModal";
-import { CheckIcon } from "@/shared/ui/Icons";
+import { Check } from "lucide-react";
 import { useExport } from "@/features/export/application/useExport";
 import Sidebar from "@/components/sidebar/Sidebar";
 import MapCanvas from "@/components/canvas/MapCanvas";
@@ -16,7 +15,14 @@ import FloatingSearchBar from "@/components/canvas/FloatingSearchBar";
 import FloatingZoomControls from "@/components/canvas/FloatingZoomControls";
 
 const SettingsPanel = lazy(() => import("@/features/poster/ui/SettingsPanel"));
-const MobileExportFab = lazy(() => import("@/features/export/ui/MobileExportFab"));
+
+type MobileTab =
+  | "location"
+  | "theme"
+  | "layout"
+  | "style"
+  | "layers"
+  | "markers";
 
 function SettingsDrawer({
   mobileTab,
@@ -76,7 +82,6 @@ export default function AppShell() {
   useEffect(() => {
     const preload = () => {
       void import("@/features/poster/ui/SettingsPanel");
-      void import("@/features/export/ui/MobileExportFab");
     };
 
     if ("requestIdleCallback" in window) {
@@ -229,20 +234,11 @@ export default function AppShell() {
             setMobileDrawerOpen(false);
           }}
         >
-          <CheckIcon />
+          <Check className="w-4 h-4" />
           <span>Done Editing</span>
         </button>
       ) : null}
 
-      <MobileNavBar
-        activeTab={mobileTab}
-        drawerOpen={mobileDrawerOpen}
-        isLocationVisible={mobileLocationRowVisible}
-        onTabChange={handleMobileTabChange}
-      />
-      <Suspense fallback={null}>
-        <MobileExportFab />
-      </Suspense>
     </div>
   );
 }

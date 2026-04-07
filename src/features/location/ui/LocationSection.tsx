@@ -5,7 +5,7 @@ import {
   PLACEHOLDER_EXAMPLE_LATITUDE,
   PLACEHOLDER_EXAMPLE_LONGITUDE,
 } from "./constants";
-import { MyLocationIcon } from "@/shared/ui/Icons";
+import { LocateFixed } from "lucide-react";
 
 interface LocationSectionProps {
   form: PosterForm;
@@ -81,7 +81,7 @@ export default function LocationSection({
               aria-label="Use current location"
               title="Use current location"
             >
-              <MyLocationIcon />
+              <LocateFixed className="w-4 h-4" />
             </button>
           </div>
           {showLocationSuggestions && (

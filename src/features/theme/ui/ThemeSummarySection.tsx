@@ -1,6 +1,6 @@
 import type { RefObject } from "react";
 import ThemeCard from "./ThemeCard";
-import { EditIcon } from "@/shared/ui/Icons";
+import { Pencil } from "lucide-react";
 import type { ThemeOption } from "../domain/types";
 
 interface ThemeSummarySectionProps {
@@ -39,7 +39,7 @@ export default function ThemeSummarySection({
           aria-label={`Customize ${selectedThemeOption.name} colors`}
         >
           <span className="theme-customize-icon" aria-hidden="true">
-            <EditIcon />
+            <Pencil className="w-4 h-4" />
           </span>
         </button>
       </div>

@@ -11,15 +11,8 @@ import MapPreview from "@/features/map/ui/MapPreview";
 import MarkerOverlay from "@/features/markers/ui/MarkerOverlay";
 import GradientFades from "./GradientFades";
 import PosterTextOverlay from "./PosterTextOverlay";
-import SettingsInfo from "./SettingsInfo";
 import MapPrimaryControls from "./MapPrimaryControls";
-import {
-  PlusIcon,
-  MinusIcon,
-  RotateIcon,
-  RotateLeftIcon,
-  RotateRightIcon,
-} from "@/shared/ui/Icons";
+import { ZoomIn, ZoomOut, RotateCw, RotateCcw } from "lucide-react";
 import {
   MAP_BUTTON_ZOOM_DURATION_MS,
   MAP_BUTTON_ZOOM_STEP,
@@ -168,16 +161,7 @@ export default function PreviewPanel() {
   const formLon = Number(form.longitude) || 0;
   const layoutOption =
     getLayoutOption(form.layout) ?? createCustomLayoutOption(widthCm, heightCm);
-  const posterSizeLabel = formatLayoutDimensions(layoutOption);
   const layoutLabel = `${layoutOption.name} (${formatLayoutDimensions(layoutOption)})`;
-  const infoLocationLabel =
-    [form.displayCity, form.displayCountry].filter(Boolean).join(", ") ||
-    form.location ||
-    DEFAULT_LOCATION_LABEL;
-  const infoLayoutLabel = layoutOption.name;
-  const markerCount = state.markers.length;
-  const markersLabel = `${markerCount} marker${markerCount === 1 ? "" : "s"}`;
-  const coordinatesLabel = `${formLat.toFixed(4)}, ${formLon.toFixed(4)}`;
   const isCityCountryView = mapZoom >= COUNTRY_VIEW_ZOOM_LEVEL;
   const isCountryContinentView =
     mapZoom >= CONTINENT_VIEW_ZOOM_LEVEL && mapZoom < COUNTRY_VIEW_ZOOM_LEVEL;
@@ -484,7 +468,7 @@ export default function PreviewPanel() {
                         isRotationEnabled ? "Disable rotation" : "Enable rotation"
                       }
                     >
-                      <RotateIcon />
+                      <RotateCw className="w-4 h-4" />
                       <span>
                         {isRotationEnabled ? "Disable Rotation" : "Enable Rotation"}
                       </span>
@@ -501,7 +485,7 @@ export default function PreviewPanel() {
                         isRotationEnabled ? "Disable rotation" : "Enable rotation"
                       }
                     >
-                      <RotateIcon />
+                      <RotateCw className="w-4 h-4" />
                       <span>
                         {isRotationEnabled ? "Disable Rotation" : "Enable Rotation"}
                       </span>
@@ -516,7 +500,7 @@ export default function PreviewPanel() {
                       onClick={handleZoomOut}
                       title="Zoom out"
                     >
-                      <MinusIcon />
+                      <ZoomOut className="w-4 h-4" />
                     </button>
                     <input
                       className="map-control-slider"
@@ -534,7 +518,7 @@ export default function PreviewPanel() {
                       onClick={handleZoomIn}
                       title="Zoom in"
                     >
-                      <PlusIcon />
+                      <ZoomIn className="w-4 h-4" />
                     </button>
                   </div>
                 ) : null}
@@ -546,7 +530,7 @@ export default function PreviewPanel() {
                       onClick={() => handleRotateBy(-15)}
                       title="Rotate left 15 degrees"
                     >
-                      <RotateLeftIcon />
+                      <RotateCcw className="w-4 h-4" />
                     </button>
                     <input
                       className="map-control-slider"
@@ -564,7 +548,7 @@ export default function PreviewPanel() {
                       onClick={() => handleRotateBy(15)}
                       title="Rotate right 15 degrees"
                     >
-                      <RotateRightIcon />
+                      <RotateCw className="w-4 h-4" />
                     </button>
                   </div>
                 ) : null}
@@ -574,14 +558,6 @@ export default function PreviewPanel() {
         </div>
       </div>
 
-      <SettingsInfo
-        location={infoLocationLabel}
-        theme={effectiveTheme.name}
-        layout={infoLayoutLabel}
-        posterSize={posterSizeLabel}
-        markers={markersLabel}
-        coordinates={coordinatesLabel}
-      />
     </section>
   );
 }

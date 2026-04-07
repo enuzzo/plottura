@@ -10,7 +10,7 @@ import {
   PLACEHOLDER_EXAMPLE_LONGITUDE,
 } from "@/features/location/ui/constants";
 import type { SearchResult } from "@/features/location/domain/types";
-import { MyLocationIcon, LocationIcon, SearchIcon } from "@/shared/ui/Icons";
+import { LocateFixed, MapPin, Search } from "lucide-react";
 
 /**
  * Desktop floating location bar.
@@ -52,7 +52,7 @@ export default function DesktopLocationBar() {
           <div className="location-search-main-row">
             <div className="location-search-row">
               <span className="location-search-icon" aria-hidden="true">
-                <SearchIcon />
+                <Search className="w-4 h-4" />
               </span>
               <div className="location-input-wrap">
                 <input
@@ -90,7 +90,7 @@ export default function DesktopLocationBar() {
               aria-label="Use current location"
               title="Use current location"
             >
-              <MyLocationIcon className="location-current-icon" />
+              <LocateFixed className="w-4 h-4 location-current-icon" />
             </button>
             <button
               type="button"
@@ -100,7 +100,7 @@ export default function DesktopLocationBar() {
               aria-label="Toggle coordinate fields"
               title="Show/hide lat & lon"
             >
-              <LocationIcon />
+              <MapPin className="w-4 h-4" />
             </button>
             </div>
           </div>

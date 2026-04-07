@@ -12,7 +12,7 @@ import {
   getGeolocationFailureMessage,
   requestCurrentPositionWithRetry,
 } from "@/features/location/infrastructure";
-import { MyLocationIcon } from "@/shared/ui/Icons";
+import { LocateFixed } from "lucide-react";
 import { usePosterDispatch } from "@/features/poster/ui/PosterContext";
 import { useLocationAutocomplete } from "@/features/location/application/useLocationAutocomplete";
 import type { SearchResult } from "@/features/location/domain/types";
@@ -295,7 +295,7 @@ export default function StartupLocationModal({
             onClick={handleUseMyLocation}
             disabled={isResolving}
           >
-            <MyLocationIcon />
+            <LocateFixed className="w-4 h-4" />
             <span>{isResolving ? "Locating..." : "Get my location"}</span>
           </button>
 

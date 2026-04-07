@@ -1,4 +1,4 @@
-import { LockIcon, RecenterIcon, UnlockIcon } from "@/shared/ui/Icons";
+import { Lock, Focus, Unlock } from "lucide-react";
 
 interface MapPrimaryControlsProps {
   isMapEditing: boolean;
@@ -28,7 +28,7 @@ export default function MapPrimaryControls({
           onClick={onRecenter}
           title={recenterHint}
         >
-          <RecenterIcon />
+          <Focus className="w-4 h-4" />
           <span>Recenter</span>
         </button>
       ) : null}
@@ -39,7 +39,7 @@ export default function MapPrimaryControls({
           onClick={onFinishEditing}
           title="Lock map editing"
         >
-          <LockIcon />
+          <Lock className="w-4 h-4" />
           <span>Lock Map</span>
         </button>
       ) : (
@@ -50,7 +50,7 @@ export default function MapPrimaryControls({
           title={unlockHint}
           disabled={isMarkerEditorActive}
         >
-          <UnlockIcon />
+          <Unlock className="w-4 h-4" />
           <span>Edit Map</span>
         </button>
       )}

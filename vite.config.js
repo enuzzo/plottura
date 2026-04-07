@@ -61,10 +61,6 @@ export default defineConfig({
             return "vendor-maplibre-deps";
           }
 
-          if (packageName?.startsWith("react-icons")) {
-            return "vendor-icons";
-          }
-
           if (
             packageName === "react" ||
             packageName === "react-dom" ||

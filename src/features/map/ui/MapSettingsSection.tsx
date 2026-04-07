@@ -17,7 +17,7 @@ import MapDimensionFields from "./MapDimensionFields";
 import ColorPicker from "@/features/theme/ui/ColorPicker";
 import ThemeColorEditor from "@/features/theme/ui/ThemeColorEditor";
 import ThemeSummarySection from "@/features/theme/ui/ThemeSummarySection";
-import { CheckIcon, EditIcon } from "@/shared/ui/Icons";
+import { Check, Pencil } from "lucide-react";
 import type { ResolvedTheme } from "@/features/theme/domain/types";
 import type { LayoutGroup } from "@/features/layout/domain/types";
 
@@ -393,7 +393,7 @@ export default function MapSettingsSection({
               onClick={handleDoneLayoutEditor}
               aria-label="Done editing layout"
             >
-              <CheckIcon />
+              <Check className="w-4 h-4" />
             </button>
           ) : (
             <button
@@ -402,7 +402,7 @@ export default function MapSettingsSection({
               onClick={handleOpenLayoutEditor}
               aria-label="Customize layout size"
             >
-              <EditIcon />
+              <Pencil className="w-4 h-4" />
             </button>
           )}
         </div>
