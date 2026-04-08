@@ -15,7 +15,7 @@ import TypographySection from "@/features/poster/ui/TypographySection";
 
 import { Accordion } from "@/components/ui/accordion";
 import SidebarSection from "@/components/sidebar/SidebarSection";
-import { MapPin, Palette, LayoutGrid, Map, Layers, MapPinPlus, Type } from "lucide-react";
+import { MapPin, Palette, LayoutGrid, Map, Layers, MapPinPlus, Type, Box } from "lucide-react";
 
 import { themeOptions } from "@/features/theme/infrastructure/themeRepository";
 import { layoutGroups } from "@/features/layout/infrastructure/layoutRepository";
@@ -179,6 +179,108 @@ export default function SettingsPanel({
             </section>
           ) : null}
         </SidebarSection>
+
+        {state.form.enable3D ? (
+          <SidebarSection value="3d-view" icon={Box} label="3D View">
+            {!isColorEditorActive ? (
+              <section className="flex flex-col gap-3">
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-base text-text-secondary">Pitch</span>
+                    <span className="text-sm text-text-muted tabular-nums">
+                      {state.form.mapPitch}°
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min={0}
+                    max={85}
+                    step={1}
+                    value={Number(state.form.mapPitch) || 60}
+                    onChange={(e) =>
+                      dispatch({
+                        type: "SET_FIELD",
+                        name: "mapPitch",
+                        value: e.target.value,
+                      })
+                    }
+                    className="w-full accent-accent"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-base text-text-secondary">Buildings</span>
+                  <Switch
+                    checked={Boolean(state.form.buildingExtrusion)}
+                    onCheckedChange={(checked) => {
+                      dispatch({
+                        type: "SET_FIELD",
+                        name: "buildingExtrusion",
+                        value: checked,
+                      });
+                    }}
+                  />
+                </div>
+
+                <div className="flex items-center justify-between opacity-50 cursor-not-allowed">
+                  <span className="text-base text-text-secondary">
+                    Terrain{" "}
+                    <span className="text-xs text-text-muted">(coming soon)</span>
+                  </span>
+                  <Switch checked={false} disabled />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-base text-text-secondary">Light direction</span>
+                    <span className="text-sm text-text-muted tabular-nums">
+                      {state.form.lightAzimuth}°
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min={0}
+                    max={360}
+                    step={5}
+                    value={Number(state.form.lightAzimuth) || 210}
+                    onChange={(e) =>
+                      dispatch({
+                        type: "SET_FIELD",
+                        name: "lightAzimuth",
+                        value: e.target.value,
+                      })
+                    }
+                    className="w-full accent-accent"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-base text-text-secondary">Light intensity</span>
+                    <span className="text-sm text-text-muted tabular-nums">
+                      {(Number(state.form.lightIntensity) || 0.6).toFixed(1)}
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min={0}
+                    max={1}
+                    step={0.05}
+                    value={Number(state.form.lightIntensity) || 0.6}
+                    onChange={(e) =>
+                      dispatch({
+                        type: "SET_FIELD",
+                        name: "lightIntensity",
+                        value: e.target.value,
+                      })
+                    }
+                    className="w-full accent-accent"
+                  />
+                </div>
+              </section>
+            ) : null}
+          </SidebarSection>
+        ) : null}
 
         <SidebarSection value="layers" icon={Layers} label="Layers">
           {!isAuxEditorActive ? (
