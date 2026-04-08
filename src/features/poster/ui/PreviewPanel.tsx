@@ -181,6 +181,7 @@ export default function PreviewPanel() {
   const aspect = widthCm / heightCm;
   const formLat = Number(form.latitude) || 0;
   const formLon = Number(form.longitude) || 0;
+  const mapPitch = form.enable3D ? Number(form.mapPitch) || 60 : 0;
   const layoutOption =
     getLayoutOption(form.layout) ?? createCustomLayoutOption(widthCm, heightCm);
   const layoutLabel = `${layoutOption.name} (${formatLayoutDimensions(layoutOption)})`;
@@ -316,7 +317,7 @@ export default function PreviewPanel() {
     map.stop();
     map.jumpTo({
       bearing: 0,
-      pitch: 0,
+      pitch: form.enable3D ? Number(form.mapPitch) || 60 : 0,
     });
     setMapBearing(0);
 
@@ -410,6 +411,7 @@ export default function PreviewPanel() {
             style={mapStyle}
             center={mapCenter}
             zoom={mapZoom}
+            pitch={mapPitch}
             mapRef={mapRef}
             interactive={isEditing && !isMarkerEditorActive}
             allowRotation={isEditing && isRotationEnabled}
