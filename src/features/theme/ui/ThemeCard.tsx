@@ -52,32 +52,26 @@ export default function ThemeCard({
     <button
       type="button"
       className={cn(
-        "theme-card relative flex flex-col items-center gap-1.5 rounded-md border bg-card p-2 transition-colors cursor-pointer",
-        isSelected
-          ? "is-selected border-2 border-accent"
-          : "border-border hover:border-accent/50"
+        "relative flex flex-col items-center gap-1 bg-panel p-2 pt-2.5 cursor-pointer transition-colors hover:bg-accent-subtle",
+        isSelected && "ring-2 ring-accent ring-inset"
       )}
       onClick={onClick}
       aria-pressed={isSelected}
       aria-label={themeOption.name}
     >
       <div
-        className={cn(
-          "theme-card-palette flex items-center justify-center gap-0.5 w-full",
-          showFullPalette ? "theme-card-palette--full flex-wrap" : ""
-        )}
+        className="flex items-center justify-center gap-0 w-full"
         aria-hidden="true"
       >
         {palette.map((color, index) => (
           <span
             key={`${themeOption.id}-${color}-${index}`}
-            className="theme-card-swatch inline-block h-5 w-5 rounded-full border border-border/40"
+            className="inline-block h-5 flex-1"
             style={{ backgroundColor: color }}
-            title={color}
           />
         ))}
       </div>
-      <p className="theme-card-name text-xs text-text-secondary truncate w-full text-center">
+      <p className="text-[10px] text-text-secondary truncate w-full text-center">
         {themeOption.name}
       </p>
     </button>

@@ -1,6 +1,7 @@
 import {
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
   type CSSProperties,
@@ -39,8 +40,7 @@ const UNLOCK_HINT = `${LOCKED_HINT}\nClick to unlock map editing.`;
 const RECENTER_HINT = "Recenter map to the current location";
 const COUNTRY_VIEW_ZOOM_LEVEL = 10;
 const CONTINENT_VIEW_ZOOM_LEVEL = 6;
-const DEFAULT_LOCATION_LABEL =
-  "Hanover, Region Hannover, Lower Saxony, Germany";
+const DEFAULT_LOCATION_LABEL = "London, Greater London, England, United Kingdom";
 
 /* Tailwind class constants for map control buttons */
 const CTL_BTN = "inline-flex items-center gap-[5px] px-3 py-1.5 border border-[var(--border)] rounded-lg bg-[var(--bg-card)] text-[var(--text-secondary)] text-[0.78rem] cursor-pointer transition-[background,border-color] duration-150 hover:enabled:bg-[var(--accent-subtle)] hover:enabled:border-[var(--accent)] hover:enabled:text-[var(--text-primary)] disabled:opacity-50 disabled:cursor-default";
@@ -61,6 +61,47 @@ export default function PreviewPanel() {
     activeMarkerId,
   } = state;
   const hasVisibleMarkers = form.showMarkers && state.markers.length > 0;
+  const [shadowOffset, setShadowOffset] = useState({ x: 0, y: 8 });
+
+  const handleCanvasMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const cx = (e.clientX - rect.left) / rect.width - 0.5;   // -0.5 to 0.5
+      const cy = (e.clientY - rect.top) / rect.height - 0.5;
+      setShadowOffset({ x: -cx * 20, y: -cy * 16 + 8 });
+    },
+    [],
+  );
+
+  const handleCanvasMouseLeave = useCallback(() => {
+    setShadowOffset({ x: 0, y: 8 });
+  }, []);
+
+  // Pick lightest and darkest colors from theme for the background gradient
+  const { lightestColor, darkestColor } = useMemo(() => {
+    const hexToLuminance = (hex: string): number => {
+      const c = hex.replace("#", "");
+      if (c.length < 6) return 0;
+      const r = parseInt(c.slice(0, 2), 16) / 255;
+      const g = parseInt(c.slice(2, 4), 16) / 255;
+      const b = parseInt(c.slice(4, 6), 16) / 255;
+      return 0.299 * r + 0.587 * g + 0.114 * b;
+    };
+    const colors = [
+      effectiveTheme.ui.bg,
+      effectiveTheme.ui.text,
+      effectiveTheme.map.land,
+      effectiveTheme.map.water,
+      effectiveTheme.map.roads.major,
+    ].filter(Boolean);
+    const sorted = [...colors].sort(
+      (a, b) => hexToLuminance(a) - hexToLuminance(b),
+    );
+    return {
+      darkestColor: sorted[0] || "#000000",
+      lightestColor: sorted[sorted.length - 1] || "#ffffff",
+    };
+  }, [effectiveTheme]);
   const {
     mapCenter,
     mapZoom,
@@ -72,7 +113,6 @@ export default function PreviewPanel() {
   } = useMapSync(state, dispatch, mapRef);
 
   const frameRef = useRef<HTMLDivElement | null>(null);
-  const ghostCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [mapBearing, setMapBearing] = useState(0);
   const [isRotationEnabled, setIsRotationEnabled] = useState(false);
@@ -129,32 +169,6 @@ export default function PreviewPanel() {
   }, [mapRef]);
 
   useEffect(() => {
-    const map = mapRef.current;
-    if (!map) return;
-
-    const syncGhostCanvas = () => {
-      const ghost = ghostCanvasRef.current;
-      if (!ghost) return;
-      const src = map.getCanvas();
-      if (!src) return;
-
-      if (ghost.width !== src.width || ghost.height !== src.height) {
-        ghost.width = src.width;
-        ghost.height = src.height;
-      }
-
-      const ctx = ghost.getContext("2d");
-      if (!ctx) return;
-      ctx.drawImage(src, 0, 0);
-    };
-
-    map.on("render", syncGhostCanvas);
-    return () => {
-      map.off("render", syncGhostCanvas);
-    };
-  }, [mapRef]);
-
-  useEffect(() => {
     if (!isMarkerEditorActive) {
       return;
     }
@@ -174,7 +188,7 @@ export default function PreviewPanel() {
   const isCountryContinentView =
     mapZoom >= CONTINENT_VIEW_ZOOM_LEVEL && mapZoom < COUNTRY_VIEW_ZOOM_LEVEL;
   const cityLabel = isCityCountryView
-    ? form.displayCity || form.location || "Hanover"
+    ? form.displayCity || form.location || "London"
     : isCountryContinentView
       ? form.displayCountry || "Germany"
       : form.displayContinent || "Earth";
@@ -366,38 +380,29 @@ export default function PreviewPanel() {
   );
 
   return (
-    <section className="relative w-full h-full">
+    <section className="relative w-full h-full" onMouseMove={handleCanvasMouseMove} onMouseLeave={handleCanvasMouseLeave}>
       <div className="absolute inset-0 grid place-items-center overflow-hidden bg-[var(--bg-app)]">
-        {/* Desktop ghost layer: canvas clone of the main map at reduced opacity */}
-        <div className="absolute -inset-x-6 -inset-y-12 z-0 opacity-35 blur-[6px] saturate-[0.75] brightness-[0.85] pointer-events-none" aria-hidden="true">
-          <div className="overflow-hidden w-full h-full">
-            <div
-              style={{
-                width: `${MAP_OVERZOOM_SCALE * 100}%`,
-                height: `${MAP_OVERZOOM_SCALE * 100}%`,
-                transform: `scale(${1 / MAP_OVERZOOM_SCALE})`,
-                transformOrigin: "top left",
-              }}
-            >
-              <canvas
-                ref={ghostCanvasRef}
-                className="w-full h-full block"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-[2] text-xs font-medium text-[var(--text-muted)] opacity-70 pointer-events-none whitespace-nowrap" aria-hidden="true">
+        {/* Layout label — notch style, inverted theme colors */}
+        <div
+          className="absolute top-0 left-1/2 -translate-x-1/2 z-[2] px-5 pb-1.5 pt-1 text-[11px] font-medium pointer-events-none whitespace-nowrap rounded-b-xl"
+          aria-hidden="true"
+          style={{
+            backgroundColor: darkestColor,
+            color: `${lightestColor}cc`,
+          }}
+        >
           {layoutLabel}
         </div>
         <div
           ref={frameRef}
-          className="relative z-[1] max-w-full overflow-visible rounded-[4px] shadow-[0_24px_48px_rgba(0,0,0,0.25),0_8px_14px_rgba(0,0,0,0.15)]"
+          className="relative z-[1] max-w-full overflow-visible rounded-[4px] transition-shadow duration-300 ease-out"
           style={
             {
               aspectRatio: aspect,
               width: `min(calc(100% - 48px), calc((84vh - 44px) * ${aspect}))`,
               maxHeight: "calc(84vh - 44px)",
               backgroundColor: effectiveTheme.ui.bg,
+              boxShadow: `${shadowOffset.x}px ${shadowOffset.y + 16}px 48px rgba(0,0,0,0.25), ${shadowOffset.x * 0.4}px ${shadowOffset.y + 4}px 14px rgba(0,0,0,0.15)`,
             } as CSSProperties
           }
         >
@@ -443,21 +448,7 @@ export default function PreviewPanel() {
           />
 
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[calc(100%+12px)] z-20 flex flex-row items-center gap-1.5 flex-wrap justify-center whitespace-nowrap max-[768px]:w-[calc(100%-8px)] max-[768px]:flex-col max-[768px]:top-[calc(100%+8px)] max-[768px]:bottom-auto max-[768px]:z-[12]" aria-label="Map controls">
-            {!isEditing ? (
-              <>
-                <div className="flex flex-nowrap justify-center gap-1.5 items-center max-[768px]:w-full">
-                  <MapPrimaryControls
-                    isMapEditing={false}
-                    isMarkerEditorActive={isMarkerEditorActive}
-                    recenterHint={RECENTER_HINT}
-                    unlockHint={UNLOCK_HINT}
-                    onRecenter={handleRecenter}
-                    onStartEditing={handleStartEditing}
-                    onFinishEditing={handleFinishEditing}
-                  />
-                </div>
-              </>
-            ) : (
+            {!isEditing ? null : (
               <>
                 <div className={CTL_GROUP}>
                   <MapPrimaryControls
@@ -468,6 +459,8 @@ export default function PreviewPanel() {
                     onRecenter={handleRecenter}
                     onStartEditing={handleStartEditing}
                     onFinishEditing={handleFinishEditing}
+                    lightColor={lightestColor}
+                    darkColor={darkestColor}
                   />
                   {isMobileViewport ? (
                     <button
@@ -566,6 +559,23 @@ export default function PreviewPanel() {
             )}
           </div>
         </div>
+
+        {/* Bottom notch — Recenter + Edit Map */}
+        {!isMobileViewport && (
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-[3]">
+            <MapPrimaryControls
+              isMapEditing={isEditing}
+              isMarkerEditorActive={isMarkerEditorActive}
+              recenterHint={RECENTER_HINT}
+              unlockHint={UNLOCK_HINT}
+              onRecenter={handleRecenter}
+              onStartEditing={handleStartEditing}
+              onFinishEditing={handleFinishEditing}
+              lightColor={lightestColor}
+              darkColor={darkestColor}
+            />
+          </div>
+        )}
       </div>
 
     </section>

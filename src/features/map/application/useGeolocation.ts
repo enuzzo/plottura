@@ -10,13 +10,13 @@ import type { PosterAction } from "@/features/poster/application/posterReducer";
 
 /**
  * Initializes map start position from browser geolocation.
- * Falls back to Hanover coordinates when geolocation is unavailable or denied.
+ * Falls back to London coordinates when geolocation is unavailable or denied.
  */
 export function useGeolocation(dispatch: React.Dispatch<PosterAction>) {
   useEffect(() => {
     let cancelled = false;
     const defaultLocationLabel =
-      "Hanover, Region Hannover, Lower Saxony, Germany";
+      "London, Greater London, England, United Kingdom";
 
     const applyFallback = () => {
       if (cancelled) return;

@@ -69,9 +69,14 @@ src/
 Phase 2 in progress. See `docs/superpowers/specs/2026-04-08-phase2-architecture-and-ux-design.md` for full spec.
 - **M1 done:** react-icons → Lucide migration
 - **M2 done:** CSS architecture — pure Tailwind, globals.css tokens only
-- **M3-M5 pending:** UX cleanup, theme redesign, new features
+- **M3 done:** UX cleanup — removed FloatingSearchBar + StartupLocationModal, London defaults, sidebar collapse, slim scrollbar
+- **M4 done:** Theme redesign — 2-col theme grid, neutral bg, themed notches, mouse-tracking shadow
+- **M5 partial:** Export SVG done (5d). Pending: typefaces (5a), gradient toggles (5b), credits toggle (5c)
+- **Extra:** Layout as own section, collapsible groups, IKEA Frames, sidebar 360px, settings summary footer, themed buttons
 
-Handoff notes: `docs/superpowers/notes/2026-04-08-phase2-session1-handoff.md`
+Handoff notes:
+- Session 1: `docs/superpowers/notes/2026-04-08-phase2-session1-handoff.md`
+- Session 2: `docs/superpowers/notes/2026-04-08-phase2-session2-handoff.md`
 
 ## Future Vision
 

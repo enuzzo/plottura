@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import type { Layout } from "../domain/types";
 import { formatLayoutDimensions } from "../infrastructure/layoutRepository";
 
@@ -22,40 +23,57 @@ interface LayoutCardProps {
   layoutOption: Layout | null;
   onClick?: () => void;
   isSelected?: boolean;
+  /** Whether this cell is in the right column (adds left border) */
+  isOdd?: boolean;
+  /** Whether this cell is in the last row (no bottom border) */
+  isLastRow?: boolean;
 }
 
 export default function LayoutCard({
   layoutOption,
   onClick,
   isSelected = false,
+  isOdd = false,
+  isLastRow = false,
 }: LayoutCardProps) {
   if (!layoutOption) {
     return null;
   }
-  const className = ["layout-card", isSelected ? "is-selected" : ""]
-    .filter(Boolean)
-    .join(" ");
   const symbolDataUri = getLayoutSymbolDataUri(layoutOption);
   const sizeText = formatLayoutDimensions(layoutOption);
 
   return (
     <button
       type="button"
-      className={className}
+      className={cn(
+        "flex items-center gap-2 px-2.5 py-2 text-left transition-colors cursor-pointer",
+        isOdd && "border-l border-border",
+        !isLastRow && "border-b border-border",
+        isSelected
+          ? "bg-accent-subtle text-accent"
+          : "hover:bg-accent-subtle/50"
+      )}
       onClick={onClick}
       aria-pressed={isSelected}
     >
-      <div className="layout-card-copy">
-        <p className="layout-card-name">{layoutOption.name}</p>
-        <p className="layout-card-meta">{sizeText}</p>
-      </div>
       {symbolDataUri ? (
         <img
-          className="layout-card-symbol"
+          className="w-5 h-5 shrink-0 opacity-50"
           src={symbolDataUri}
-          alt={`${layoutOption.name} ratio symbol`}
+          alt=""
         />
       ) : null}
+      <div className="min-w-0 flex-1">
+        <p className={cn(
+          "text-[11px] font-medium leading-tight",
+          isSelected ? "text-accent" : "text-text-primary"
+        )}>
+          {layoutOption.name}
+        </p>
+        <p className="text-[10px] text-text-muted leading-tight">
+          {sizeText}
+        </p>
+      </div>
     </button>
   );
 }

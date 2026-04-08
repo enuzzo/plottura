@@ -33,11 +33,11 @@ export const DEFAULT_CONTAINER_PX = 600;
 /** Duration (ms) for flyTo animation when selecting a location. */
 export const FLY_TO_DURATION_MS = 1800;
 
-/** Hanover, Germany — default fallback when geolocation is denied. */
-export const DEFAULT_LAT = 52.3759;
-export const DEFAULT_LON = 9.732;
-export const DEFAULT_CITY = "Hanover";
-export const DEFAULT_COUNTRY = "Germany";
+/** London, UK — default fallback when geolocation is denied. */
+export const DEFAULT_LAT = 51.5074;
+export const DEFAULT_LON = -0.1278;
+export const DEFAULT_CITY = "London";
+export const DEFAULT_COUNTRY = "United Kingdom";
 
 export const REPO_URL = import.meta.env.VITE_REPO_URL ?? "";
 export const REPO_API_URL = import.meta.env.VITE_REPO_API_URL ?? "";

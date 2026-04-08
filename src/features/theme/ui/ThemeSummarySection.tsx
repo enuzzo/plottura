@@ -20,32 +20,24 @@ export default function ThemeSummarySection({
   onThemeSelect,
   onCustomize,
 }: ThemeSummarySectionProps) {
-  const description =
-    selectedThemeOption.description?.trim() || "No description available.";
-
   return (
-    <div className="theme-summary-view">
-      <div className="theme-summary-head">
-        <div className="theme-summary-copy">
-          <p className="theme-summary-label">
-            Theme: <span className="theme-summary-label-name">{selectedThemeOption.name}</span>
-          </p>
-          <p className="theme-card-description">{description}</p>
-        </div>
+    <div className="space-y-3">
+      <div className="flex items-center justify-between">
+        <p className="text-xs font-medium text-text-muted uppercase tracking-wider">
+          Theme: <span className="text-text-primary">{selectedThemeOption.name}</span>
+        </p>
         <button
           type="button"
-          className="theme-customize-btn"
+          className="p-1.5 rounded-md text-text-muted hover:text-text-primary hover:bg-accent-subtle transition-colors"
           onClick={onCustomize}
           aria-label={`Customize ${selectedThemeOption.name} colors`}
         >
-          <span className="theme-customize-icon" aria-hidden="true">
-            <Pencil className="w-4 h-4" />
-          </span>
+          <Pencil className="w-3.5 h-3.5" />
         </button>
       </div>
 
       <div
-        className="theme-card-list card-scroll-list"
+        className="grid grid-cols-2 gap-px bg-border/50"
         role="list"
         aria-label="Theme options"
         ref={listRef}

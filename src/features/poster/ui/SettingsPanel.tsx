@@ -8,13 +8,14 @@ import type { MobileTab } from "@/shared/ui/MobileNavBar";
 
 import LocationSection from "@/features/location/ui/LocationSection";
 import MapSettingsSection from "@/features/map/ui/MapSettingsSection";
+import LayoutSection from "@/features/layout/ui/LayoutSection";
 import LayersSection from "@/features/map/ui/LayersSection";
 import MarkersSection from "@/features/markers/ui/MarkersSection";
 import TypographySection from "@/features/poster/ui/TypographySection";
 
 import { Accordion } from "@/components/ui/accordion";
 import SidebarSection from "@/components/sidebar/SidebarSection";
-import { MapPin, Palette, Map, Layers, MapPinPlus, Type } from "lucide-react";
+import { MapPin, Palette, LayoutGrid, Map, Layers, MapPinPlus, Type } from "lucide-react";
 
 import { themeOptions } from "@/features/theme/infrastructure/themeRepository";
 import { layoutGroups } from "@/features/layout/infrastructure/layoutRepository";
@@ -41,7 +42,6 @@ export default function SettingsPanel({
     handleLocationSelect,
     handleClearLocation,
     setLocationFocused,
-    handleCreditsChange,
   } = useFormHandlers();
   const { locationSuggestions, isLocationSearching, searchNow } = useLocationAutocomplete(
     state.form.location,
@@ -90,15 +90,9 @@ export default function SettingsPanel({
             <MapSettingsSection
               activeMobileTab={mobileTab}
               form={state.form}
-              onChange={handleChange}
-              onNumericFieldBlur={handleNumericFieldBlur}
               onThemeChange={handleThemeChange}
-              onLayoutChange={handleLayoutChange}
               selectedTheme={selectedTheme}
               themeOptions={themeOptions}
-              layoutGroups={layoutGroups}
-              minPosterCm={MIN_POSTER_CM}
-              maxPosterCm={MAX_POSTER_CM}
               customColors={state.customColors}
               onColorChange={handleColorChange}
               onResetColors={handleResetColors}
@@ -107,25 +101,27 @@ export default function SettingsPanel({
           ) : null}
         </SidebarSection>
 
-        <SidebarSection value="map-settings" icon={Map} label="Map Settings">
-          {!isColorEditorActive ? (
-            <MapSettingsSection
-              activeMobileTab={mobileTab}
+        <SidebarSection value="layout" icon={LayoutGrid} label="Layout">
+          {!isAuxEditorActive ? (
+            <LayoutSection
               form={state.form}
               onChange={handleChange}
               onNumericFieldBlur={handleNumericFieldBlur}
-              onThemeChange={handleThemeChange}
               onLayoutChange={handleLayoutChange}
-              selectedTheme={selectedTheme}
-              themeOptions={themeOptions}
               layoutGroups={layoutGroups}
               minPosterCm={MIN_POSTER_CM}
               maxPosterCm={MAX_POSTER_CM}
-              customColors={state.customColors}
-              onColorChange={handleColorChange}
-              onResetColors={handleResetColors}
-              onColorEditorActiveChange={setIsColorEditorActive}
             />
+          ) : null}
+        </SidebarSection>
+
+        <SidebarSection value="map-settings" icon={Map} label="Map Settings">
+          {!isColorEditorActive ? (
+            <div className="space-y-3">
+              <p className="text-xs text-text-muted">
+                Map feature controls coming soon (gradient fades, credits, distance).
+              </p>
+            </div>
           ) : null}
         </SidebarSection>
 

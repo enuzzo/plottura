@@ -48,6 +48,24 @@
       ]
     },
     {
+      "id": "ikea",
+      "name": "IKEA Frames",
+      "layouts": [
+        { "id": "ikea_fiskbo_10x15", "name": "FISKBO", "description": "10 × 15 cm", "width": 10, "height": 15, "unit": "cm", "posterWidthCm": 10, "posterHeightCm": 15 },
+        { "id": "ikea_ribba_13x18", "name": "RIBBA", "description": "13 × 18 cm", "width": 13, "height": 18, "unit": "cm", "posterWidthCm": 13, "posterHeightCm": 18 },
+        { "id": "ikea_ribba_21x30", "name": "RIBBA", "description": "21 × 30 cm", "width": 21, "height": 30, "unit": "cm", "posterWidthCm": 21, "posterHeightCm": 30 },
+        { "id": "ikea_ribba_30x40", "name": "RIBBA", "description": "30 × 40 cm", "width": 30, "height": 40, "unit": "cm", "posterWidthCm": 30, "posterHeightCm": 40 },
+        { "id": "ikea_lomviken_40x50", "name": "LOMVIKEN", "description": "40 × 50 cm", "width": 40, "height": 50, "unit": "cm", "posterWidthCm": 40, "posterHeightCm": 50 },
+        { "id": "ikea_lomviken_50x70", "name": "LOMVIKEN", "description": "50 × 70 cm", "width": 50, "height": 70, "unit": "cm", "posterWidthCm": 50, "posterHeightCm": 70 },
+        { "id": "ikea_rodalm_61x91", "name": "RÖDALM", "description": "61 × 91 cm", "width": 61, "height": 91, "unit": "cm", "posterWidthCm": 61, "posterHeightCm": 91 },
+        { "id": "ikea_sannahed_25x25", "name": "SANNAHED", "description": "25 × 25 cm", "width": 25, "height": 25, "unit": "cm", "posterWidthCm": 25, "posterHeightCm": 25 },
+        { "id": "ikea_sannahed_50x50", "name": "SANNAHED", "description": "50 × 50 cm", "width": 50, "height": 50, "unit": "cm", "posterWidthCm": 50, "posterHeightCm": 50 },
+        { "id": "ikea_hovsta_21x30", "name": "HOVSTA", "description": "21 × 30 cm", "width": 21, "height": 30, "unit": "cm", "posterWidthCm": 21, "posterHeightCm": 30 },
+        { "id": "ikea_hovsta_30x40", "name": "HOVSTA", "description": "30 × 40 cm", "width": 30, "height": 40, "unit": "cm", "posterWidthCm": 30, "posterHeightCm": 40 },
+        { "id": "ikea_silverhojden_50x70", "name": "SILVERHÖJDEN", "description": "50 × 70 cm", "width": 50, "height": 70, "unit": "cm", "posterWidthCm": 50, "posterHeightCm": 70 }
+      ]
+    },
+    {
       "id": "social_media",
       "name": "Social Media",
       "layouts": [

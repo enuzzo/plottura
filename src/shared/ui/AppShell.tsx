@@ -6,13 +6,21 @@ import {
 } from "@/features/markers/domain/constants";
 import PreviewPanel from "@/features/poster/ui/PreviewPanel";
 import { useSwipeDown } from "@/shared/hooks/useSwipeDown";
-import StartupLocationModal from "@/features/location/ui/StartupLocationModal";
-import { Check } from "lucide-react";
+import { Check, PanelLeftOpen } from "lucide-react";
 import { useExport } from "@/features/export/application/useExport";
 import Sidebar from "@/components/sidebar/Sidebar";
 import MapCanvas from "@/components/canvas/MapCanvas";
-import FloatingSearchBar from "@/components/canvas/FloatingSearchBar";
 import FloatingZoomControls from "@/components/canvas/FloatingZoomControls";
+
+const SIDEBAR_STORAGE_KEY = "plottura:sidebar-collapsed";
+
+function readSidebarCollapsed(): boolean {
+  try {
+    return localStorage.getItem(SIDEBAR_STORAGE_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
 
 const SettingsPanel = lazy(() => import("@/features/poster/ui/SettingsPanel"));
 
@@ -70,7 +78,23 @@ export default function AppShell() {
       ? state.markers.find((marker) => marker.id === state.activeMarkerId) ?? null
       : null;
 
-  const { handleDownloadPng, isExporting } = useExport();
+  const { handleDownloadPng, handleDownloadSvg, isExporting } = useExport();
+
+  // Sidebar collapse state (desktop only)
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(readSidebarCollapsed);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(SIDEBAR_STORAGE_KEY, String(sidebarCollapsed));
+    } catch {
+      /* ignore */
+    }
+  }, [sidebarCollapsed]);
+
+  const toggleSidebar = useCallback(
+    () => setSidebarCollapsed((c) => !c),
+    [],
+  );
 
   // Mobile state
   const [mobileTab, setMobileTab] = useState<MobileTab>("theme");
@@ -166,17 +190,31 @@ export default function AppShell() {
   if (!isMobileViewport) {
     return (
       <div className="flex h-screen font-sans text-text-primary bg-app">
-        <Sidebar onExport={handleDownloadPng} isExporting={isExporting}>
+        <Sidebar
+          onExportPng={handleDownloadPng}
+          onExportSvg={handleDownloadSvg}
+          isExporting={isExporting}
+          collapsed={sidebarCollapsed}
+          onToggle={toggleSidebar}
+        >
           <Suspense fallback={null}>
             <SettingsPanel />
           </Suspense>
         </Sidebar>
         <MapCanvas>
-          <FloatingSearchBar />
+          {sidebarCollapsed && (
+            <button
+              type="button"
+              onClick={toggleSidebar}
+              aria-label="Expand sidebar"
+              className="absolute top-3.5 left-3.5 z-10 p-2 rounded-lg bg-[var(--bg-card)]/90 backdrop-blur-sm border border-border text-text-muted hover:text-text-primary hover:bg-[var(--bg-card)] transition-colors shadow-sm"
+            >
+              <PanelLeftOpen className="w-4 h-4" />
+            </button>
+          )}
           <FloatingZoomControls />
           <PreviewPanel />
         </MapCanvas>
-        <StartupLocationModal />
       </div>
     );
   }
@@ -187,8 +225,6 @@ export default function AppShell() {
       className="app-shell"
       data-mobile-tab={mobileTab}
     >
-      <StartupLocationModal />
-
       {isMarkerEditorActive && activeMarker ? (
         <div
           className="mobile-marker-size-bar"

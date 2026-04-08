@@ -1,8 +1,5 @@
 import { Lock, Focus, Unlock } from "lucide-react";
 
-const CTL_BTN = "inline-flex items-center gap-[5px] px-3 py-1.5 border border-[var(--border)] rounded-lg bg-[var(--bg-card)] text-[var(--text-secondary)] text-[0.78rem] cursor-pointer transition-[background,border-color] duration-150 hover:enabled:bg-[var(--accent-subtle)] hover:enabled:border-[var(--accent)] hover:enabled:text-[var(--text-primary)] disabled:opacity-50 disabled:cursor-default";
-const CTL_BTN_PRIMARY = `${CTL_BTN} !bg-[var(--accent-subtle)] !border-[var(--accent)] !text-[var(--accent)] hover:enabled:!bg-[var(--accent)] hover:enabled:!text-white`;
-
 interface MapPrimaryControlsProps {
   isMapEditing: boolean;
   isMarkerEditorActive: boolean;
@@ -11,7 +8,12 @@ interface MapPrimaryControlsProps {
   onRecenter: () => void;
   onStartEditing: () => void;
   onFinishEditing: () => void;
+  lightColor?: string;
+  darkColor?: string;
 }
+
+const BTN =
+  "inline-flex items-center gap-[5px] px-3 py-1.5 text-[0.78rem] cursor-pointer transition-opacity duration-150 hover:enabled:opacity-80 disabled:opacity-50 disabled:cursor-default";
 
 export default function MapPrimaryControls({
   isMapEditing,
@@ -21,24 +23,33 @@ export default function MapPrimaryControls({
   onRecenter,
   onStartEditing,
   onFinishEditing,
+  lightColor = "#ffffff",
+  darkColor = "#1a1a1a",
 }: MapPrimaryControlsProps) {
+  const notchStyle = { backgroundColor: `${lightColor}e6`, color: darkColor };
+  const dividerStyle = { backgroundColor: `${darkColor}20` };
+
   return (
-    <>
-      {!isMapEditing ? (
-        <button
-          type="button"
-          className={CTL_BTN}
-          onClick={onRecenter}
-          title={recenterHint}
-        >
-          <Focus className="w-4 h-4" />
-          <span>Recenter</span>
-        </button>
-      ) : null}
+    <div
+      className="inline-flex items-stretch rounded-t-xl overflow-hidden"
+      style={notchStyle}
+    >
+      <button
+        type="button"
+        className={BTN}
+        onClick={onRecenter}
+        title={recenterHint}
+      >
+        <Focus className="w-4 h-4" />
+        <span>Recenter</span>
+      </button>
+
+      <div className="w-px self-stretch my-1.5" style={dividerStyle} />
+
       {isMapEditing ? (
         <button
           type="button"
-          className={CTL_BTN_PRIMARY}
+          className={BTN}
           onClick={onFinishEditing}
           title="Lock map editing"
         >
@@ -48,7 +59,7 @@ export default function MapPrimaryControls({
       ) : (
         <button
           type="button"
-          className={CTL_BTN_PRIMARY}
+          className={BTN}
           onClick={onStartEditing}
           title={unlockHint}
           disabled={isMarkerEditorActive}
@@ -57,6 +68,6 @@ export default function MapPrimaryControls({
           <span>Edit Map</span>
         </button>
       )}
-    </>
+    </div>
   );
 }

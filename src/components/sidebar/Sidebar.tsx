@@ -5,27 +5,34 @@ import SidebarFooter from "./SidebarFooter";
 
 interface SidebarProps {
   children: ReactNode;
-  onExport: () => void;
+  onExportPng: () => void;
+  onExportSvg: () => void;
   isExporting: boolean;
+  collapsed?: boolean;
+  onToggle?: () => void;
   className?: string;
 }
 
 export default function Sidebar({
   children,
-  onExport,
+  onExportPng,
+  onExportSvg,
   isExporting,
+  collapsed = false,
+  onToggle,
   className,
 }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "w-[320px] min-w-[320px] bg-panel border-r border-border flex flex-col h-screen",
+        "bg-panel border-r border-border flex flex-col h-screen transition-[width,min-width] duration-300 ease-in-out overflow-hidden",
+        collapsed ? "w-0 min-w-0 border-r-0" : "w-[360px] min-w-[360px]",
         className
       )}
     >
-      <SidebarHeader />
-      <div className="flex-1 overflow-y-auto">{children}</div>
-      <SidebarFooter onExport={onExport} isExporting={isExporting} />
+      <SidebarHeader collapsed={collapsed} onToggle={onToggle} />
+      <div className="flex-1 overflow-y-auto scrollbar-slim">{children}</div>
+      <SidebarFooter onExportPng={onExportPng} onExportSvg={onExportSvg} isExporting={isExporting} />
     </aside>
   );
 }
