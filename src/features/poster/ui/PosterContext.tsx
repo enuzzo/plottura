@@ -80,6 +80,13 @@ export const DEFAULT_FORM: PosterForm = {
   includeOsmBadge: true,
   showCountry: true,
   showCoordinates: true,
+  enable3D: false,
+  mapPitch: "60",
+  buildingExtrusion: true,
+  terrainEnabled: false,
+  terrainExaggeration: "1.5",
+  lightAzimuth: "210",
+  lightIntensity: "0.6",
 };
 
 const INITIAL_STATE: PosterState = {

@@ -44,6 +44,14 @@ export interface PosterForm {
   includeOsmBadge: boolean;
   showCountry: boolean;
   showCoordinates: boolean;
+  // ── 3D View ──
+  enable3D: boolean;
+  mapPitch: string;
+  buildingExtrusion: boolean;
+  terrainEnabled: boolean;
+  terrainExaggeration: string;
+  lightAzimuth: string;
+  lightIntensity: string;
 }
 
 /* ────── App-level state ────── */
