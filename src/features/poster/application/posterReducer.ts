@@ -39,6 +39,11 @@ export interface PosterForm {
   includeRoadMinorLow: boolean;
   includeRoadOutline: boolean;
   showMarkers: boolean;
+  showGradientTop: boolean;
+  showGradientBottom: boolean;
+  includeOsmBadge: boolean;
+  showCountry: boolean;
+  showCoordinates: boolean;
 }
 
 /* ────── App-level state ────── */

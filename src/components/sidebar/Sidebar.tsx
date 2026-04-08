@@ -7,6 +7,7 @@ interface SidebarProps {
   children: ReactNode;
   onExportPng: () => void;
   onExportSvg: () => void;
+  onExportPdf: () => void;
   isExporting: boolean;
   collapsed?: boolean;
   onToggle?: () => void;
@@ -17,6 +18,7 @@ export default function Sidebar({
   children,
   onExportPng,
   onExportSvg,
+  onExportPdf,
   isExporting,
   collapsed = false,
   onToggle,
@@ -32,7 +34,7 @@ export default function Sidebar({
     >
       <SidebarHeader collapsed={collapsed} onToggle={onToggle} />
       <div className="flex-1 overflow-y-auto scrollbar-slim">{children}</div>
-      <SidebarFooter onExportPng={onExportPng} onExportSvg={onExportSvg} isExporting={isExporting} />
+      <SidebarFooter onExportPng={onExportPng} onExportSvg={onExportSvg} onExportPdf={onExportPdf} isExporting={isExporting} />
     </aside>
   );
 }

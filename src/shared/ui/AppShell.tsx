@@ -78,7 +78,7 @@ export default function AppShell() {
       ? state.markers.find((marker) => marker.id === state.activeMarkerId) ?? null
       : null;
 
-  const { handleDownloadPng, handleDownloadSvg, isExporting } = useExport();
+  const { handleDownloadPng, handleDownloadSvg, handleDownloadPdf, isExporting } = useExport();
 
   // Sidebar collapse state (desktop only)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(readSidebarCollapsed);
@@ -193,6 +193,7 @@ export default function AppShell() {
         <Sidebar
           onExportPng={handleDownloadPng}
           onExportSvg={handleDownloadSvg}
+          onExportPdf={handleDownloadPdf}
           isExporting={isExporting}
           collapsed={sidebarCollapsed}
           onToggle={toggleSidebar}

@@ -384,7 +384,7 @@ export default function PreviewPanel() {
       <div className="absolute inset-0 grid place-items-center overflow-hidden bg-[var(--bg-app)]">
         {/* Layout label — notch style, inverted theme colors */}
         <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 z-[2] px-5 pb-1.5 pt-1 text-[11px] font-medium pointer-events-none whitespace-nowrap rounded-b-xl"
+          className="absolute top-0 left-1/2 -translate-x-1/2 z-[2] px-5 pb-1.5 pt-1 text-sm font-semibold uppercase pointer-events-none whitespace-nowrap rounded-b-xl"
           aria-hidden="true"
           style={{
             backgroundColor: darkestColor,
@@ -419,8 +419,12 @@ export default function PreviewPanel() {
             onMove={handleMove}
             onMoveEnd={handleMoveEnd}
           />
-          {form.showMarkers ? (
-            <GradientFades color={effectiveTheme.ui.bg} />
+          {form.showGradientTop || form.showGradientBottom ? (
+            <GradientFades
+              color={effectiveTheme.ui.bg}
+              showTop={form.showGradientTop}
+              showBottom={form.showGradientBottom}
+            />
           ) : null}
           {hasVisibleMarkers ? (
             <MarkerOverlay
@@ -444,6 +448,9 @@ export default function PreviewPanel() {
             landColor={effectiveTheme.map.land}
             showPosterText={form.showPosterText}
             includeCredits={form.includeCredits}
+            includeOsmBadge={form.includeOsmBadge}
+            showCountry={form.showCountry}
+            showCoordinates={form.showCoordinates}
             showOverlay={form.showMarkers}
           />
 

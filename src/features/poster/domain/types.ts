@@ -25,7 +25,12 @@ export interface ExportOptions {
   fontFamily: string;
   showPosterText: boolean;
   showOverlay?: boolean;
+  showGradientTop?: boolean;
+  showGradientBottom?: boolean;
   includeCredits?: boolean;
+  includeOsmBadge?: boolean;
+  showCountry?: boolean;
+  showCoordinates?: boolean;
   markers?: MarkerItem[];
   markerIcons?: MarkerIconDefinition[];
   markerProjection?: MarkerProjectionInput;

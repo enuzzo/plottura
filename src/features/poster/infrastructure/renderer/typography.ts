@@ -22,7 +22,7 @@ export function drawPosterText(
   ctx: CanvasRenderingContext2D,
   width: number,
   height: number,
-  theme: { ui?: { text?: string } },
+  theme: { ui?: { text?: string }; map?: { land?: string } },
   center: Coordinate,
   city: string,
   country: string,
@@ -30,6 +30,9 @@ export function drawPosterText(
   showPosterText: boolean,
   showOverlay: boolean,
   includeCredits: boolean = true,
+  includeOsmBadge: boolean = true,
+  showCountry: boolean = true,
+  showCoordinates: boolean = true,
 ): void {
   const textColor = theme.ui?.text || "#111111";
   const landColor = theme.map?.land || "#808080";
@@ -65,37 +68,43 @@ export function drawPosterText(
     ctx.font = `700 ${cityFontSize}px ${titleFontFamily}`;
     ctx.fillText(cityLabel, width * 0.5, cityY);
 
-    ctx.strokeStyle = textColor;
-    ctx.lineWidth = 3 * dimScale;
-    ctx.beginPath();
-    ctx.moveTo(width * 0.4, lineY);
-    ctx.lineTo(width * 0.6, lineY);
-    ctx.stroke();
+    if (showCountry) {
+      ctx.strokeStyle = textColor;
+      ctx.lineWidth = 3 * dimScale;
+      ctx.beginPath();
+      ctx.moveTo(width * 0.4, lineY);
+      ctx.lineTo(width * 0.6, lineY);
+      ctx.stroke();
 
-    ctx.font = `300 ${countryFontSize}px ${titleFontFamily}`;
-    ctx.fillText(country.toUpperCase(), width * 0.5, countryY);
+      ctx.font = `300 ${countryFontSize}px ${titleFontFamily}`;
+      ctx.fillText(country.toUpperCase(), width * 0.5, countryY);
+    }
 
-    ctx.globalAlpha = 0.75;
-    ctx.font = `400 ${coordinateFontSize}px ${bodyFontFamily}`;
+    if (showCoordinates) {
+      ctx.globalAlpha = 0.75;
+      ctx.font = `400 ${coordinateFontSize}px ${bodyFontFamily}`;
+      ctx.fillText(
+        formatCoordinates(center.lat, center.lon),
+        width * 0.5,
+        coordinatesY,
+      );
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  if (includeOsmBadge) {
+    ctx.fillStyle = attributionColor;
+    ctx.globalAlpha = attributionAlpha;
+    ctx.textAlign = "right";
+    ctx.textBaseline = "bottom";
+    ctx.font = `300 ${attributionFontSize}px ${bodyFontFamily}`;
     ctx.fillText(
-      formatCoordinates(center.lat, center.lon),
-      width * 0.5,
-      coordinatesY,
+      "\u00a9 OpenStreetMap contributors",
+      width * (1 - TEXT_EDGE_MARGIN_RATIO),
+      height * (1 - TEXT_EDGE_MARGIN_RATIO),
     );
     ctx.globalAlpha = 1;
   }
-
-  ctx.fillStyle = attributionColor;
-  ctx.globalAlpha = attributionAlpha;
-  ctx.textAlign = "right";
-  ctx.textBaseline = "bottom";
-  ctx.font = `300 ${attributionFontSize}px ${bodyFontFamily}`;
-  ctx.fillText(
-    "\u00a9 OpenStreetMap contributors",
-    width * (1 - TEXT_EDGE_MARGIN_RATIO),
-    height * (1 - TEXT_EDGE_MARGIN_RATIO),
-  );
-  ctx.globalAlpha = 1;
 
   if (includeCredits) {
     ctx.fillStyle = attributionColor;

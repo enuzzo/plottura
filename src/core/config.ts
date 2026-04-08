@@ -81,4 +81,9 @@ export const FONT_OPTIONS: FontOption[] = [
   { value: "Lato", label: "Lato" },
   { value: "Merriweather", label: "Merriweather" },
   { value: "Bebas neue", label: "Bebas Neue" },
+  { value: "Pacifico", label: "Pacifico" },
+  { value: "Permanent Marker", label: "Permanent Marker" },
+  { value: "Caveat", label: "Caveat" },
+  { value: "Lobster", label: "Lobster" },
+  { value: "Satisfy", label: "Satisfy" },
 ];

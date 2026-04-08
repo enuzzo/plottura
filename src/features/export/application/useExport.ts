@@ -114,7 +114,12 @@ export function useExport() {
             fontFamily: form.fontFamily.trim(),
             showPosterText: form.showPosterText,
             showOverlay: form.showMarkers,
+            showGradientTop: form.showGradientTop,
+            showGradientBottom: form.showGradientBottom,
             includeCredits: form.includeCredits,
+            includeOsmBadge: form.includeOsmBadge,
+            showCountry: form.showCountry,
+            showCoordinates: form.showCoordinates,
             markers: hasVisibleMarkers ? state.markers : [],
             markerIcons: hasVisibleMarkers
               ? getAllMarkerIcons(state.customMarkerIcons)
@@ -151,7 +156,12 @@ export function useExport() {
           fontFamily: form.fontFamily.trim(),
           showPosterText: form.showPosterText,
           showOverlay: form.showMarkers,
+          showGradientTop: form.showGradientTop,
+          showGradientBottom: form.showGradientBottom,
           includeCredits: form.includeCredits,
+          includeOsmBadge: form.includeOsmBadge,
+          showCountry: form.showCountry,
+          showCoordinates: form.showCoordinates,
           markers: hasVisibleMarkers ? state.markers : [],
           markerIcons: hasVisibleMarkers
             ? getAllMarkerIcons(state.customMarkerIcons)

@@ -4,7 +4,7 @@ import { useFormHandlers } from "@/features/poster/application/useFormHandlers";
 import { useLocationAutocomplete } from "@/features/location/application/useLocationAutocomplete";
 import { useCurrentLocation } from "@/features/location/application/useCurrentLocation";
 import { useMapSync } from "@/features/map/application/useMapSync";
-import type { MobileTab } from "@/shared/ui/MobileNavBar";
+import { Switch } from "@/components/ui/switch";
 
 import LocationSection from "@/features/location/ui/LocationSection";
 import MapSettingsSection from "@/features/map/ui/MapSettingsSection";
@@ -29,7 +29,7 @@ import type { SearchResult } from "@/features/location/domain/types";
 export default function SettingsPanel({
   mobileTab,
 }: {
-  mobileTab?: MobileTab;
+  mobileTab?: string;
 }) {
   const { state, dispatch, mapRef, selectedTheme } = usePosterContext();
   const {
@@ -42,6 +42,7 @@ export default function SettingsPanel({
     handleLocationSelect,
     handleClearLocation,
     setLocationFocused,
+    handleCreditsChange,
   } = useFormHandlers();
   const { locationSuggestions, isLocationSearching, searchNow } = useLocationAutocomplete(
     state.form.location,
@@ -117,11 +118,65 @@ export default function SettingsPanel({
 
         <SidebarSection value="map-settings" icon={Map} label="Map Settings">
           {!isColorEditorActive ? (
-            <div className="space-y-3">
-              <p className="text-xs text-text-muted">
-                Map feature controls coming soon (gradient fades, credits, distance).
-              </p>
-            </div>
+            <section className="flex flex-col gap-3">
+              <div className="flex items-center justify-between">
+                <span className="text-base text-text-secondary">Gradient top</span>
+                <Switch
+                  checked={Boolean(state.form.showGradientTop)}
+                  onCheckedChange={(checked) => {
+                    dispatch({ type: "SET_FIELD", name: "showGradientTop", value: checked });
+                  }}
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-base text-text-secondary">Gradient bottom</span>
+                <Switch
+                  checked={Boolean(state.form.showGradientBottom)}
+                  onCheckedChange={(checked) => {
+                    dispatch({ type: "SET_FIELD", name: "showGradientBottom", value: checked });
+                  }}
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-base text-text-secondary">Country</span>
+                <Switch
+                  checked={Boolean(state.form.showCountry)}
+                  onCheckedChange={(checked) => {
+                    dispatch({ type: "SET_FIELD", name: "showCountry", value: checked });
+                  }}
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-base text-text-secondary">Coordinates</span>
+                <Switch
+                  checked={Boolean(state.form.showCoordinates)}
+                  onCheckedChange={(checked) => {
+                    dispatch({ type: "SET_FIELD", name: "showCoordinates", value: checked });
+                  }}
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-base text-text-secondary">Credits</span>
+                <Switch
+                  checked={Boolean(state.form.includeCredits)}
+                  onCheckedChange={handleCreditsChange}
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-base text-text-secondary">OpenStreetMap badge</span>
+                <Switch
+                  checked={Boolean(state.form.includeOsmBadge)}
+                  onCheckedChange={(checked) => {
+                    dispatch({ type: "SET_FIELD", name: "includeOsmBadge", value: checked });
+                  }}
+                />
+              </div>
+              {!state.form.includeCredits && !state.form.includeOsmBadge && (
+                <p className="text-xs text-text-muted leading-relaxed">
+                  Map data provided by OpenStreetMap contributors. Poster generated with Plottura. Please credit both when sharing publicly.
+                </p>
+              )}
+            </section>
           ) : null}
         </SidebarSection>
 

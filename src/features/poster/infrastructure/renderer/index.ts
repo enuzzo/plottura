@@ -26,7 +26,12 @@ export async function compositeExport(
     fontFamily,
     showPosterText = true,
     showOverlay = true,
+    showGradientTop = true,
+    showGradientBottom = true,
     includeCredits = true,
+    includeOsmBadge = true,
+    showCountry = true,
+    showCoordinates = true,
     markers = [],
     markerIcons = [],
     markerProjection,
@@ -49,8 +54,8 @@ export async function compositeExport(
   ctx.drawImage(mapCanvas, 0, 0);
 
   // 2. Gradient fades
-  if (showOverlay) {
-    applyFades(ctx, width, height, theme.ui.bg);
+  if (showOverlay && (showGradientTop || showGradientBottom)) {
+    applyFades(ctx, width, height, theme.ui.bg, showGradientTop, showGradientBottom);
   }
 
   // 3. Markers
@@ -79,6 +84,9 @@ export async function compositeExport(
     showPosterText,
     showOverlay,
     includeCredits,
+    includeOsmBadge,
+    showCountry,
+    showCoordinates,
   );
 
   const size: CanvasSize = {

@@ -25,7 +25,12 @@ interface LayeredSvgOptions {
   fontFamily?: string;
   showPosterText: boolean;
   showOverlay: boolean;
+  showGradientTop?: boolean;
+  showGradientBottom?: boolean;
   includeCredits: boolean;
+  includeOsmBadge?: boolean;
+  showCountry?: boolean;
+  showCoordinates?: boolean;
   markers: MarkerItem[];
   markerIcons: MarkerIconDefinition[];
 }
@@ -79,7 +84,12 @@ export async function createLayeredSvgBlobFromMap({
   fontFamily,
   showPosterText,
   showOverlay,
+  showGradientTop = true,
+  showGradientBottom = true,
   includeCredits,
+  includeOsmBadge = true,
+  showCountry = true,
+  showCoordinates = true,
   markers,
   markerIcons,
 }: LayeredSvgOptions): Promise<Blob> {
@@ -159,11 +169,11 @@ export async function createLayeredSvgBlobFromMap({
 
     const overlayLayers: { id: string; dataUrl: string }[] = [];
 
-    if (showOverlay) {
+    if (showOverlay && (showGradientTop || showGradientBottom)) {
       overlayLayers.push({
         id: "fades",
         dataUrl: canvasToDataUrl(exportWidth, exportHeight, (ctx) => {
-          applyFades(ctx, exportWidth, exportHeight, theme.ui.bg);
+          applyFades(ctx, exportWidth, exportHeight, theme.ui.bg, showGradientTop, showGradientBottom);
         }),
       });
     }
@@ -206,6 +216,9 @@ export async function createLayeredSvgBlobFromMap({
           showPosterText,
           showOverlay,
           includeCredits,
+          includeOsmBadge,
+          showCountry,
+          showCoordinates,
         );
       }),
     });

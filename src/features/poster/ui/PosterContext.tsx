@@ -75,6 +75,11 @@ export const DEFAULT_FORM: PosterForm = {
   includeRoadMinorLow: true,
   includeRoadOutline: true,
   showMarkers: true,
+  showGradientTop: true,
+  showGradientBottom: true,
+  includeOsmBadge: true,
+  showCountry: true,
+  showCoordinates: true,
 };
 
 const INITIAL_STATE: PosterState = {

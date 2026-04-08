@@ -1,11 +1,12 @@
 import { cn } from "@/lib/utils";
 import { usePosterContext } from "@/features/poster/ui/PosterContext";
 import { getLayoutOption, createCustomLayoutOption, formatLayoutDimensions } from "@/features/layout/infrastructure/layoutRepository";
-import { Image, FileCode } from "lucide-react";
+import { Image, FileCode, FileText } from "lucide-react";
 
 interface SidebarFooterProps {
   onExportPng: () => void;
   onExportSvg: () => void;
+  onExportPdf: () => void;
   isExporting: boolean;
   className?: string;
 }
@@ -13,6 +14,7 @@ interface SidebarFooterProps {
 export default function SidebarFooter({
   onExportPng,
   onExportSvg,
+  onExportPdf,
   isExporting,
   className,
 }: SidebarFooterProps) {
@@ -48,7 +50,7 @@ export default function SidebarFooter({
         </div>
       </div>
 
-      {/* Export buttons — slightly different bg to distinguish */}
+      {/* Export buttons */}
       <div className="flex gap-2 px-4 py-2.5 border-t border-border/50">
         <button
           type="button"
@@ -67,6 +69,15 @@ export default function SidebarFooter({
         >
           <FileCode className="w-3 h-3" />
           SVG
+        </button>
+        <button
+          type="button"
+          onClick={onExportPdf}
+          disabled={isExporting}
+          className="flex-1 flex items-center justify-center gap-1.5 h-8 border border-accent text-accent hover:bg-accent-subtle font-semibold text-xs rounded-lg transition-colors disabled:opacity-50"
+        >
+          <FileText className="w-3 h-3" />
+          PDF
         </button>
       </div>
     </div>

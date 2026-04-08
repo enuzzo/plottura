@@ -13,7 +13,7 @@ interface MapPrimaryControlsProps {
 }
 
 const BTN =
-  "inline-flex items-center gap-[5px] px-3 py-1.5 text-[0.78rem] cursor-pointer transition-opacity duration-150 hover:enabled:opacity-80 disabled:opacity-50 disabled:cursor-default";
+  "inline-flex items-center gap-[5px] px-3 py-1.5 text-sm font-semibold uppercase cursor-pointer transition-opacity duration-150 hover:enabled:opacity-80 disabled:opacity-50 disabled:cursor-default";
 
 export default function MapPrimaryControls({
   isMapEditing,
