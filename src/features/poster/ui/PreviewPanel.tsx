@@ -574,6 +574,32 @@ export default function PreviewPanel() {
                     </button>
                   </div>
                 ) : null}
+                {!isMobileViewport && form.enable3D ? (
+                  <div className={CTL_SLIDER_ROW}>
+                    <span className="text-xs text-[var(--text-muted)] font-medium uppercase tracking-wide">
+                      Pitch
+                    </span>
+                    <input
+                      className={CTL_SLIDER}
+                      type="range"
+                      min={0}
+                      max={85}
+                      step={1}
+                      value={Number(form.mapPitch) || 60}
+                      onChange={(e) =>
+                        dispatch({
+                          type: "SET_FIELD",
+                          name: "mapPitch",
+                          value: e.target.value,
+                        })
+                      }
+                      aria-label="Pitch angle"
+                    />
+                    <span className="text-xs text-[var(--text-muted)] tabular-nums min-w-[2.5rem] text-right">
+                      {form.mapPitch}°
+                    </span>
+                  </div>
+                ) : null}
               </>
             )}
           </div>
