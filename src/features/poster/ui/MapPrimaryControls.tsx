@@ -1,4 +1,4 @@
-import { Lock, Focus, Unlock } from "lucide-react";
+import { Lock, Focus, Unlock, Box } from "lucide-react";
 
 interface MapPrimaryControlsProps {
   isMapEditing: boolean;
@@ -10,6 +10,8 @@ interface MapPrimaryControlsProps {
   onFinishEditing: () => void;
   lightColor?: string;
   darkColor?: string;
+  is3DEnabled?: boolean;
+  onToggle3D?: () => void;
 }
 
 const BTN =
@@ -25,6 +27,8 @@ export default function MapPrimaryControls({
   onFinishEditing,
   lightColor = "#ffffff",
   darkColor = "#1a1a1a",
+  is3DEnabled = false,
+  onToggle3D,
 }: MapPrimaryControlsProps) {
   const notchStyle = { backgroundColor: `${lightColor}e6`, color: darkColor };
   const dividerStyle = { backgroundColor: `${darkColor}20` };
@@ -68,6 +72,21 @@ export default function MapPrimaryControls({
           <span>Edit Map</span>
         </button>
       )}
+
+      {onToggle3D ? (
+        <>
+          <div className="w-px self-stretch my-1.5" style={dividerStyle} />
+          <button
+            type="button"
+            className={BTN}
+            onClick={onToggle3D}
+            title={is3DEnabled ? "Switch to 2D view" : "Switch to 3D view"}
+          >
+            <Box className="w-4 h-4" />
+            <span>{is3DEnabled ? "2D" : "3D"}</span>
+          </button>
+        </>
+      ) : null}
     </div>
   );
 }

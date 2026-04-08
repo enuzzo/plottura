@@ -271,6 +271,14 @@ export default function PreviewPanel() {
     [mapRef],
   );
 
+  const handleToggle3D = useCallback(() => {
+    dispatch({
+      type: "SET_FIELD",
+      name: "enable3D",
+      value: !form.enable3D,
+    });
+  }, [dispatch, form.enable3D]);
+
   const handleRecenter = useCallback(() => {
     const map = mapRef.current;
     if (!map) return;
@@ -470,6 +478,8 @@ export default function PreviewPanel() {
                     onFinishEditing={handleFinishEditing}
                     lightColor={lightestColor}
                     darkColor={darkestColor}
+                    is3DEnabled={form.enable3D}
+                    onToggle3D={handleToggle3D}
                   />
                   {isMobileViewport ? (
                     <button
@@ -582,6 +592,8 @@ export default function PreviewPanel() {
               onFinishEditing={handleFinishEditing}
               lightColor={lightestColor}
               darkColor={darkestColor}
+              is3DEnabled={form.enable3D}
+              onToggle3D={handleToggle3D}
             />
           </div>
         )}
