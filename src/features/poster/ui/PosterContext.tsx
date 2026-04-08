@@ -212,6 +212,10 @@ export function PosterProvider({ children }: { children: ReactNode }) {
         includeRoadMinorLow: state.form.includeRoadMinorLow,
         includeRoadOutline: state.form.includeRoadOutline,
         distanceMeters: Number(state.form.distance),
+        enable3D: state.form.enable3D,
+        buildingExtrusion: state.form.buildingExtrusion,
+        lightAzimuth: Number(state.form.lightAzimuth) || 210,
+        lightIntensity: Number(state.form.lightIntensity) || 0.6,
       }),
     [
       effectiveTheme,
@@ -225,6 +229,10 @@ export function PosterProvider({ children }: { children: ReactNode }) {
       state.form.includeRoadMinorLow,
       state.form.includeRoadOutline,
       state.form.distance,
+      state.form.enable3D,
+      state.form.buildingExtrusion,
+      state.form.lightAzimuth,
+      state.form.lightIntensity,
     ],
   );
 
