@@ -1,30 +1,30 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import type { IconType } from "react-icons";
+import type { LucideIcon } from "lucide-react";
 import {
-  FaBuilding,
-  FaCamera,
-  FaCircle,
-  FaFlag,
-  FaHeart,
-  FaHouse,
-  FaLocationDot,
-  FaMoon,
-  FaPaperPlane,
-  FaRegSnowflake,
-  FaShop,
-  FaSquare,
-  FaStar,
-  FaSun,
-  FaTree,
-  FaXmark,
-} from "react-icons/fa6";
-import { IoMdFlower } from "react-icons/io";
-import { SlTarget } from "react-icons/sl";
+  Building2,
+  Camera,
+  Circle,
+  Flag,
+  Flower2,
+  Heart,
+  House,
+  MapPin,
+  Moon,
+  Send,
+  Snowflake,
+  Square,
+  Star,
+  Store,
+  Sun,
+  Target,
+  TreePine,
+  X,
+} from "lucide-react";
 import type { MarkerIconDefinition } from "@/features/markers/domain/types";
 import { MARKER_FEATURED_ICON_COUNT } from "@/features/markers/infrastructure/constants";
 
-function createSvgIcon(id: string, label: string, component: IconType) {
+function createSvgIcon(id: string, label: string, component: LucideIcon) {
   return {
     id,
     label,
@@ -54,24 +54,24 @@ function createImageIcon(id: string, label: string, sourcePath: string) {
 
 export const predefinedMarkerIcons: MarkerIconDefinition[] = [
   createImageIcon("app-marker", "Plottura", "/favicon.svg"),
-  createSvgIcon("pin", "Pin", FaLocationDot),
-  createSvgIcon("heart", "Heart", FaHeart),
-  createSvgIcon("home", "Home", FaHouse),
-  createSvgIcon("star", "Star", FaStar),
-  createSvgIcon("circle", "Circle", FaCircle),
-  createSvgIcon("square", "Square", FaSquare),
-  createSvgIcon("x", "X", FaXmark),
-  createSvgIcon("target", "Target", SlTarget),
-  createSvgIcon("sun", "Sun", FaSun),
-  createSvgIcon("moon", "Moon", FaMoon),
-  createSvgIcon("building", "Building", FaBuilding),
-  createSvgIcon("send", "Send", FaPaperPlane),
-  createSvgIcon("snowflake", "Snowflake", FaRegSnowflake),
-  createSvgIcon("shop", "Shop", FaShop),
-  createSvgIcon("camera", "Camera", FaCamera),
-  createSvgIcon("flower", "Flower", IoMdFlower),
-  createSvgIcon("tree", "Tree", FaTree),
-  createSvgIcon("flag", "Flag", FaFlag),
+  createSvgIcon("pin", "Pin", MapPin),
+  createSvgIcon("heart", "Heart", Heart),
+  createSvgIcon("home", "Home", House),
+  createSvgIcon("star", "Star", Star),
+  createSvgIcon("circle", "Circle", Circle),
+  createSvgIcon("square", "Square", Square),
+  createSvgIcon("x", "X", X),
+  createSvgIcon("target", "Target", Target),
+  createSvgIcon("sun", "Sun", Sun),
+  createSvgIcon("moon", "Moon", Moon),
+  createSvgIcon("building", "Building", Building2),
+  createSvgIcon("send", "Send", Send),
+  createSvgIcon("snowflake", "Snowflake", Snowflake),
+  createSvgIcon("shop", "Shop", Store),
+  createSvgIcon("camera", "Camera", Camera),
+  createSvgIcon("flower", "Flower", Flower2),
+  createSvgIcon("tree", "Tree", TreePine),
+  createSvgIcon("flag", "Flag", Flag),
 ];
 
 export const featuredMarkerIcons = predefinedMarkerIcons.slice(

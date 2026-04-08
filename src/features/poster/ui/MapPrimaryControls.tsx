@@ -1,5 +1,8 @@
 import { Lock, Focus, Unlock } from "lucide-react";
 
+const CTL_BTN = "inline-flex items-center gap-[5px] px-3 py-1.5 border border-[var(--border)] rounded-lg bg-[var(--bg-card)] text-[var(--text-secondary)] text-[0.78rem] cursor-pointer transition-[background,border-color] duration-150 hover:enabled:bg-[var(--accent-subtle)] hover:enabled:border-[var(--accent)] hover:enabled:text-[var(--text-primary)] disabled:opacity-50 disabled:cursor-default";
+const CTL_BTN_PRIMARY = `${CTL_BTN} !bg-[var(--accent-subtle)] !border-[var(--accent)] !text-[var(--accent)] hover:enabled:!bg-[var(--accent)] hover:enabled:!text-white`;
+
 interface MapPrimaryControlsProps {
   isMapEditing: boolean;
   isMarkerEditorActive: boolean;
@@ -24,7 +27,7 @@ export default function MapPrimaryControls({
       {!isMapEditing ? (
         <button
           type="button"
-          className="map-control-btn"
+          className={CTL_BTN}
           onClick={onRecenter}
           title={recenterHint}
         >
@@ -35,7 +38,7 @@ export default function MapPrimaryControls({
       {isMapEditing ? (
         <button
           type="button"
-          className="map-control-btn map-control-btn--primary map-control-btn--mode"
+          className={CTL_BTN_PRIMARY}
           onClick={onFinishEditing}
           title="Lock map editing"
         >
@@ -45,7 +48,7 @@ export default function MapPrimaryControls({
       ) : (
         <button
           type="button"
-          className="map-control-btn map-control-btn--primary map-control-btn--mode"
+          className={CTL_BTN_PRIMARY}
           onClick={onStartEditing}
           title={unlockHint}
           disabled={isMarkerEditorActive}

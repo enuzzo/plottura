@@ -264,7 +264,7 @@ export default function MapPreview({
         };
 
   return (
-    <div className="map-container" style={{ ...containerStyle, overflow: "hidden" }}>
+    <div className="absolute inset-0 rounded-[inherit] overflow-hidden" style={containerStyle}>
       <div ref={containerRef} style={innerStyle} />
     </div>
   );

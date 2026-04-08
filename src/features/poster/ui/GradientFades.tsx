@@ -15,13 +15,13 @@ export default function GradientFades({ color }: GradientFadesProps) {
   return (
     <>
       <div
-        className="poster-fade poster-fade--top"
+        className="absolute left-0 right-0 top-0 h-1/4 pointer-events-none z-[2]"
         style={{
           background: `linear-gradient(to bottom, ${solid}, ${transparent})`,
         }}
       />
       <div
-        className="poster-fade poster-fade--bottom"
+        className="absolute left-0 right-0 bottom-0 h-1/4 pointer-events-none z-[2]"
         style={{
           background: `linear-gradient(to top, ${solid}, ${transparent})`,
         }}

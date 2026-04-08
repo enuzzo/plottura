@@ -42,6 +42,14 @@ const CONTINENT_VIEW_ZOOM_LEVEL = 6;
 const DEFAULT_LOCATION_LABEL =
   "Hanover, Region Hannover, Lower Saxony, Germany";
 
+/* Tailwind class constants for map control buttons */
+const CTL_BTN = "inline-flex items-center gap-[5px] px-3 py-1.5 border border-[var(--border)] rounded-lg bg-[var(--bg-card)] text-[var(--text-secondary)] text-[0.78rem] cursor-pointer transition-[background,border-color] duration-150 hover:enabled:bg-[var(--accent-subtle)] hover:enabled:border-[var(--accent)] hover:enabled:text-[var(--text-primary)] disabled:opacity-50 disabled:cursor-default";
+const CTL_BTN_PRIMARY = `${CTL_BTN} !bg-[var(--accent-subtle)] !border-[var(--accent)] !text-[var(--accent)] hover:enabled:!bg-[var(--accent)] hover:enabled:!text-white`;
+const CTL_BTN_ACTIVE = "!bg-[var(--accent-subtle)] !border-[var(--accent)] !text-[var(--accent)]";
+const CTL_GROUP = "flex flex-nowrap justify-center gap-1.5 items-center max-[768px]:w-full";
+const CTL_SLIDER_ROW = `${CTL_GROUP} w-[min(560px,100%)] !grid grid-cols-[auto_minmax(180px,1fr)_auto] gap-2`;
+const CTL_SLIDER = "w-full h-1.5 m-0 rounded-full appearance-none bg-[var(--border)] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border [&::-webkit-slider-thumb]:border-[var(--border)] [&::-webkit-slider-thumb]:bg-[var(--accent)] [&::-webkit-slider-thumb]:shadow-[0_0_0_2px_var(--bg-card)] [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border [&::-moz-range-thumb]:border-[var(--border)] [&::-moz-range-thumb]:bg-[var(--accent)] [&::-moz-range-thumb]:shadow-[0_0_0_2px_var(--bg-card)] [&::-moz-range-thumb]:cursor-pointer";
+
 export default function PreviewPanel() {
   const { state, dispatch, effectiveTheme, mapStyle, mapRef } =
     usePosterContext();
@@ -358,11 +366,11 @@ export default function PreviewPanel() {
   );
 
   return (
-    <section className="preview-panel">
-      <div className="poster-viewport">
+    <section className="relative w-full h-full">
+      <div className="absolute inset-0 grid place-items-center overflow-hidden bg-[var(--bg-app)]">
         {/* Desktop ghost layer: canvas clone of the main map at reduced opacity */}
-        <div className="poster-ghost-layer" aria-hidden="true">
-          <div style={{ overflow: "hidden", width: "100%", height: "100%" }}>
+        <div className="absolute -inset-x-6 -inset-y-12 z-0 opacity-35 blur-[6px] saturate-[0.75] brightness-[0.85] pointer-events-none" aria-hidden="true">
+          <div className="overflow-hidden w-full h-full">
             <div
               style={{
                 width: `${MAP_OVERZOOM_SCALE * 100}%`,
@@ -373,21 +381,23 @@ export default function PreviewPanel() {
             >
               <canvas
                 ref={ghostCanvasRef}
-                style={{ width: "100%", height: "100%", display: "block" }}
+                className="w-full h-full block"
               />
             </div>
           </div>
         </div>
-        <div className="desktop-layout-label" aria-hidden="true">
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-[2] text-xs font-medium text-[var(--text-muted)] opacity-70 pointer-events-none whitespace-nowrap" aria-hidden="true">
           {layoutLabel}
         </div>
         <div
           ref={frameRef}
-          className="poster-frame"
+          className="relative z-[1] max-w-full overflow-visible rounded-[4px] shadow-[0_24px_48px_rgba(0,0,0,0.25),0_8px_14px_rgba(0,0,0,0.15)]"
           style={
             {
-              "--poster-aspect": `${aspect}`,
-              "--poster-bg": effectiveTheme.ui.bg,
+              aspectRatio: aspect,
+              width: `min(calc(100% - 48px), calc((84vh - 44px) * ${aspect}))`,
+              maxHeight: "calc(84vh - 44px)",
+              backgroundColor: effectiveTheme.ui.bg,
             } as CSSProperties
           }
         >
@@ -432,10 +442,10 @@ export default function PreviewPanel() {
             showOverlay={form.showMarkers}
           />
 
-          <div className="map-controls" aria-label="Map controls">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[calc(100%+12px)] z-20 flex flex-row items-center gap-1.5 flex-wrap justify-center whitespace-nowrap max-[768px]:w-[calc(100%-8px)] max-[768px]:flex-col max-[768px]:top-[calc(100%+8px)] max-[768px]:bottom-auto max-[768px]:z-[12]" aria-label="Map controls">
             {!isEditing ? (
               <>
-                <div className="map-control-group">
+                <div className="flex flex-nowrap justify-center gap-1.5 items-center max-[768px]:w-full">
                   <MapPrimaryControls
                     isMapEditing={false}
                     isMarkerEditorActive={isMarkerEditorActive}
@@ -449,7 +459,7 @@ export default function PreviewPanel() {
               </>
             ) : (
               <>
-                <div className="map-control-group">
+                <div className={CTL_GROUP}>
                   <MapPrimaryControls
                     isMapEditing
                     isMarkerEditorActive={isMarkerEditorActive}
@@ -462,7 +472,7 @@ export default function PreviewPanel() {
                   {isMobileViewport ? (
                     <button
                       type="button"
-                      className={`map-control-btn${isRotationEnabled ? " is-active" : ""}`}
+                      className={`${CTL_BTN}${isRotationEnabled ? ` ${CTL_BTN_ACTIVE}` : ""}`}
                       onClick={handleToggleRotation}
                       title={
                         isRotationEnabled ? "Disable rotation" : "Enable rotation"
@@ -476,10 +486,10 @@ export default function PreviewPanel() {
                   ) : null}
                 </div>
                 {!isMobileViewport ? (
-                  <div className="map-control-group">
+                  <div className={CTL_GROUP}>
                     <button
                       type="button"
-                      className={`map-control-btn${isRotationEnabled ? " is-active" : ""}`}
+                      className={`${CTL_BTN}${isRotationEnabled ? ` ${CTL_BTN_ACTIVE}` : ""}`}
                       onClick={handleToggleRotation}
                       title={
                         isRotationEnabled ? "Disable rotation" : "Enable rotation"
@@ -493,17 +503,17 @@ export default function PreviewPanel() {
                   </div>
                 ) : null}
                 {!isMobileViewport ? (
-                  <div className="map-control-group map-control-slider-row">
+                  <div className={CTL_SLIDER_ROW}>
                     <button
                       type="button"
-                      className="map-control-btn"
+                      className={CTL_BTN}
                       onClick={handleZoomOut}
                       title="Zoom out"
                     >
                       <ZoomOut className="w-4 h-4" />
                     </button>
                     <input
-                      className="map-control-slider"
+                      className={CTL_SLIDER}
                       type="range"
                       min={mapMinZoom}
                       max={mapMaxZoom}
@@ -514,7 +524,7 @@ export default function PreviewPanel() {
                     />
                     <button
                       type="button"
-                      className="map-control-btn"
+                      className={CTL_BTN}
                       onClick={handleZoomIn}
                       title="Zoom in"
                     >
@@ -523,17 +533,17 @@ export default function PreviewPanel() {
                   </div>
                 ) : null}
                 {!isMobileViewport && isRotationEnabled ? (
-                  <div className="map-control-group map-control-slider-row">
+                  <div className={CTL_SLIDER_ROW}>
                     <button
                       type="button"
-                      className="map-control-btn"
+                      className={CTL_BTN}
                       onClick={() => handleRotateBy(-15)}
                       title="Rotate left 15 degrees"
                     >
                       <RotateCcw className="w-4 h-4" />
                     </button>
                     <input
-                      className="map-control-slider"
+                      className={CTL_SLIDER}
                       type="range"
                       min={-180}
                       max={180}
@@ -544,7 +554,7 @@ export default function PreviewPanel() {
                     />
                     <button
                       type="button"
-                      className="map-control-btn"
+                      className={CTL_BTN}
                       onClick={() => handleRotateBy(15)}
                       title="Rotate right 15 degrees"
                     >

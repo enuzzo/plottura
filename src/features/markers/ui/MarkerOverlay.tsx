@@ -523,7 +523,7 @@ export default function MarkerOverlay({
   return (
     <div
       ref={overlayRef}
-      className={`poster-marker-overlay${isMarkerEditMode ? " is-edit-mode" : ""}`}
+      className={`absolute inset-0 z-[3] pointer-events-none${isMarkerEditMode ? " !pointer-events-auto touch-none overscroll-contain" : ""}`}
       aria-hidden={!isMarkerEditMode ? "true" : undefined}
       onWheel={handleOverlayWheel}
     >
@@ -531,11 +531,9 @@ export default function MarkerOverlay({
         <div
           key={marker.id}
           data-id={marker.id}
-          className={`poster-marker${isMarkerEditMode ? " is-draggable" : ""}${
-            draggingMarkerId === marker.id ? " is-dragging" : ""
-          }${activeMarkerId === marker.id ? " is-selected" : ""}${
-            touchResizeState?.markerId === marker.id ? " is-resizing" : ""
-          }`}
+          className={`absolute -translate-x-1/2 -translate-y-1/2 pointer-events-none${isMarkerEditMode ? " !pointer-events-auto cursor-grab touch-none" : ""}${
+            draggingMarkerId === marker.id ? " !cursor-grabbing" : ""
+          }${activeMarkerId === marker.id ? " [&>span]:border-2 [&>span]:border-[var(--marker-highlight-color,rgba(94,206,255,0.9))] [&>span]:rounded-full [&>span]:shadow-[0_0_0_1px_rgba(7,16,24,0.68)]" : ""}`}
           style={
             {
               left: `${x}px`,

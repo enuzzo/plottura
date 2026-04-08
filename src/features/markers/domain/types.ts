@@ -1,4 +1,4 @@
-import type { IconType } from "react-icons";
+import type { LucideIcon } from "lucide-react";
 
 export type MarkerIconSource = "predefined" | "custom";
 export type MarkerIconKind = "svg" | "image";
@@ -9,7 +9,7 @@ export interface MarkerIconDefinition {
   source: MarkerIconSource;
   kind: MarkerIconKind;
   tintWithMarkerColor?: boolean;
-  component?: IconType;
+  component?: LucideIcon;
   svgMarkup?: string;
   dataUrl?: string;
 }

@@ -64,11 +64,11 @@ export default function PosterTextOverlay({
   const attributionOpacity = showOverlay ? 0.55 : 0.9;
 
   return (
-    <div className="poster-text-overlay" style={{ color: textColor }}>
+    <div className="absolute inset-0 pointer-events-none z-[4] [container-type:size]" style={{ color: textColor }}>
       {showPosterText && (
         <>
           <p
-            className="poster-city"
+            className="absolute left-0 right-0 m-0 font-bold uppercase text-center leading-[1.1] -translate-y-1/2 whitespace-pre-wrap"
             style={{
               fontFamily: titleFont,
               top: `${TEXT_CITY_Y_RATIO * 100}%`,
@@ -78,14 +78,13 @@ export default function PosterTextOverlay({
             {cityLabel}
           </p>
           <hr
-            className="poster-divider"
+            className="absolute left-[40%] right-[40%] border-0 border-t-2 border-current h-0 m-0 -translate-y-1/2"
             style={{
-              borderColor: textColor,
               top: `${TEXT_DIVIDER_Y_RATIO * 100}%`,
             }}
           />
           <p
-            className="poster-country"
+            className="absolute left-0 right-0 m-0 font-light uppercase text-center leading-[1.2] -translate-y-1/2"
             style={{
               fontFamily: titleFont,
               top: `${TEXT_COUNTRY_Y_RATIO * 100}%`,
@@ -95,7 +94,7 @@ export default function PosterTextOverlay({
             {country.toUpperCase()}
           </p>
           <p
-            className="poster-coords"
+            className="absolute left-0 right-0 m-0 font-normal text-center opacity-75 -translate-y-1/2"
             style={{
               fontFamily: bodyFont,
               top: `${TEXT_COORDS_Y_RATIO * 100}%`,
@@ -108,7 +107,7 @@ export default function PosterTextOverlay({
       )}
 
       <span
-        className="poster-attribution"
+        className="absolute font-light text-right opacity-55"
         style={{
           fontFamily: bodyFont,
           color: attributionColor,
@@ -123,7 +122,7 @@ export default function PosterTextOverlay({
 
       {includeCredits && (
         <span
-          className="poster-credits"
+          className="absolute font-light text-left opacity-55"
           style={{
             fontFamily: bodyFont,
             color: attributionColor,
