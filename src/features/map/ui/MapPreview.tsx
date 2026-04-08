@@ -74,6 +74,7 @@ interface MapPreviewProps {
   style: StyleSpecification;
   center: [lon: number, lat: number];
   zoom: number;
+  pitch?: number;
   mapRef: MapInstanceRef;
   interactive?: boolean;
   allowRotation?: boolean;
@@ -96,6 +97,7 @@ export default function MapPreview({
   style,
   center,
   zoom,
+  pitch = 0,
   mapRef,
   interactive = false,
   allowRotation = false,
@@ -123,6 +125,8 @@ export default function MapPreview({
       style,
       center,
       zoom,
+      pitch,
+      maxPitch: 85,
       interactive: false,
       attributionControl: false,
       canvasContextAttributes: { preserveDrawingBuffer: true },
@@ -214,11 +218,18 @@ export default function MapPreview({
 
     // Fast path: apply only the changed paint/layout/zoom properties directly,
     // avoiding a full setStyle diff and any risk of source re-initialisation.
-    if (
+    const sourcesMatch =
       prevStyleRef.current &&
       JSON.stringify(prevStyleRef.current.sources) ===
-        JSON.stringify(style.sources)
-    ) {
+        JSON.stringify(style.sources);
+    const layerIdsMatch =
+      prevStyleRef.current &&
+      prevStyleRef.current.layers.length === style.layers.length &&
+      prevStyleRef.current.layers.every(
+        (l, i) => l.id === style.layers[i]?.id,
+      );
+
+    if (sourcesMatch && layerIdsMatch) {
       applyIncrementalStyleUpdate(map, prevStyleRef.current, style);
     } else {
       map.setStyle(style);
@@ -251,6 +262,16 @@ export default function MapPreview({
       isSyncing.current = false;
     });
   }, [center, zoom, mapRef]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    const currentPitch = map.getPitch();
+    if (Math.abs(currentPitch - pitch) < 0.1) return;
+
+    map.setPitch(pitch);
+  }, [pitch, mapRef]);
 
   const normalizedOverzoomScale = Math.max(1, overzoomScale);
   const innerStyle: CSSProperties =
