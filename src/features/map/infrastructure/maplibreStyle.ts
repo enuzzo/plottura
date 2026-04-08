@@ -199,6 +199,10 @@ export function generateMapStyle(
     includeRoadMinorLow?: boolean;
     includeRoadOutline?: boolean;
     distanceMeters?: number;
+    enable3D?: boolean;
+    buildingExtrusion?: boolean;
+    lightAzimuth?: number;
+    lightIntensity?: number;
   },
 ): StyleSpecification {
   const buildingFill =
@@ -219,6 +223,10 @@ export function generateMapStyle(
   const includeRoadMinorLow = options?.includeRoadMinorLow ?? true;
   const includeRoadOutline = options?.includeRoadOutline ?? true;
   const buildingMinZoom = resolveBuildingMinZoom(options?.distanceMeters);
+  const enable3D = options?.enable3D ?? false;
+  const buildingExtrusion = options?.buildingExtrusion ?? true;
+  const lightAzimuth = options?.lightAzimuth ?? 210;
+  const lightIntensity = options?.lightIntensity ?? 0.6;
 
   const minorHighCasingStops = scaledStops(
     MAP_ROAD_MINOR_HIGH_DETAIL_WIDTH_STOPS,
@@ -272,6 +280,16 @@ export function generateMapStyle(
 
   return {
     version: 8,
+    ...(enable3D
+      ? {
+          light: {
+            anchor: "map" as const,
+            color: "#ffffff",
+            intensity: lightIntensity,
+            position: [1.15, lightAzimuth, 30] as [number, number, number],
+          },
+        }
+      : {}),
     sources: {
       [SOURCE_ID]: {
         type: "vector",
@@ -341,18 +359,55 @@ export function generateMapStyle(
         },
       },
 
-      {
-        id: "building",
-        source: SOURCE_ID,
-        "source-layer": "building",
-        type: "fill" as const,
-        minzoom: buildingMinZoom,
-        layout: { visibility: includeBuildings ? ("visible" as const) : ("none" as const) },
-        paint: {
-          "fill-color": buildingFill,
-          "fill-opacity": BUILDING_FILL_OPACITY,
-        },
-      },
+      // Building layer: flat fill in 2D, extruded in 3D
+      ...(enable3D && buildingExtrusion
+        ? [
+            {
+              id: "building-3d",
+              source: SOURCE_ID,
+              "source-layer": "building",
+              type: "fill-extrusion" as const,
+              minzoom: buildingMinZoom,
+              layout: {
+                visibility: includeBuildings
+                  ? ("visible" as const)
+                  : ("none" as const),
+              },
+              paint: {
+                "fill-extrusion-color": buildingFill,
+                "fill-extrusion-height": [
+                  "coalesce",
+                  ["get", "render_height"],
+                  10,
+                ] as any,
+                "fill-extrusion-base": [
+                  "coalesce",
+                  ["get", "render_min_height"],
+                  0,
+                ] as any,
+                "fill-extrusion-opacity": BUILDING_FILL_OPACITY,
+                "fill-extrusion-vertical-gradient": true,
+              },
+            },
+          ]
+        : [
+            {
+              id: "building",
+              source: SOURCE_ID,
+              "source-layer": "building",
+              type: "fill" as const,
+              minzoom: buildingMinZoom,
+              layout: {
+                visibility: includeBuildings
+                  ? ("visible" as const)
+                  : ("none" as const),
+              },
+              paint: {
+                "fill-color": buildingFill,
+                "fill-opacity": BUILDING_FILL_OPACITY,
+              },
+            },
+          ]),
 
       {
         id: "rail",
