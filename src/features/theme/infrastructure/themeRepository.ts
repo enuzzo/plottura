@@ -309,7 +309,7 @@ export const themeOptions: ThemeOption[] = themeNames.map((name) => ({
   palette: getThemePalette(themesByName[name]),
 }));
 
-const preferredDefaultThemeName = "midnight_blue";
+const preferredDefaultThemeName = "terracotta";
 
 export const defaultThemeName = themeNames.includes(preferredDefaultThemeName)
   ? preferredDefaultThemeName

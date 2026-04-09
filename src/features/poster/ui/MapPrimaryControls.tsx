@@ -30,8 +30,8 @@ export default function MapPrimaryControls({
   is3DEnabled = false,
   onToggle3D,
 }: MapPrimaryControlsProps) {
-  const notchStyle = { backgroundColor: `${lightColor}e6`, color: darkColor };
-  const dividerStyle = { backgroundColor: `${darkColor}20` };
+  const notchStyle = { backgroundColor: darkColor, color: `${lightColor}cc` };
+  const dividerStyle = { backgroundColor: `${lightColor}20` };
 
   return (
     <div
