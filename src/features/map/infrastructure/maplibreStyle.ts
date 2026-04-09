@@ -780,6 +780,7 @@ export function generateMapStyle(
         source: SOURCE_ID,
         "source-layer": "place",
         type: "symbol" as const,
+        filter: ["<=", "rank", placeLabelDensity] as any,
         layout: {
           visibility: includePlaceLabels ? ("visible" as const) : ("none" as const),
           "text-field": "{name}" as any,

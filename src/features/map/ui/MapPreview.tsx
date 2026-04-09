@@ -57,9 +57,14 @@ function applyIncrementalStyleUpdate(
       }
     }
 
-    // Diff minzoom / maxzoom
+    // Diff filter
     const nextAny = layer as Record<string, unknown>;
     const prevAny = prevLayer as Record<string, unknown>;
+    if (JSON.stringify(nextAny.filter) !== JSON.stringify(prevAny.filter)) {
+      map.setFilter(layer.id, (nextAny.filter as any) ?? null);
+    }
+
+    // Diff minzoom / maxzoom
     if (nextAny.minzoom !== prevAny.minzoom || nextAny.maxzoom !== prevAny.maxzoom) {
       map.setLayerZoomRange(
         layer.id,
