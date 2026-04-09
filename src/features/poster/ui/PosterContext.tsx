@@ -17,6 +17,7 @@ import type { ResolvedTheme } from "@/features/theme/domain/types";
 import { getTheme } from "@/features/theme/infrastructure/themeRepository";
 import { applyThemeColorOverrides } from "@/features/theme/domain/colorPaths";
 import { generateMapStyle } from "@/features/map/infrastructure/maplibreStyle";
+import { MAP_OVERZOOM_SCALE } from "@/features/map/infrastructure/constants";
 import { useGeolocation } from "@/features/map/application/useGeolocation";
 import type { StyleSpecification } from "maplibre-gl";
 import type { MapInstanceRef } from "@/features/map/domain/types";
@@ -226,6 +227,7 @@ export function PosterProvider({ children }: { children: ReactNode }) {
         includeWaterLabels: state.form.includeWaterLabels,
         includeMountainPeaks: state.form.includeMountainPeaks,
         distanceMeters: Number(state.form.distance),
+        overzoomScale: MAP_OVERZOOM_SCALE,
         enable3D: state.form.enable3D,
         buildingExtrusion: state.form.buildingExtrusion,
         lightAzimuth: Number(state.form.lightAzimuth) || 210,
