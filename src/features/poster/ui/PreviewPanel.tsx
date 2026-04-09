@@ -378,14 +378,14 @@ export default function PreviewPanel() {
           {/* Map area — full bleed or framed */}
           {form.posterLayout === "framed" ? (
             <div className="absolute inset-0 overflow-hidden">
-              {/* Framed map container — positioned to end above the text block */}
+              {/* Framed map container — bottom edge always above the text block start (Y=0.845) */}
               <div
                 className="absolute overflow-hidden"
                 style={{
                   top: `${Number(form.framePadding) || 6}%`,
                   left: `${Number(form.framePadding) || 6}%`,
                   right: `${Number(form.framePadding) || 6}%`,
-                  bottom: `${(1 - 0.82) * 100}%`,
+                  bottom: `${(1 - 0.845 + 0.045) * 100}%`,
                   ...(Number(form.frameBorderWidth) > 0
                     ? { border: `${Number(form.frameBorderWidth)}px solid ${effectiveTheme.ui.text}` }
                     : {}),
