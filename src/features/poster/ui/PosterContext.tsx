@@ -66,7 +66,7 @@ export const DEFAULT_FORM: PosterForm = {
   fontFamily: "",
   showPosterText: true,
   includeCredits: true,
-  includeBuildings: false,
+  includeBuildings: true,
   includeWater: true,
   includeParks: true,
   includeAeroway: true,

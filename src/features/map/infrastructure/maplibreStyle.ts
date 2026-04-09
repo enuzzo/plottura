@@ -226,8 +226,7 @@ export function generateMapStyle(
 
   const enable3D = options?.enable3D ?? false;
   const buildingExtrusion = options?.buildingExtrusion ?? true;
-  const includeBuildings =
-    (options?.includeBuildings ?? true) || (enable3D && buildingExtrusion);
+  const includeBuildings = options?.includeBuildings ?? true;
   const includeWater = options?.includeWater ?? true;
   const includeParks = options?.includeParks ?? true;
   const includeAeroway = options?.includeAeroway ?? true;
@@ -422,9 +421,9 @@ export function generateMapStyle(
               paint: {
                 "fill-extrusion-color": buildingFill,
                 "fill-extrusion-height": [
-                  "coalesce",
-                  ["get", "render_height"],
-                  10,
+                  "min",
+                  ["coalesce", ["get", "render_height"], 10],
+                  200,
                 ] as any,
                 "fill-extrusion-base": [
                   "coalesce",
