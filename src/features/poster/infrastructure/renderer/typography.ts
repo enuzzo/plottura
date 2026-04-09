@@ -35,6 +35,12 @@ export function drawPosterText(
   showCoordinates: boolean = true,
   textUppercase: boolean = true,
   textLetterSpacing: number = 0.3,
+  cityFontScale: number = 1,
+  countryFontScale: number = 1,
+  coordsFontScale: number = 1,
+  creditsFontScale: number = 1,
+  countryUppercase: boolean = true,
+  coordsLetterSpacing: number = 0,
 ): void {
   const textColor = theme.ui?.text || "#111111";
   const landColor = theme.map?.land || "#808080";
@@ -51,14 +57,14 @@ export function drawPosterText(
     0.45,
     Math.min(width, height) / TEXT_DIMENSION_REFERENCE_PX,
   );
-  const attributionFontSize = ATTRIBUTION_FONT_BASE_PX * dimScale;
+  const attributionFontSize = ATTRIBUTION_FONT_BASE_PX * dimScale * creditsFontScale;
 
   if (showPosterText) {
     const cityLabel = formatCityLabel(city, textUppercase);
-    const cityFontSize = CITY_FONT_BASE_PX * dimScale * computeCityFontScale(city);
+    const cityFontSize = CITY_FONT_BASE_PX * dimScale * computeCityFontScale(city) * cityFontScale;
 
-    const countryFontSize = COUNTRY_FONT_BASE_PX * dimScale;
-    const coordinateFontSize = COORDS_FONT_BASE_PX * dimScale;
+    const countryFontSize = COUNTRY_FONT_BASE_PX * dimScale * countryFontScale;
+    const coordinateFontSize = COORDS_FONT_BASE_PX * dimScale * coordsFontScale;
     const cityY = height * TEXT_CITY_Y_RATIO;
     const lineY = height * TEXT_DIVIDER_Y_RATIO;
     const countryY = height * TEXT_COUNTRY_Y_RATIO;
@@ -67,6 +73,7 @@ export function drawPosterText(
     // Apply letter spacing via canvas API (em → px conversion per font size)
     const cityLetterSpacingPx = textLetterSpacing * cityFontSize;
     const countryLetterSpacingPx = textLetterSpacing * countryFontSize;
+    const coordsLetterSpacingPx = coordsLetterSpacing * coordinateFontSize;
 
     ctx.fillStyle = textColor;
     ctx.textAlign = "center";
@@ -86,12 +93,12 @@ export function drawPosterText(
 
       ctx.font = `300 ${countryFontSize}px ${titleFontFamily}`;
       ctx.letterSpacing = `${countryLetterSpacingPx}px`;
-      ctx.fillText(textUppercase ? country.toUpperCase() : country, width * 0.5, countryY);
+      ctx.fillText(countryUppercase ? country.toUpperCase() : country, width * 0.5, countryY);
     }
 
     if (showCoordinates) {
       ctx.globalAlpha = 0.75;
-      ctx.letterSpacing = "0px";
+      ctx.letterSpacing = `${coordsLetterSpacingPx}px`;
       ctx.font = `400 ${coordinateFontSize}px ${bodyFontFamily}`;
       ctx.fillText(
         formatCoordinates(center.lat, center.lon),

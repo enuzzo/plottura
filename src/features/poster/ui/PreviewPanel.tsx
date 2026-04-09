@@ -426,6 +426,12 @@ export default function PreviewPanel() {
             showOverlay={form.showMarkers}
             textUppercase={form.textUppercase}
             textLetterSpacing={form.textLetterSpacing !== "" ? Number(form.textLetterSpacing) : 0.3}
+            cityFontScale={Number(form.cityFontScale) || 1}
+            countryFontScale={Number(form.countryFontScale) || 1}
+            coordsFontScale={Number(form.coordsFontScale) || 1}
+            creditsFontScale={Number(form.creditsFontScale) || 1}
+            countryUppercase={form.countryUppercase}
+            coordsLetterSpacing={form.coordsLetterSpacing !== "" ? Number(form.coordsLetterSpacing) : 0}
           />
 
           {/* Floating sliders — appear above the poster when editing */}

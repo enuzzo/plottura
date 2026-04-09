@@ -9,6 +9,52 @@ import {
 } from "@/features/location/ui/constants";
 import { ChevronDown, RotateCcw } from "lucide-react";
 
+/** Compact slider row for per-element typography controls */
+function SliderRow({
+  label,
+  name,
+  min,
+  max,
+  step,
+  value,
+  onChange,
+  unit,
+}: {
+  label: string;
+  name: string;
+  min: number;
+  max: number;
+  step: number;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  unit: string;
+}) {
+  const numValue = Number(value) || min;
+  const display = unit === "×" ? numValue.toFixed(2) : `${numValue.toFixed(2)}${unit}`;
+  return (
+    <div className="flex flex-col gap-1">
+      <div className="flex items-center justify-between">
+        <span className="text-sm text-text-secondary">{label}</span>
+        <span className="text-xs text-text-muted tabular-nums">{display}</span>
+      </div>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={numValue}
+        onChange={(e) => {
+          const syntheticEvent = {
+            target: { name, type: "text", value: e.target.value, checked: false },
+          } as React.ChangeEvent<HTMLInputElement>;
+          onChange(syntheticEvent);
+        }}
+        className="w-full accent-accent"
+      />
+    </div>
+  );
+}
+
 interface TypographySectionProps {
   form: PosterForm;
   onChange: (
@@ -18,10 +64,16 @@ interface TypographySectionProps {
   fontOptions: FontOption[];
 }
 
-const TYPOGRAPHY_DEFAULTS = {
+const TYPOGRAPHY_DEFAULTS: Record<string, string | boolean> = {
   textUppercase: true,
   textLetterSpacing: "0.3",
-} as const;
+  cityFontScale: "1",
+  countryFontScale: "1",
+  coordsFontScale: "1",
+  creditsFontScale: "1",
+  countryUppercase: true,
+  coordsLetterSpacing: "0",
+};
 
 export default function TypographySection({
   form,
@@ -141,45 +193,45 @@ export default function TypographySection({
       </button>
 
       {isCustomizing && (
-        <div className="flex flex-col gap-3 pl-1 border-l-2 border-border ml-1">
-          <div className="flex items-center justify-between">
-            <span className="text-base text-text-secondary">Uppercase</span>
-            <Switch
-              checked={Boolean(form.textUppercase)}
-              onCheckedChange={(checked) =>
-                handleToggle("textUppercase", checked)
-              }
-            />
+        <div className="flex flex-col gap-4 pl-1 border-l-2 border-border ml-1">
+          {/* ── City ── */}
+          <div className="flex flex-col gap-2">
+            <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">City</span>
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-text-secondary">Uppercase</span>
+              <Switch
+                checked={Boolean(form.textUppercase)}
+                onCheckedChange={(checked) => handleToggle("textUppercase", checked)}
+              />
+            </div>
+            <SliderRow label="Size" name="cityFontScale" min={0.3} max={2} step={0.05} value={form.cityFontScale} onChange={onChange} unit="×" />
+            <SliderRow label="Spacing" name="textLetterSpacing" min={-0.1} max={0.5} step={0.02} value={form.textLetterSpacing} onChange={onChange} unit="em" />
           </div>
 
-          <div className="flex flex-col gap-1.5">
+          {/* ── Country ── */}
+          <div className="flex flex-col gap-2">
+            <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">Country</span>
             <div className="flex items-center justify-between">
-              <span className="text-base text-text-secondary">
-                Letter spacing
-              </span>
-              <span className="text-sm text-text-muted tabular-nums">
-                {Number(form.textLetterSpacing).toFixed(2)}em
-              </span>
+              <span className="text-sm text-text-secondary">Uppercase</span>
+              <Switch
+                checked={Boolean(form.countryUppercase)}
+                onCheckedChange={(checked) => handleToggle("countryUppercase", checked)}
+              />
             </div>
-            <input
-              type="range"
-              min={-0.1}
-              max={0.5}
-              step={0.02}
-              value={Number(form.textLetterSpacing) || 0.3}
-              onChange={(e) => {
-                const syntheticEvent = {
-                  target: {
-                    name: "textLetterSpacing",
-                    type: "text",
-                    value: e.target.value,
-                    checked: false,
-                  },
-                } as React.ChangeEvent<HTMLInputElement>;
-                onChange(syntheticEvent);
-              }}
-              className="w-full accent-accent"
-            />
+            <SliderRow label="Size" name="countryFontScale" min={0.3} max={2} step={0.05} value={form.countryFontScale} onChange={onChange} unit="×" />
+          </div>
+
+          {/* ── Coordinates ── */}
+          <div className="flex flex-col gap-2">
+            <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">Coordinates</span>
+            <SliderRow label="Size" name="coordsFontScale" min={0.3} max={2} step={0.05} value={form.coordsFontScale} onChange={onChange} unit="×" />
+            <SliderRow label="Spacing" name="coordsLetterSpacing" min={-0.1} max={0.3} step={0.02} value={form.coordsLetterSpacing} onChange={onChange} unit="em" />
+          </div>
+
+          {/* ── Credits ── */}
+          <div className="flex flex-col gap-2">
+            <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">Credits</span>
+            <SliderRow label="Size" name="creditsFontScale" min={0.3} max={2} step={0.05} value={form.creditsFontScale} onChange={onChange} unit="×" />
           </div>
 
           <button

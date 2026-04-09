@@ -33,6 +33,12 @@ interface LayeredSvgOptions {
   showCoordinates?: boolean;
   textUppercase?: boolean;
   textLetterSpacing?: number;
+  cityFontScale?: number;
+  countryFontScale?: number;
+  coordsFontScale?: number;
+  creditsFontScale?: number;
+  countryUppercase?: boolean;
+  coordsLetterSpacing?: number;
   markers: MarkerItem[];
   markerIcons: MarkerIconDefinition[];
 }
@@ -93,7 +99,13 @@ export async function createLayeredSvgBlobFromMap({
   showCountry = true,
   showCoordinates = true,
   textUppercase = true,
-  textLetterSpacing = 2,
+  textLetterSpacing = 0.3,
+  cityFontScale = 1,
+  countryFontScale = 1,
+  coordsFontScale = 1,
+  creditsFontScale = 1,
+  countryUppercase = true,
+  coordsLetterSpacing = 0,
   markers,
   markerIcons,
 }: LayeredSvgOptions): Promise<Blob> {
@@ -225,6 +237,12 @@ export async function createLayeredSvgBlobFromMap({
           showCoordinates,
           textUppercase,
           textLetterSpacing,
+          cityFontScale,
+          countryFontScale,
+          coordsFontScale,
+          creditsFontScale,
+          countryUppercase,
+          coordsLetterSpacing,
         );
       }),
     });

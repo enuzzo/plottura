@@ -33,6 +33,12 @@ export interface ExportOptions {
   showCoordinates?: boolean;
   textUppercase?: boolean;
   textLetterSpacing?: number;
+  cityFontScale?: number;
+  countryFontScale?: number;
+  coordsFontScale?: number;
+  creditsFontScale?: number;
+  countryUppercase?: boolean;
+  coordsLetterSpacing?: number;
   markers?: MarkerItem[];
   markerIcons?: MarkerIconDefinition[];
   markerProjection?: MarkerProjectionInput;

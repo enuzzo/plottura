@@ -122,6 +122,12 @@ export function useExport() {
             showCoordinates: form.showCoordinates,
             textUppercase: form.textUppercase,
             textLetterSpacing: form.textLetterSpacing !== "" ? Number(form.textLetterSpacing) : 0.3,
+            cityFontScale: Number(form.cityFontScale) || 1,
+            countryFontScale: Number(form.countryFontScale) || 1,
+            coordsFontScale: Number(form.coordsFontScale) || 1,
+            creditsFontScale: Number(form.creditsFontScale) || 1,
+            countryUppercase: form.countryUppercase,
+            coordsLetterSpacing: form.coordsLetterSpacing !== "" ? Number(form.coordsLetterSpacing) : 0,
             markers: hasVisibleMarkers ? state.markers : [],
             markerIcons: hasVisibleMarkers
               ? getAllMarkerIcons(state.customMarkerIcons)

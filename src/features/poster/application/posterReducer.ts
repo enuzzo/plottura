@@ -53,6 +53,12 @@ export interface PosterForm {
   // ── Typography ──
   textUppercase: boolean;
   textLetterSpacing: string;
+  cityFontScale: string;
+  countryFontScale: string;
+  coordsFontScale: string;
+  creditsFontScale: string;
+  countryUppercase: boolean;
+  coordsLetterSpacing: string;
   // ── 3D View ──
   enable3D: boolean;
   mapPitch: string;

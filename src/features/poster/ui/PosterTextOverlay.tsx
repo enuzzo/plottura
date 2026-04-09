@@ -32,6 +32,12 @@ interface PosterTextOverlayProps {
   showOverlay: boolean;
   textUppercase?: boolean;
   textLetterSpacing?: number;
+  cityFontScale?: number;
+  countryFontScale?: number;
+  coordsFontScale?: number;
+  creditsFontScale?: number;
+  countryUppercase?: boolean;
+  coordsLetterSpacing?: number;
 }
 
 /**
@@ -55,6 +61,12 @@ export default function PosterTextOverlay({
   showOverlay,
   textUppercase = true,
   textLetterSpacing = 0.3,
+  cityFontScale = 1,
+  countryFontScale = 1,
+  coordsFontScale = 1,
+  creditsFontScale = 1,
+  countryUppercase = true,
+  coordsLetterSpacing = 0,
 }: PosterTextOverlayProps) {
   const toCqMin = (px: number) => (px / TEXT_DIMENSION_REFERENCE_PX) * 100;
 
@@ -66,11 +78,13 @@ export default function PosterTextOverlay({
     : '"IBM Plex Mono", monospace';
 
   const cityLabel = formatCityLabel(city, textUppercase);
-  const letterSpacingStyle = `${textLetterSpacing}em`;
-  const cityFontSize = `${toCqMin(CITY_FONT_BASE_PX) * computeCityFontScale(city)}cqmin`;
-  const countryFontSize = `${toCqMin(COUNTRY_FONT_BASE_PX)}cqmin`;
-  const coordsFontSize = `${toCqMin(COORDS_FONT_BASE_PX)}cqmin`;
-  const attributionFontSize = `${toCqMin(ATTRIBUTION_FONT_BASE_PX)}cqmin`;
+  const cityLetterSpacingStyle = `${textLetterSpacing}em`;
+  const countryLetterSpacingStyle = `${textLetterSpacing}em`;
+  const coordsLetterSpacingStyle = `${coordsLetterSpacing}em`;
+  const cityFontSize = `${toCqMin(CITY_FONT_BASE_PX) * computeCityFontScale(city) * cityFontScale}cqmin`;
+  const countryFontSize = `${toCqMin(COUNTRY_FONT_BASE_PX) * countryFontScale}cqmin`;
+  const coordsFontSize = `${toCqMin(COORDS_FONT_BASE_PX) * coordsFontScale}cqmin`;
+  const attributionFontSize = `${toCqMin(ATTRIBUTION_FONT_BASE_PX) * creditsFontScale}cqmin`;
   const attributionColor = computeAttributionColor(textColor, landColor, showOverlay);
   const attributionOpacity = showOverlay ? 0.55 : 0.9;
 
@@ -84,7 +98,7 @@ export default function PosterTextOverlay({
               fontFamily: titleFont,
               top: `${TEXT_CITY_Y_RATIO * 100}%`,
               fontSize: cityFontSize,
-              letterSpacing: letterSpacingStyle,
+              letterSpacing: cityLetterSpacingStyle,
             }}
           >
             {cityLabel}
@@ -98,15 +112,15 @@ export default function PosterTextOverlay({
                 }}
               />
               <p
-                className={`absolute left-0 right-0 m-0 font-light text-center leading-[1.2] -translate-y-1/2${textUppercase ? " uppercase" : ""}`}
+                className={`absolute left-0 right-0 m-0 font-light text-center leading-[1.2] -translate-y-1/2${countryUppercase ? " uppercase" : ""}`}
                 style={{
                   fontFamily: titleFont,
                   top: `${TEXT_COUNTRY_Y_RATIO * 100}%`,
                   fontSize: countryFontSize,
-                  letterSpacing: letterSpacingStyle,
+                  letterSpacing: countryLetterSpacingStyle,
                 }}
               >
-                {textUppercase ? country.toUpperCase() : country}
+                {countryUppercase ? country.toUpperCase() : country}
               </p>
             </>
           )}
@@ -117,6 +131,7 @@ export default function PosterTextOverlay({
                 fontFamily: bodyFont,
                 top: `${TEXT_COORDS_Y_RATIO * 100}%`,
                 fontSize: coordsFontSize,
+                letterSpacing: coordsLetterSpacingStyle,
               }}
             >
               {formatCoordinates(lat, lon)}

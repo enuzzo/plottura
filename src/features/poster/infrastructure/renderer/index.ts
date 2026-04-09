@@ -33,7 +33,13 @@ export async function compositeExport(
     showCountry = true,
     showCoordinates = true,
     textUppercase = true,
-    textLetterSpacing = 2,
+    textLetterSpacing = 0.3,
+    cityFontScale = 1,
+    countryFontScale = 1,
+    coordsFontScale = 1,
+    creditsFontScale = 1,
+    countryUppercase = true,
+    coordsLetterSpacing = 0,
     markers = [],
     markerIcons = [],
     markerProjection,
@@ -91,6 +97,12 @@ export async function compositeExport(
     showCoordinates,
     textUppercase,
     textLetterSpacing,
+    cityFontScale,
+    countryFontScale,
+    coordsFontScale,
+    creditsFontScale,
+    countryUppercase,
+    coordsLetterSpacing,
   );
 
   const size: CanvasSize = {
