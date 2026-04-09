@@ -1,7 +1,8 @@
+import { useCallback, useState } from "react";
 import { cn } from "@/lib/utils";
 import { usePosterContext } from "@/features/poster/ui/PosterContext";
 import { getLayoutOption, createCustomLayoutOption, formatLayoutDimensions } from "@/features/layout/infrastructure/layoutRepository";
-import { Image, FileCode, FileText } from "lucide-react";
+import { Image, FileCode, FileText, Copy, ClipboardPaste } from "lucide-react";
 
 interface SidebarFooterProps {
   onExportPng: () => void;
@@ -18,8 +19,65 @@ export default function SidebarFooter({
   isExporting,
   className,
 }: SidebarFooterProps) {
-  const { state, effectiveTheme } = usePosterContext();
+  const { state, dispatch, effectiveTheme } = usePosterContext();
   const { form } = state;
+  const [copyFeedback, setCopyFeedback] = useState("");
+
+  const handleCopySettings = useCallback(() => {
+    const settings = {
+      _plottura: "1.0",
+      form: { ...form },
+      customColors: { ...state.customColors },
+    };
+    void navigator.clipboard.writeText(JSON.stringify(settings, null, 2)).then(
+      () => {
+        setCopyFeedback("Copied!");
+        setTimeout(() => setCopyFeedback(""), 2000);
+      },
+      () => {
+        setCopyFeedback("Failed");
+        setTimeout(() => setCopyFeedback(""), 2000);
+      },
+    );
+  }, [form, state.customColors]);
+
+  const handlePasteSettings = useCallback(() => {
+    void navigator.clipboard.readText().then(
+      (text) => {
+        try {
+          const parsed = JSON.parse(text);
+          if (!parsed._plottura || !parsed.form) {
+            setCopyFeedback("Invalid format");
+            setTimeout(() => setCopyFeedback(""), 2000);
+            return;
+          }
+          dispatch({
+            type: "SET_FORM_FIELDS",
+            fields: parsed.form,
+            resetDisplayNameOverrides: true,
+          });
+          if (parsed.customColors && typeof parsed.customColors === "object") {
+            for (const [key, value] of Object.entries(parsed.customColors)) {
+              dispatch({
+                type: "SET_COLOR",
+                key,
+                value: value as string,
+              });
+            }
+          }
+          setCopyFeedback("Applied!");
+          setTimeout(() => setCopyFeedback(""), 2000);
+        } catch {
+          setCopyFeedback("Invalid JSON");
+          setTimeout(() => setCopyFeedback(""), 2000);
+        }
+      },
+      () => {
+        setCopyFeedback("No access");
+        setTimeout(() => setCopyFeedback(""), 2000);
+      },
+    );
+  }, [dispatch]);
 
   const layoutOption = getLayoutOption(form.layout) ??
     createCustomLayoutOption(Number(form.width), Number(form.height));
@@ -79,6 +137,32 @@ export default function SidebarFooter({
           <FileText className="w-3 h-3" />
           PDF
         </button>
+      </div>
+
+      {/* Copy / Paste settings */}
+      <div className="flex items-center gap-2 px-4 py-1.5 border-t border-border/50">
+        <button
+          type="button"
+          onClick={handleCopySettings}
+          className="flex items-center gap-1 text-[10px] text-text-muted hover:text-text-primary transition-colors cursor-pointer"
+          title="Copy all poster settings as JSON"
+        >
+          <Copy className="w-3 h-3" />
+          <span>Copy settings</span>
+        </button>
+        <span className="text-border">|</span>
+        <button
+          type="button"
+          onClick={handlePasteSettings}
+          className="flex items-center gap-1 text-[10px] text-text-muted hover:text-text-primary transition-colors cursor-pointer"
+          title="Paste poster settings from clipboard"
+        >
+          <ClipboardPaste className="w-3 h-3" />
+          <span>Paste settings</span>
+        </button>
+        {copyFeedback ? (
+          <span className="text-[10px] text-accent font-medium ml-auto">{copyFeedback}</span>
+        ) : null}
       </div>
     </div>
   );
