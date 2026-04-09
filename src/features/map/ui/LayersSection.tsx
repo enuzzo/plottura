@@ -14,6 +14,8 @@ interface LayerForm {
   includeRoadPath: boolean;
   includeRoadMinorLow: boolean;
   includeRoadOutline: boolean;
+  includeBoundary: boolean;
+  includeLandcover: boolean;
 }
 
 interface LayersSectionProps {
@@ -31,6 +33,8 @@ const LAYERS = [
   { name: "includeRoads", label: "Show roads" },
   { name: "includeRail", label: "Show rail" },
   { name: "includeAeroway", label: "Show aeroway" },
+  { name: "includeBoundary", label: "Show borders" },
+  { name: "includeLandcover", label: "Show landcover" },
 ] as const;
 
 export default function LayersSection({

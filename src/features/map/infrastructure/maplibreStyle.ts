@@ -198,6 +198,8 @@ export function generateMapStyle(
     includeRoadPath?: boolean;
     includeRoadMinorLow?: boolean;
     includeRoadOutline?: boolean;
+    includeBoundary?: boolean;
+    includeLandcover?: boolean;
     distanceMeters?: number;
     enable3D?: boolean;
     buildingExtrusion?: boolean;
@@ -225,6 +227,8 @@ export function generateMapStyle(
   const includeRoadPath = options?.includeRoadPath ?? true;
   const includeRoadMinorLow = options?.includeRoadMinorLow ?? true;
   const includeRoadOutline = options?.includeRoadOutline ?? true;
+  const includeBoundary = options?.includeBoundary ?? true;
+  const includeLandcover = options?.includeLandcover ?? false;
   const buildingMinZoom = resolveBuildingMinZoom(options?.distanceMeters);
   const lightAzimuth = options?.lightAzimuth ?? 210;
   const lightIntensity = options?.lightIntensity ?? 0.6;
@@ -303,6 +307,28 @@ export function generateMapStyle(
         id: "background",
         type: "background",
         paint: { "background-color": theme.map.land },
+      },
+
+      // Landcover: subtle natural surface fill (forests, grass, farmland)
+      // Drawn first so parks and water paint over it.
+      {
+        id: "landcover",
+        source: SOURCE_ID,
+        "source-layer": "landcover",
+        type: "fill" as const,
+        layout: { visibility: includeLandcover ? ("visible" as const) : ("none" as const) },
+        paint: {
+          "fill-color": blendHex(
+            theme.map.parks || "#c8facc",
+            theme.map.land || "#ffffff",
+            0.35,
+          ),
+          "fill-opacity": opacityExpr([
+            [0, 0.3],
+            [8, 0.4],
+            [14, 0.5],
+          ]),
+        },
       },
 
       // Parks are drawn before water so that marine protected areas / ocean parks
@@ -726,6 +752,41 @@ export function generateMapStyle(
           visibility: includeRoads ? ("visible" as const) : ("none" as const),
           "line-cap": "round" as const,
           "line-join": "round" as const,
+        },
+      },
+
+      // Administrative boundaries (country borders, state lines)
+      // Drawn on top of everything so borders are visible over roads/buildings
+      {
+        id: "boundary",
+        source: SOURCE_ID,
+        "source-layer": "boundary",
+        type: "line" as const,
+        filter: ["<=", ["get", "admin_level"], 4],
+        layout: {
+          visibility: includeBoundary ? ("visible" as const) : ("none" as const),
+          "line-cap": "round" as const,
+          "line-join": "round" as const,
+        },
+        paint: {
+          "line-color": blendHex(
+            theme.ui.text || "#111111",
+            theme.map.land || "#ffffff",
+            0.35,
+          ),
+          "line-width": widthExpr([
+            [0, 0.4],
+            [4, 0.8],
+            [8, 1.2],
+            [14, 1.6],
+          ]),
+          "line-opacity": opacityExpr([
+            [0, 0.4],
+            [4, 0.55],
+            [8, 0.65],
+            [14, 0.75],
+          ]),
+          "line-dasharray": [4, 2],
         },
       },
     ],
