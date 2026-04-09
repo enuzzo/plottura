@@ -35,6 +35,7 @@ function getPackageName(id) {
 }
 
 export default defineConfig({
+  base: process.env.GITHUB_ACTIONS ? "/plottura/" : "/",
   plugins: [react()],
   define: {
     "import.meta.env.VITE_APP_VERSION": JSON.stringify(appVersion),
