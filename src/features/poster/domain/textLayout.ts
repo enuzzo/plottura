@@ -46,16 +46,28 @@ export function isLatinScript(text: string | undefined | null): boolean {
   return latinCount / alphaCount > 0.8;
 }
 
+/**
+ * Formats the city label with optional uppercase.
+ * Letter spacing is handled via CSS `letter-spacing` (preview) and
+ * canvas `ctx.letterSpacing` (export), not by inserting physical spaces.
+ */
 export function formatCityLabel(
   city: string,
   uppercase = true,
-  letterSpacing = 2,
 ): string {
   if (!isLatinScript(city)) return city;
-  const cased = uppercase ? city.toUpperCase() : city;
-  if (letterSpacing <= 0) return cased;
-  const spacer = " ".repeat(letterSpacing);
-  return cased.split("").join(spacer);
+  return uppercase ? city.toUpperCase() : city;
+}
+
+/**
+ * Converts a letter-spacing slider value (0–0.5 em range) to a CSS/canvas value.
+ * The slider value maps directly to em units.
+ * 0 = no extra spacing (font default)
+ * 0.3 = poster default (visible spacing between letters)
+ * Negative values tighten letters.
+ */
+export function letterSpacingToEm(sliderValue: number): number {
+  return sliderValue;
 }
 
 /**

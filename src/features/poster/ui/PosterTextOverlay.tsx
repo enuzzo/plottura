@@ -54,7 +54,7 @@ export default function PosterTextOverlay({
   showCoordinates,
   showOverlay,
   textUppercase = true,
-  textLetterSpacing = 2,
+  textLetterSpacing = 0.3,
 }: PosterTextOverlayProps) {
   const toCqMin = (px: number) => (px / TEXT_DIMENSION_REFERENCE_PX) * 100;
 
@@ -65,7 +65,8 @@ export default function PosterTextOverlay({
     ? `"${fontFamily}", "IBM Plex Mono", monospace`
     : '"IBM Plex Mono", monospace';
 
-  const cityLabel = formatCityLabel(city, textUppercase, textLetterSpacing);
+  const cityLabel = formatCityLabel(city, textUppercase);
+  const letterSpacingStyle = `${textLetterSpacing}em`;
   const cityFontSize = `${toCqMin(CITY_FONT_BASE_PX) * computeCityFontScale(city)}cqmin`;
   const countryFontSize = `${toCqMin(COUNTRY_FONT_BASE_PX)}cqmin`;
   const coordsFontSize = `${toCqMin(COORDS_FONT_BASE_PX)}cqmin`;
@@ -78,11 +79,12 @@ export default function PosterTextOverlay({
       {showPosterText && (
         <>
           <p
-            className="absolute left-0 right-0 m-0 font-bold text-center leading-[1.1] -translate-y-1/2 whitespace-pre-wrap"
+            className="absolute left-0 right-0 m-0 font-bold text-center leading-[1.1] -translate-y-1/2"
             style={{
               fontFamily: titleFont,
               top: `${TEXT_CITY_Y_RATIO * 100}%`,
               fontSize: cityFontSize,
+              letterSpacing: letterSpacingStyle,
             }}
           >
             {cityLabel}
@@ -101,6 +103,7 @@ export default function PosterTextOverlay({
                   fontFamily: titleFont,
                   top: `${TEXT_COUNTRY_Y_RATIO * 100}%`,
                   fontSize: countryFontSize,
+                  letterSpacing: letterSpacingStyle,
                 }}
               >
                 {textUppercase ? country.toUpperCase() : country}

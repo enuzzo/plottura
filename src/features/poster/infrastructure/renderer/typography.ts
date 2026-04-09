@@ -34,7 +34,7 @@ export function drawPosterText(
   showCountry: boolean = true,
   showCoordinates: boolean = true,
   textUppercase: boolean = true,
-  textLetterSpacing: number = 2,
+  textLetterSpacing: number = 0.3,
 ): void {
   const textColor = theme.ui?.text || "#111111";
   const landColor = theme.map?.land || "#808080";
@@ -54,7 +54,7 @@ export function drawPosterText(
   const attributionFontSize = ATTRIBUTION_FONT_BASE_PX * dimScale;
 
   if (showPosterText) {
-    const cityLabel = formatCityLabel(city, textUppercase, textLetterSpacing);
+    const cityLabel = formatCityLabel(city, textUppercase);
     const cityFontSize = CITY_FONT_BASE_PX * dimScale * computeCityFontScale(city);
 
     const countryFontSize = COUNTRY_FONT_BASE_PX * dimScale;
@@ -64,26 +64,34 @@ export function drawPosterText(
     const countryY = height * TEXT_COUNTRY_Y_RATIO;
     const coordinatesY = height * TEXT_COORDS_Y_RATIO;
 
+    // Apply letter spacing via canvas API (em → px conversion per font size)
+    const cityLetterSpacingPx = textLetterSpacing * cityFontSize;
+    const countryLetterSpacingPx = textLetterSpacing * countryFontSize;
+
     ctx.fillStyle = textColor;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.font = `700 ${cityFontSize}px ${titleFontFamily}`;
+    ctx.letterSpacing = `${cityLetterSpacingPx}px`;
     ctx.fillText(cityLabel, width * 0.5, cityY);
 
     if (showCountry) {
       ctx.strokeStyle = textColor;
       ctx.lineWidth = 3 * dimScale;
+      ctx.letterSpacing = "0px";
       ctx.beginPath();
       ctx.moveTo(width * 0.4, lineY);
       ctx.lineTo(width * 0.6, lineY);
       ctx.stroke();
 
       ctx.font = `300 ${countryFontSize}px ${titleFontFamily}`;
+      ctx.letterSpacing = `${countryLetterSpacingPx}px`;
       ctx.fillText(textUppercase ? country.toUpperCase() : country, width * 0.5, countryY);
     }
 
     if (showCoordinates) {
       ctx.globalAlpha = 0.75;
+      ctx.letterSpacing = "0px";
       ctx.font = `400 ${coordinateFontSize}px ${bodyFontFamily}`;
       ctx.fillText(
         formatCoordinates(center.lat, center.lon),
@@ -92,6 +100,9 @@ export function drawPosterText(
       );
       ctx.globalAlpha = 1;
     }
+
+    // Reset letter spacing for attribution text
+    ctx.letterSpacing = "0px";
   }
 
   if (includeOsmBadge) {

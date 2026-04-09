@@ -20,7 +20,7 @@ interface TypographySectionProps {
 
 const TYPOGRAPHY_DEFAULTS = {
   textUppercase: true,
-  textLetterSpacing: "2",
+  textLetterSpacing: "0.3",
 } as const;
 
 export default function TypographySection({
@@ -74,7 +74,7 @@ export default function TypographySection({
       </div>
 
       <div className="flex items-center justify-between">
-        <span className="text-base text-text-secondary">Overlay layer</span>
+        <span className="text-base text-text-secondary">Show markers</span>
         <Switch
           checked={Boolean(form.showMarkers)}
           onCheckedChange={(checked) => handleToggle("showMarkers", checked)}
@@ -158,15 +158,15 @@ export default function TypographySection({
                 Letter spacing
               </span>
               <span className="text-sm text-text-muted tabular-nums">
-                {form.textLetterSpacing}
+                {Number(form.textLetterSpacing).toFixed(2)}em
               </span>
             </div>
             <input
               type="range"
-              min={0}
-              max={6}
-              step={1}
-              value={Number(form.textLetterSpacing) || 2}
+              min={-0.1}
+              max={0.5}
+              step={0.02}
+              value={Number(form.textLetterSpacing) || 0.3}
               onChange={(e) => {
                 const syntheticEvent = {
                   target: {

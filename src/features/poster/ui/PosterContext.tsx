@@ -83,7 +83,7 @@ export const DEFAULT_FORM: PosterForm = {
   showCountry: true,
   showCoordinates: true,
   textUppercase: true,
-  textLetterSpacing: "2",
+  textLetterSpacing: "0.3",
   enable3D: false,
   mapPitch: "60",
   buildingExtrusion: true,

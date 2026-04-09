@@ -121,7 +121,7 @@ export function useExport() {
             showCountry: form.showCountry,
             showCoordinates: form.showCoordinates,
             textUppercase: form.textUppercase,
-            textLetterSpacing: Number(form.textLetterSpacing) || 2,
+            textLetterSpacing: form.textLetterSpacing !== "" ? Number(form.textLetterSpacing) : 0.3,
             markers: hasVisibleMarkers ? state.markers : [],
             markerIcons: hasVisibleMarkers
               ? getAllMarkerIcons(state.customMarkerIcons)
@@ -165,7 +165,7 @@ export function useExport() {
           showCountry: form.showCountry,
           showCoordinates: form.showCoordinates,
           textUppercase: form.textUppercase,
-          textLetterSpacing: Number(form.textLetterSpacing) || 2,
+          textLetterSpacing: form.textLetterSpacing !== "" ? Number(form.textLetterSpacing) : 0.3,
           markers: hasVisibleMarkers ? state.markers : [],
           markerIcons: hasVisibleMarkers
             ? getAllMarkerIcons(state.customMarkerIcons)
