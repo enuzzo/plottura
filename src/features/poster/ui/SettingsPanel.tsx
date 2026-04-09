@@ -147,14 +147,14 @@ export default function SettingsPanel({
                     />
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-text-secondary">Border width</span>
-                      <span className="text-xs text-text-muted tabular-nums">{state.form.frameBorderWidth}px</span>
+                      <span className="text-xs text-text-muted tabular-nums">{Number(state.form.frameBorderWidth) > 0 ? `${state.form.frameBorderWidth}px` : "off"}</span>
                     </div>
                     <input
                       type="range"
                       min={0}
                       max={6}
                       step={0.5}
-                      value={Number(state.form.frameBorderWidth) || 2}
+                      value={state.form.frameBorderWidth !== "" ? Number(state.form.frameBorderWidth) : 2}
                       onChange={(e) => dispatch({ type: "SET_FIELD", name: "frameBorderWidth", value: e.target.value })}
                       className="w-full accent-accent"
                     />

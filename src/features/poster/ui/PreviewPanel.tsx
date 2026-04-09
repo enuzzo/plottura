@@ -388,7 +388,9 @@ export default function PreviewPanel() {
                 className="relative overflow-hidden"
                 style={{
                   height: "82%",
-                  border: `${Number(form.frameBorderWidth) || 2}px solid ${effectiveTheme.ui.text}`,
+                  ...(Number(form.frameBorderWidth) > 0
+                    ? { border: `${Number(form.frameBorderWidth)}px solid ${effectiveTheme.ui.text}` }
+                    : {}),
                 }}
               >
                 <MapPreview
@@ -442,6 +444,22 @@ export default function PreviewPanel() {
                   >
                     {formatCityLabel(cityLabel, form.textUppercase)}
                   </p>
+                  {form.showCountry && (
+                    <>
+                      <hr
+                        className="border-0 border-t-[1.5px] border-current h-0 m-0 w-[8%] opacity-60"
+                      />
+                      <p
+                        className={`m-0 font-light text-center leading-[1.2]${form.countryUppercase ? " uppercase" : ""}`}
+                        style={{
+                          fontSize: `${(92 / 3600) * 100 * (Number(form.countryFontScale) || 1)}cqmin`,
+                          letterSpacing: `${form.textLetterSpacing !== "" ? Number(form.textLetterSpacing) : 0.3}em`,
+                        }}
+                      >
+                        {form.countryUppercase ? countryLabel.toUpperCase() : countryLabel}
+                      </p>
+                    </>
+                  )}
                   {form.showCoordinates && (
                     <p
                       className="m-0 font-normal text-center opacity-65"
