@@ -33,6 +33,8 @@ export function drawPosterText(
   includeOsmBadge: boolean = true,
   showCountry: boolean = true,
   showCoordinates: boolean = true,
+  textUppercase: boolean = true,
+  textLetterSpacing: number = 2,
 ): void {
   const textColor = theme.ui?.text || "#111111";
   const landColor = theme.map?.land || "#808080";
@@ -52,7 +54,7 @@ export function drawPosterText(
   const attributionFontSize = ATTRIBUTION_FONT_BASE_PX * dimScale;
 
   if (showPosterText) {
-    const cityLabel = formatCityLabel(city);
+    const cityLabel = formatCityLabel(city, textUppercase, textLetterSpacing);
     const cityFontSize = CITY_FONT_BASE_PX * dimScale * computeCityFontScale(city);
 
     const countryFontSize = COUNTRY_FONT_BASE_PX * dimScale;
@@ -77,7 +79,7 @@ export function drawPosterText(
       ctx.stroke();
 
       ctx.font = `300 ${countryFontSize}px ${titleFontFamily}`;
-      ctx.fillText(country.toUpperCase(), width * 0.5, countryY);
+      ctx.fillText(textUppercase ? country.toUpperCase() : country, width * 0.5, countryY);
     }
 
     if (showCoordinates) {

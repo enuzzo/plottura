@@ -464,6 +464,8 @@ export default function PreviewPanel() {
             showCountry={form.showCountry}
             showCoordinates={form.showCoordinates}
             showOverlay={form.showMarkers}
+            textUppercase={form.textUppercase}
+            textLetterSpacing={Number(form.textLetterSpacing) || 2}
           />
 
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[calc(100%+12px)] z-20 flex flex-row items-center gap-1.5 flex-wrap justify-center whitespace-nowrap max-[768px]:w-[calc(100%-8px)] max-[768px]:flex-col max-[768px]:top-[calc(100%+8px)] max-[768px]:bottom-auto max-[768px]:z-[12]" aria-label="Map controls">

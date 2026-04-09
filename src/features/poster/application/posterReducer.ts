@@ -46,6 +46,9 @@ export interface PosterForm {
   includeOsmBadge: boolean;
   showCountry: boolean;
   showCoordinates: boolean;
+  // ── Typography ──
+  textUppercase: boolean;
+  textLetterSpacing: string;
   // ── 3D View ──
   enable3D: boolean;
   mapPitch: string;

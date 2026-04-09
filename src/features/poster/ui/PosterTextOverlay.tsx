@@ -30,6 +30,8 @@ interface PosterTextOverlayProps {
   showCountry: boolean;
   showCoordinates: boolean;
   showOverlay: boolean;
+  textUppercase?: boolean;
+  textLetterSpacing?: number;
 }
 
 /**
@@ -51,6 +53,8 @@ export default function PosterTextOverlay({
   showCountry,
   showCoordinates,
   showOverlay,
+  textUppercase = true,
+  textLetterSpacing = 2,
 }: PosterTextOverlayProps) {
   const toCqMin = (px: number) => (px / TEXT_DIMENSION_REFERENCE_PX) * 100;
 
@@ -61,7 +65,7 @@ export default function PosterTextOverlay({
     ? `"${fontFamily}", "IBM Plex Mono", monospace`
     : '"IBM Plex Mono", monospace';
 
-  const cityLabel = formatCityLabel(city);
+  const cityLabel = formatCityLabel(city, textUppercase, textLetterSpacing);
   const cityFontSize = `${toCqMin(CITY_FONT_BASE_PX) * computeCityFontScale(city)}cqmin`;
   const countryFontSize = `${toCqMin(COUNTRY_FONT_BASE_PX)}cqmin`;
   const coordsFontSize = `${toCqMin(COORDS_FONT_BASE_PX)}cqmin`;
@@ -74,7 +78,7 @@ export default function PosterTextOverlay({
       {showPosterText && (
         <>
           <p
-            className="absolute left-0 right-0 m-0 font-bold uppercase text-center leading-[1.1] -translate-y-1/2 whitespace-pre-wrap"
+            className="absolute left-0 right-0 m-0 font-bold text-center leading-[1.1] -translate-y-1/2 whitespace-pre-wrap"
             style={{
               fontFamily: titleFont,
               top: `${TEXT_CITY_Y_RATIO * 100}%`,
@@ -92,14 +96,14 @@ export default function PosterTextOverlay({
                 }}
               />
               <p
-                className="absolute left-0 right-0 m-0 font-light uppercase text-center leading-[1.2] -translate-y-1/2"
+                className={`absolute left-0 right-0 m-0 font-light text-center leading-[1.2] -translate-y-1/2${textUppercase ? " uppercase" : ""}`}
                 style={{
                   fontFamily: titleFont,
                   top: `${TEXT_COUNTRY_Y_RATIO * 100}%`,
                   fontSize: countryFontSize,
                 }}
               >
-                {country.toUpperCase()}
+                {textUppercase ? country.toUpperCase() : country}
               </p>
             </>
           )}

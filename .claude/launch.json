@@ -3,10 +3,9 @@
   "configurations": [
     {
       "name": "dev",
-      "runtimeExecutable": "/bin/bash",
-      "runtimeArgs": ["/Users/enuzzo/Library/CloudStorage/Dropbox/Mitnick/plottura/.claude/run-dev.sh"],
-      "port": 5173,
-      "autoPort": true
+      "runtimeExecutable": "./node_modules/.bin/vite",
+      "runtimeArgs": ["--host", "--port", "5199"],
+      "port": 5199
     }
   ]
 }

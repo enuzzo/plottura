@@ -1,0 +1,50 @@
+<h2>How should the user switch between 2D and 3D?</h2>
+<p class="subtitle">The 3D mode adds pitch + buildings + terrain to the map. Where does the toggle live?</p>
+
+<div class="options">
+  <div class="option" data-choice="sidebar-section" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>New "3D View" section in sidebar</h3>
+      <p>A dedicated sidebar accordion section with: 3D on/off toggle, pitch slider (0°–85°), building height multiplier, terrain on/off, lighting angle. Full control panel — consistent with how Layers and Map Settings already work.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="map-controls" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Button in the map controls bar</h3>
+      <p>A "3D" toggle button next to Recenter/Edit Map in the bottom notch area. Quick access, one click to flip. Pitch slider appears in the floating controls when 3D is active (like zoom slider appears during Edit).</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="both" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Both — button for quick toggle, sidebar for fine control</h3>
+      <p>A "3D" button on the canvas for fast switching. Detailed controls (pitch, terrain, lighting) in a sidebar section. Best of both: quick access + deep customization. Similar to how "Edit Map" enables floating controls.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px;padding:16px;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid rgba(255,255,255,0.06);">
+  <h3>For reference: existing control patterns</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;">
+    <div style="padding:12px;background:rgba(255,255,255,0.03);border-radius:6px;">
+      <div class="label">Bottom notch</div>
+      <p style="margin:6px 0 0;font-size:13px;color:rgba(255,255,255,0.6);">Recenter + Edit Map buttons. Themed light bg, dark text, semibold uppercase.</p>
+    </div>
+    <div style="padding:12px;background:rgba(255,255,255,0.03);border-radius:6px;">
+      <div class="label">Floating controls (edit mode)</div>
+      <p style="margin:6px 0 0;font-size:13px;color:rgba(255,255,255,0.6);">Zoom slider, rotation slider — appear below poster when Edit Map is active.</p>
+    </div>
+    <div style="padding:12px;background:rgba(255,255,255,0.03);border-radius:6px;">
+      <div class="label">Sidebar sections</div>
+      <p style="margin:6px 0 0;font-size:13px;color:rgba(255,255,255,0.6);">Accordion: Location, Theme, Layout, Map Settings, Layers, Markers, Typography</p>
+    </div>
+    <div style="padding:12px;background:rgba(255,255,255,0.03);border-radius:6px;">
+      <div class="label">Map Settings toggles</div>
+      <p style="margin:6px 0 0;font-size:13px;color:rgba(255,255,255,0.6);">Gradients, Country, Coordinates, Credits, OSM badge — all Switch components</p>
+    </div>
+  </div>
+</div>

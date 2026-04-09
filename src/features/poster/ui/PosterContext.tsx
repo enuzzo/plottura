@@ -82,6 +82,8 @@ export const DEFAULT_FORM: PosterForm = {
   includeOsmBadge: true,
   showCountry: true,
   showCoordinates: true,
+  textUppercase: true,
+  textLetterSpacing: "2",
   enable3D: false,
   mapPitch: "60",
   buildingExtrusion: true,

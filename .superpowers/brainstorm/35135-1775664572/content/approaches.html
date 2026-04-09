@@ -1,0 +1,103 @@
+<h2>Three approaches for 3D isometric map</h2>
+<p class="subtitle">All keep the poster flat — only the map tilts. Ranked by my recommendation.</p>
+
+<div class="options">
+  <div class="option" data-choice="maplibre-native" onclick="toggleSelect(this)" style="border-color:rgba(108,180,238,0.3);">
+    <div class="letter" style="background:rgba(108,180,238,0.15);color:#6cb4ee;">★</div>
+    <div class="content">
+      <h3>A. MapLibre Native (Recommended)</h3>
+      <p>Use MapLibre's built-in <code>pitch</code>, <code>fill-extrusion</code> layers, terrain DEM, and <code>light</code> object. Zero new dependencies. The same engine that renders your 2D map renders the 3D — same tile source, same theme colors, same export pipeline.</p>
+      <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="padding:8px 10px;background:rgba(108,238,138,0.06);border-radius:6px;border:1px solid rgba(108,238,138,0.15);">
+          <div style="font-size:11px;font-weight:600;color:rgba(108,238,138,0.8);text-transform:uppercase;letter-spacing:0.5px;">Pros</div>
+          <ul style="margin:6px 0 0;padding-left:16px;font-size:13px;color:rgba(255,255,255,0.65);">
+            <li>Zero new dependencies</li>
+            <li>Same tile source (OpenFreeMap)</li>
+            <li>Theme colors apply automatically</li>
+            <li>Export already captures pitch</li>
+            <li>Buildings from existing vector tiles</li>
+            <li>Terrain via free DEM tiles</li>
+            <li>Lighting built into style spec</li>
+          </ul>
+        </div>
+        <div style="padding:8px 10px;background:rgba(238,108,108,0.06);border-radius:6px;border:1px solid rgba(238,108,108,0.15);">
+          <div style="font-size:11px;font-weight:600;color:rgba(238,108,108,0.8);text-transform:uppercase;letter-spacing:0.5px;">Cons</div>
+          <ul style="margin:6px 0 0;padding-left:16px;font-size:13px;color:rgba(255,255,255,0.65);">
+            <li>No real shadows (only directional shading)</li>
+            <li>Lighting is basic (angle + intensity only)</li>
+            <li>Less creative control vs full 3D engine</li>
+            <li>Terrain needs external DEM tile source</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="threejs-custom-layer" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>B. Three.js Custom Layer on MapLibre</h3>
+      <p>MapLibre renders the base map (roads, water, land). A Three.js custom layer adds 3D buildings with proper lighting, shadows, and materials on top. Hybrid approach — the example you found.</p>
+      <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="padding:8px 10px;background:rgba(108,238,138,0.06);border-radius:6px;border:1px solid rgba(108,238,138,0.15);">
+          <div style="font-size:11px;font-weight:600;color:rgba(108,238,138,0.8);text-transform:uppercase;letter-spacing:0.5px;">Pros</div>
+          <ul style="margin:6px 0 0;padding-left:16px;font-size:13px;color:rgba(255,255,255,0.65);">
+            <li>Real shadows on buildings</li>
+            <li>Full material/lighting control</li>
+            <li>Custom post-processing possible</li>
+            <li>Still uses MapLibre for base map</li>
+          </ul>
+        </div>
+        <div style="padding:8px 10px;background:rgba(238,108,108,0.06);border-radius:6px;border:1px solid rgba(238,108,108,0.15);">
+          <div style="font-size:11px;font-weight:600;color:rgba(238,108,108,0.8);text-transform:uppercase;letter-spacing:0.5px;">Cons</div>
+          <ul style="margin:6px 0 0;padding-left:16px;font-size:13px;color:rgba(255,255,255,0.65);">
+            <li>+150KB (Three.js)</li>
+            <li>Must extract building geometry from tiles</li>
+            <li>Complex camera sync (matrix math)</li>
+            <li>Two renderers sharing one WebGL context</li>
+            <li>Theme color sync is manual</li>
+            <li>Terrain still needs MapLibre or separate DEM parsing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="deckgl" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>C. Deck.gl Overlay</h3>
+      <p>Deck.gl is a geospatial visualization library by Uber. Has a <code>TerrainLayer</code> and <code>GeoJsonLayer</code> with extrusion. Designed to overlay on MapLibre. Purpose-built for this.</p>
+      <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="padding:8px 10px;background:rgba(108,238,138,0.06);border-radius:6px;border:1px solid rgba(108,238,138,0.15);">
+          <div style="font-size:11px;font-weight:600;color:rgba(108,238,138,0.8);text-transform:uppercase;letter-spacing:0.5px;">Pros</div>
+          <ul style="margin:6px 0 0;padding-left:16px;font-size:13px;color:rgba(255,255,255,0.65);">
+            <li>Purpose-built for geo 3D</li>
+            <li>Nice terrain layer</li>
+            <li>MapLibre integration plugin exists</li>
+            <li>Good lighting system</li>
+          </ul>
+        </div>
+        <div style="padding:8px 10px;background:rgba(238,108,108,0.06);border-radius:6px;border:1px solid rgba(238,108,108,0.15);">
+          <div style="font-size:11px;font-weight:600;color:rgba(238,108,108,0.8);text-transform:uppercase;letter-spacing:0.5px;">Cons</div>
+          <ul style="margin:6px 0 0;padding-left:16px;font-size:13px;color:rgba(255,255,255,0.65);">
+            <li>+200KB dependency</li>
+            <li>Separate rendering pipeline</li>
+            <li>Overkill for flat-colored extrusions</li>
+            <li>Export integration unclear</li>
+            <li>Less community examples for poster-style use</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px;padding:16px;background:rgba(108,180,238,0.05);border-radius:8px;border:1px solid rgba(108,180,238,0.15);">
+  <h3 style="color:#6cb4ee;">Why I recommend A (MapLibre Native)</h3>
+  <p style="color:rgba(255,255,255,0.7);font-size:14px;line-height:1.6;">
+    Your goal is a <strong>minimal, flat-colored isometric view</strong> — not photorealistic 3D. MapLibre's <code>fill-extrusion</code> produces exactly that aesthetic: clean geometric volumes, themed with your existing palette. The pitch + directional light shading gives depth without complexity. Your export pipeline already captures pitch. The buildings come from the same OpenFreeMap tiles you already use. And terrain can be added later with a DEM source.
+    <br><br>
+    Three.js (B) and Deck.gl (C) add real value when you need <em>custom materials, real shadows, or complex 3D geometry</em>. For flat-colored buildings in perspective? MapLibre does it natively in ~50 lines of style config.
+  </p>
+</div>

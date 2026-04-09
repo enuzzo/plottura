@@ -46,8 +46,16 @@ export function isLatinScript(text: string | undefined | null): boolean {
   return latinCount / alphaCount > 0.8;
 }
 
-export function formatCityLabel(city: string): string {
-  return isLatinScript(city) ? city.toUpperCase().split("").join("  ") : city;
+export function formatCityLabel(
+  city: string,
+  uppercase = true,
+  letterSpacing = 2,
+): string {
+  if (!isLatinScript(city)) return city;
+  const cased = uppercase ? city.toUpperCase() : city;
+  if (letterSpacing <= 0) return cased;
+  const spacer = " ".repeat(letterSpacing);
+  return cased.split("").join(spacer);
 }
 
 /**

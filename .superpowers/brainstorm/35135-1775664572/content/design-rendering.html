@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Section 2: Map Style & Rendering</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8f8f8; color: #1a1a1a; padding: 32px; line-height: 1.6; }
+  h2 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+  h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; color: #333; }
+  .subtitle { font-size: 15px; color: #666; margin-bottom: 24px; }
+  .section { margin-bottom: 28px; }
+  .code-block { background: #1e1e2e; color: #cdd6f4; border-radius: 10px; padding: 18px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; line-height: 1.7; overflow-x: auto; }
+  .code-comment { color: #6c7086; }
+  .code-key { color: #89b4fa; }
+  .code-str { color: #a6e3a1; }
+  .code-num { color: #fab387; }
+  .code-type { color: #f38ba8; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 16px; }
+  .card .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #888; margin-bottom: 6px; }
+  .card p { font-size: 14px; color: #444; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .badge-green { background: #dcfce7; color: #166534; }
+  .badge-blue { background: #dbeafe; color: #1e40af; }
+  .badge-amber { background: #fef3c7; color: #92400e; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; padding: 10px; font-weight: 600; color: #555; border-bottom: 2px solid #ddd; }
+  td { padding: 10px; border-bottom: 1px solid #eee; color: #333; }
+  .arrow { color: #888; font-size: 18px; }
+</style>
+</head>
+<body>
+
+<h2>Design Section 2: Map Style & Rendering</h2>
+<p class="subtitle">How the 3D features integrate into generateMapStyle() and MapPreview</p>
+
+<div class="section">
+  <h3>A. Building layer: fill → fill-extrusion</h3>
+  <p style="font-size:14px;color:#444;margin-bottom:12px;">Currently the building layer is a flat <code>fill</code>. When <code>enable3D && buildingExtrusion</code>, we replace it with a <code>fill-extrusion</code> layer using the same color from the theme.</p>
+  <div class="code-block">
+    <div class="code-comment">// In generateMapStyle() — new option: enable3D, buildingExtrusion</div>
+    <br>
+    <div><span class="code-comment">// When 3D is OFF (current behavior):</span></div>
+    <div>{ <span class="code-key">id</span>: <span class="code-str">"building"</span>, <span class="code-key">type</span>: <span class="code-str">"fill"</span>,</div>
+    <div>&nbsp;&nbsp;<span class="code-key">paint</span>: { <span class="code-str">"fill-color"</span>: buildingFill, <span class="code-str">"fill-opacity"</span>: <span class="code-num">0.84</span> } }</div>
+    <br>
+    <div><span class="code-comment">// When 3D is ON:</span></div>
+    <div>{ <span class="code-key">id</span>: <span class="code-str">"building-3d"</span>, <span class="code-key">type</span>: <span class="code-str">"fill-extrusion"</span>,</div>
+    <div>&nbsp;&nbsp;<span class="code-key">source-layer</span>: <span class="code-str">"building"</span>,</div>
+    <div>&nbsp;&nbsp;<span class="code-key">paint</span>: {</div>
+    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-str">"fill-extrusion-color"</span>: buildingFill,</div>
+    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-str">"fill-extrusion-height"</span>: [<span class="code-str">"get"</span>, <span class="code-str">"render_height"</span>],</div>
+    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-str">"fill-extrusion-base"</span>: [<span class="code-str">"get"</span>, <span class="code-str">"render_min_height"</span>],</div>
+    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-str">"fill-extrusion-opacity"</span>: <span class="code-num">0.84</span>,</div>
+    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-str">"fill-extrusion-vertical-gradient"</span>: <span class="code-num">true</span></div>
+    <div>&nbsp;&nbsp;} }</div>
+  </div>
+  <p style="font-size:13px;color:#666;margin-top:8px;">💡 <code>render_height</code> and <code>render_min_height</code> come from OpenMapTiles vector tiles — already available in your OpenFreeMap source. <code>vertical-gradient</code> darkens the base, adding subtle depth.</p>
+</div>
+
+<div class="section">
+  <h3>B. Light object in style spec</h3>
+  <p style="font-size:14px;color:#444;margin-bottom:12px;">MapLibre's root-level <code>light</code> property controls how fill-extrusion layers are shaded.</p>
+  <div class="code-block">
+    <div class="code-comment">// Added to the StyleSpecification return when enable3D is on</div>
+    <br>
+    <div><span class="code-key">light</span>: {</div>
+    <div>&nbsp;&nbsp;<span class="code-key">anchor</span>: <span class="code-str">"map"</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">// light rotates with map bearing</span></div>
+    <div>&nbsp;&nbsp;<span class="code-key">color</span>: <span class="code-str">"#ffffff"</span>,</div>
+    <div>&nbsp;&nbsp;<span class="code-key">intensity</span>: <span class="code-num">0.6</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">// from state.form.lightIntensity</span></div>
+    <div>&nbsp;&nbsp;<span class="code-key">position</span>: [<span class="code-num">1.15</span>, <span class="code-num">210</span>, <span class="code-num">30</span>]&nbsp;&nbsp;<span class="code-comment">// [radial, azimuth, polar]</span></div>
+    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">// azimuth from state.form.lightAzimuth</span></div>
+    <div>}</div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>C. Pitch control in MapPreview</h3>
+  <p style="font-size:14px;color:#444;margin-bottom:12px;">MapPreview.tsx currently doesn't set pitch. We add it as a prop:</p>
+  <div class="grid-2">
+    <div class="card">
+      <div class="label">MapPreview changes</div>
+      <p>New <code>pitch</code> prop (number). Passed to the MapLibre Map constructor and synced via <code>map.setPitch()</code> when the value changes. When <code>enable3D</code> is off, pitch = 0.</p>
+    </div>
+    <div class="card">
+      <div class="label">PreviewPanel wiring</div>
+      <p>Reads <code>form.enable3D</code> and <code>form.mapPitch</code>. Computes <code>pitch = enable3D ? Number(form.mapPitch) : 0</code>. Passes to MapPreview.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>D. Terrain (Phase 3b — later milestone)</h3>
+  <p style="font-size:14px;color:#444;margin-bottom:12px;">Terrain requires adding a <code>raster-dem</code> source and calling <code>map.setTerrain()</code>. Shipped as a separate milestone because:</p>
+  <div class="grid-2">
+    <div class="card">
+      <div class="label">DEM tile source needed</div>
+      <p>Best free option: MapLibre demo tiles (low-res) or MapTiler free tier. We need to evaluate quality for print at 300 DPI.</p>
+    </div>
+    <div class="card">
+      <div class="label">Independent from buildings</div>
+      <p>Terrain works independently — can ship buildings + pitch first, add terrain later without touching the building code.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>E. Integration with incremental style updates</h3>
+  <p style="font-size:14px;color:#444;margin-bottom:12px;">Your MapPreview already does incremental style diffs via <code>applyIncrementalStyleUpdate()</code>. The 3D changes flow through the same mechanism:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Change</th>
+        <th>How it flows</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Toggle 3D on/off</td>
+        <td><code>generateMapStyle()</code> regenerated → full style swap (layer type changes from fill to fill-extrusion)</td>
+      </tr>
+      <tr>
+        <td>Change pitch</td>
+        <td>Direct <code>map.setPitch()</code> — no style regeneration</td>
+      </tr>
+      <tr>
+        <td>Change light</td>
+        <td><code>map.setLight()</code> — no style regeneration needed</td>
+      </tr>
+      <tr>
+        <td>Change theme colors</td>
+        <td>Incremental paint update on <code>fill-extrusion-color</code> — existing diff mechanism</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

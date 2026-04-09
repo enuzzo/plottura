@@ -1,0 +1,70 @@
+<h2>Design Section 1: State & Data Model</h2>
+<p class="subtitle">New fields added to PosterForm in posterReducer.ts</p>
+
+<div class="section">
+  <h3>New PosterForm fields</h3>
+  <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:16px;font-family:monospace;font-size:13px;line-height:1.8;color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.08);">
+    <div style="color:rgba(255,255,255,0.4);">// ── 3D View ──</div>
+    <div><span style="color:#6cb4ee;">enable3D</span>: <span style="color:#ee6c6c;">boolean</span> &nbsp;&nbsp;<span style="color:rgba(255,255,255,0.35);">// master toggle (default: false)</span></div>
+    <div><span style="color:#6cb4ee;">mapPitch</span>: <span style="color:#ee6c6c;">string</span> &nbsp;&nbsp;&nbsp;<span style="color:rgba(255,255,255,0.35);">// camera tilt angle "0"–"85" (default: "60")</span></div>
+    <div><span style="color:#6cb4ee;">buildingExtrusion</span>: <span style="color:#ee6c6c;">boolean</span> &nbsp;&nbsp;<span style="color:rgba(255,255,255,0.35);">// 3D extruded buildings (default: true)</span></div>
+    <div><span style="color:#6cb4ee;">terrainEnabled</span>: <span style="color:#ee6c6c;">boolean</span> &nbsp;&nbsp;<span style="color:rgba(255,255,255,0.35);">// DEM terrain relief (default: false — needs tile source)</span></div>
+    <div><span style="color:#6cb4ee;">terrainExaggeration</span>: <span style="color:#ee6c6c;">string</span> &nbsp;&nbsp;<span style="color:rgba(255,255,255,0.35);">// terrain scale "0.5"–"3.0" (default: "1.5")</span></div>
+    <div><span style="color:#6cb4ee;">lightAzimuth</span>: <span style="color:#ee6c6c;">string</span> &nbsp;&nbsp;<span style="color:rgba(255,255,255,0.35);">// light direction "0"–"360" (default: "210")</span></div>
+    <div><span style="color:#6cb4ee;">lightIntensity</span>: <span style="color:#ee6c6c;">string</span> &nbsp;&nbsp;<span style="color:rgba(255,255,255,0.35);">// light strength "0.0"–"1.0" (default: "0.6")</span></div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:20px;">
+  <h3>Why these choices</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+    <div style="padding:12px;background:rgba(255,255,255,0.03);border-radius:6px;">
+      <div class="label">String for numeric fields</div>
+      <p style="margin:6px 0 0;font-size:13px;color:rgba(255,255,255,0.6);">Follows existing convention — width, height, latitude, distance are all strings in PosterForm, parsed to numbers where needed.</p>
+    </div>
+    <div style="padding:12px;background:rgba(255,255,255,0.03);border-radius:6px;">
+      <div class="label">enable3D as master toggle</div>
+      <p style="margin:6px 0 0;font-size:13px;color:rgba(255,255,255,0.6);">When off, pitch=0 and buildings stay flat (current behavior). When on, pitch applies + extrusion layers activate. Single switch flips the whole experience.</p>
+    </div>
+    <div style="padding:12px;background:rgba(255,255,255,0.03);border-radius:6px;">
+      <div class="label">terrain defaults to off</div>
+      <p style="margin:6px 0 0;font-size:13px;color:rgba(255,255,255,0.6);">DEM tiles need an external source. We can ship buildings first and add terrain later without breaking anything.</p>
+    </div>
+    <div style="padding:12px;background:rgba(255,255,255,0.03);border-radius:6px;">
+      <div class="label">Separate building extrusion toggle</div>
+      <p style="margin:6px 0 0;font-size:13px;color:rgba(255,255,255,0.6);">User might want tilted map without extruded buildings (e.g., terrain-only for mountain posters). Or buildings without terrain for city posters.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:20px;">
+  <h3>Behavior matrix</h3>
+  <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <thead>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+          <th style="text-align:left;padding:8px;color:rgba(255,255,255,0.5);font-weight:600;">enable3D</th>
+          <th style="text-align:left;padding:8px;color:rgba(255,255,255,0.5);font-weight:600;">buildingExtrusion</th>
+          <th style="text-align:left;padding:8px;color:rgba(255,255,255,0.5);font-weight:600;">Result</th>
+        </tr>
+      </thead>
+      <tbody style="color:rgba(255,255,255,0.7);">
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+          <td style="padding:8px;">❌ off</td>
+          <td style="padding:8px;">—</td>
+          <td style="padding:8px;">Current 2D flat view (pitch=0, fill layer for buildings)</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+          <td style="padding:8px;">✅ on</td>
+          <td style="padding:8px;">✅ on</td>
+          <td style="padding:8px;">Tilted map + extruded buildings + light shading</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+          <td style="padding:8px;">✅ on</td>
+          <td style="padding:8px;">❌ off</td>
+          <td style="padding:8px;">Tilted map only (good for terrain-only or minimal look)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -32,6 +32,8 @@ export async function compositeExport(
     includeOsmBadge = true,
     showCountry = true,
     showCoordinates = true,
+    textUppercase = true,
+    textLetterSpacing = 2,
     markers = [],
     markerIcons = [],
     markerProjection,
@@ -87,6 +89,8 @@ export async function compositeExport(
     includeOsmBadge,
     showCountry,
     showCoordinates,
+    textUppercase,
+    textLetterSpacing,
   );
 
   const size: CanvasSize = {

@@ -120,6 +120,8 @@ export function useExport() {
             includeOsmBadge: form.includeOsmBadge,
             showCountry: form.showCountry,
             showCoordinates: form.showCoordinates,
+            textUppercase: form.textUppercase,
+            textLetterSpacing: Number(form.textLetterSpacing) || 2,
             markers: hasVisibleMarkers ? state.markers : [],
             markerIcons: hasVisibleMarkers
               ? getAllMarkerIcons(state.customMarkerIcons)
@@ -162,6 +164,8 @@ export function useExport() {
           includeOsmBadge: form.includeOsmBadge,
           showCountry: form.showCountry,
           showCoordinates: form.showCoordinates,
+          textUppercase: form.textUppercase,
+          textLetterSpacing: Number(form.textLetterSpacing) || 2,
           markers: hasVisibleMarkers ? state.markers : [],
           markerIcons: hasVisibleMarkers
             ? getAllMarkerIcons(state.customMarkerIcons)

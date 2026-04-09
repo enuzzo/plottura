@@ -31,6 +31,8 @@ interface LayeredSvgOptions {
   includeOsmBadge?: boolean;
   showCountry?: boolean;
   showCoordinates?: boolean;
+  textUppercase?: boolean;
+  textLetterSpacing?: number;
   markers: MarkerItem[];
   markerIcons: MarkerIconDefinition[];
 }
@@ -90,6 +92,8 @@ export async function createLayeredSvgBlobFromMap({
   includeOsmBadge = true,
   showCountry = true,
   showCoordinates = true,
+  textUppercase = true,
+  textLetterSpacing = 2,
   markers,
   markerIcons,
 }: LayeredSvgOptions): Promise<Blob> {
@@ -219,6 +223,8 @@ export async function createLayeredSvgBlobFromMap({
           includeOsmBadge,
           showCountry,
           showCoordinates,
+          textUppercase,
+          textLetterSpacing,
         );
       }),
     });

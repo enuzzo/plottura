@@ -31,6 +31,8 @@ export interface ExportOptions {
   includeOsmBadge?: boolean;
   showCountry?: boolean;
   showCoordinates?: boolean;
+  textUppercase?: boolean;
+  textLetterSpacing?: number;
   markers?: MarkerItem[];
   markerIcons?: MarkerIconDefinition[];
   markerProjection?: MarkerProjectionInput;

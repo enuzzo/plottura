@@ -1,0 +1,54 @@
+<h2>Which 3D features matter most?</h2>
+<p class="subtitle">This helps us evaluate which technology best fits your vision. Select all that apply.</p>
+
+<div class="options" data-multiselect>
+  <div class="option" data-choice="buildings" onclick="toggleSelect(this)">
+    <div class="letter">1</div>
+    <div class="content">
+      <h3>3D Buildings</h3>
+      <p>Extruded buildings with real heights from OpenStreetMap data. Skyscrapers are tall, houses are short. Flat colored faces, no textures — like a minimalist architectural model.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="terrain" onclick="toggleSelect(this)">
+    <div class="letter">2</div>
+    <div class="content">
+      <h3>Terrain / Elevation</h3>
+      <p>Real elevation data — mountains rise, valleys dip, coastlines gain depth. The map surface is no longer flat. Works great for locations with dramatic geography (Alps, fjords, canyons).</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="lighting" onclick="toggleSelect(this)">
+    <div class="letter">3</div>
+    <div class="content">
+      <h3>Lighting &amp; Shadows</h3>
+      <p>Directional light casting shadows from buildings/terrain. Adds depth and atmosphere. Think "golden hour" lighting on a city skyline. Makes the 3D feel real instead of flat-shaded.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="pitch-control" onclick="toggleSelect(this)">
+    <div class="letter">4</div>
+    <div class="content">
+      <h3>Adjustable Tilt Angle</h3>
+      <p>A slider or control to adjust how much the map tilts (0° = flat top-down, 60° = dramatic perspective). The user decides the viewing angle per poster.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:32px;">
+  <h3>Why this matters for tech choice</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;">
+    <div style="padding:14px;background:rgba(255,255,255,0.04);border-radius:8px;border:1px solid rgba(255,255,255,0.08);">
+      <div class="label" style="color:#6cb4ee;">MapLibre Native</div>
+      <p style="margin:8px 0 0;font-size:13px;color:rgba(255,255,255,0.6);">Buildings ✓, Terrain ✓, Lighting ✓ (v5), Pitch ✓. Already in your stack. Zero new deps. But: locked to its own rendering pipeline — less creative control.</p>
+    </div>
+    <div style="padding:14px;background:rgba(255,255,255,0.04);border-radius:8px;border:1px solid rgba(255,255,255,0.08);">
+      <div class="label" style="color:#ee6c6c;">Three.js</div>
+      <p style="margin:8px 0 0;font-size:13px;color:rgba(255,255,255,0.6);">Full 3D scene control. Custom lighting, materials, camera. But: you'd need to extract map data and rebuild the scene yourself. ~150KB dep. Heavy integration work.</p>
+    </div>
+    <div style="padding:14px;background:rgba(255,255,255,0.04);border-radius:8px;border:1px solid rgba(255,255,255,0.08);">
+      <div class="label" style="color:#6cee8a;">Deck.gl</div>
+      <p style="margin:8px 0 0;font-size:13px;color:rgba(255,255,255,0.6);">Geospatial 3D layer on top of map engines. Great building extrusions, terrain. Integrates with MapLibre. ~200KB but purpose-built for this exact use case.</p>
+    </div>
+  </div>
+</div>

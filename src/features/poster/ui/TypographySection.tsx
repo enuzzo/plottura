@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ensureGoogleFont } from "@/core/services";
 import { Switch } from "@/components/ui/switch";
 import type { PosterForm } from "@/features/poster/application/posterReducer";
@@ -7,20 +7,30 @@ import {
   PLACEHOLDER_EXAMPLE_CITY,
   PLACEHOLDER_EXAMPLE_COUNTRY,
 } from "@/features/location/ui/constants";
+import { ChevronDown, RotateCcw } from "lucide-react";
 
 interface TypographySectionProps {
   form: PosterForm;
   onChange: (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => void;
+  onResetTypography?: () => void;
   fontOptions: FontOption[];
 }
+
+const TYPOGRAPHY_DEFAULTS = {
+  textUppercase: true,
+  textLetterSpacing: "2",
+} as const;
 
 export default function TypographySection({
   form,
   onChange,
+  onResetTypography,
   fontOptions,
 }: TypographySectionProps) {
+  const [isCustomizing, setIsCustomizing] = useState(false);
+
   useEffect(() => {
     const families = fontOptions
       .map((option) => String(option.value || "").trim())
@@ -35,6 +45,22 @@ export default function TypographySection({
       target: { name, type: "checkbox", checked, value: String(checked) },
     } as React.ChangeEvent<HTMLInputElement>;
     onChange(syntheticEvent);
+  }
+
+  function handleReset() {
+    // Reset typography fields to defaults
+    for (const [name, value] of Object.entries(TYPOGRAPHY_DEFAULTS)) {
+      const syntheticEvent = {
+        target: {
+          name,
+          type: typeof value === "boolean" ? "checkbox" : "text",
+          checked: typeof value === "boolean" ? value : false,
+          value: String(value),
+        },
+      } as React.ChangeEvent<HTMLInputElement>;
+      onChange(syntheticEvent);
+    }
+    onResetTypography?.();
   }
 
   return (
@@ -101,6 +127,71 @@ export default function TypographySection({
           ))}
         </select>
       </label>
+
+      {/* Customize Typography expandable panel */}
+      <button
+        type="button"
+        className="flex items-center gap-1.5 text-sm text-text-muted hover:text-text-secondary transition-colors cursor-pointer mt-1"
+        onClick={() => setIsCustomizing(!isCustomizing)}
+      >
+        <ChevronDown
+          className={`w-3.5 h-3.5 transition-transform duration-200${isCustomizing ? " rotate-180" : ""}`}
+        />
+        <span>Customize text</span>
+      </button>
+
+      {isCustomizing && (
+        <div className="flex flex-col gap-3 pl-1 border-l-2 border-border ml-1">
+          <div className="flex items-center justify-between">
+            <span className="text-base text-text-secondary">Uppercase</span>
+            <Switch
+              checked={Boolean(form.textUppercase)}
+              onCheckedChange={(checked) =>
+                handleToggle("textUppercase", checked)
+              }
+            />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <div className="flex items-center justify-between">
+              <span className="text-base text-text-secondary">
+                Letter spacing
+              </span>
+              <span className="text-sm text-text-muted tabular-nums">
+                {form.textLetterSpacing}
+              </span>
+            </div>
+            <input
+              type="range"
+              min={0}
+              max={6}
+              step={1}
+              value={Number(form.textLetterSpacing) || 2}
+              onChange={(e) => {
+                const syntheticEvent = {
+                  target: {
+                    name: "textLetterSpacing",
+                    type: "text",
+                    value: e.target.value,
+                    checked: false,
+                  },
+                } as React.ChangeEvent<HTMLInputElement>;
+                onChange(syntheticEvent);
+              }}
+              className="w-full accent-accent"
+            />
+          </div>
+
+          <button
+            type="button"
+            className="flex items-center gap-1.5 text-xs text-text-muted hover:text-text-secondary transition-colors cursor-pointer self-start mt-1"
+            onClick={handleReset}
+          >
+            <RotateCcw className="w-3 h-3" />
+            <span>Reset to defaults</span>
+          </button>
+        </div>
+      )}
     </section>
   );
 }
