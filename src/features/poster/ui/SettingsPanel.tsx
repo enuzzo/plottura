@@ -119,6 +119,16 @@ export default function SettingsPanel({
         <SidebarSection value="map-settings" icon={Map} label="Map Settings">
           {!isColorEditorActive ? (
             <section className="flex flex-col gap-3">
+              {/* 3D view toggle (also in bottom notch) */}
+              <div className="flex items-center justify-between">
+                <span className="text-base text-text-secondary">3D view</span>
+                <Switch
+                  checked={Boolean(state.form.enable3D)}
+                  onCheckedChange={(checked) => {
+                    dispatch({ type: "SET_FIELD", name: "enable3D", value: checked });
+                  }}
+                />
+              </div>
               {/* Poster layout mode */}
               <div className="flex items-center justify-between">
                 <span className="text-base text-text-secondary">Framed layout</span>
