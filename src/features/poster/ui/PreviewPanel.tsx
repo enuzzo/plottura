@@ -420,6 +420,8 @@ export default function PreviewPanel() {
             center={mapCenter}
             zoom={mapZoom}
             pitch={mapPitch}
+            lightAzimuth={form.enable3D ? Number(form.lightAzimuth) || 210 : undefined}
+            lightIntensity={form.enable3D ? Number(form.lightIntensity) || 0.6 : undefined}
             mapRef={mapRef}
             interactive={isEditing && !isMarkerEditorActive}
             allowRotation={isEditing && isRotationEnabled}

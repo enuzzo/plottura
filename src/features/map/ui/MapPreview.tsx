@@ -75,6 +75,8 @@ interface MapPreviewProps {
   center: [lon: number, lat: number];
   zoom: number;
   pitch?: number;
+  lightAzimuth?: number;
+  lightIntensity?: number;
   mapRef: MapInstanceRef;
   interactive?: boolean;
   allowRotation?: boolean;
@@ -98,6 +100,8 @@ export default function MapPreview({
   center,
   zoom,
   pitch = 0,
+  lightAzimuth,
+  lightIntensity,
   mapRef,
   interactive = false,
   allowRotation = false,
@@ -272,6 +276,18 @@ export default function MapPreview({
 
     map.setPitch(pitch);
   }, [pitch, mapRef]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || lightAzimuth == null || lightIntensity == null) return;
+
+    map.setLight({
+      anchor: "map",
+      color: "#ffffff",
+      intensity: lightIntensity,
+      position: [1.15, lightAzimuth, 30],
+    });
+  }, [lightAzimuth, lightIntensity, mapRef]);
 
   const normalizedOverzoomScale = Math.max(1, overzoomScale);
   const innerStyle: CSSProperties =
