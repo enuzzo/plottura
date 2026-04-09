@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState, useEffect } from "react";
 import { createCustomLayoutOption } from "@/features/layout/infrastructure/layoutRepository";
-import { Check, Pencil, ChevronDown } from "lucide-react";
+import { Check, Pencil, ChevronDown, RotateCw } from "lucide-react";
 import { cn } from "@/lib/utils";
 import MapDimensionFields from "@/features/map/ui/MapDimensionFields";
 import LayoutCard from "./LayoutCard";
@@ -77,31 +77,58 @@ export default function LayoutSection({
     onLayoutChange("custom");
   }
 
+  function handleRotate() {
+    const currentWidth = form.width;
+    const currentHeight = form.height;
+    // Swap width and height via synthetic events
+    const widthEvent = {
+      target: { name: "width", type: "text", value: currentHeight, checked: false },
+    } as React.ChangeEvent<HTMLInputElement>;
+    const heightEvent = {
+      target: { name: "height", type: "text", value: currentWidth, checked: false },
+    } as React.ChangeEvent<HTMLInputElement>;
+    onChange(widthEvent);
+    onChange(heightEvent);
+    // Switch to custom layout since dimensions no longer match the preset
+    onLayoutChange("custom");
+  }
+
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <p className="text-xs font-medium text-text-muted uppercase tracking-wider">
           {selectedLayoutOption.name}
         </p>
-        {isEditing ? (
+        <div className="flex items-center gap-0.5">
           <button
             type="button"
             className="p-1.5 rounded-md text-text-muted hover:text-text-primary hover:bg-accent-subtle transition-colors"
-            onClick={() => setIsEditing(false)}
-            aria-label="Done editing layout"
+            onClick={handleRotate}
+            aria-label="Rotate layout (swap width and height)"
+            title="Rotate layout"
           >
-            <Check className="w-3.5 h-3.5" />
+            <RotateCw className="w-3.5 h-3.5" />
           </button>
-        ) : (
-          <button
-            type="button"
-            className="p-1.5 rounded-md text-text-muted hover:text-text-primary hover:bg-accent-subtle transition-colors"
-            onClick={handleOpenEditor}
-            aria-label="Customize layout size"
-          >
-            <Pencil className="w-3.5 h-3.5" />
-          </button>
-        )}
+          {isEditing ? (
+            <button
+              type="button"
+              className="p-1.5 rounded-md text-text-muted hover:text-text-primary hover:bg-accent-subtle transition-colors"
+              onClick={() => setIsEditing(false)}
+              aria-label="Done editing layout"
+            >
+              <Check className="w-3.5 h-3.5" />
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="p-1.5 rounded-md text-text-muted hover:text-text-primary hover:bg-accent-subtle transition-colors"
+              onClick={handleOpenEditor}
+              aria-label="Customize layout size"
+            >
+              <Pencil className="w-3.5 h-3.5" />
+            </button>
+          )}
+        </div>
       </div>
 
       {isEditing ? (
