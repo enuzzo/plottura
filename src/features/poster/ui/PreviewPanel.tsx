@@ -431,7 +431,7 @@ export default function PreviewPanel() {
           {/* Floating sliders — appear above the poster when editing */}
           {/* Floating sliders — appear between poster and notch when editing */}
           {isEditing && !isMobileViewport ? (
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[calc(100%+12px)] z-20 flex flex-col items-center gap-1.5 whitespace-nowrap" aria-label="Map edit controls">
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[calc(100%+24px)] z-20 flex flex-col items-center gap-1.5 whitespace-nowrap bg-white/80 backdrop-blur-sm rounded-xl px-4 py-2.5 ring-1 ring-black/5" aria-label="Map edit controls">
               <div className={CTL_SLIDER_ROW}>
                 <span className="text-xs text-[var(--text-muted)] font-medium uppercase tracking-wide">
                   Rotate
