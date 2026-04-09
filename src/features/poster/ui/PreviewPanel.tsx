@@ -13,7 +13,7 @@ import MarkerOverlay from "@/features/markers/ui/MarkerOverlay";
 import GradientFades from "./GradientFades";
 import PosterTextOverlay from "./PosterTextOverlay";
 import MapPrimaryControls from "./MapPrimaryControls";
-import { RotateCw, RotateCcw } from "lucide-react";
+import { RotateCcw } from "lucide-react";
 import {
   MAP_BUTTON_ZOOM_DURATION_MS,
 } from "@/features/map/infrastructure";
@@ -43,8 +43,6 @@ const DEFAULT_LOCATION_LABEL = "London, Greater London, England, United Kingdom"
 
 /* Tailwind class constants for map control buttons */
 const CTL_BTN = "inline-flex items-center gap-[5px] px-3 py-1.5 border border-[var(--border)] rounded-lg bg-[var(--bg-card)] text-[var(--text-secondary)] text-[0.78rem] cursor-pointer transition-[background,border-color] duration-150 hover:enabled:bg-[var(--accent-subtle)] hover:enabled:border-[var(--accent)] hover:enabled:text-[var(--text-primary)] disabled:opacity-50 disabled:cursor-default";
-const CTL_BTN_PRIMARY = `${CTL_BTN} !bg-[var(--accent-subtle)] !border-[var(--accent)] !text-[var(--accent)] hover:enabled:!bg-[var(--accent)] hover:enabled:!text-white`;
-const CTL_BTN_ACTIVE = "!bg-[var(--accent-subtle)] !border-[var(--accent)] !text-[var(--accent)]";
 const CTL_GROUP = "flex flex-nowrap justify-center gap-1.5 items-center max-[768px]:w-full";
 const CTL_SLIDER_ROW = `${CTL_GROUP} w-[min(560px,100%)] !grid grid-cols-[auto_minmax(180px,1fr)_auto] gap-2`;
 const CTL_SLIDER = "w-full h-1.5 m-0 rounded-full appearance-none bg-[var(--border)] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border [&::-webkit-slider-thumb]:border-[var(--border)] [&::-webkit-slider-thumb]:bg-[var(--accent)] [&::-webkit-slider-thumb]:shadow-[0_0_0_2px_var(--bg-card)] [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border [&::-moz-range-thumb]:border-[var(--border)] [&::-moz-range-thumb]:bg-[var(--accent)] [&::-moz-range-thumb]:shadow-[0_0_0_2px_var(--bg-card)] [&::-moz-range-thumb]:cursor-pointer";
@@ -114,7 +112,6 @@ export default function PreviewPanel() {
   const frameRef = useRef<HTMLDivElement | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [mapBearing, setMapBearing] = useState(0);
-  const [isRotationEnabled, setIsRotationEnabled] = useState(false);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
 
   useEffect(() => {
@@ -172,7 +169,6 @@ export default function PreviewPanel() {
       return;
     }
     setIsEditing(false);
-    setIsRotationEnabled(false);
   }, [isMarkerEditorActive]);
 
   const widthCm = Number(form.width) || DEFAULT_POSTER_WIDTH_CM;
@@ -208,12 +204,8 @@ export default function PreviewPanel() {
 
   const handleFinishEditing = useCallback(() => {
     setIsEditing(false);
-    setIsRotationEnabled(false);
   }, []);
 
-  const handleToggleRotation = useCallback(() => {
-    setIsRotationEnabled((prev) => !prev);
-  }, []);
 
   const handleRotationSliderChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -358,7 +350,7 @@ export default function PreviewPanel() {
 
   return (
     <section className="relative w-full h-full" onMouseMove={handleCanvasMouseMove} onMouseLeave={handleCanvasMouseLeave}>
-      <div className="absolute inset-0 grid place-items-center overflow-hidden bg-[var(--bg-app)]">
+      <div className="absolute inset-0 grid place-items-center overflow-hidden bg-[var(--bg-app)] pb-[100px]">
         {/* Layout label — notch style, inverted theme colors */}
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 z-[2] px-5 pb-1.5 pt-1 text-sm font-semibold uppercase pointer-events-none whitespace-nowrap rounded-b-xl"
@@ -376,8 +368,8 @@ export default function PreviewPanel() {
           style={
             {
               aspectRatio: aspect,
-              width: `min(calc(100% - 48px), calc((84vh - 44px) * ${aspect}))`,
-              maxHeight: "calc(84vh - 44px)",
+              width: `min(calc(100% - 48px), calc((74vh - 44px) * ${aspect}))`,
+              maxHeight: "calc(74vh - 44px)",
               backgroundColor: effectiveTheme.ui.bg,
               boxShadow: `${shadowOffset.x}px ${shadowOffset.y + 16}px 48px rgba(0,0,0,0.25), ${shadowOffset.x * 0.4}px ${shadowOffset.y + 4}px 14px rgba(0,0,0,0.15)`,
             } as CSSProperties
@@ -392,7 +384,7 @@ export default function PreviewPanel() {
             lightIntensity={form.enable3D ? Number(form.lightIntensity) || 0.6 : undefined}
             mapRef={mapRef}
             interactive={isEditing && !isMarkerEditorActive}
-            allowRotation={isEditing && isRotationEnabled}
+            allowRotation={isEditing}
             minZoom={mapMinZoom}
             maxZoom={mapMaxZoom}
             overzoomScale={MAP_OVERZOOM_SCALE}
@@ -437,53 +429,27 @@ export default function PreviewPanel() {
           />
 
           {/* Floating sliders — appear above the poster when editing */}
+          {/* Floating sliders — appear between poster and notch when editing */}
           {isEditing && !isMobileViewport ? (
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[calc(100%+12px)] z-20 flex flex-col items-center gap-1.5 whitespace-nowrap" aria-label="Map edit controls">
-              <div className={CTL_GROUP}>
-                <button
-                  type="button"
-                  className={`${CTL_BTN}${isRotationEnabled ? ` ${CTL_BTN_ACTIVE}` : ""}`}
-                  onClick={handleToggleRotation}
-                  title={
-                    isRotationEnabled ? "Disable rotation" : "Enable rotation"
-                  }
-                >
-                  <RotateCw className="w-4 h-4" />
-                  <span>
-                    {isRotationEnabled ? "Disable Rotation" : "Enable Rotation"}
-                  </span>
-                </button>
+              <div className={CTL_SLIDER_ROW}>
+                <span className="text-xs text-[var(--text-muted)] font-medium uppercase tracking-wide">
+                  Rotate
+                </span>
+                <input
+                  className={CTL_SLIDER}
+                  type="range"
+                  min={-180}
+                  max={180}
+                  step={5}
+                  value={Math.round(mapBearing)}
+                  onChange={handleRotationSliderChange}
+                  aria-label="Rotation angle"
+                />
+                <span className="text-xs text-[var(--text-muted)] tabular-nums min-w-[2.5rem] text-right">
+                  {Math.round(mapBearing)}°
+                </span>
               </div>
-              {isRotationEnabled ? (
-                <div className={CTL_SLIDER_ROW}>
-                  <button
-                    type="button"
-                    className={CTL_BTN}
-                    onClick={() => handleRotateBy(-15)}
-                    title="Rotate left 15 degrees"
-                  >
-                    <RotateCcw className="w-4 h-4" />
-                  </button>
-                  <input
-                    className={CTL_SLIDER}
-                    type="range"
-                    min={-180}
-                    max={180}
-                    step={15}
-                    value={Math.round(mapBearing / 15) * 15}
-                    onChange={handleRotationSliderChange}
-                    aria-label="Rotation angle"
-                  />
-                  <button
-                    type="button"
-                    className={CTL_BTN}
-                    onClick={() => handleRotateBy(15)}
-                    title="Rotate right 15 degrees"
-                  >
-                    <RotateCw className="w-4 h-4" />
-                  </button>
-                </div>
-              ) : null}
               {form.enable3D ? (
                 <div className={CTL_SLIDER_ROW}>
                   <span className="text-xs text-[var(--text-muted)] font-medium uppercase tracking-wide">
@@ -510,26 +476,25 @@ export default function PreviewPanel() {
                   </span>
                 </div>
               ) : null}
-            </div>
-          ) : null}
-          {/* Mobile floating controls */}
-          {isEditing && isMobileViewport ? (
-            <div className="absolute top-[calc(100%+8px)] left-1/2 -translate-x-1/2 z-[12] flex flex-col items-center gap-1.5 w-[calc(100%-8px)]" aria-label="Map edit controls">
-              <div className={CTL_GROUP}>
+              {(Math.abs(mapBearing) > 0.5 || (form.enable3D && Number(form.mapPitch) !== 60)) ? (
                 <button
                   type="button"
-                  className={`${CTL_BTN}${isRotationEnabled ? ` ${CTL_BTN_ACTIVE}` : ""}`}
-                  onClick={handleToggleRotation}
-                  title={
-                    isRotationEnabled ? "Disable rotation" : "Enable rotation"
-                  }
+                  className={CTL_BTN}
+                  onClick={() => {
+                    const map = mapRef.current;
+                    if (!map) return;
+                    map.rotateTo(0, { duration: MAP_BUTTON_ZOOM_DURATION_MS });
+                    setMapBearing(0);
+                    if (form.enable3D) {
+                      dispatch({ type: "SET_FIELD", name: "mapPitch", value: "60" });
+                    }
+                  }}
+                  title="Reset rotation to north and pitch to default"
                 >
-                  <RotateCw className="w-4 h-4" />
-                  <span>
-                    {isRotationEnabled ? "Disable Rotation" : "Enable Rotation"}
-                  </span>
+                  <RotateCcw className="w-4 h-4" />
+                  <span>Reset View</span>
                 </button>
-              </div>
+              ) : null}
             </div>
           ) : null}
         </div>
