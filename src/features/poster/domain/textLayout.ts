@@ -60,17 +60,6 @@ export function formatCityLabel(
 }
 
 /**
- * Converts a letter-spacing slider value (0–0.5 em range) to a CSS/canvas value.
- * The slider value maps directly to em units.
- * 0 = no extra spacing (font default)
- * 0.3 = poster default (visible spacing between letters)
- * Negative values tighten letters.
- */
-export function letterSpacingToEm(sliderValue: number): number {
-  return sliderValue;
-}
-
-/**
  * Returns a multiplier (≤1) to shrink the city font for long names.
  * Callers apply it to their own base font size.
  */

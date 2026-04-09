@@ -28,11 +28,18 @@ import {
   DEFAULT_COUNTRY,
 } from "@/core/config";
 import { ensureGoogleFont, reverseGeocodeCoordinates } from "@/core/services";
+import { TEXT_CITY_Y_RATIO } from "@/features/poster/domain/textLayout";
 import {
   createCustomLayoutOption,
   formatLayoutDimensions,
   getLayoutOption,
 } from "@/features/layout/infrastructure/layoutRepository";
+
+/** Parse a string form value to number, returning fallback only if NaN (not if 0). */
+function numOrDefault(value: string, fallback: number): number {
+  const n = Number(value);
+  return Number.isFinite(n) ? n : fallback;
+}
 
 const LOCKED_HINT = "Map is locked to prevent unintended movement.";
 const UNLOCK_HINT = `${LOCKED_HINT}\nClick to unlock map editing.`;
@@ -176,7 +183,7 @@ export default function PreviewPanel() {
   const aspect = widthCm / heightCm;
   const formLat = Number(form.latitude) || 0;
   const formLon = Number(form.longitude) || 0;
-  const mapPitch = form.enable3D ? Number(form.mapPitch) || 60 : 0;
+  const mapPitch = form.enable3D ? numOrDefault(form.mapPitch, 60) : 0;
   const layoutOption =
     getLayoutOption(form.layout) ?? createCustomLayoutOption(widthCm, heightCm);
   const layoutLabel = `${layoutOption.name} (${formatLayoutDimensions(layoutOption)})`;
@@ -219,17 +226,6 @@ export default function PreviewPanel() {
     [mapRef],
   );
 
-  const handleRotateBy = useCallback(
-    (deltaDeg: number) => {
-      const map = mapRef.current;
-      if (!map) return;
-      const current = map.getBearing();
-      const nextBearing = Math.max(-180, Math.min(180, current + deltaDeg));
-      setMapBearing(nextBearing);
-      map.rotateTo(nextBearing, { duration: MAP_BUTTON_ZOOM_DURATION_MS });
-    },
-    [mapRef],
-  );
 
   const handleToggle3D = useCallback(() => {
     dispatch({
@@ -285,7 +281,7 @@ export default function PreviewPanel() {
     map.stop();
     map.jumpTo({
       bearing: 0,
-      pitch: form.enable3D ? Number(form.mapPitch) || 60 : 0,
+      pitch: form.enable3D ? numOrDefault(form.mapPitch, 60) : 0,
     });
     setMapBearing(0);
 
@@ -317,7 +313,7 @@ export default function PreviewPanel() {
       .catch(() => {
         // fallback names already applied above — nothing more to do.
       });
-  }, [mapRef, selectedLocation, userLocation, dispatch]);
+  }, [mapRef, selectedLocation, userLocation, dispatch, form.enable3D, form.mapPitch]);
 
   const handleMarkerPositionChange = useCallback(
     (markerId: string, lat: number, lon: number) => {
@@ -382,10 +378,10 @@ export default function PreviewPanel() {
               <div
                 className="absolute overflow-hidden"
                 style={{
-                  top: `${Number(form.framePadding) || 6}%`,
-                  left: `${Number(form.framePadding) || 6}%`,
-                  right: `${Number(form.framePadding) || 6}%`,
-                  bottom: `${(1 - 0.845 + 0.045) * 100}%`,
+                  top: `${numOrDefault(form.framePadding, 6)}%`,
+                  left: `${numOrDefault(form.framePadding, 6)}%`,
+                  right: `${numOrDefault(form.framePadding, 6)}%`,
+                  bottom: `${(1 - TEXT_CITY_Y_RATIO + 0.045) * 100}%`,
                   ...(Number(form.frameBorderWidth) > 0
                     ? { border: `${Number(form.frameBorderWidth)}px solid ${effectiveTheme.ui.text}` }
                     : {}),
@@ -396,8 +392,8 @@ export default function PreviewPanel() {
                   center={mapCenter}
                   zoom={mapZoom}
                   pitch={mapPitch}
-                  lightAzimuth={form.enable3D ? Number(form.lightAzimuth) || 210 : undefined}
-                  lightIntensity={form.enable3D ? Number(form.lightIntensity) || 0.6 : undefined}
+                  lightAzimuth={form.enable3D ? numOrDefault(form.lightAzimuth, 210) : undefined}
+                  lightIntensity={form.enable3D ? numOrDefault(form.lightIntensity, 0.6) : undefined}
                   mapRef={mapRef}
                   interactive={isEditing && !isMarkerEditorActive}
                   allowRotation={isEditing}
@@ -435,8 +431,8 @@ export default function PreviewPanel() {
                 center={mapCenter}
                 zoom={mapZoom}
                 pitch={mapPitch}
-                lightAzimuth={form.enable3D ? Number(form.lightAzimuth) || 210 : undefined}
-                lightIntensity={form.enable3D ? Number(form.lightIntensity) || 0.6 : undefined}
+                lightAzimuth={form.enable3D ? numOrDefault(form.lightAzimuth, 210) : undefined}
+                lightIntensity={form.enable3D ? numOrDefault(form.lightIntensity, 0.6) : undefined}
                 mapRef={mapRef}
                 interactive={isEditing && !isMarkerEditorActive}
                 allowRotation={isEditing}
@@ -523,7 +519,7 @@ export default function PreviewPanel() {
                     min={0}
                     max={85}
                     step={1}
-                    value={Number(form.mapPitch) || 60}
+                    value={numOrDefault(form.mapPitch, 60)}
                     onChange={(e) =>
                       dispatch({
                         type: "SET_FIELD",

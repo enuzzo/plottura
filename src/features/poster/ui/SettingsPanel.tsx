@@ -141,7 +141,7 @@ export default function SettingsPanel({
                       min={2}
                       max={15}
                       step={0.5}
-                      value={Number(state.form.framePadding) || 6}
+                      value={Number.isFinite(Number(state.form.framePadding)) ? Number(state.form.framePadding) : 6}
                       onChange={(e) => dispatch({ type: "SET_FIELD", name: "framePadding", value: e.target.value })}
                       className="w-full accent-accent"
                     />
@@ -238,7 +238,7 @@ export default function SettingsPanel({
                     min={0}
                     max={85}
                     step={1}
-                    value={Number(state.form.mapPitch) || 60}
+                    value={Number.isFinite(Number(state.form.mapPitch)) ? Number(state.form.mapPitch) : 60}
                     onChange={(e) =>
                       dispatch({
                         type: "SET_FIELD",
@@ -288,7 +288,7 @@ export default function SettingsPanel({
                     min={0}
                     max={360}
                     step={5}
-                    value={Number(state.form.lightAzimuth) || 210}
+                    value={Number.isFinite(Number(state.form.lightAzimuth)) ? Number(state.form.lightAzimuth) : 210}
                     onChange={(e) =>
                       dispatch({
                         type: "SET_FIELD",
@@ -304,7 +304,7 @@ export default function SettingsPanel({
                   <div className="flex items-center justify-between">
                     <span className="text-base text-text-secondary">Light intensity</span>
                     <span className="text-sm text-text-muted tabular-nums">
-                      {(Number(state.form.lightIntensity) || 0.6).toFixed(1)}
+                      {(Number.isFinite(Number(state.form.lightIntensity)) ? Number(state.form.lightIntensity) : 0.6).toFixed(1)}
                     </span>
                   </div>
                   <input
@@ -312,7 +312,7 @@ export default function SettingsPanel({
                     min={0}
                     max={1}
                     step={0.05}
-                    value={Number(state.form.lightIntensity) || 0.6}
+                    value={Number.isFinite(Number(state.form.lightIntensity)) ? Number(state.form.lightIntensity) : 0.6}
                     onChange={(e) =>
                       dispatch({
                         type: "SET_FIELD",

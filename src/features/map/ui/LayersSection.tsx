@@ -84,7 +84,7 @@ export default function LayersSection({
             min={1}
             max={16}
             step={1}
-            value={Number(form.placeLabelDensity) || 6}
+            value={Number.isFinite(Number(form.placeLabelDensity)) ? Number(form.placeLabelDensity) : 6}
             onChange={(e) => {
               const syntheticEvent = {
                 target: {
