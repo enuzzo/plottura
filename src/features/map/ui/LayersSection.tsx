@@ -16,6 +16,10 @@ interface LayerForm {
   includeRoadOutline: boolean;
   includeBoundary: boolean;
   includeLandcover: boolean;
+  includePlaceLabels: boolean;
+  placeLabelDensity: string;
+  includeWaterLabels: boolean;
+  includeMountainPeaks: boolean;
 }
 
 interface LayersSectionProps {
@@ -35,6 +39,9 @@ const LAYERS = [
   { name: "includeAeroway", label: "Show aeroway" },
   { name: "includeBoundary", label: "Show borders" },
   { name: "includeLandcover", label: "Show landcover" },
+  { name: "includePlaceLabels", label: "Place names" },
+  { name: "includeWaterLabels", label: "Water names" },
+  { name: "includeMountainPeaks", label: "Mountain peaks" },
 ] as const;
 
 export default function LayersSection({
@@ -63,6 +70,39 @@ export default function LayersSection({
           />
         </div>
       ))}
+
+      {form.includePlaceLabels && (
+        <div className="flex flex-col gap-1.5 pl-1 border-l-2 border-border ml-1">
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-text-secondary">Label density</span>
+            <span className="text-sm text-text-muted tabular-nums">
+              {form.placeLabelDensity}
+            </span>
+          </div>
+          <input
+            type="range"
+            min={1}
+            max={16}
+            step={1}
+            value={Number(form.placeLabelDensity) || 6}
+            onChange={(e) => {
+              const syntheticEvent = {
+                target: {
+                  name: "placeLabelDensity",
+                  type: "text",
+                  value: e.target.value,
+                  checked: false,
+                },
+              } as React.ChangeEvent<HTMLInputElement>;
+              onChange(syntheticEvent);
+            }}
+            className="w-full accent-accent"
+          />
+          <p className="text-xs text-text-muted">
+            1 = major cities only, 16 = villages &amp; hamlets
+          </p>
+        </div>
+      )}
 
       <div className="mt-2">
         <h3 className="text-sm font-medium text-text-secondary mb-2">

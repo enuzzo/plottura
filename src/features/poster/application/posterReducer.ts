@@ -40,6 +40,10 @@ export interface PosterForm {
   includeRoadOutline: boolean;
   includeBoundary: boolean;
   includeLandcover: boolean;
+  includePlaceLabels: boolean;
+  placeLabelDensity: string;
+  includeWaterLabels: boolean;
+  includeMountainPeaks: boolean;
   showMarkers: boolean;
   showGradientTop: boolean;
   showGradientBottom: boolean;

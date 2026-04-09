@@ -4,7 +4,11 @@ import { blendHex } from "@/shared/utils/color";
 import type { StyleSpecification } from "maplibre-gl";
 
 const OPENFREEMAP_SOURCE = "https://tiles.openfreemap.org/planet";
+const OPENFREEMAP_GLYPHS = "https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf";
 const SOURCE_ID = "openfreemap";
+const LABEL_FONT_REGULAR = "Noto Sans Regular";
+const LABEL_FONT_BOLD = "Noto Sans Bold";
+const LABEL_FONT_ITALIC = "Noto Sans Italic";
 
 /**
  * OpenFreeMap is OpenMapTiles-based and can generalize data at low zooms.
@@ -200,6 +204,10 @@ export function generateMapStyle(
     includeRoadOutline?: boolean;
     includeBoundary?: boolean;
     includeLandcover?: boolean;
+    includePlaceLabels?: boolean;
+    placeLabelDensity?: number;
+    includeWaterLabels?: boolean;
+    includeMountainPeaks?: boolean;
     distanceMeters?: number;
     enable3D?: boolean;
     buildingExtrusion?: boolean;
@@ -229,6 +237,10 @@ export function generateMapStyle(
   const includeRoadOutline = options?.includeRoadOutline ?? true;
   const includeBoundary = options?.includeBoundary ?? true;
   const includeLandcover = options?.includeLandcover ?? false;
+  const includePlaceLabels = options?.includePlaceLabels ?? false;
+  const placeLabelDensity = options?.placeLabelDensity ?? 6;
+  const includeWaterLabels = options?.includeWaterLabels ?? false;
+  const includeMountainPeaks = options?.includeMountainPeaks ?? false;
   const buildingMinZoom = resolveBuildingMinZoom(options?.distanceMeters);
   const lightAzimuth = options?.lightAzimuth ?? 210;
   const lightIntensity = options?.lightIntensity ?? 0.6;
@@ -283,8 +295,15 @@ export function generateMapStyle(
   const roadPathColor = theme.map.roads.path;
   const roadOutlineColor = theme.map.roads.outline;
 
+  const hasLabels = includePlaceLabels || includeWaterLabels || includeMountainPeaks;
+
+  // Derive label colors from theme
+  const labelColor = theme.ui.text || "#111111";
+  const labelHaloColor = theme.map.land || "#ffffff";
+
   return {
     version: 8,
+    ...(hasLabels ? { glyphs: OPENFREEMAP_GLYPHS } : {}),
     ...(enable3D
       ? {
           light: {
@@ -754,6 +773,140 @@ export function generateMapStyle(
           "line-join": "round" as const,
         },
       },
+
+      // ── Labels (symbol layers) ──
+      // Place labels: city/town/village names with density control
+      ...(includePlaceLabels
+        ? [
+            {
+              id: "place-labels",
+              source: SOURCE_ID,
+              "source-layer": "place",
+              type: "symbol" as const,
+              filter: [
+                "all",
+                ["<=", ["get", "rank"], placeLabelDensity],
+                [
+                  "match",
+                  ["get", "class"],
+                  ["city", "town", "village", "hamlet", "island"],
+                  true,
+                  false,
+                ],
+              ] as any,
+              layout: {
+                "text-field": ["get", "name"] as any,
+                "text-size": [
+                  "interpolate",
+                  ["linear"],
+                  ["get", "rank"],
+                  1,
+                  16,
+                  6,
+                  11,
+                  12,
+                  8,
+                ] as any,
+                "text-font": [LABEL_FONT_REGULAR],
+                "text-max-width": 8,
+                "text-anchor": "center" as const,
+                "text-padding": 4,
+                "symbol-sort-key": ["get", "rank"] as any,
+              },
+              paint: {
+                "text-color": labelColor,
+                "text-halo-color": labelHaloColor,
+                "text-halo-width": 1.5,
+                "text-opacity": 0.7,
+              },
+            },
+          ]
+        : []),
+
+      // Water labels: lake, sea, ocean names
+      ...(includeWaterLabels
+        ? [
+            {
+              id: "water-labels",
+              source: SOURCE_ID,
+              "source-layer": "water_name",
+              type: "symbol" as const,
+              layout: {
+                "text-field": ["get", "name"] as any,
+                "text-size": [
+                  "interpolate",
+                  ["linear"],
+                  ["zoom"],
+                  3,
+                  10,
+                  8,
+                  13,
+                  14,
+                  16,
+                ] as any,
+                "text-font": [LABEL_FONT_ITALIC],
+                "text-max-width": 10,
+                "text-anchor": "center" as const,
+                "text-padding": 6,
+                "text-letter-spacing": 0.1,
+              },
+              paint: {
+                "text-color": blendHex(
+                  theme.ui.text || "#111111",
+                  theme.map.water || "#4a90d9",
+                  0.5,
+                ),
+                "text-halo-color": theme.map.water || "#4a90d9",
+                "text-halo-width": 1,
+                "text-opacity": 0.65,
+              },
+            },
+          ]
+        : []),
+
+      // Mountain peak labels with elevation
+      ...(includeMountainPeaks
+        ? [
+            {
+              id: "mountain-peaks",
+              source: SOURCE_ID,
+              "source-layer": "mountain_peak",
+              type: "symbol" as const,
+              filter: [
+                "all",
+                ["has", "name"],
+                [
+                  "match",
+                  ["get", "class"],
+                  ["peak", "volcano"],
+                  true,
+                  false,
+                ],
+              ] as any,
+              layout: {
+                "text-field": [
+                  "concat",
+                  ["get", "name"],
+                  "\n",
+                  ["to-string", ["get", "ele"]],
+                  "m",
+                ] as any,
+                "text-size": 9,
+                "text-font": [LABEL_FONT_REGULAR],
+                "text-max-width": 8,
+                "text-anchor": "center" as const,
+                "text-padding": 6,
+                "text-line-height": 1.3,
+              },
+              paint: {
+                "text-color": labelColor,
+                "text-halo-color": labelHaloColor,
+                "text-halo-width": 1.2,
+                "text-opacity": 0.6,
+              },
+            },
+          ]
+        : []),
 
       // Administrative boundaries (country borders, state lines)
       // Drawn on top of everything so borders are visible over roads/buildings
