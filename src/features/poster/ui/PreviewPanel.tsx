@@ -28,8 +28,6 @@ import {
   DEFAULT_COUNTRY,
 } from "@/core/config";
 import { ensureGoogleFont, reverseGeocodeCoordinates } from "@/core/services";
-import { formatCityLabel, computeCityFontScale } from "@/features/poster/domain/textLayout";
-import { formatCoordinates } from "@/shared/geo/posterBounds";
 import {
   createCustomLayoutOption,
   formatLayoutDimensions,
@@ -429,51 +427,6 @@ export default function PreviewPanel() {
                   />
                 ) : null}
               </div>
-              {/* Framed text area below map */}
-              {form.showPosterText && (
-                <div
-                  className="flex flex-col items-center justify-center flex-1 gap-[0.4cqmin]"
-                  style={{ color: effectiveTheme.ui.text, fontFamily: form.fontFamily ? `"${form.fontFamily}", "Space Grotesk", sans-serif` : '"Space Grotesk", sans-serif' }}
-                >
-                  <p
-                    className="m-0 font-bold text-center leading-[1.1]"
-                    style={{
-                      fontSize: `${(250 / 3600) * 100 * computeCityFontScale(cityLabel) * (Number(form.cityFontScale) || 1)}cqmin`,
-                      letterSpacing: `${form.textLetterSpacing !== "" ? Number(form.textLetterSpacing) : 0.3}em`,
-                    }}
-                  >
-                    {formatCityLabel(cityLabel, form.textUppercase)}
-                  </p>
-                  {form.showCountry && (
-                    <>
-                      <hr
-                        className="border-0 border-t-[1.5px] border-current h-0 m-0 w-[8%] opacity-60"
-                      />
-                      <p
-                        className={`m-0 font-light text-center leading-[1.2]${form.countryUppercase ? " uppercase" : ""}`}
-                        style={{
-                          fontSize: `${(92 / 3600) * 100 * (Number(form.countryFontScale) || 1)}cqmin`,
-                          letterSpacing: `${form.textLetterSpacing !== "" ? Number(form.textLetterSpacing) : 0.3}em`,
-                        }}
-                      >
-                        {form.countryUppercase ? countryLabel.toUpperCase() : countryLabel}
-                      </p>
-                    </>
-                  )}
-                  {form.showCoordinates && (
-                    <p
-                      className="m-0 font-normal text-center opacity-65"
-                      style={{
-                        fontSize: `${(50 / 3600) * 100 * (Number(form.coordsFontScale) || 1)}cqmin`,
-                        fontFamily: form.fontFamily ? `"${form.fontFamily}", "IBM Plex Mono", monospace` : '"IBM Plex Mono", monospace',
-                        letterSpacing: `${form.coordsLetterSpacing !== "" ? Number(form.coordsLetterSpacing) : 0}em`,
-                      }}
-                    >
-                      {formatCoordinates(formLat, formLon)}
-                    </p>
-                  )}
-                </div>
-              )}
             </div>
           ) : (
             <>
@@ -514,8 +467,6 @@ export default function PreviewPanel() {
               ) : null}
             </>
           )}
-          {/* Text overlay — only for full layout (framed has its own text) */}
-          {form.posterLayout !== "framed" && (
           <PosterTextOverlay
             city={cityLabel}
             country={countryLabel}
@@ -539,7 +490,6 @@ export default function PreviewPanel() {
             countryUppercase={form.countryUppercase}
             coordsLetterSpacing={form.coordsLetterSpacing !== "" ? Number(form.coordsLetterSpacing) : 0}
           />
-          )}
 
           {/* Floating sliders — appear between poster and notch when editing */}
           {isEditing && !isMobileViewport ? (
