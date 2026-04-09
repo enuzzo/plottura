@@ -13,10 +13,9 @@ import MarkerOverlay from "@/features/markers/ui/MarkerOverlay";
 import GradientFades from "./GradientFades";
 import PosterTextOverlay from "./PosterTextOverlay";
 import MapPrimaryControls from "./MapPrimaryControls";
-import { ZoomIn, ZoomOut, RotateCw, RotateCcw } from "lucide-react";
+import { RotateCw, RotateCcw } from "lucide-react";
 import {
   MAP_BUTTON_ZOOM_DURATION_MS,
-  MAP_BUTTON_ZOOM_STEP,
 } from "@/features/map/infrastructure";
 import { MAP_OVERZOOM_SCALE } from "@/features/map/infrastructure/constants";
 import {
@@ -215,37 +214,6 @@ export default function PreviewPanel() {
   const handleToggleRotation = useCallback(() => {
     setIsRotationEnabled((prev) => !prev);
   }, []);
-
-  const handleZoomIn = useCallback(() => {
-    const map = mapRef.current;
-    if (!map) return;
-
-    const nextZoom = Math.min(map.getZoom() + MAP_BUTTON_ZOOM_STEP, mapMaxZoom);
-    if (Math.abs(nextZoom - map.getZoom()) < 0.0001) return;
-
-    map.zoomTo(nextZoom, { duration: MAP_BUTTON_ZOOM_DURATION_MS });
-  }, [mapRef, mapMaxZoom]);
-
-  const handleZoomOut = useCallback(() => {
-    const map = mapRef.current;
-    if (!map) return;
-
-    const nextZoom = Math.max(map.getZoom() - MAP_BUTTON_ZOOM_STEP, mapMinZoom);
-    if (Math.abs(nextZoom - map.getZoom()) < 0.0001) return;
-
-    map.zoomTo(nextZoom, { duration: MAP_BUTTON_ZOOM_DURATION_MS });
-  }, [mapRef, mapMinZoom]);
-
-  const handleZoomSliderChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const map = mapRef.current;
-      if (!map) return;
-      const nextZoom = Number(event.target.value);
-      if (!Number.isFinite(nextZoom)) return;
-      map.zoomTo(nextZoom, { duration: MAP_BUTTON_ZOOM_DURATION_MS });
-    },
-    [mapRef],
-  );
 
   const handleRotationSliderChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -468,149 +436,106 @@ export default function PreviewPanel() {
             textLetterSpacing={form.textLetterSpacing !== "" ? Number(form.textLetterSpacing) : 0.3}
           />
 
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[calc(100%+12px)] z-20 flex flex-row items-center gap-1.5 flex-wrap justify-center whitespace-nowrap max-[768px]:w-[calc(100%-8px)] max-[768px]:flex-col max-[768px]:top-[calc(100%+8px)] max-[768px]:bottom-auto max-[768px]:z-[12]" aria-label="Map controls">
-            {!isEditing ? null : (
-              <>
-                <div className={CTL_GROUP}>
-                  <MapPrimaryControls
-                    isMapEditing
-                    isMarkerEditorActive={isMarkerEditorActive}
-                    recenterHint={RECENTER_HINT}
-                    unlockHint={UNLOCK_HINT}
-                    onRecenter={handleRecenter}
-                    onStartEditing={handleStartEditing}
-                    onFinishEditing={handleFinishEditing}
-                    lightColor={lightestColor}
-                    darkColor={darkestColor}
-                    is3DEnabled={form.enable3D}
-                    onToggle3D={handleToggle3D}
+          {/* Floating sliders — appear above the poster when editing */}
+          {isEditing && !isMobileViewport ? (
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[calc(100%+12px)] z-20 flex flex-col items-center gap-1.5 whitespace-nowrap" aria-label="Map edit controls">
+              <div className={CTL_GROUP}>
+                <button
+                  type="button"
+                  className={`${CTL_BTN}${isRotationEnabled ? ` ${CTL_BTN_ACTIVE}` : ""}`}
+                  onClick={handleToggleRotation}
+                  title={
+                    isRotationEnabled ? "Disable rotation" : "Enable rotation"
+                  }
+                >
+                  <RotateCw className="w-4 h-4" />
+                  <span>
+                    {isRotationEnabled ? "Disable Rotation" : "Enable Rotation"}
+                  </span>
+                </button>
+              </div>
+              {isRotationEnabled ? (
+                <div className={CTL_SLIDER_ROW}>
+                  <button
+                    type="button"
+                    className={CTL_BTN}
+                    onClick={() => handleRotateBy(-15)}
+                    title="Rotate left 15 degrees"
+                  >
+                    <RotateCcw className="w-4 h-4" />
+                  </button>
+                  <input
+                    className={CTL_SLIDER}
+                    type="range"
+                    min={-180}
+                    max={180}
+                    step={15}
+                    value={Math.round(mapBearing / 15) * 15}
+                    onChange={handleRotationSliderChange}
+                    aria-label="Rotation angle"
                   />
-                  {isMobileViewport ? (
-                    <button
-                      type="button"
-                      className={`${CTL_BTN}${isRotationEnabled ? ` ${CTL_BTN_ACTIVE}` : ""}`}
-                      onClick={handleToggleRotation}
-                      title={
-                        isRotationEnabled ? "Disable rotation" : "Enable rotation"
-                      }
-                    >
-                      <RotateCw className="w-4 h-4" />
-                      <span>
-                        {isRotationEnabled ? "Disable Rotation" : "Enable Rotation"}
-                      </span>
-                    </button>
-                  ) : null}
+                  <button
+                    type="button"
+                    className={CTL_BTN}
+                    onClick={() => handleRotateBy(15)}
+                    title="Rotate right 15 degrees"
+                  >
+                    <RotateCw className="w-4 h-4" />
+                  </button>
                 </div>
-                {!isMobileViewport ? (
-                  <div className={CTL_GROUP}>
-                    <button
-                      type="button"
-                      className={`${CTL_BTN}${isRotationEnabled ? ` ${CTL_BTN_ACTIVE}` : ""}`}
-                      onClick={handleToggleRotation}
-                      title={
-                        isRotationEnabled ? "Disable rotation" : "Enable rotation"
-                      }
-                    >
-                      <RotateCw className="w-4 h-4" />
-                      <span>
-                        {isRotationEnabled ? "Disable Rotation" : "Enable Rotation"}
-                      </span>
-                    </button>
-                  </div>
-                ) : null}
-                {!isMobileViewport ? (
-                  <div className={CTL_SLIDER_ROW}>
-                    <button
-                      type="button"
-                      className={CTL_BTN}
-                      onClick={handleZoomOut}
-                      title="Zoom out"
-                    >
-                      <ZoomOut className="w-4 h-4" />
-                    </button>
-                    <input
-                      className={CTL_SLIDER}
-                      type="range"
-                      min={mapMinZoom}
-                      max={mapMaxZoom}
-                      step={0.1}
-                      value={mapZoom}
-                      onChange={handleZoomSliderChange}
-                      aria-label="Zoom level"
-                    />
-                    <button
-                      type="button"
-                      className={CTL_BTN}
-                      onClick={handleZoomIn}
-                      title="Zoom in"
-                    >
-                      <ZoomIn className="w-4 h-4" />
-                    </button>
-                  </div>
-                ) : null}
-                {!isMobileViewport && isRotationEnabled ? (
-                  <div className={CTL_SLIDER_ROW}>
-                    <button
-                      type="button"
-                      className={CTL_BTN}
-                      onClick={() => handleRotateBy(-15)}
-                      title="Rotate left 15 degrees"
-                    >
-                      <RotateCcw className="w-4 h-4" />
-                    </button>
-                    <input
-                      className={CTL_SLIDER}
-                      type="range"
-                      min={-180}
-                      max={180}
-                      step={15}
-                      value={Math.round(mapBearing / 15) * 15}
-                      onChange={handleRotationSliderChange}
-                      aria-label="Rotation angle"
-                    />
-                    <button
-                      type="button"
-                      className={CTL_BTN}
-                      onClick={() => handleRotateBy(15)}
-                      title="Rotate right 15 degrees"
-                    >
-                      <RotateCw className="w-4 h-4" />
-                    </button>
-                  </div>
-                ) : null}
-                {!isMobileViewport && form.enable3D ? (
-                  <div className={CTL_SLIDER_ROW}>
-                    <span className="text-xs text-[var(--text-muted)] font-medium uppercase tracking-wide">
-                      Pitch
-                    </span>
-                    <input
-                      className={CTL_SLIDER}
-                      type="range"
-                      min={0}
-                      max={85}
-                      step={1}
-                      value={Number(form.mapPitch) || 60}
-                      onChange={(e) =>
-                        dispatch({
-                          type: "SET_FIELD",
-                          name: "mapPitch",
-                          value: e.target.value,
-                        })
-                      }
-                      aria-label="Pitch angle"
-                    />
-                    <span className="text-xs text-[var(--text-muted)] tabular-nums min-w-[2.5rem] text-right">
-                      {form.mapPitch}°
-                    </span>
-                  </div>
-                ) : null}
-              </>
-            )}
-          </div>
+              ) : null}
+              {form.enable3D ? (
+                <div className={CTL_SLIDER_ROW}>
+                  <span className="text-xs text-[var(--text-muted)] font-medium uppercase tracking-wide">
+                    Pitch
+                  </span>
+                  <input
+                    className={CTL_SLIDER}
+                    type="range"
+                    min={0}
+                    max={85}
+                    step={1}
+                    value={Number(form.mapPitch) || 60}
+                    onChange={(e) =>
+                      dispatch({
+                        type: "SET_FIELD",
+                        name: "mapPitch",
+                        value: e.target.value,
+                      })
+                    }
+                    aria-label="Pitch angle"
+                  />
+                  <span className="text-xs text-[var(--text-muted)] tabular-nums min-w-[2.5rem] text-right">
+                    {form.mapPitch}°
+                  </span>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
+          {/* Mobile floating controls */}
+          {isEditing && isMobileViewport ? (
+            <div className="absolute top-[calc(100%+8px)] left-1/2 -translate-x-1/2 z-[12] flex flex-col items-center gap-1.5 w-[calc(100%-8px)]" aria-label="Map edit controls">
+              <div className={CTL_GROUP}>
+                <button
+                  type="button"
+                  className={`${CTL_BTN}${isRotationEnabled ? ` ${CTL_BTN_ACTIVE}` : ""}`}
+                  onClick={handleToggleRotation}
+                  title={
+                    isRotationEnabled ? "Disable rotation" : "Enable rotation"
+                  }
+                >
+                  <RotateCw className="w-4 h-4" />
+                  <span>
+                    {isRotationEnabled ? "Disable Rotation" : "Enable Rotation"}
+                  </span>
+                </button>
+              </div>
+            </div>
+          ) : null}
         </div>
 
-        {/* Bottom notch — Recenter + Edit Map + 3D (hidden during editing to avoid duplication) */}
-        {!isMobileViewport && !isEditing && (
+        {/* Bottom notch — always fixed at the bottom of the canvas */}
+        {!isMobileViewport && (
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-[3]">
             <MapPrimaryControls
               isMapEditing={isEditing}
