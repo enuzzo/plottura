@@ -106,7 +106,8 @@ src/
 - Style spec is regenerated when theme or layer toggles change
 - 3D mode: `fill-extrusion` building layer with `render_height` from OpenMapTiles, `light` object with configurable azimuth/intensity
 - Toggling 3D changes building layer ID (`building` ↔ `building-3d`), triggering full style regen (not incremental)
-- Symbol layers (place names, water names, mountain peaks) always present with visibility toggle — text sizes multiplied by `overzoomScale` to compensate for the 5.5x overzoom rendering
+- Symbol layers (place names, water names, mountain peaks) always present with visibility toggle — text sizes multiplied by `overzoomScale` to compensate for the 5.5x overzoom rendering. Place labels filtered by `rank <= placeLabelDensity` for density control.
+- `applyIncrementalStyleUpdate()` in MapPreview diffs paint, layout, filter, minzoom/maxzoom — filter changes use `map.setFilter()`
 - Boundary layer (admin borders) with dashed line, filterable by admin_level
 - Landcover layer (forests, grass, farmland) blended from parks + land colors
 
