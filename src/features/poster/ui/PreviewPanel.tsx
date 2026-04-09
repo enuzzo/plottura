@@ -28,6 +28,8 @@ import {
   DEFAULT_COUNTRY,
 } from "@/core/config";
 import { ensureGoogleFont, reverseGeocodeCoordinates } from "@/core/services";
+import { formatCityLabel, computeCityFontScale } from "@/features/poster/domain/textLayout";
+import { formatCoordinates } from "@/shared/geo/posterBounds";
 import {
   createCustomLayoutOption,
   formatLayoutDimensions,
@@ -375,41 +377,127 @@ export default function PreviewPanel() {
             } as CSSProperties
           }
         >
-          <MapPreview
-            style={mapStyle}
-            center={mapCenter}
-            zoom={mapZoom}
-            pitch={mapPitch}
-            lightAzimuth={form.enable3D ? Number(form.lightAzimuth) || 210 : undefined}
-            lightIntensity={form.enable3D ? Number(form.lightIntensity) || 0.6 : undefined}
-            mapRef={mapRef}
-            interactive={isEditing && !isMarkerEditorActive}
-            allowRotation={isEditing}
-            minZoom={mapMinZoom}
-            maxZoom={mapMaxZoom}
-            overzoomScale={MAP_OVERZOOM_SCALE}
-            onMove={handleMove}
-            onMoveEnd={handleMoveEnd}
-          />
-          {form.showGradientTop || form.showGradientBottom ? (
-            <GradientFades
-              color={effectiveTheme.ui.bg}
-              showTop={form.showGradientTop}
-              showBottom={form.showGradientBottom}
-            />
-          ) : null}
-          {hasVisibleMarkers ? (
-            <MarkerOverlay
-              markers={state.markers}
-              customIcons={state.customMarkerIcons}
-              mapRef={mapRef}
-              isMarkerEditMode={isMarkerEditorActive}
-              activeMarkerId={activeMarkerId}
-              onActiveMarkerChange={handleMarkerActiveChange}
-              onMarkerPositionChange={handleMarkerPositionChange}
-              onMarkerSizeChange={handleMarkerSizeChange}
-            />
-          ) : null}
+          {/* Map area — full bleed or framed */}
+          {form.posterLayout === "framed" ? (
+            <div
+              className="absolute inset-0 flex flex-col [container-type:size]"
+              style={{ padding: `${Number(form.framePadding) || 6}%` }}
+            >
+              {/* Framed map container */}
+              <div
+                className="relative overflow-hidden"
+                style={{
+                  height: "82%",
+                  border: `${Number(form.frameBorderWidth) || 2}px solid ${effectiveTheme.ui.text}`,
+                }}
+              >
+                <MapPreview
+                  style={mapStyle}
+                  center={mapCenter}
+                  zoom={mapZoom}
+                  pitch={mapPitch}
+                  lightAzimuth={form.enable3D ? Number(form.lightAzimuth) || 210 : undefined}
+                  lightIntensity={form.enable3D ? Number(form.lightIntensity) || 0.6 : undefined}
+                  mapRef={mapRef}
+                  interactive={isEditing && !isMarkerEditorActive}
+                  allowRotation={isEditing}
+                  minZoom={mapMinZoom}
+                  maxZoom={mapMaxZoom}
+                  overzoomScale={MAP_OVERZOOM_SCALE}
+                  onMove={handleMove}
+                  onMoveEnd={handleMoveEnd}
+                />
+                {form.showGradientTop || form.showGradientBottom ? (
+                  <GradientFades
+                    color={effectiveTheme.ui.bg}
+                    showTop={form.showGradientTop}
+                    showBottom={form.showGradientBottom}
+                  />
+                ) : null}
+                {hasVisibleMarkers ? (
+                  <MarkerOverlay
+                    markers={state.markers}
+                    customIcons={state.customMarkerIcons}
+                    mapRef={mapRef}
+                    isMarkerEditMode={isMarkerEditorActive}
+                    activeMarkerId={activeMarkerId}
+                    onActiveMarkerChange={handleMarkerActiveChange}
+                    onMarkerPositionChange={handleMarkerPositionChange}
+                    onMarkerSizeChange={handleMarkerSizeChange}
+                  />
+                ) : null}
+              </div>
+              {/* Framed text area below map */}
+              {form.showPosterText && (
+                <div
+                  className="flex flex-col items-center justify-center flex-1 gap-[0.4cqmin]"
+                  style={{ color: effectiveTheme.ui.text, fontFamily: form.fontFamily ? `"${form.fontFamily}", "Space Grotesk", sans-serif` : '"Space Grotesk", sans-serif' }}
+                >
+                  <p
+                    className="m-0 font-bold text-center leading-[1.1]"
+                    style={{
+                      fontSize: `${(250 / 3600) * 100 * computeCityFontScale(cityLabel) * (Number(form.cityFontScale) || 1)}cqmin`,
+                      letterSpacing: `${form.textLetterSpacing !== "" ? Number(form.textLetterSpacing) : 0.3}em`,
+                    }}
+                  >
+                    {formatCityLabel(cityLabel, form.textUppercase)}
+                  </p>
+                  {form.showCoordinates && (
+                    <p
+                      className="m-0 font-normal text-center opacity-65"
+                      style={{
+                        fontSize: `${(50 / 3600) * 100 * (Number(form.coordsFontScale) || 1)}cqmin`,
+                        fontFamily: form.fontFamily ? `"${form.fontFamily}", "IBM Plex Mono", monospace` : '"IBM Plex Mono", monospace',
+                        letterSpacing: `${form.coordsLetterSpacing !== "" ? Number(form.coordsLetterSpacing) : 0}em`,
+                      }}
+                    >
+                      {formatCoordinates(formLat, formLon)}
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              <MapPreview
+                style={mapStyle}
+                center={mapCenter}
+                zoom={mapZoom}
+                pitch={mapPitch}
+                lightAzimuth={form.enable3D ? Number(form.lightAzimuth) || 210 : undefined}
+                lightIntensity={form.enable3D ? Number(form.lightIntensity) || 0.6 : undefined}
+                mapRef={mapRef}
+                interactive={isEditing && !isMarkerEditorActive}
+                allowRotation={isEditing}
+                minZoom={mapMinZoom}
+                maxZoom={mapMaxZoom}
+                overzoomScale={MAP_OVERZOOM_SCALE}
+                onMove={handleMove}
+                onMoveEnd={handleMoveEnd}
+              />
+              {form.showGradientTop || form.showGradientBottom ? (
+                <GradientFades
+                  color={effectiveTheme.ui.bg}
+                  showTop={form.showGradientTop}
+                  showBottom={form.showGradientBottom}
+                />
+              ) : null}
+              {hasVisibleMarkers ? (
+                <MarkerOverlay
+                  markers={state.markers}
+                  customIcons={state.customMarkerIcons}
+                  mapRef={mapRef}
+                  isMarkerEditMode={isMarkerEditorActive}
+                  activeMarkerId={activeMarkerId}
+                  onActiveMarkerChange={handleMarkerActiveChange}
+                  onMarkerPositionChange={handleMarkerPositionChange}
+                  onMarkerSizeChange={handleMarkerSizeChange}
+                />
+              ) : null}
+            </>
+          )}
+          {/* Text overlay — only for full layout (framed has its own text) */}
+          {form.posterLayout !== "framed" && (
           <PosterTextOverlay
             city={cityLabel}
             country={countryLabel}
@@ -433,8 +521,8 @@ export default function PreviewPanel() {
             countryUppercase={form.countryUppercase}
             coordsLetterSpacing={form.coordsLetterSpacing !== "" ? Number(form.coordsLetterSpacing) : 0}
           />
+          )}
 
-          {/* Floating sliders — appear above the poster when editing */}
           {/* Floating sliders — appear between poster and notch when editing */}
           {isEditing && !isMobileViewport ? (
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[calc(100%+24px)] z-20 flex flex-col items-center gap-1.5 whitespace-nowrap bg-white/80 backdrop-blur-sm rounded-xl px-4 py-2.5 ring-1 ring-black/5" aria-label="Map edit controls">

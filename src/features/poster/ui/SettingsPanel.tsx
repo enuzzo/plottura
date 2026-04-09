@@ -119,6 +119,48 @@ export default function SettingsPanel({
         <SidebarSection value="map-settings" icon={Map} label="Map Settings">
           {!isColorEditorActive ? (
             <section className="flex flex-col gap-3">
+              {/* Poster layout mode */}
+              <div className="flex items-center justify-between">
+                <span className="text-base text-text-secondary">Framed layout</span>
+                <Switch
+                  checked={state.form.posterLayout === "framed"}
+                  onCheckedChange={(checked) => {
+                    dispatch({ type: "SET_FIELD", name: "posterLayout", value: checked ? "framed" : "full" });
+                  }}
+                />
+              </div>
+              {state.form.posterLayout === "framed" && (
+                <>
+                  <div className="flex flex-col gap-1.5 pl-1 border-l-2 border-border ml-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-text-secondary">Frame padding</span>
+                      <span className="text-xs text-text-muted tabular-nums">{state.form.framePadding}%</span>
+                    </div>
+                    <input
+                      type="range"
+                      min={2}
+                      max={15}
+                      step={0.5}
+                      value={Number(state.form.framePadding) || 6}
+                      onChange={(e) => dispatch({ type: "SET_FIELD", name: "framePadding", value: e.target.value })}
+                      className="w-full accent-accent"
+                    />
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-text-secondary">Border width</span>
+                      <span className="text-xs text-text-muted tabular-nums">{state.form.frameBorderWidth}px</span>
+                    </div>
+                    <input
+                      type="range"
+                      min={0}
+                      max={6}
+                      step={0.5}
+                      value={Number(state.form.frameBorderWidth) || 2}
+                      onChange={(e) => dispatch({ type: "SET_FIELD", name: "frameBorderWidth", value: e.target.value })}
+                      className="w-full accent-accent"
+                    />
+                  </div>
+                </>
+              )}
               <div className="flex items-center justify-between">
                 <span className="text-base text-text-secondary">Gradient top</span>
                 <Switch

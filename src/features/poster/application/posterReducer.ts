@@ -38,6 +38,10 @@ export interface PosterForm {
   includeRoadPath: boolean;
   includeRoadMinorLow: boolean;
   includeRoadOutline: boolean;
+  // ── Poster Layout Mode ──
+  posterLayout: string; // "full" | "framed"
+  framePadding: string; // percentage of poster width, e.g. "6"
+  frameBorderWidth: string; // px equivalent, e.g. "2"
   includeBoundary: boolean;
   includeLandcover: boolean;
   includePlaceLabels: boolean;
