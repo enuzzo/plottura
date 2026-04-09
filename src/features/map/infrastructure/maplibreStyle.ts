@@ -213,7 +213,10 @@ export function generateMapStyle(
       BUILDING_BLEND_FACTOR,
     );
 
-  const includeBuildings = options?.includeBuildings ?? true;
+  const enable3D = options?.enable3D ?? false;
+  const buildingExtrusion = options?.buildingExtrusion ?? true;
+  const includeBuildings =
+    (options?.includeBuildings ?? true) || (enable3D && buildingExtrusion);
   const includeWater = options?.includeWater ?? true;
   const includeParks = options?.includeParks ?? true;
   const includeAeroway = options?.includeAeroway ?? true;
@@ -223,8 +226,6 @@ export function generateMapStyle(
   const includeRoadMinorLow = options?.includeRoadMinorLow ?? true;
   const includeRoadOutline = options?.includeRoadOutline ?? true;
   const buildingMinZoom = resolveBuildingMinZoom(options?.distanceMeters);
-  const enable3D = options?.enable3D ?? false;
-  const buildingExtrusion = options?.buildingExtrusion ?? true;
   const lightAzimuth = options?.lightAzimuth ?? 210;
   const lightIntensity = options?.lightIntensity ?? 0.6;
 

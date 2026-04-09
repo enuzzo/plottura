@@ -607,8 +607,8 @@ export default function PreviewPanel() {
           </div>
         </div>
 
-        {/* Bottom notch — Recenter + Edit Map */}
-        {!isMobileViewport && (
+        {/* Bottom notch — Recenter + Edit Map + 3D (hidden during editing to avoid duplication) */}
+        {!isMobileViewport && !isEditing && (
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-[3]">
             <MapPrimaryControls
               isMapEditing={isEditing}

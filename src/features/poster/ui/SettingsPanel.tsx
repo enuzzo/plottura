@@ -230,6 +230,10 @@ export default function SettingsPanel({
                   <Switch checked={false} disabled />
                 </div>
 
+                <p className="text-xs text-text-muted leading-relaxed">
+                  Use Edit Map to unlock the map, then Ctrl + drag to rotate. Rotation and pitch sliders also appear below the poster in edit mode.
+                </p>
+
                 <div className="flex flex-col gap-1.5">
                   <div className="flex items-center justify-between">
                     <span className="text-base text-text-secondary">Light direction</span>
