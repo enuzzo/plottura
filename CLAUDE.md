@@ -76,6 +76,7 @@ src/
 - Overlays: `showMarkers`, `showGradientTop`, `showGradientBottom`
 - Attribution: `includeCredits`, `includeOsmBadge`
 - Text visibility: `showCountry`, `showCoordinates`
+- 3D View: `enable3D`, `mapPitch`, `buildingExtrusion`, `terrainEnabled`, `terrainExaggeration`, `lightAzimuth`, `lightIntensity`
 
 **Key actions:** `SET_FIELD`, `SET_FORM_FIELDS`, `SET_THEME`, `SET_LAYOUT`, `SET_COLOR`, `RESET_COLORS`, `SELECT_LOCATION`, marker CRUD
 
@@ -99,6 +100,8 @@ src/
 - Building blend factor 0.14, fill opacity 0.84
 - Layer visibility controlled by PosterForm boolean fields
 - Style spec is regenerated when theme or layer toggles change
+- 3D mode: `fill-extrusion` building layer with `render_height` from OpenMapTiles, `light` object with configurable azimuth/intensity
+- Toggling 3D changes building layer ID (`building` ↔ `building-3d`), triggering full style regen (not incremental)
 
 ## Export Pipeline
 
@@ -114,7 +117,7 @@ Three formats, all at 300 DPI:
 4. PNG/PDF path: capture map canvas → compositeExport (map + fades + markers + text) → format-specific blob
 5. Trigger browser download
 
-**All export options respect:** showGradientTop/Bottom, includeCredits, includeOsmBadge, showCountry, showCoordinates, showPosterText, showMarkers
+**All export options respect:** showGradientTop/Bottom, includeCredits, includeOsmBadge, showCountry, showCoordinates, showPosterText, showMarkers, enable3D (pitch + fill-extrusion + light captured automatically)
 
 ## Poster Text Rendering
 
@@ -131,9 +134,9 @@ Both use shared layout constants from `src/features/poster/domain/textLayout.ts`
 - **Desktop:** Sidebar (360px, collapsible) + Canvas area with poster
 - **Canvas area:** Neutral `bg-app` background, poster card with drop-shadow + mouse-tracking parallax
 - **Top notch:** Layout label (themed dark bg, light text, semibold uppercase)
-- **Bottom notch:** Recenter + Edit Map buttons (themed light bg, dark text, semibold uppercase)
+- **Bottom notch:** Recenter + Edit Map + 3D toggle buttons (themed light bg, dark text, semibold uppercase)
 - **Sidebar footer:** Settings summary grid + 3 export buttons (PNG filled, SVG/PDF outlined)
-- **Sidebar sections:** Location, Theme, Layout, Map Settings, Layers, Markers, Typography (Radix Accordion)
+- **Sidebar sections:** Location, Theme, Layout, Map Settings, 3D View (conditional), Layers, Markers, Typography (Radix Accordion)
 
 ## Gotchas & Learnings
 
@@ -147,6 +150,8 @@ Both use shared layout constants from `src/features/poster/domain/textLayout.ts`
 8. **PosterForm uses string values for numeric fields** — `width`, `height`, `distance`, `latitude`, `longitude` are all strings in the form, parsed to numbers where needed.
 9. **Layout matching** — When width/height changes, `resolveLayoutIdForSize()` tries to match a predefined layout within tolerance. See `layoutMatcher.ts`.
 10. **Container queries for responsive poster text** — The poster overlay uses `[container-type:size]` and `cqmin` units so text scales proportionally with the poster frame size.
+11. **3D toggle requires full style regen** — `fill-extrusion` changes the layer type and ID (`building` → `building-3d`). The incremental style updater detects layer ID mismatches and falls through to `setStyle()`. Pitch and light use direct `setPitch()`/`setLight()` calls without style regen.
+12. **Building height fallback** — Not all OpenMapTiles buildings have `render_height` data. The style uses `["coalesce", ["get", "render_height"], 10]` to default to 10m.
 
 ## Phase 2 Status: COMPLETE
 
@@ -154,11 +159,18 @@ All milestones done (M1-M5). Zero TS errors. See:
 - Spec: `docs/superpowers/specs/2026-04-08-phase2-architecture-and-ux-design.md`
 - Handoff: `docs/superpowers/notes/2026-04-08-phase2-session{1,2,3}-handoff.md`
 
-## Next: Phase 3 — 3D Isometric Poster View
+## Phase 3 Status: 3D Isometric Map View — M1-M4 COMPLETE
 
-The key future milestone. The current rendering pipeline is modular:
-- `PreviewPanel.tsx` manages the poster frame, map, overlays, and text
-- `MapPreview.tsx` wraps the MapLibre instance
-- Export uses `compositeExport()` which layers map + fades + markers + text on canvas
+3D isometric map view using MapLibre native features (zero new dependencies):
+- **Approach:** MapLibre `pitch` + `fill-extrusion` buildings + `light` shading
+- **Poster stays flat** — only the map content tilts into 3D perspective
+- **UI:** "3D" toggle button in bottom notch + "3D View" sidebar section (pitch slider, building toggle, light direction/intensity)
+- **MapPreview:** New `pitch`, `lightAzimuth`, `lightIntensity` props; `setPitch()` and `setLight()` for real-time updates
+- **Style:** `generateMapStyle()` conditionally emits `fill-extrusion` layer + `light` object when `enable3D` is true
+- **Export:** Works automatically — pitch, style (incl. fill-extrusion + light) captured via existing `resolveExportRenderParams()`
+- **M5 (future):** Terrain DEM integration (`terrainEnabled`, `terrainExaggeration` fields ready, UI disabled)
 
-A 3D isometric view should be an **alternative renderer alongside the current 2D flat view**, not a replacement. The poster content (map + overlays + text) stays the same — only the presentation changes (flat card vs. 3D perspective with shadow/depth).
+See:
+- Spec: `docs/superpowers/specs/2026-04-08-phase3-3d-isometric-view-design.md`
+- Plan: `docs/superpowers/plans/2026-04-08-phase3-3d-isometric-view.md`
+- Handoff: `docs/superpowers/notes/2026-04-09-phase3-session1-handoff.md`
