@@ -394,6 +394,8 @@ export default function PreviewPanel() {
                   pitch={mapPitch}
                   lightAzimuth={form.enable3D ? numOrDefault(form.lightAzimuth, 210) : undefined}
                   lightIntensity={form.enable3D ? numOrDefault(form.lightIntensity, 0.6) : undefined}
+                  terrainEnabled={form.terrainEnabled}
+                  terrainExaggeration={numOrDefault(form.terrainExaggeration, 1.5)}
                   mapRef={mapRef}
                   interactive={isEditing && !isMarkerEditorActive}
                   allowRotation={isEditing}
@@ -433,6 +435,8 @@ export default function PreviewPanel() {
                 pitch={mapPitch}
                 lightAzimuth={form.enable3D ? numOrDefault(form.lightAzimuth, 210) : undefined}
                 lightIntensity={form.enable3D ? numOrDefault(form.lightIntensity, 0.6) : undefined}
+                terrainEnabled={form.terrainEnabled}
+                terrainExaggeration={numOrDefault(form.terrainExaggeration, 1.5)}
                 mapRef={mapRef}
                 interactive={isEditing && !isMarkerEditorActive}
                 allowRotation={isEditing}
