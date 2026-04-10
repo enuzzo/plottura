@@ -232,10 +232,9 @@ export default function SettingsPanel({
           ) : null}
         </SidebarSection>
 
-        {state.form.enable3D ? (
-          <SidebarSection value="3d-view" icon={Box} label="3D View">
-            {!isColorEditorActive ? (
-              <section className="flex flex-col gap-3">
+        <SidebarSection value="3d-view" icon={Box} label="3D & Terrain">
+          {!isColorEditorActive ? (
+            <section className="flex flex-col gap-3">
                 <div className="flex flex-col gap-1.5">
                   <div className="flex items-center justify-between">
                     <span className="text-base text-text-secondary">Pitch</span>
@@ -373,10 +372,9 @@ export default function SettingsPanel({
                     className="w-full accent-accent"
                   />
                 </div>
-              </section>
-            ) : null}
-          </SidebarSection>
-        ) : null}
+            </section>
+          ) : null}
+        </SidebarSection>
 
         <SidebarSection value="layers" icon={Layers} label="Layers">
           {!isAuxEditorActive ? (
