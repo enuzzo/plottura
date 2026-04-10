@@ -45,6 +45,8 @@ export interface ExportOptions {
   markerScaleX?: number;
   markerScaleY?: number;
   markerSizeScale?: number;
+  terrainEnabled?: boolean;
+  terrainExaggeration?: number;
 }
 
 export interface Typography {
