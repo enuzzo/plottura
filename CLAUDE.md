@@ -240,3 +240,4 @@ Completed in a single extended session:
 - **Text position sliders**: Allow customizing Y-position ratios for text elements in Typography
 - **Shareable URL**: Endpoint that opens Plottura with a specific map configuration (copy/paste settings is the precursor)
 - **Per-theme typography presets**: Use copy/paste JSON to define default typography for each theme
+- **CI: migrate deploy workflow to Node 24**: `.github/workflows/deploy.yml` uses `actions/checkout@v4` + `actions/upload-pages-artifact@v3` which still run on Node 20. GitHub deprecates Node 20 runner on 2026-09-16 (forced to Node 24 from 2026-06-02). Bump the action versions when a Node-24-compatible release is available, or opt in early via `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` in the workflow env.
