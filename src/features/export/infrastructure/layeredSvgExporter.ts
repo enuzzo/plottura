@@ -1,5 +1,5 @@
 import maplibregl from "maplibre-gl";
-import type { Map as MaplibreMap } from "maplibre-gl";
+import type { Map as MaplibreMap, StyleSpecification } from "maplibre-gl";
 import type {
   MarkerIconDefinition,
   MarkerItem,
@@ -41,6 +41,8 @@ interface LayeredSvgOptions {
   coordsLetterSpacing?: number;
   markers: MarkerItem[];
   markerIcons: MarkerIconDefinition[];
+  terrainEnabled?: boolean;
+  terrainExaggeration?: number;
 }
 
 function renderMapCanvasToDataUrl(
@@ -108,8 +110,15 @@ export async function createLayeredSvgBlobFromMap({
   coordsLetterSpacing = 0,
   markers,
   markerIcons,
+  terrainEnabled = false,
+  terrainExaggeration: _terrainExaggeration = 1.5,
 }: LayeredSvgOptions): Promise<Blob> {
   await waitForMapIdle(map);
+
+  // terrainEnabled is accepted for API symmetry with the canvas export path.
+  // The offscreen clone deliberately does not reapply mesh terrain — see
+  // flatStyle construction below for rationale.
+  void terrainEnabled;
 
   const {
     center: mapCenter,
@@ -126,12 +135,23 @@ export async function createLayeredSvgBlobFromMap({
     markerSizeScale,
   } = resolveExportRenderParams(map, exportWidth, exportHeight);
 
+  // Strip runtime terrain from the cloned style. The live map may have
+  // mesh terrain attached via setTerrain(); the layered SVG exporter
+  // toggles layers on/off and rasterises each one, and a mesh-deformed
+  // surface would bake the 3D warp into every per-layer PNG — defeating
+  // the "editable layered SVG" value proposition. Hillshade (a plain
+  // map layer) is kept and captured like any other layer.
+  const flatStyle: StyleSpecification = {
+    ...style,
+    terrain: undefined as any,
+  };
+
   const offscreenContainer = createOffscreenContainer(renderWidth, renderHeight);
   document.body.appendChild(offscreenContainer);
 
   const exportMap = new maplibregl.Map({
     container: offscreenContainer,
-    style,
+    style: flatStyle,
     center: [mapCenter.lng, mapCenter.lat],
     zoom,
     pitch,
