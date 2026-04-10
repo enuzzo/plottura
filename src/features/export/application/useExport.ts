@@ -102,6 +102,19 @@ export function useExport() {
         const lat = Number(form.latitude) || 0;
         const lon = Number(form.longitude) || 0;
 
+        const terrainEnabled = Boolean(form.terrainEnabled);
+        const terrainExaggeration = Number.isFinite(Number(form.terrainExaggeration))
+          ? Number(form.terrainExaggeration)
+          : 1.5;
+
+        if (format === "svg" && terrainEnabled) {
+          // Silent-but-discoverable notice: the layered SVG includes hillshade
+          // (a normal vector map layer) but deliberately not mesh terrain.
+          window.alert(
+            "SVG export includes terrain shading (hillshade), but not 3D elevation. Use PNG or PDF for full 3D terrain.",
+          );
+        }
+
         if (format === "svg") {
           const svgBlob = await createLayeredSvgBlobFromMap({
             map,
@@ -132,6 +145,8 @@ export function useExport() {
             markerIcons: hasVisibleMarkers
               ? getAllMarkerIcons(state.customMarkerIcons)
               : [],
+            terrainEnabled,
+            terrainExaggeration,
           });
           const svgFilename = createPosterFilename(
             form.displayCity || form.location,
@@ -180,6 +195,8 @@ export function useExport() {
           markerScaleX: hasVisibleMarkers ? markerScaleX : undefined,
           markerScaleY: hasVisibleMarkers ? markerScaleY : undefined,
           markerSizeScale: hasVisibleMarkers ? markerSizeScale : undefined,
+          terrainEnabled,
+          terrainExaggeration,
         });
 
         // 3. Download
