@@ -82,6 +82,8 @@ interface MapPreviewProps {
   pitch?: number;
   lightAzimuth?: number;
   lightIntensity?: number;
+  terrainEnabled?: boolean;
+  terrainExaggeration?: number;
   mapRef: MapInstanceRef;
   interactive?: boolean;
   allowRotation?: boolean;
@@ -107,6 +109,8 @@ export default function MapPreview({
   pitch = 0,
   lightAzimuth,
   lightIntensity,
+  terrainEnabled = false,
+  terrainExaggeration = 1.5,
   mapRef,
   interactive = false,
   allowRotation = false,
@@ -293,6 +297,36 @@ export default function MapPreview({
       position: [1.15, lightAzimuth, 30],
     });
   }, [lightAzimuth, lightIntensity, mapRef]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    const applyTerrain = () => {
+      if (terrainEnabled) {
+        map.setTerrain({
+          source: "terrain-dem",
+          exaggeration: terrainExaggeration,
+        });
+      } else {
+        map.setTerrain(null);
+      }
+    };
+
+    // The terrain source must exist in the current style before setTerrain
+    // can attach to it. On the very first render, or immediately after a
+    // full setStyle(), the style may still be loading.
+    if (map.isStyleLoaded()) {
+      applyTerrain();
+      return;
+    }
+
+    const onLoad = () => applyTerrain();
+    map.once("load", onLoad);
+    return () => {
+      map.off("load", onLoad);
+    };
+  }, [terrainEnabled, terrainExaggeration, style, mapRef]);
 
   const normalizedOverzoomScale = Math.max(1, overzoomScale);
   const innerStyle: CSSProperties =
