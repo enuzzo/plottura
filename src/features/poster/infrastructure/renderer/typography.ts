@@ -40,6 +40,7 @@ export function drawPosterText(
   creditsFontScale: number = 1,
   countryUppercase: boolean = true,
   coordsLetterSpacing: number = 0,
+  terrainEnabled: boolean = false,
 ): void {
   const textColor = theme.ui?.text || "#111111";
   const landColor = theme.map?.land || "#808080";
@@ -117,8 +118,11 @@ export function drawPosterText(
     ctx.textAlign = "right";
     ctx.textBaseline = "bottom";
     ctx.font = `300 ${attributionFontSize}px ${bodyFontFamily}`;
+    const osmLine = terrainEnabled
+      ? "\u00a9 OpenStreetMap contributors \u00b7 Mapzen terrain"
+      : "\u00a9 OpenStreetMap contributors";
     ctx.fillText(
-      "\u00a9 OpenStreetMap contributors",
+      osmLine,
       width * (1 - TEXT_EDGE_MARGIN_RATIO),
       height * (1 - TEXT_EDGE_MARGIN_RATIO),
     );

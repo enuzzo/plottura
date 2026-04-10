@@ -115,10 +115,10 @@ export async function createLayeredSvgBlobFromMap({
 }: LayeredSvgOptions): Promise<Blob> {
   await waitForMapIdle(map);
 
-  // terrainEnabled is accepted for API symmetry with the canvas export path.
+  // terrainExaggeration is accepted for API symmetry with the canvas export path.
   // The offscreen clone deliberately does not reapply mesh terrain — see
-  // flatStyle construction below for rationale.
-  void terrainEnabled;
+  // flatStyle construction below for rationale. terrainEnabled IS used below
+  // to append the Mapzen attribution to the OSM credit line.
 
   const {
     center: mapCenter,
@@ -263,6 +263,7 @@ export async function createLayeredSvgBlobFromMap({
           creditsFontScale,
           countryUppercase,
           coordsLetterSpacing,
+          terrainEnabled,
         );
       }),
     });

@@ -38,6 +38,7 @@ interface PosterTextOverlayProps {
   creditsFontScale?: number;
   countryUppercase?: boolean;
   coordsLetterSpacing?: number;
+  terrainEnabled?: boolean;
 }
 
 /**
@@ -67,6 +68,7 @@ export default function PosterTextOverlay({
   creditsFontScale = 1,
   countryUppercase = true,
   coordsLetterSpacing = 0,
+  terrainEnabled = false,
 }: PosterTextOverlayProps) {
   const toCqMin = (px: number) => (px / TEXT_DIMENSION_REFERENCE_PX) * 100;
 
@@ -153,6 +155,7 @@ export default function PosterTextOverlay({
           }}
         >
           &copy; OpenStreetMap contributors
+          {terrainEnabled ? " \u00b7 Mapzen terrain" : ""}
         </span>
       )}
 

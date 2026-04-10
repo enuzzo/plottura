@@ -46,6 +46,7 @@ export async function compositeExport(
     markerScaleX = 1,
     markerScaleY = 1,
     markerSizeScale = 1,
+    terrainEnabled = false,
   } = options;
 
   const width = mapCanvas.width;
@@ -103,6 +104,7 @@ export async function compositeExport(
     creditsFontScale,
     countryUppercase,
     coordsLetterSpacing,
+    terrainEnabled,
   );
 
   const size: CanvasSize = {

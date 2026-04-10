@@ -489,6 +489,7 @@ export default function PreviewPanel() {
             creditsFontScale={Number(form.creditsFontScale) || 1}
             countryUppercase={form.countryUppercase}
             coordsLetterSpacing={form.coordsLetterSpacing !== "" ? Number(form.coordsLetterSpacing) : 0}
+            terrainEnabled={form.terrainEnabled}
           />
 
           {/* Floating sliders — appear between poster and notch when editing */}
