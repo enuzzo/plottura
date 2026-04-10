@@ -217,38 +217,42 @@ export default function MapPreview({
       return;
     }
 
-    // If the map hasn't finished loading the initial style yet, queue a full setStyle.
-    if (!map.isStyleLoaded()) {
-      const applyWhenReady = () => {
+    const applyUpdate = () => {
+      // Fast path: apply only the changed paint/layout/zoom properties directly,
+      // avoiding a full setStyle diff and any risk of source re-initialisation.
+      const sourcesMatch =
+        prevStyleRef.current &&
+        JSON.stringify(prevStyleRef.current.sources) ===
+          JSON.stringify(style.sources);
+      const layerIdsMatch =
+        prevStyleRef.current &&
+        prevStyleRef.current.layers.length === style.layers.length &&
+        prevStyleRef.current.layers.every(
+          (l, i) => l.id === style.layers[i]?.id,
+        );
+
+      if (sourcesMatch && layerIdsMatch) {
+        applyIncrementalStyleUpdate(map, prevStyleRef.current!, style);
+      } else {
         map.setStyle(style);
-        prevStyleRef.current = style;
-      };
-      map.once("load", applyWhenReady);
+      }
+
+      prevStyleRef.current = style;
+    };
+
+    // If the style isn't fully loaded yet (e.g. mid-reload from a prior
+    // setStyle or initial tile fetch), defer until the next "idle" event.
+    // Unlike "load" which only fires once in the map's lifetime, "idle"
+    // fires on every render settle, so subsequent style changes are
+    // guaranteed to apply.
+    if (!map.isStyleLoaded()) {
+      map.once("idle", applyUpdate);
       return () => {
-        map.off("load", applyWhenReady);
+        map.off("idle", applyUpdate);
       };
     }
 
-    // Fast path: apply only the changed paint/layout/zoom properties directly,
-    // avoiding a full setStyle diff and any risk of source re-initialisation.
-    const sourcesMatch =
-      prevStyleRef.current &&
-      JSON.stringify(prevStyleRef.current.sources) ===
-        JSON.stringify(style.sources);
-    const layerIdsMatch =
-      prevStyleRef.current &&
-      prevStyleRef.current.layers.length === style.layers.length &&
-      prevStyleRef.current.layers.every(
-        (l, i) => l.id === style.layers[i]?.id,
-      );
-
-    if (sourcesMatch && layerIdsMatch) {
-      applyIncrementalStyleUpdate(map, prevStyleRef.current, style);
-    } else {
-      map.setStyle(style);
-    }
-
-    prevStyleRef.current = style;
+    applyUpdate();
   }, [style, mapRef]);
 
   useEffect(() => {
@@ -315,16 +319,20 @@ export default function MapPreview({
 
     // The terrain source must exist in the current style before setTerrain
     // can attach to it. On the very first render, or immediately after a
-    // full setStyle(), the style may still be loading.
-    if (map.isStyleLoaded()) {
+    // full setStyle(), the style may still be loading. If so, defer until
+    // the next "idle" event (which fires every time the map settles, unlike
+    // "load" which only fires once in the map's lifetime).
+    if (map.getSource("terrain-dem")) {
       applyTerrain();
       return;
     }
 
-    const onLoad = () => applyTerrain();
-    map.once("load", onLoad);
+    const onIdle = () => {
+      if (map.getSource("terrain-dem")) applyTerrain();
+    };
+    map.once("idle", onIdle);
     return () => {
-      map.off("load", onLoad);
+      map.off("idle", onIdle);
     };
   }, [terrainEnabled, terrainExaggeration, style, mapRef]);
 
