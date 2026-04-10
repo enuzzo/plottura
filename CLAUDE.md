@@ -189,6 +189,9 @@ Two modes controlled by `posterLayout` field:
 15. **Framed layout uses same text overlay** — The `PosterTextOverlay` component renders identically in both full and framed modes. Only the map area changes (gets padding + border). Text Y positions are fixed percentages of poster height.
 16. **No GPS on startup** — `useGeolocation` sets London as default without calling `navigator.geolocation`. GPS permission is requested ONLY when the user clicks "Use current location" button (via `useCurrentLocation`).
 17. **OpenFreeMap glyphs** — Font glyphs for map labels served at `https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf`. Available: Noto Sans Regular, Bold, Italic. Glyphs URL always included in style spec (not conditional).
+18. **Terrain source + setTerrain timing** — `terrain-dem` (AWS Terrarium) is baked into every style so it's always present for `setTerrain()` to attach to. But `setTerrain()` must be called only after the style is loaded; the `MapPreview.tsx` terrain effect guards on `map.isStyleLoaded()` and falls back to `map.once("load", …)` when the style is still mounting. The effect also lists `style` in its deps so a full `setStyle()` swap (e.g. theme change) re-applies terrain.
+19. **Hillshade vs mesh in SVG export** — The layered SVG exporter strips `style.terrain` on the offscreen clone via `flatStyle = { ...style, terrain: undefined }`. Hillshade stays (it's a normal map layer). Rationale: mesh deformation would bake 3D warp into every per-layer PNG and defeat the editable-layered-SVG value proposition. `useExport.ts` fires a `window.alert` when the user triggers SVG with terrain on so the behavior is discoverable.
+20. **Terrain is independent of `enable3D`** — Hillshade draws in flat 2D too. `PreviewPanel` passes `terrainEnabled` unconditionally (unlike `lightAzimuth`/`lightIntensity` which are gated on `enable3D`). Mesh is only visually noticeable when pitched, but the source is always attached when `terrainEnabled` is on.
 
 ## Phase 2 Status: COMPLETE
 
@@ -196,21 +199,26 @@ All milestones done (M1-M5). Zero TS errors. See:
 - Spec: `docs/superpowers/specs/2026-04-08-phase2-architecture-and-ux-design.md`
 - Handoff: `docs/superpowers/notes/2026-04-08-phase2-session{1,2,3}-handoff.md`
 
-## Phase 3 Status: 3D Isometric Map View — M1-M4 COMPLETE
+## Phase 3 Status: 3D Isometric + Terrain — COMPLETE
 
-3D isometric map view using MapLibre native features (zero new dependencies):
-- **Approach:** MapLibre `pitch` + `fill-extrusion` buildings + `light` shading
-- **Poster stays flat** — only the map content tilts into 3D perspective
-- **UI:** "3D" toggle button in bottom notch + "3D View" sidebar section (pitch slider, building toggle, light direction/intensity)
-- **MapPreview:** New `pitch`, `lightAzimuth`, `lightIntensity` props; `setPitch()` and `setLight()` for real-time updates
-- **Style:** `generateMapStyle()` conditionally emits `fill-extrusion` layer + `light` object when `enable3D` is true
-- **Export:** Works automatically — pitch, style (incl. fill-extrusion + light) captured via existing `resolveExportRenderParams()`
-- **M5 (future):** Terrain DEM integration (`terrainEnabled`, `terrainExaggeration` fields ready, UI disabled)
+3D isometric map view + DEM terrain, both using MapLibre native features (zero new runtime dependencies):
+- **Pitch + buildings (M1–M4):** MapLibre `pitch` + `fill-extrusion` + `light`
+- **Terrain (M5):** AWS Terrarium `raster-dem` source + `hillshade` layer + runtime `setTerrain()` mesh
+- **Poster stays flat** — only the map content tilts/deforms into 3D perspective
+- **UI:** "3D" toggle in bottom notch + "3D View" sidebar section with pitch, buildings, terrain, exaggeration, light direction, light intensity
+- **Hillshade is coupled to the existing light controls** — illumination direction ← `lightAzimuth`, exaggeration derived from `lightIntensity`, shadow/highlight colors derived from theme. Building shadows and terrain shadows stay coherent under a single virtual light source.
+- **Terrain is independent of `enable3D`** — hillshade works in flat 2D too; mesh only becomes visible when the map is pitched.
+- **Style generation:** `generateMapStyle()` always emits the `terrain-dem` source + `hillshade` layer; visibility toggled by `terrainEnabled`. `setTerrain()` is applied as a runtime effect in `MapPreview.tsx` and is NOT part of the generated style spec — keeps incremental style diffs working.
+- **Export:**
+  - **PNG/PDF:** work automatically (canvas capture reads terrain-rendered pixels from the live map)
+  - **SVG:** hillshade is captured like any other map layer; mesh terrain is deliberately stripped on the offscreen clone (`flatStyle = { ...style, terrain: undefined }`) so per-layer PNGs stay flat and re-compositable in Illustrator. When SVG export is triggered with terrain on, a `window.alert` fires: "SVG export includes terrain shading (hillshade), but not 3D elevation. Use PNG or PDF for full 3D terrain."
+- **Attribution:** OSM credit line gains "· Mapzen terrain" when `terrainEnabled` is true (both DOM preview and canvas export).
 
 See:
-- Spec: `docs/superpowers/specs/2026-04-08-phase3-3d-isometric-view-design.md`
-- Plan: `docs/superpowers/plans/2026-04-08-phase3-3d-isometric-view.md`
-- Handoff: `docs/superpowers/notes/2026-04-09-phase3-session1-handoff.md`
+- Phase 3 spec: `docs/superpowers/specs/2026-04-08-phase3-3d-isometric-view-design.md`
+- M5 spec: `docs/superpowers/specs/2026-04-10-phase3-m5-terrain-design.md`
+- M5 plan: `docs/superpowers/plans/2026-04-10-phase3-m5-terrain.md`
+- Handoffs: `docs/superpowers/notes/2026-04-09-phase3-session{1,2}-handoff.md`
 
 ## Phase 3 Session 2: Features & Polish
 
@@ -228,7 +236,6 @@ Completed in a single extended session:
 
 ## TODO / Future Work
 
-- **Terrain DEM** (M5): `terrainEnabled` + `terrainExaggeration` fields ready, UI disabled. Needs DEM tile source evaluation.
 - **Framed layout export**: Wire framed layout through PNG/SVG/PDF export pipeline (preview works, export not yet)
 - **Text position sliders**: Allow customizing Y-position ratios for text elements in Typography
 - **Shareable URL**: Endpoint that opens Plottura with a specific map configuration (copy/paste settings is the precursor)
