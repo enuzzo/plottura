@@ -274,13 +274,53 @@ export default function SettingsPanel({
                   />
                 </div>
 
-                <div className="flex items-center justify-between opacity-50 cursor-not-allowed">
-                  <span className="text-base text-text-secondary">
-                    Terrain{" "}
-                    <span className="text-xs text-text-muted">(coming soon)</span>
-                  </span>
-                  <Switch checked={false} disabled />
+                <div className="flex items-center justify-between">
+                  <span className="text-base text-text-secondary">Terrain</span>
+                  <Switch
+                    checked={Boolean(state.form.terrainEnabled)}
+                    onCheckedChange={(checked) => {
+                      dispatch({
+                        type: "SET_FIELD",
+                        name: "terrainEnabled",
+                        value: checked,
+                      });
+                    }}
+                  />
                 </div>
+
+                {state.form.terrainEnabled ? (
+                  <div className="flex flex-col gap-1.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-base text-text-secondary">Exaggeration</span>
+                      <span className="text-sm text-text-muted tabular-nums">
+                        {(Number.isFinite(Number(state.form.terrainExaggeration))
+                          ? Number(state.form.terrainExaggeration)
+                          : 1.5
+                        ).toFixed(1)}
+                        ×
+                      </span>
+                    </div>
+                    <input
+                      type="range"
+                      min={0.5}
+                      max={3}
+                      step={0.1}
+                      value={
+                        Number.isFinite(Number(state.form.terrainExaggeration))
+                          ? Number(state.form.terrainExaggeration)
+                          : 1.5
+                      }
+                      onChange={(e) =>
+                        dispatch({
+                          type: "SET_FIELD",
+                          name: "terrainExaggeration",
+                          value: e.target.value,
+                        })
+                      }
+                      className="w-full accent-accent"
+                    />
+                  </div>
+                ) : null}
 
                 <p className="text-xs text-text-muted leading-relaxed">
                   Use Edit Map to unlock the map, then Ctrl + drag to rotate. Rotation and pitch sliders also appear below the poster in edit mode.
