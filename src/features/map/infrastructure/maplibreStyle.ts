@@ -6,6 +6,11 @@ import type { StyleSpecification } from "maplibre-gl";
 const OPENFREEMAP_SOURCE = "https://tiles.openfreemap.org/planet";
 const OPENFREEMAP_GLYPHS = "https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf";
 const SOURCE_ID = "openfreemap";
+const TERRAIN_SOURCE_ID = "terrain-dem";
+const TERRAIN_TILE_URL =
+  "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png";
+const TERRAIN_TILE_SIZE = 256;
+const TERRAIN_MAX_ZOOM = 15;
 const LABEL_FONT_REGULAR = "Noto Sans Regular";
 const LABEL_FONT_BOLD = "Noto Sans Bold";
 const LABEL_FONT_ITALIC = "Noto Sans Italic";
@@ -213,6 +218,7 @@ export function generateMapStyle(
     buildingExtrusion?: boolean;
     lightAzimuth?: number;
     lightIntensity?: number;
+    terrainEnabled?: boolean;
     overzoomScale?: number;
   },
 ): StyleSpecification {
@@ -245,6 +251,7 @@ export function generateMapStyle(
   const buildingMinZoom = resolveBuildingMinZoom(options?.distanceMeters);
   const lightAzimuth = options?.lightAzimuth ?? 210;
   const lightIntensity = options?.lightIntensity ?? 0.6;
+  const terrainEnabled = options?.terrainEnabled ?? false;
 
   const minorHighCasingStops = scaledStops(
     MAP_ROAD_MINOR_HIGH_DETAIL_WIDTH_STOPS,
@@ -319,6 +326,15 @@ export function generateMapStyle(
         url: OPENFREEMAP_SOURCE,
         maxzoom: SOURCE_MAX_ZOOM,
       },
+      [TERRAIN_SOURCE_ID]: {
+        type: "raster-dem",
+        tiles: [TERRAIN_TILE_URL],
+        tileSize: TERRAIN_TILE_SIZE,
+        maxzoom: TERRAIN_MAX_ZOOM,
+        encoding: "terrarium",
+        attribution:
+          "Terrain © <a href='https://registry.opendata.aws/terrain-tiles/'>Mapzen / AWS Open Data</a>",
+      },
     },
     layers: [
       {
@@ -346,6 +362,35 @@ export function generateMapStyle(
             [8, 0.4],
             [14, 0.5],
           ]),
+        },
+      },
+
+      // Hillshade: shaded relief from terrain-dem. Always present in the style;
+      // visibility is toggled by terrainEnabled. Paint properties are bound to
+      // the same light azimuth/intensity sliders that drive 3D buildings, so
+      // building shadows and terrain shadows stay coherent.
+      {
+        id: "hillshade",
+        source: TERRAIN_SOURCE_ID,
+        type: "hillshade" as const,
+        layout: {
+          visibility: terrainEnabled ? ("visible" as const) : ("none" as const),
+        },
+        paint: {
+          "hillshade-illumination-direction": lightAzimuth,
+          "hillshade-illumination-anchor": "map" as const,
+          "hillshade-exaggeration": Math.max(0.15, Math.min(1, lightIntensity * 0.85 + 0.15)),
+          "hillshade-shadow-color": blendHex(
+            theme.ui.text || "#111111",
+            theme.map.land || "#ffffff",
+            0.55,
+          ),
+          "hillshade-highlight-color": blendHex(
+            theme.map.land || "#ffffff",
+            "#ffffff",
+            0.35,
+          ),
+          "hillshade-accent-color": "rgba(0,0,0,0)",
         },
       },
 
